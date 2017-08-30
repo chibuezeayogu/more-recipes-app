@@ -5,92 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">      
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>    
-      <script src="https://use.fontawesome.com/7673a07bc0.js"></script>   
-      <script src="js/recipes.js"></script>  
-      <link rel="stylesheet" type="text/css" href="css/recipes.css">  
+    <link rel="stylesheet" type="text/css" href="css/recipes.css">  
 </head>
 <body>
   <header>
-    <nav class="teal lighten-2">
-      <div class="nav-wrapper container teal lighten-2">
-        <a href="" class="brand-logo">
-          <img src= "images/logo.png" alt = "" class ="responsive-img" width="100px" height="50px">More Recipes</a>
-          <a href="" data-activates="mobile-menu" class="button-collapse"> 
-            <i class="material-icons">menu</i></a>
-              <ul class="right hide-on-med-and-down">
-                <li><a href="search1.html"><i class="fa fa-search tiny" aria-hidden="true"></i></a></li>
-                <li>|</li>
-                <li><a href="login.html">Login</a></li>
-                <li>|</li>
-                <li><a href="register.html">Register</a></li>
-              </ul>
-              <ul class="side-nav" id="mobile-menu">
-                <li><a href="search1.html"><i class="fa fa-search tiny" aria-hidden="true"></i></a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Reister</a></li>
-              </ul>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <div class="container">
+      <nav class="teal lighten-2">
+        <div class="nav-wrapper container teal lighten-2">
+          <a href="" class="brand-logo">
+            <img src= "images/logo.png" alt = "" class ="responsive-img" width="100px" height="50px">More Recipes</a>
+            <a href="" data-activates="mobile-menu" class="button-collapse"> 
+              <i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                  <li><a href="search1.html"><i class="fa fa-search tiny" aria-hidden="true"></i></a></li>
+                  <li>|</li>
+                  <li><a href="signin.html">SignIn</a></li>
+                  <li>|</li>
+                  <li><a href="signup.html">SignUp</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-menu">
+                  <li><a href="search1.html"><i class="fa fa-search tiny" aria-hidden="true"></i></a></li>
+                  <li><a href="signin.html">SignIn</a></li>
+                  <li><a href="signup.html">SignUp</a></li>
+                </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container">
         <div class="row">
             <div class="center col s12">
                 <h3 class="flow-text center" style="font-weight: bold">Login</h3>
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="container">
-      <form action="login_submit" method="get" accept-charset="utf-8">
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">mail_outline</i>
-            <input id="email" type="email" class="validate">
-            <label for="email">Email</label>
-          </div>  
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">vpn_key</i>
-            <input id="password" type="password" class="validate">
-            <label for="password">Password</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s12">
-            <a class="waves-effect waves-light btn right" id="login">Login</a>
-          </div>
-        </div>
-      </form>
-    </div>
-  </main>
-
-   <footer class="page-footer teal lighten-2 black-text">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5>Contact Info:</h5>
-            <ul>
-              <li><i class="material-icons prefix">location_on</i>Road B Block B Flat 5, RSUST, PH, Nigeria</li>
-              <li><i class="material-icons prefix">mail_outline</i>Chibuezeayogu@hotmail.com</li>
-              <li><i class="material-icons prefix">local_phone</i>+234-703-349-7338</li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-      <div class="footer-copyright black-text">
-        <div class="container center"><h6>&copy Copyright 2017. All Right Reserved</h6></div>
-        </div>
       </div>
-    </div>
+      <hr>
+      <div class="container">
+        <form action="login_submit" method="get" accept-charset="utf-8">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mail_outline</i>
+              <input id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>  
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">vpn_key</i>
+              <input id="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <a class="waves-effect waves-light btn right" id="login">Login</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer class="page-footer teal lighten-2 black-text">
+        <div class="container">
+             <div class="row">
+                    <div class="col l6 s12">
+                        <h5>Contact Info:</h5>
+                            <ul>
+                                <li><i class="material-icons prefix">location_on</i>Road B Block B Flat 5, RSUST, PH, Nigeria</li>
+                                <li><i class="material-icons prefix">mail_outline</i>Chibuezeayogu@hotmail.com</li>
+                                <li><i class="material-icons prefix">local_phone</i>+234-703-349-7338</li>
+                            </ul>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="footer-copyright black-text">
+                    <div class="container center"><h6>&copy Copyright 2017. All Right Reserved</h6></div>
+                </div>
+            </div>
+        </div>
     </footer>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>    
     <script src="https://use.fontawesome.com/7673a07bc0.js"></script>   
-    <script src="js/recipes.js"></script>  
+    <script src="js/recipes.js"></script> 
   </body>
 </html>
