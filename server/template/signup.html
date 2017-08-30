@@ -4,76 +4,71 @@
   <title></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">      
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>    
-      <script src="https://use.fontawesome.com/7673a07bc0.js"></script>   
-      <script src="js/recipes.js"></script>  
-      <link rel="stylesheet" type="text/css" href="css/recipes.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"> 
+    <link rel="stylesheet" type="text/css" href="css/recipes.css">  
 </head>
 <body>
-  <header>
-    <nav class="teal lighten-2">
-      <div class="nav-wrapper container teal lighten-2">
-        <a href="" class="brand-logo">
-          <img src= "images/logo.png" alt = "" class ="responsive-img" width="100px" height="50px">More Recipes</a>
-          <a href="" data-activates="mobile-menu" class="button-collapse"> 
-            <i class="material-icons">menu</i></a>
-              <ul class="right hide-on-med-and-down">
-                <li><a href="search1.html"><i class="fa fa-search tiny" aria-hidden="true"></i></a></li>
-                <li>|</li>
-                <li><a href="login.html">Login</a></li>
-                <li>|</li>
-                <li><a href="register.html">Register</a></li>
-              </ul>
-              <ul class="side-nav" id="mobile-menu">
-                <li><a href="search1.html"><i class="fa fa-search tiny" aria-hidden="true"></i></a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Reister</a></li>
-              </ul>
-      </div>
-    </nav>
-  </header>
-  
-  <main>
-    <div class="container">
-        <div class="row">
-            <div class="col s12">
-                <h3 class="flow-text center" style="font-weight: bold">Create Account</h3>
+    <header>
+        <nav class="teal lighten-2">
+            <div class="nav-wrapper container teal lighten-2">
+                <a href="" class="brand-logo">
+                <img src= "images/logo.png" alt = "" class ="responsive-img" width="100px" height="50px">More Recipes</a>
+                <a href="" data-activates="mobile-menu" class="button-collapse"> 
+                <i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="search1.html"><i class="fa fa-search tiny" aria-hidden="true"></i></a></li>
+                    <li>|</li>
+                    <li><a href="signin.html">Login</a></li>
+                    <li>|</li>
+                    <li><a href="signup.html">Register</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-menu">
+                    <li><a href="search1.html"><i class="fa fa-search tiny" aria-hidden="true"></i></a></li>
+                    <li><a href="signin.html">Sign In</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h3 class="flow-text center" style="font-weight: bold">Create Account</h3>
+                </div>
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="container">
-        <div class="row">
-            <form class="col s12" method="" action="" accept-charset="utf-8">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="first_name" type="text" class="validate">
-                        <label for="first_name">First Name</label>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <form class="col s12" method="" action="" accept-charset="utf-8">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="first_name" type="text" class="validate">
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="last_name" type="text" class="validate">
+                            <label for="last_name">Last Name</label>
+                        </div>
                     </div>
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Last Name</label>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">mail_outline</i>
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>  
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">vpn_key</i>
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Password</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">mail_outline</i>
-                        <input id="email" type="email" class="validate">
-                        <label for="email">Email</label>
-                    </div>  
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">vpn_key</i>
-                        <input id="password" type="password" class="validate">
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s6">
-                        <select name="Nationality" required="required">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select name="Nationality" required="required">
                                     <option value="Afganistan">Afghanistan</option>
                                     <option value="Albania">Albania</option>
                                     <option value="Algeria">Algeria</option>
@@ -322,71 +317,74 @@
                                     <option value="Zambia">Zambia</option>
                                     <option value="Zimbabwe">Zimbabwe</option>
                             </select>
-                                <label>Nationality</label>  
+                            <label>Nationality</label>  
                         </div>
-                    <div class="input-field col s6">
-                        <i class="fa fa-birthday-cake prefix tiny" aria-hidden="true"></i>
-                        <input type="text" class="datepicker" id="dateOfBirth">
+                        <div class="input-field col s6">
+                            <i class="fa fa-birthday-cake prefix tiny" aria-hidden="true"></i>
+                            <input type="text" class="datepicker" id="dateOfBirth">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">room</i>
+                            <textarea id="Address" class="materialize-textarea"></textarea>
+                            <label for="Address">Address</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="icon_telephone" type="tel" class="validate">
+                            <label for="icon_telephone">Telephone</label>
+                        </div>
+                        </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <h5>Gender</h5>
+                            <p>
+                                <input name="group1" type="radio" id="male" checked/>
+                                <label for="male">Male</label>
+                            </p>
+                            <p>
+                                <input name="group1" type="radio" id="female" />
+                                <label for="female">Female</label>
+                            </p>
+                            <p>
+                                <input name="group1" type="radio" id="other" />
+                                <label for="other">Other</label>
+                            </p>
+                        </div>
+                    </div> 
+                    <hr>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <a class="waves-effect waves-light btn right">Register</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer teal lighten-2 black-text">
+        <div class="container">
+             <div class="row">
+                    <div class="col l6 s12">
+                        <h5>Contact Info:</h5>
+                            <ul>
+                                <li><i class="material-icons prefix">location_on</i>Road B Block B Flat 5, RSUST, PH, Nigeria</li>
+                                <li><i class="material-icons prefix">mail_outline</i>Chibuezeayogu@hotmail.com</li>
+                                <li><i class="material-icons prefix">local_phone</i>+234-703-349-7338</li>
+                            </ul>
                     </div>
                 </div>
-                 <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">room</i>
-                        <textarea id="Address" class="materialize-textarea"></textarea>
-                        <label for="Address">Address</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">phone</i>
-                        <input id="icon_telephone" type="tel" class="validate">
-                        <label for="icon_telephone">Telephone</label>
-                    </div>
-                    </div>
-                <div class="row">
-                    <div class="col s12">
-                        <h5>Gender</h5>
-                        <p>
-                            <input name="group1" type="radio" id="male" checked/>
-                            <label for="male">Male</label>
-                        </p>
-                        <p>
-                            <input name="group1" type="radio" id="female" />
-                            <label for="female">Female</label>
-                        </p>
-                        <p>
-                            <input name="group1" type="radio" id="other" />
-                            <label for="other">Other</label>
-                        </p>
-                    </div>
-                </div> 
-            <hr>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <a class="waves-effect waves-light btn right">Register</a>
-                    </div>
+            <div class="row">
+                <div class="footer-copyright black-text">
+                    <div class="container center"><h6>&copy Copyright 2017. All Right Reserved</h6></div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
-  </main>
-
-  <footer class="page-footer teal lighten-2 black-text">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-        <h5>Contact Info:</h5>
-          <ul>
-            <li><i class="material-icons prefix">location_on</i>Road B Block B Flat 5, RSUST, PH, Nigeria</li>
-            <li><i class="material-icons prefix">mail_outline</i>Chibuezeayogu@hotmail.com</li>
-            <li><i class="material-icons prefix">local_phone</i>+234-703-349-7338</li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-    <div class="footer-copyright black-text">
-      <div class="container center"><h6>&copy Copyright 2017. All Right Reserved</h6></div>
-    </div>
-    </div>
-   </div>
-  </footer>
+    </footer>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>    
+    <script src="https://use.fontawesome.com/7673a07bc0.js"></script>   
+    <script src="js/recipes.js"></script> 
   </body>
 </html>
