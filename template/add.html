@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Favorite Recipes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">      
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">      
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="css/recipes.css">  
 </head>
 <body>
@@ -64,42 +64,64 @@
   </header>
   <main>
     <div class="container">
-        <div class="row col s12">
-            <h4 class="center">Fovourite Recipes</h4>
-        </div>
-    </div>
-    <hr>
-    <div class="container">
       <div class="row">
         <div class="col s12">
-            <table class="responsive-table">
-              <tbody>
-                <tr>
-                  <td><img src="" alt=""></td>
-                  <td><h3 class="flow-text"><span id="title"></span></h3><blockquote class="flow-text" id="description"></blockquote></td>
-                </tr>
-                <tr>
-                  <td><span id="ingredience"></span></td>
-                  <td><span id="procedures"></span></td>
-                </tr>
-                <tr>
-                  <a class="waves-effect waves-light btn" id="upVote"><i class="fa fa-thumbs-up tiny left"></i>
-                  <span class="badge" id="upVoteCount"></span></a>
-                  <a class="waves-effect waves-light btn" id="downVote"><i class="fa fa-thumbs-down tiny left"></i>
-                  <span class="badge" id="downVoteCount"></span></a>
-                  <a class="waves-effect waves-light btn" id="postComment"><i class="fa fa-comment tiny" aria-hidden="true"></i></a>
-                  <a class="waves-effect waves-light btn disabled"><i class="fa fa-eye tiny" aria-hidden="true"></i> <span class="badge" id="viewCount"></span></a>
-                </tr>
-                <tr>
-                  <div id="editablediv" class="z-depth-3 col s12" style="height: 50px; display: none;">   
+            <h4 class="flow-text center">Add Recipe</h4>
+        </div>
+      <div class="row">
+        <div class="col s12">
+            <form action="recipes_submit" method="get" accept-charset="utf-8">
+              <div class="row">
+                <div class="input-field col s12">
+                    <input id="recipeHeader" type="text" class="validate">
+                    <label for="recipeHeader">Title</label>
+                  </div>
                 </div>
-              </tr>
-              <tr>
-                <a class="waves-effect waves-light btn right" id="postReview" style="display: none">Post</a>
-              </tr>
-            </tbody>
-          </table>
-          <hr>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea id="decription" class="materialize-textarea"></textarea>
+                    <label for="decription">Decription</label>
+                  </div>
+                </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <p>
+                    <input id="ingredience" type="tel" class="validate">
+                    <label for="ingredience">Ingredience</label>
+                    <a class="waves-effect waves-light btn">Add Ingredience</a>
+                    <div id="ingreidienceHolder"></div>
+                  </p>
+                </div>
+              </div>
+              <hr> 
+              <div class="row">
+                <div class="input-field col s12">
+                  <p>
+                    <textarea id="Address" class="materialize-textarea"></textarea>
+                    <label for="Address">Preparaton Procedure</label>
+                    <a class="waves-effect waves-light btn">Add Preparaton Procedure</a>
+                    <div id="prodecureHolder"></div>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="file-field input-field col s12">
+                  <div class="btn">
+                    <span>File</span>
+                    <input type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Upload pictorial descripton">
+                  </div>
+                </div>
+              </div>
+              <hr>  
+              <div class="row">
+                <div class="col s12">
+                  <a class="waves-effect waves-light btn right">Add Recipe</a>
+                </div>
+              </div>
+          </form>
         </div>
       </div>
     </main>
@@ -116,15 +138,15 @@
           </div>
         </div>
         <div class="row">
-      <div class="footer-copyright black-text">
-        <div class="container center"><h6>&copy Copyright 2017. All Right Reserved</h6></div>
+        <div class="footer-copyright black-text">
+          <div class="container center"><h6>&copy Copyright 2017. All Right Reserved</h6></div>
+          </div>
         </div>
       </div>
-    </div>
-    </footer>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>    
-    <script src="https://use.fontawesome.com/7673a07bc0.js"></script>   
-    <script src="js/recipes.js"></script>  
-  </body>
+      </footer>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>    
+        <script src="https://use.fontawesome.com/7673a07bc0.js"></script>   
+        <script src="js/recipes.js"></script>  
+    </body>
 </html>

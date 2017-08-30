@@ -2,14 +2,10 @@
 <html>
 <head>
   <title></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">      
+    <meta name="viewport" content="width=device-width, initial-scale=1">      
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>    
-      <script src="https://use.fontawesome.com/7673a07bc0.js"></script>   
-      <script src="js/recipes.js"></script>  
-      <link rel="stylesheet" type="text/css" href="css/recipes.css">  
+    <link rel="stylesheet" type="text/css" href="css/recipes.css">  
 </head>
 <body>
   <header>
@@ -19,8 +15,8 @@
           <img src= "images/logo.png" alt = "" class = "responsive-img" width="110px" height="60px">More Recipes</a>
         <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down" style="margin-top: 20px">
-         <li><a href="home.html"><i class="material-icons tiny">home</i></a></li>
-         <li></li>
+          <li><a href="home.html"><i class="material-icons tiny">home</i></a></li>
+          <li></li>
           <li><i class="fa fa-thumbs-up tiny" aria-hidden="true"></i></li>
           <li><a href="#"><span class="badge" id="upVote"></span></i></a></li>
           <li><i class="fa fa-thumbs-down tiny" aria-hidden="true"></i></li>
@@ -30,34 +26,31 @@
           <li></li>
           <li><a href="search.html" title=""><i class="material-icons tiny">search</i></a></li>
           <li>|</li>
-          <li>
-            <a class="dropdown-button" href="#" data-activates="dropdown1">Welcome, <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
+          <li><a class="dropdown-button" href="#" data-activates="dropdown1">Welcome, <i class="material-icons right">arrow_drop_down</i>
+            </a></li>
             <ul id="dropdown1" class="dropdown-content">
-            <li><a href="recipes.html">Add|Modify|Delete</a></li>
-             <li><a href="profile.html">Profile</a></li>
+              <li><a href="add.html">Add Recipe</a></li>
+              <li><a href="modify.html">Modify Recipe</a></li>
+              <li><a href="delete.html">Delete Recipe</a></li>
+              <li><a href="profile.html">Profile</a></li>
               <li><a href="favourite.html">My Favourites</a></li>
-              <li><a href="categories.html">My Catigories</a></li>
+              <li><a href="#">My Catigories</a></li>
               <li class="divider"></li>
               <li><a href="index.html">Logout</a></li>
             </ul>
         </ul>
         <ul class="side-nav" id="mobile-menu">
             <li><a href="home.html"><i class="material-icons tiny">home</i></a></li>
-            <li>
-                <a href="" id="upVote"><i class="fa fa-thumbs-o-up tiny left"></i>
-                <span class="badge" id="upVoteCount"></span></a>
-            </li>
-            <li> 
-                <a href="" id="updownVote"><i class="fa fa-thumbs-o-down tiny left"></i>
-                <span class="badge" id="downVoteCount"></span></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-comment tiny left" aria-hidden="true"></i>
+            <li><a href="" id="upVote"><i class="fa fa-thumbs-o-up tiny left"></i>
+                <span class="badge" id="upVoteCount"></span></a></li>
+            <li><a href="" id="updownVote"><i class="fa fa-thumbs-o-down tiny left"></i>
+                <span class="badge" id="downVoteCount"></span></a></li>
+            <li><a href="#"><i class="fa fa-comment tiny left" aria-hidden="true"></i>
                 <span class="badge" id="review"></span></a></li>
             <li class="divider"></li>
-            <li><a href="recipes.html">Add|Modify|Delete</a></li>
+            <li><a href="add.html">Add Recipe</a></li>
+            <li><a href="modify.html">Modify Recipe</a></li>
+            <li><a href="delete.html">Delete Recipe</a></li>
             <li><a href="search.html">Search</a></li>
             <li class="divider"></li>
             <li><a href="profile.html">Profile</a></li>
@@ -69,60 +62,66 @@
       </div>
     </nav>
   </header>
-
-
   <main>
     <div class="container">
-       <table class="responsive-table">
-        <tbody>
-          <tr>
-            <td><img src="" alt=""></td>
-            <td><h3 class="flow-text"><span id="title"></span></h3><blockquote class="flow-text" id="description"></blockquote></td>
-          </tr>
-          <tr>
-            <td><span id="ingredience"></span></td>
-            <td><span id="procedures"></span></td>
-          </tr>
-          <tr>
-                <a class="waves-effect waves-light btn" id="upVote"><i class="fa fa-thumbs-up tiny left"></i>
-                <span class="badge" id="upVoteCount"></span></a>
-
-                <a class="waves-effect waves-light btn" id="downVote"><i class="fa fa-thumbs-down tiny left"></i>
-                <span class="badge" id="downVoteCount"></span></a>
-              <a class="waves-effect waves-light btn" id="postComment"><i class="fa fa-comment tiny" aria-hidden="true"></i></a>
-              <a class="waves-effect waves-light btn disabled"><i class="fa fa-eye tiny" aria-hidden="true"></i> <span class="badge" id="viewCount"></span></a>
-          </tr>
-          <tr>
-            <div id="editablediv" class="z-depth-3 col s12" style="height: 50px; display: none;">   
-              </div>
-          </tr>
-          <tr>
-             <a class="waves-effect waves-light btn right" id="postReview" style="display: none">Post</a>
-          </tr>
-        </tbody>
-      </table>
-      <hr>
+       <div class="col s12">
+          <table class="responsive-table">
+            <tbody>
+              <tr>
+                <td><img src="" alt=""></td>
+                <td><h3 class="flow-text"><span id="title"></span></h3><blockquote class="flow-text" id="description"></blockquote></td>
+              </tr>
+              <tr>
+                <td><span id="ingredience"></span></td>
+                <td><span id="procedures"></span></td>
+              </tr>
+              <tr>
+                  <a class="waves-effect waves-light btn" id="upVote">
+                  <i class="fa fa-thumbs-up tiny left"></i>
+                  <span class="badge" id="upVoteCount"></span></a>
+                  <a class="waves-effect waves-light btn" id="downVote">
+                  <i class="fa fa-thumbs-down tiny left"></i>
+                  <span class="badge" id="downVoteCount"></span></a>
+                  <a class="waves-effect waves-light btn" id="postComment">
+                  <i class="fa fa-comment tiny" aria-hidden="true"></i></a>
+                  <a class="waves-effect waves-light btn disabled">
+                  <i class="fa fa-eye tiny" aria-hidden="true"></i>
+                  <span class="badge" id="viewCount"></span></a>
+              </tr>
+              <tr>
+                  <div id="editablediv" class="z-depth-3 col s12" style="height: 50px; display: none;"></div>
+              </tr>
+              <tr>
+                  <a class="waves-effect waves-light btn right" id="postReview" style="display: none">Post</a>
+              </tr>
+          </tbody>
+        </table>
+        <hr>
+      </div>
     </div>
   </main>
-
   <footer class="page-footer teal lighten-2 black-text">
     <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-        <h5>Contact Info:</h5>
-          <ul>
-            <li><i class="material-icons prefix">location_on</i>Road B Block B Flat 5, RSUST, PH, Nigeria</li>
-            <li><i class="material-icons prefix">mail_outline</i>Chibuezeayogu@hotmail.com</li>
-            <li><i class="material-icons prefix">local_phone</i>+234-703-349-7338</li>
-          </ul>
+        <div class="row">
+          <div class="col l6 s12">
+            <h5>Contact Info:</h5>
+            <ul>
+              <li><i class="material-icons prefix">location_on</i>Road B Block B Flat 5, RSUST, PH, Nigeria</li>
+              <li><i class="material-icons prefix">mail_outline</i>Chibuezeayogu@hotmail.com</li>
+              <li><i class="material-icons prefix">local_phone</i>+234-703-349-7338</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+      <div class="footer-copyright black-text">
+        <div class="container center"><h6>&copy Copyright 2017. All Right Reserved</h6></div>
         </div>
       </div>
-      <div class="row">
-    <div class="footer-copyright black-text">
-      <div class="container center"><h6>&copy Copyright 2017. All Right Reserved</h6></div>
     </div>
-    </div>
-   </div>
-  </footer>
+    </footer>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>    
+    <script src="https://use.fontawesome.com/7673a07bc0.js"></script>   
+    <script src="js/recipes.js"></script>  
   </body>
 </html>
