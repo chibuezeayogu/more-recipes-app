@@ -33,8 +33,7 @@
               <li><a href="modify.html">Modify Recipe</a></li>
               <li><a href="delete.html">Delete Recipe</a></li>
               <li><a href="profile.html">Profile</a></li>
-              <li><a href="favourite.html">My Favourites</a></li>
-              <li><a href="#">My Catigories</a></li>
+              <li><a href="favourite.html">My Favorite</a></li>
               <li class="divider"></li>
               <li><a href="index.html">Logout</a></li>
             </ul>
@@ -55,7 +54,6 @@
             <li class="divider"></li>
             <li><a href="profile.html">Profile</a></li>
             <li><a href="favourite.html">My Favourites</a></li>
-            <li><a href="categories.html">My Catigories</a></li>
             <li class="divider"></li>
             <li><a href="index.html">Logout</a></li>
         </ul>
@@ -66,11 +64,11 @@
     <div class="container">
       <div class="row">
         <div class="col s12">
-            <h4 class="flow-text center">Add Recipe</h4>
+            <h3 class="flow-text center" style="font-weight: bold">Add Recripe</h3>
         </div>
       <div class="row">
         <div class="col s12">
-            <form action="recipes_submit" method="get" accept-charset="utf-8">
+            <form action="recipes_submit" method="post" accept-charset="utf-8">
               <div class="row">
                 <div class="input-field col s12">
                     <input id="recipeHeader" type="text" class="validate">
@@ -88,7 +86,7 @@
                   <p>
                     <input id="ingredience" type="tel" class="validate">
                     <label for="ingredience">Ingredience</label>
-                    <a class="waves-effect waves-light btn">Add Ingredience</a>
+                    <a class="waves-effect waves-light btn">Add Ingredients</a>
                     <div id="ingreidienceHolder"></div>
                   </p>
                 </div>
