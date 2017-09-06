@@ -33,8 +33,7 @@
               <li><a href="modify.html">Modify Recipe</a></li>
               <li><a href="delete.html">Delete Recipe</a></li>
               <li><a href="profile.html">Profile</a></li>
-              <li><a href="favourite.html">My Favourites</a></li>
-              <li><a href="#">My Catigories</a></li>
+              <li><a href="favourite.html">My Favorite</a></li>
               <li class="divider"></li>
               <li><a href="index.html">Logout</a></li>
             </ul>
@@ -62,29 +61,39 @@
       </div>
     </nav>
   </header>
+
   <main>
     <div class="container">
       <div class="row">
-        <div class="col s12">
-            <h4 class="flow-text center">Modify Recipe</h4>
+          <div class="center col s12">
+            <h3 class="flow-text center" style="font-weight: bold">Modify Recripe</h3>
+          </div>
+      </div>
+    </div>
+    <div class="container">
+      <form class="col s12" action="search_submit" method="get" accept-charset="utf-8">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="search" type="text" class="validate">
+            <label for="search">Search</label>
+          </div>  
         </div>
-      <div class="row">
-      <div class="col s12">
-        <form class="col s12" action="search_submit" method="get" accept-charset="utf-8">
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="search" type="text" class="validate">
-              <label for="search">Search</label>
-            </div>  
+        <div class="row">
+           <div class="col s6">
+              <input name="searchCriteria" type="radio" id="byAll"/>
+              <label for="byAll">Search All</label>
+              <input name="searchCriteria" type="radio" id="byIngredience" />
+              <label for="byIngredience"> Serch By Ingredience</label>
           </div>
-          <div class="row">
-            <div class="col s12">
-              <a class="waves-effect waves-light btn right" id="searchRecipe">Search</a>
-            </div>
+          <div class="col s6">
+            <a class="waves-effect waves-light btn right" id="searchRecipe">Search</a>
           </div>
-        </form>
-        <hr>
-      <table class="responsive-table">
+        </div>
+      </form>
+    </div>
+    <hr>
+    <div class="container">
+       <table class="responsive-table">
         <tbody>
           <tr>
             <td><img src="" alt=""></td>
@@ -95,10 +104,78 @@
             <td><span id="procedures"></span></td>
           </tr>
           <tr>
+              <a class="waves-effect waves-light btn" id="upVote"><i class="fa fa-thumbs-up tiny left"></i>
+              <span class="badge" id="upVoteCount"></span></a>
+              <a class="waves-effect waves-light btn" id="downVote"><i class="fa fa-thumbs-down tiny left"></i>
+              <span class="badge" id="downVoteCount"></span></a>
+              <a class="waves-effect waves-light btn" id="postComment"><i class="fa fa-comment tiny" aria-hidden="true"></i></a>
+              <a class="waves-effect waves-light btn disabled"><i class="fa fa-eye tiny" aria-hidden="true"></i> <span class="badge" id="viewCount"></span></a>
+          </tr>
+          <tr>
+            <div id="editablediv" class="z-depth-3 col s12" style="height: 50px; display: none;">   
+            </div>
+          </tr>
+          <tr>
+             <a class="waves-effect waves-light btn right" id="postReview" style="display: none">Post</a>
           </tr>
         </tbody>
       </table>
-      </div>
+      <hr>
+      <div class="row" style="display: none">
+        <div class="col s12">
+            <form action="recipes_submit" method="post" accept-charset="utf-8">
+              <div class="row">
+                <div class="input-field col s12">
+                    <input id="recipeHeader" type="text" class="validate">
+                    <label for="recipeHeader">Title</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea id="decription" class="materialize-textarea"></textarea>
+                    <label for="decription">Decription</label>
+                  </div>
+                </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <p>
+                    <input id="ingredience" type="tel" class="validate">
+                    <label for="ingredience">Ingredience</label>
+                    <a class="waves-effect waves-light btn">Add Ingredients</a>
+                    <div id="ingreidienceHolder"></div>
+                  </p>
+                </div>
+              </div>
+              <hr> 
+              <div class="row">
+                <div class="input-field col s12">
+                  <p>
+                    <textarea id="Address" class="materialize-textarea"></textarea>
+                    <label for="Address">Preparaton Procedure</label>
+                    <a class="waves-effect waves-light btn">Add Preparaton Procedure</a>
+                    <div id="prodecureHolder"></div>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="file-field input-field col s12">
+                  <div class="btn">
+                    <span>File</span>
+                    <input type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Upload pictorial descripton">
+                  </div>
+                </div>
+              </div>
+              <hr>  
+              <div class="row">
+                <div class="col s12">
+                  <a class="waves-effect waves-light btn right">Update</a>
+                </div>
+              </div>
+          </form>
+        </div>
     </div>
   </main>
   <footer class="page-footer teal lighten-2 black-text">
