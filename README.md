@@ -1,5 +1,5 @@
 # Cohort-XXVI_More-RecipesApp
-
+[![Build Status](https://travis-ci.org/chibuezeayogu/Cohort-XXVI_More-RecipesApp.svg?branch=develop)](https://travis-ci.org/chibuezeayogu/Cohort-XXVI_More-RecipesApp)
 
 # Introduction 
 
