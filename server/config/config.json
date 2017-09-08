@@ -1,0 +1,29 @@
+{
+  "development": {
+    "username": "Chibueze",
+    "password": "Computer12.",
+    "database": "more-recipes",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "Chibueze",
+    "password": "Computer12.",
+    "database": "more-recipes-test",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "test-local": {
+    "username": "Chibueze",
+    "password": "Computer12.",
+    "database": "more-recipes_test-local",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  }
+}
