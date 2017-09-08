@@ -2,10 +2,14 @@
 <html>
 <head>
   <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">      
+  <meta name="viewport" content="width=device-width, initial-scale=1">      
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="css/recipes.css">  
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>    
+      <script src="https://use.fontawesome.com/7673a07bc0.js"></script>   
+      <script src="js/recipes.js"></script>  
+      <link rel="stylesheet" type="text/css" href="css/recipes.css">  
 </head>
 <body>
   <header>
@@ -17,11 +21,11 @@
         <ul class="right hide-on-med-and-down" style="margin-top: 20px">
           <li><a href="home.html"><i class="material-icons tiny">home</i></a></li>
           <li></li>
-          <li><i class="fa fa-thumbs-up tiny" aria-hidden="true"></i></li>
+          <li><i class="fa fa-thumbs-up tiny" aria-hidden="true">4</i></li>
           <li><a href="#"><span class="badge" id="upVote"></span></i></a></li>
-          <li><i class="fa fa-thumbs-down tiny" aria-hidden="true"></i></li>
+          <li><i class="fa fa-thumbs-down tiny" aria-hidden="true">3</i></li>
           <li><a href="#"><span class="badge" id="downVote"></span></a></li>
-          <li><i class="fa fa-comment tiny" aria-hidden="true"></i></li>
+          <li><i class="fa fa-comment tiny" aria-hidden="true">5</i></li>
           <li><a href="#"><span class="badge" id="review"></span></a></li>
           <li></li>
           <li><a href="search.html" title=""><i class="material-icons tiny">search</i></a></li>
@@ -61,65 +65,171 @@
     </nav>
   </header>
   <main>
-    <div class="container">
-       <div class="col s12">
-          <table class="responsive-table">
-            <tbody>
-              <tr>
-                <td><img src="" alt=""></td>
-                <td><h3 class="flow-text"><span id="title"></span></h3><blockquote class="flow-text" id="description"></blockquote></td>
-              </tr>
-              <tr>
-                <td><span id="ingredience"></span></td>
-                <td><span id="procedures"></span></td>
-              </tr>
-              <tr>
-                  <a class="waves-effect waves-light btn" id="upVote">
-                  <i class="fa fa-thumbs-up tiny left"></i>
-                  <span class="badge" id="upVoteCount"></span></a>
-                  <a class="waves-effect waves-light btn" id="downVote">
-                  <i class="fa fa-thumbs-down tiny left"></i>
-                  <span class="badge" id="downVoteCount"></span></a>
-                  <a class="waves-effect waves-light btn" id="postComment">
-                  <i class="fa fa-comment tiny" aria-hidden="true"></i></a>
-                  <a class="waves-effect waves-light btn disabled">
-                  <i class="fa fa-eye tiny" aria-hidden="true"></i>
-                  <span class="badge" id="viewCount"></span></a>
-              </tr>
-              <tr>
-                  <div id="editablediv" class="z-depth-3 col s12" style="height: 50px; display: none;"></div>
-              </tr>
-              <tr>
-                  <a class="waves-effect waves-light btn right" id="postReview" style="display: none">Post</a>
-              </tr>
-          </tbody>
-        </table>
-        <hr>
+    <div class="container" style=" margin-top: 100px">
+    <div class="row">
+     <div class="col s12">
+      <div class="col s6">
+        <img src="images/chrizo.jpg" alt = "" class = "responsive-img" >
       </div>
+      <div class="col s6">
+          <h3 class="flow-text">Chorizo Stuffed Bell Peppers</h3><blockquote class="flow-text" id="description">Bell peppers are stuffed with a spicy blend of chorizo, onions, garlic, fresh herbs, Worcestershire, three kinds of cheese, and rice. If you have a taste for spice, you'll love them. Don't let the number of ingredients scare you!</blockquote>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col s6">
+        Ingredients
+      </div>
+      <div class="col s6">
+        Procedures
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="col s6">
+        <ul class="collection">
+                <li class="collection-item">bell peppers, tops cut off and seeded</li>
+                <li class="collection-item"> pound chorizo sausage</li>
+                <li class="collection-item"> pound chorizo sausage</li>
+                <li class="collection-item"> carrot, minced</li>
+                <li class="collection-item">1/2 cup chopped onion</li>
+              </ul>
+      </div>
+      <div class="col s6">
+          <ul class="collection">
+                <li class="collection-item">Bring a large pot of water to boil. Place peppers in boiling water, and cook 5 minutes. Remove, and set aside to cool.</li>
+                <li class="collection-item">Preheat oven to 350 degrees F (175 degrees C).</li>
+                <li class="collection-item">In a large skillet, cook chorizo until almost brown. Drain fat. Stir in celery, carrots, onions, and garlic. Cook until soft, about 5 minutes. Season with salt and pepper. Stir in tomatoes, Worcestershire sauce, parsley, basil, rice, and water. Cover, and simmer until rice is cooked, about 15 minutes. Remove from heat, and mix in Monterey Jack, Cheddar, and Mozzarella cheeses.</li>
+                <li class="collection-item">Place peppers upright on a baking sheet. Stuff each pepper with the chorizo mixture. Sprinkle extra cheese on top.</li>
+                <li class="collection-item">In a small bowl, combine tomato soup with just enough water to give the soup the consistency of gravy. Pour generously over peppers. Cover with foil.</li>
+              </ul>
+        </div>
+       </div> 
+      <div class="row">
+        <div class="col s12">
+        <a class="waves-effect waves-light btn" id="upVote"><i class="fa fa-thumbs-up tiny left">20</i>
+              <span class="badge" id="upVoteCount"></span></a>
+              <a class="waves-effect waves-light btn" id="downVote"><i class="fa fa-thumbs-down tiny left">10</i>
+              <span class="badge" id="downVoteCount"></span></a>
+              <a class="waves-effect waves-light btn" id="postComment"><i class="fa fa-comment tiny" aria-hidden="true">6</i></a>
+              <a class="waves-effect waves-light btn disabled"><i class="fa fa-eye tiny" aria-hidden="true">5</i> <span class="badge" id="viewCount"></span></a>
+        </div>
+       </div> 
     </div>
+    </div>    
+ <div class="container" style=" margin-top: 100px">
+    <div class="row">
+     <div class="col s12">
+      <div class="col s6">
+        <img src="images/wedding.jpg" alt = "" class = "responsive-img" >
+      </div>
+      <div class="col s6">
+          <h3 class="flow-text">Wedding Gift Spaghetti Sauce</h3><blockquote class="flow-text" id="description">This recipe was given to me as part of a wedding gift recipe collection from a very dear friend. It is rich, aromatic, flavorful and makes A LOT. So please grab the biggest pot you can find. I mean REALLY BIG. Extra sauce freezes well for future pasta dishes.</blockquote>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col s6">
+        Ingredients
+      </div>
+      <div class="col s6">
+        Procedures
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="col s6">
+        <ul class="collection">
+                <li class="collection-item">1/2 cup butter</li>
+                <li class="collection-item"> 3 tablespoons olive oil</li>
+                <li class="collection-item">1 large onion, chopped</li>
+                <li class="collection-item"> 3 cloves garlic, chopped</li>
+                <li class="collection-item">1 pound ground beef</li>
+              </ul>
+      </div>
+      <div class="col s6">
+          <ul class="collection">
+                <li class="collection-item">Heat butter and olive oil together with onion and garlic in a large pot over medium heat; cook and stir ground beef and sausage in the onion mixture until browned and crumbly, 10 to 15 minutes. Stir Italian seasoning, salt, rosemary, oregano, and black pepper into ground beef-sausage mixture; simmer for 20 minutes.</li>
+                <li class="collection-item">Pour water, tomato puree, and tomato paste into ground beef-sausage mixture; simmer, stirring occasionally, over low heat until flavors have combined, at least 2 hours.</li>
+              </ul>
+        </div>
+       </div> 
+      <div class="row">
+        <div class="col s12">
+        <a class="waves-effect waves-light btn" id="upVote"><i class="fa fa-thumbs-up tiny left">20</i>
+              <span class="badge" id="upVoteCount"></span></a>
+              <a class="waves-effect waves-light btn" id="downVote"><i class="fa fa-thumbs-down tiny left">10</i>
+              <span class="badge" id="downVoteCount"></span></a>
+              <a class="waves-effect waves-light btn" id="postComment"><i class="fa fa-comment tiny" aria-hidden="true">6</i></a>
+              <a class="waves-effect waves-light btn disabled"><i class="fa fa-eye tiny" aria-hidden="true">5</i> <span class="badge" id="viewCount"></span></a>
+        </div>
+       </div> 
+    </div>
+    </div>    
+
+<div class="container" style=" margin-top: 100px">
+    <div class="row">
+     <div class="col s12">
+      <div class="col s6">
+        <img src="images/richard.jpg" alt = "" class = "responsive-img" >
+      </div>
+      <div class="col s6">
+          <h3 class="flow-text">Richard and Suzanne's Famous Spaghetti Sauce</h3><blockquote class="flow-text" id="description">Bell peppers are stuffed with a spicy blend of chorizo, onions, garlic, fresh herbs, Worcestershire, three kinds of cheese, and rice. If you have a taste for spice, you'll love them. Don't let the number of ingredients scare you!</blockquote>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col s6">
+        Ingredients
+      </div>
+      <div class="col s6">
+        Procedures
+      </div>
+      </div>
+      <div class="row">
+      <div class="col s6">
+        <ul class="collection">
+                <li class="collection-item">2 tablespoons olive oil</li>
+                <li class="collection-item">4 cloves garlic, minced</li>
+                <li class="collection-item">1 large onion, diced/li>
+                <li class="collection-item">1 large green bell pepper, chopped</li>
+                <li class="collection-item">6 fresh basil leaves, minced</li>
+              </ul>
+      </div>
+      <div class="col s6">
+          <ul class="collection">
+                <li class="collection-item">Pour the olive oil into a skillet and place over medium heat. Cook the garlic in the hot oil 1 to 2 minutes; add the onion, bell pepper, basil, green onion, and bay leaf and cook until the bell pepper softens; season with salt and pepper. Stir in the tomato sauce, stewed tomatoes, diced tomatoes with chiles, water, and sugar; continue to cook 20 to 30 minutes, stirring every 5 to 10 minutes.</li>
+              </ul>
+        </div>
+       </div> 
+      <div class="row">
+        <div class="col s12">
+        <a class="waves-effect waves-light btn" id="upVote"><i class="fa fa-thumbs-up tiny left">20</i>
+              <span class="badge" id="upVoteCount"></span></a>
+              <a class="waves-effect waves-light btn" id="downVote"><i class="fa fa-thumbs-down tiny left">10</i>
+              <span class="badge" id="downVoteCount"></span></a>
+              <a class="waves-effect waves-light btn" id="postComment"><i class="fa fa-comment tiny" aria-hidden="true">6</i></a>
+              <a class="waves-effect waves-light btn disabled"><i class="fa fa-eye tiny" aria-hidden="true">5</i> <span class="badge" id="viewCount"></span></a>
+        </div>
+       </div> 
+    </div>
+    </div>    
   </main>
   <footer class="page-footer teal lighten-2 black-text">
     <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5>Contact Info:</h5>
-            <ul>
-              <li><i class="material-icons prefix">location_on</i>Road B Block B Flat 5, RSUST, PH, Nigeria</li>
-              <li><i class="material-icons prefix">mail_outline</i>Chibuezeayogu@hotmail.com</li>
-              <li><i class="material-icons prefix">local_phone</i>+234-703-349-7338</li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-      <div class="footer-copyright black-text">
-        <div class="container center"><h6>&copy Copyright 2017. All Right Reserved</h6></div>
+      <div class="row">
+        <div class="col l6 s12">
+        <h5>Contact Info:</h5>
+          <ul>
+            <li><i class="material-icons prefix">location_on</i>Road B Block B Flat 5, RSUST, PH, Nigeria</li>
+            <li><i class="material-icons prefix">mail_outline</i>Chibuezeayogu@hotmail.com</li>
+            <li><i class="material-icons prefix">local_phone</i>+234-703-349-7338</li>
+          </ul>
         </div>
       </div>
+      <div class="row">
+    <div class="footer-copyright black-text">
+      <div class="container center"><h6>&copy Copyright 2017. All Right Reserved</h6></div>
     </div>
-    </footer>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>    
-    <script src="https://use.fontawesome.com/7673a07bc0.js"></script>   
-    <script src="js/recipes.js"></script>  
+    </div>
+   </div>
+  </footer>
   </body>
 </html>

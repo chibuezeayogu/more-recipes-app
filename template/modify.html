@@ -121,61 +121,53 @@
         </tbody>
       </table>
       <hr>
-      <div class="row" style="display: none">
-        <div class="col s12">
-            <form action="recipes_submit" method="post" accept-charset="utf-8">
-              <div class="row">
-                <div class="input-field col s12">
-                    <input id="recipeHeader" type="text" class="validate">
-                    <label for="recipeHeader">Title</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <textarea id="decription" class="materialize-textarea"></textarea>
-                    <label for="decription">Decription</label>
-                  </div>
-                </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <p>
-                    <input id="ingredience" type="tel" class="validate">
-                    <label for="ingredience">Ingredience</label>
-                    <a class="waves-effect waves-light btn">Add Ingredients</a>
-                    <div id="ingreidienceHolder"></div>
-                  </p>
-                </div>
-              </div>
-              <hr> 
-              <div class="row">
-                <div class="input-field col s12">
-                  <p>
-                    <textarea id="Address" class="materialize-textarea"></textarea>
-                    <label for="Address">Preparaton Procedure</label>
-                    <a class="waves-effect waves-light btn">Add Preparaton Procedure</a>
-                    <div id="prodecureHolder"></div>
-                  </p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="file-field input-field col s12">
-                  <div class="btn">
-                    <span>File</span>
-                    <input type="file">
-                  </div>
-                  <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="Upload pictorial descripton">
-                  </div>
-                </div>
-              </div>
-              <hr>  
-              <div class="row">
-                <div class="col s12">
-                  <a class="waves-effect waves-light btn right">Update</a>
-                </div>
-              </div>
-          </form>
+        </form>
+        <hr>
+      <div class="row">
+     <div class="col s12">
+      <div class="col s6">
+        <img src="images/wedding.jpg" alt = "" class = "responsive-img" >
+      </div>
+      <div class="col s6">
+          <h3 class="flow-text">Wedding Gift Spaghetti Sauce</h3><blockquote class="flow-text" id="description">This recipe was given to me as part of a wedding gift recipe collection from a very dear friend. It is rich, aromatic, flavorful and makes A LOT. So please grab the biggest pot you can find. I mean REALLY BIG. Extra sauce freezes well for future pasta dishes.</blockquote>
         </div>
+      </div>
+      <div class="row">
+      <div class="col s6">
+        Ingredients
+      </div>
+      <div class="col s6">
+        Procedures
+      </div>
+      </div>
+      <div class="row">
+      <div class="col s6">
+        <ul class="collection">
+                <li class="collection-item">1/2 cup butter</li>
+                <li class="collection-item"> 3 tablespoons olive oil</li>
+                <li class="collection-item">1 large onion, chopped</li>
+                <li class="collection-item"> 3 cloves garlic, chopped</li>
+                <li class="collection-item">1 pound ground beef</li>
+              </ul>
+      </div>
+      <div class="col s6">
+          <ul class="collection">
+                <li class="collection-item">Heat butter and olive oil together with onion and garlic in a large pot over medium heat; cook and stir ground beef and sausage in the onion mixture until browned and crumbly, 10 to 15 minutes. Stir Italian seasoning, salt, rosemary, oregano, and black pepper into ground beef-sausage mixture; simmer for 20 minutes.</li>
+                <li class="collection-item">Pour water, tomato puree, and tomato paste into ground beef-sausage mixture; simmer, stirring occasionally, over low heat until flavors have combined, at least 2 hours.</li>
+              </ul>
+        </div>
+       </div> 
+      <div class="row">
+        <div class="col s12">
+        <a class="waves-effect waves-light btn" id="upVote"><i class="fa fa-thumbs-up tiny left">20</i>
+              <span class="badge" id="upVoteCount"></span></a>
+              <a class="waves-effect waves-light btn" id="downVote"><i class="fa fa-thumbs-down tiny left">10</i>
+              <span class="badge" id="downVoteCount"></span></a>
+              <a class="waves-effect waves-light btn" id="postComment"><i class="fa fa-comment tiny" aria-hidden="true">6</i></a>
+              <a class="waves-effect waves-light btn disabled"><i class="fa fa-eye tiny" aria-hidden="true">5</i> <span class="badge" id="viewCount"></span></a>
+        </div>
+       </div> 
+      </div>
     </div>
   </main>
   <footer class="page-footer teal lighten-2 black-text">
