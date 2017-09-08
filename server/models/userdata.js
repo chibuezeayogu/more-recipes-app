@@ -58,8 +58,8 @@ module.exports = (sequelize, DataTypes) => {
       as: 'votings',
     });
   };
-  Userdata.beforeCreate((userdata) => {
-    userdata.password = bycryptNode.hashSync(user.password, bycryptNode.genSaltSync(10));
-  });
+  // Userdata.beforeCreate((userdata) => {
+  //   userdata.password = bycryptNode.hashSync(user.password, bycryptNode.genSaltSync(10));
+  // });
   return Userdata;
 };

@@ -18,7 +18,7 @@ app.use(logger('dev'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(expressJWT({secret}).unless({ path: ['/api/v1/users/signup','/api/v1/users/signin','/*']}));
+//app.use(expressJWT({secret}).unless({ path: ['/api/v1/users/signup','/api/v1/users/signin','/*']}));
 app.use(expressValidator());
 
  //require('./server/routes')(app);

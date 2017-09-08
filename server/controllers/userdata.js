@@ -53,7 +53,7 @@ module.exports = {
                 gender: req.body.gender
               })
               .then((userdata) =>  res.status(201).send({message:'Registered successfully'}))
-              .catch((error) => res.status(400).send(messsage:"Error! Try again"));
+              .catch((error) => res.status(400).send({messsage:"Error! Try again"}));
             })
   },
 
@@ -70,26 +70,32 @@ module.exports = {
       });
     }
     return Userdata
-      .findOne({where: {email: req.body.email}})
+      .find({where: {email: req.body.email}})
       .then((userdata) => {
         if(!userdata) {
             return res.status(404).send({message: 'User is not registered!.'}); 
-            const password = bcryptNodejs.compareSync(req.body.password, userdata.password) ;        
-          } else if (userdata && password ) {
-
-              const token = JWT.sign(userdata, secret, {
-                expiresIn: '24h'
-              });
-              res.status(200).send({message: 'Logged in Successfully'});
-              return res.status(200).json({token});
-          }else{
-            return res.status(401).send({ message: 'Password mismatch.' });
-          } 
-        })
-        .catch((error) => res.status(500).send({message:'Error. Please try again'}));
-  },
-
-
+          } else {
+            Userdata
+            .find({
+              where: {
+                email: req.body.email,
+                password: req.body.password,
+              }})
+            .then((userdata) => {
+              if(userdata){
+                
+                // const token = JWT.sign(userdata, secret, {
+                //   expiresIn: '24h'
+                // });
+                res.status(200).send({message: 'Logged in Successfully'});
+                return res.status(200).json({token});
+              }
+              })
+              .catch((error) => res.status(500).send({message:'Error. Please try again'}));
+            }
+          })
+            .catch((error) => res.status(500).send({message:'Error. Please try again'}));
+    },  
   retrieve(req, res) {
 
       req.checkParams('id', 'Invalid parameter id.').isInt();

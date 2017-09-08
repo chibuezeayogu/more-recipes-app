@@ -8,6 +8,7 @@ module.exports = {
     req.checkBody('description', 'description is required').notEmpty();
     req.checkBody('ingredients', 'ingredients required').notEmpty();
     req.checkBody('procedures', 'procedures is required').notEmpty();
+    req.checkBody('addedBy', 'addedBy is required').notEmpty();
     
     const errors = req.validationErrors();
     if (errors) {
@@ -22,7 +23,7 @@ module.exports = {
         description: req.body.description,
         ingredients: req.body.ingredients,
         procedures: req.body.procedures,
-        addedBy: req.decoded.userdata.id,
+        addedBy: req.body.addedBy,
       })
       .then((recipedata) => res.status(201).send({message: 'Added successfully'}))
       .catch((error) => res.status(400).send(error));;
@@ -83,8 +84,8 @@ module.exports = {
     return Recipedata
       .findOne({
         where:{
-          addedBy: req.decoded.userdata.id,
-          recipeId: req.params.Id,
+          addedBy: req.params.id,
+          recipeId: req.params.id,
         }
       })
       .then((recipedata) => {

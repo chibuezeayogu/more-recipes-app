@@ -26,7 +26,7 @@ module.exports = {
                 attributes: ['voting'],
                 where: {
                     recipeId: req.params.id,
-                    userId: req.decoded.userdata.id,
+                    userId: req.body.userId,
                 }
             })
             .then((voting) => { 
@@ -36,7 +36,7 @@ module.exports = {
                             view: false,
                             voting: req.body.voting,
                             recipeId: req.params.id,
-                            userId: req.decoded.userdata.id,
+                            userId: req.body.userId,
                         })
                         .then(() => {
                             Recipedata
@@ -55,7 +55,7 @@ module.exports = {
                             },{
                                 where: {
                                     recipeId: req.params.id,
-                                    userId: req.decoded.userdata.id,
+                                    userId: req.body.userId,
                                     }
                             }
                             
@@ -93,7 +93,7 @@ module.exports = {
                 attributes: ['voting'],
                 where: {
                     recipeId: req.params.id,
-                    userId: req.decoded.userdata.id,
+                    userId: req.body.userId,
                 }
             })
             .then((voting) => {
@@ -103,7 +103,7 @@ module.exports = {
                             view: false,
                             voting: req.body.voting,
                             recipeId: req.params.id,
-                            userId: req.decoded.userdata.id,
+                            userId: req.body.userId,
                         })
                         .then((voting) => {
                             Recipedata.findById(req.params.id).then((recipedata) => {
@@ -121,7 +121,7 @@ module.exports = {
                             },{
                                 where: {
                                     recipeId: req.params.id,
-                                    userId: req.decoded.userdata.id,
+                                    userId: req.body.userId,
                                     }
                             }
                         )
