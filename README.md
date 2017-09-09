@@ -8,30 +8,30 @@
 
 More-Recipes provides a platform for users to share the awesome and exciting recipe ideas they have invented or learnt. 
 
-#Features of More Recipe API
+# Features of More Recipe API
 
-#This API has the following features.
+# This API has the following features.
 -JSON Web Token (JWT) is used to authenticate users.
 - API creates a token everytime a user logs in.
 - user supplies the token created, which is verified by the API before the user can access certain protected endpoints.
 
-#Users
+# Users
 
 -New users can sign up.
 -Signed up users can login and get an authentication token.
 -Users can update their details e.g. Firstname, Lastname.
 
-#More Recipe
+# More Recipe
 
 -Logged in users can add a recipe.
 -Users can view, update, and delete their recipe.
 -Users cannot update and/or delete other users' recipe.
 
-#Search
+# Search
 -Users can search for and retrieve any recipe once he/she is logged in.
 
 
-#Technologies
+# Technologies
 
  `NodeJS:`is an open-source, cross-platform JavaScript run-time environment for executing JavaScript code server-side.
 
@@ -49,16 +49,15 @@ More-Recipes provides a platform for users to share the awesome and exciting rec
 
 
 
-#Resources
+# Resources
 
 JSON Web Token (JWT): JWT is an open standard that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. JWT is used for secure login.
 
-#Limitations
+# Limitations
 
 -Users cannot sign in through social authentication.
 -There's no frontend.
 
-Authentication
 
 # Author
 Chibueze Ayogu
