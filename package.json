@@ -6,11 +6,11 @@
   "scripts": {
     "babel-node": "babel-node --presets=es2015",
     "start": "nodemon --exec npm run babel-node -- ./app.js",
-    "build": "babel src -d dist", 
+    "build": "babel src -d dist",
     "test:db:migrate": "cross-env NODE_ENV=test sequelize db:migrate:undo:all && cross-env NODE_ENV=test sequelize db:migrate",
     "test:db:seed": "cross-env NODE_ENV=test sequelize db:seed:all",
     "start:test:db": "npm run test:db:migrate && npm run test:db:seed",
-    "test": "npm run start:test:db && cross-env NODE_ENV=test nyc mocha ./test/apiTest/*.js --timeout 20000",    
+    "test": "npm run start:test:db && cross-env NODE_ENV=test nyc mocha ./test/apiTest/*.js --timeout 20000",
     "test-b": "SET NODE_ENV=test && nyc --reporter=html mocha --compilers js:babel-core/register ./test/apiTest/user.spec.js --timeout 20000",
     "migrate-test": "cross-env NODE_ENV=test sequelize db:migrate"
   },
@@ -22,7 +22,9 @@
     ]
   },
   "nyc": {
-    "require": ["babel-register"],
+    "require": [
+      "babel-register"
+    ],
     "reporter": [
       "lcov",
       "text",
@@ -38,6 +40,7 @@
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "chi": "0.0.10",
+    "coveralls": "^2.13.1",
     "cross-env": "^5.0.5",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
