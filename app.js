@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import expressJWT from 'express-jwt';
-import JWT from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import logger from 'morgan';
 import http from 'http';
 import expressValidator from 'express-validator';
@@ -17,7 +17,6 @@ const secret = process.env.SECRET;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(expressJWT({secret}).unless({ path: ['/api/v1/users/signup','/api/v1/users/signin','/*']}));
 app.use(expressValidator());
 
 routes(router);
@@ -34,7 +33,7 @@ app.use(logger('dev'));
   }));
 
 
-const port = parseInt(process.env.PORT, 10) || 22000;
+const port = parseInt(process.env.PORT, 10) || 26000;
 app.set('port', port);
 const server = http.createServer(app);
 server.listen(port, () => {
