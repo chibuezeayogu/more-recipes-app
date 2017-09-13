@@ -22,6 +22,10 @@ const routes =  (router) => {
         .put(verifyToken, userController.update)
         .delete(verifyToken, userController.destroy);
 
+    router.route('/recipes/mostupvote')
+        .get(verifyToken, recipeController.getMostUpVote);
+        
+        
     router.route('/recipes')
         .get(verifyToken, recipeController.listRecipe)
         .post(verifyToken, recipeController.addRecipe);
