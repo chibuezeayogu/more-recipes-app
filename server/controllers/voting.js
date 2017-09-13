@@ -15,63 +15,62 @@ module.exports = {
             message: errorObject,
           });
         }
-        Recipedata
+        return  Recipedata
         .findById(req.params.id)
         .then((recipedata) => {
             if(!recipedata){
-                return res.status(400).semd({message:'Recipe data not found'});
-            }
-        });
-
-        Voting
-            .find({
-                attributes: ['voting'],
-                where: {
-                    recipeId: req.params.id,
-                    userId: req.decoded.userId,
-                }
-            })
-            .then((voting) => { 
-                if(voting == null){
-                    Voting
-                        .create({
-                            view: false,
-                            voting: 1,
+                return res.status(400).send({message:'Recipe data not found'});
+            } else{
+                Voting
+                    .find({
+                        attributes: ['voting'],
+                        where: {
                             recipeId: req.params.id,
                             userId: req.decoded.userId,
-                        })
-                        .then(() => {
-                            Recipedata
-                                .findById(req.params.id)
-                                .then((recipedata) => {recipedata.increment('upvotes');})
-                            return res.status(200).send({mesage:'Successfully upvoted'});
-                        })        
-                        .catch((error) => res.status(400).send({mesage:'Error!, Try again'}));
-                }else if(voting.voting === 1){
-                    return res.status(400).send({message: 'You have already upvoted this recipe.'});
-                } else if (voting.voting === 0){
-                    Voting
-                        .update(
-                            {
-                                voting: 1,
-                            },{
-                                where: {
+                        }
+                    })
+                    .then((voting) => { 
+                        if(voting == null){
+                            Voting
+                                .create({
+                                    view: false,
+                                    voting: 1,
                                     recipeId: req.params.id,
                                     userId: req.decoded.userId,
+                                })
+                                .then(() => {
+                                    Recipedata.findById(req.params.id)
+                                        .then((recipedata) => {recipedata.increment('upvotes');})
+                                    return res.status(200).send({message:'Successfully upvoted'});
+                                })        
+                        }else if(voting.voting === 1){
+                            return res.status(400).send({message: 'You have already upvoted this recipe.'});
+                        } else if (voting.voting === 0){
+                            Voting
+                                .update(
+                                    {
+                                        voting: 1,
+                                    },{
+                                        where: {
+                                            recipeId: req.params.id,
+                                            userId: req.decoded.userId,
+                                            }
                                     }
+                                    
+                                )
                             }
-                            
-                        )
-                    }
-                    Recipedata
-                        .findById(req.params.id)
-                        .then(recipedata => {
-                            recipedata.increment('upvotes');
-                            recipedata.decrement('downvotes');
+                            Recipedata
+                                .findById(req.params.id)
+                                .then(recipedata => {
+                                    recipedata.increment('upvotes');
+                                    recipedata.decrement('downvotes');
+                                })
+                            return res.status(200).send({message:'Successfully upvoted'});
                         })
-                    return res.status(200).send({mesage:'Successfully upvoted'});
-                })
-                .catch((error) => res.status(400).send({mesage:'Error!, Try again'}));
+                        .catch((error) => res.status(400).send({message:'Error!, Try again'}));
+            }
+        })
+        .catch((error) => res.status(400).send({message:'Error!, Try again'}));
     },
 
     downVote(req, res) {
@@ -84,59 +83,63 @@ module.exports = {
             message: errorObject,
           });
         }
-        Recipedata
+        return Recipedata
             .findById(req.params.id)
             .then((recipedata) => {
                 if(!recipedata){
                     return res.status(400).send({message:'Recipe data not found'});
-                }
-            });
-
-            Voting
-            .find({
-                attributes: ['voting'],
-                where: {
-                    recipeId: req.params.id,
-                    userId: req.decoded.userId,
-                }
-            })
-            .then((voting) => {
-                if(voting == null){
+                } else{
                     Voting
-                        .create({
-                            view: false,
-                            voting: 0,
-                            recipeId: req.params.id,
-                            userId: req.decoded.userId,
+                        .find({
+                            attributes: ['voting'],
+                            where: {
+                                recipeId: req.params.id,
+                                userId: req.decoded.userId,
+                            }
                         })
                         .then((voting) => {
-                            Recipedata.findById(req.params.id).then((recipedata) => {
-                                recipedata.increment('upvotes');}) 
-                            return res.status(200).send({mesage:'Successfully downvoted'}); 
-                        })
-                        .catch((error) => res.status(400).send({mesage:'Error!, Try again!!!!'}));
-                } else if(voting.voting == 0){
-                    return res.status(400).send({message: 'You have already downvoted this recipe.'});
-                } else if (voting.voting == 1){
-                    Voting
-                        .update(
-                            {
-                                voting: 0,
-                            },{
-                                where: {
-                                    recipeId: req.params.id,
-                                    userId: req.decoded.userId,
-                                    }
-                            }
-                        )
-                        Recipedata
-                            .findById(req.params.id).then(recipedata => {
-                                recipedata.decrement('downvotes');
-                                recipedata.increment('upvotes');
+                            if(voting == null){
+                                Voting
+                                    .create({
+                                        view: false,
+                                        voting: 0,
+                                        recipeId: req.params.id,
+                                        userId: req.decoded.userId,
+                                    })
+                                    .then((voting) => {
+                                        Recipedata.findById(req.params.id).then((recipedata) => {
+                                            recipedata.increment('downvotes');}) 
+                                        return res.status(200).send({message:'Successfully downvoted'}); 
+                                    })
+                            } else if(voting.voting == 0){
+                                return res.status(400).send({message: 'You have already downvoted this recipe.'});
+                            } else if (voting.voting == 1){
+                                Voting
+                                    .update(
+                                        {
+                                            voting: 0,
+                                        },{
+                                            where: {
+                                                recipeId: req.params.id,
+                                                userId: req.decoded.userId,
+                                                }
+                                        }
+                                    )
+                                    Recipedata
+                                        .findById(req.params.id).then(recipedata => {
+                                            recipedata.increment('downvotes');
+                                            recipedata.decrement('upvotes');
+                                        })
+                                        return res.status(200).send({message:'Successfully downvoted'});        
+                                }
                             })
-                            return res.status(200).send({mesage:'Successfully downvoted'});        
+                        .catch((error) => res.status(400).send({message:'Error!, Try again'}));  
                     }
-                })
-            .catch((error) => res.status(400).send({mesage:'Error!, Try again'}));    
+            }) 
+            .catch((error) => res.status(400).send({message:'Error!, Try again'}));  
     },
 };
+
+
+
+ 

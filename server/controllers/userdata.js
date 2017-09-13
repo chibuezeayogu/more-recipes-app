@@ -78,7 +78,7 @@ module.exports = {
             });
            }
             })
-            .catch((error) => res.status(500).send({message:'Error. Please try again'}));
+            .catch((error) => res.status(500).send(error));
     },  
   retrieve(req, res) {
 

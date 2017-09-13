@@ -33,7 +33,7 @@ module.exports = {
       .findAll()
       .then((recipedata) => {
         if (recipedata.length <= 0) {
-          return res.status(400).send({message:'No Recipe was found!'});
+          return res.status(404).send({message:'No Recipe was found!'});
         } 
         return res.status(200).send(recipedata)
       })
@@ -129,4 +129,13 @@ module.exports = {
       })
       .catch((error) => res.status(500).send({message:'Error. Please try again'}));
   },
+  getMostUpVote(req, res) {
+    return Recipedata
+      .findAll({
+        order: [['upvotes', 'DESC']],
+      })
+      .then((recipedata) => res.status(200).send(recipedata))
+      .catch(error => res.status(200).send(error));
+
+  }
 };
