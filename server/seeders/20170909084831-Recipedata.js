@@ -17,7 +17,7 @@ module.exports = {
     procedures: 'wash',
     upvotes: 0,
     downvotes: 0,
-    addedBy: 1,
+    addedBy: 2,
     createdAt: new Date(),
     updatedAt: new Date(),
 
