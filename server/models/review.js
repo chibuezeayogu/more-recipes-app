@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    recipiId: {
+    recipeId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
