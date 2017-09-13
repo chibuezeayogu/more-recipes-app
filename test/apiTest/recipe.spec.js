@@ -94,6 +94,77 @@ let token;
           });
         });
     });
-
+    describe('GET: /recipes/:id', () => {
+      it('should return a message if invalid retrive id is supplied', (done) => {
+        chai.request(app)
+        .get('/api/v1/recipes/s')
+        .set({ Authorization: token })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.have.keys(['message']);
+          expect(res.body.message).to.eql(['Please input a valid id.']);
+          done();
+        });
+      });
+      it('should return a message if recipe id dosen\'t exist', (done) => {
+        chai.request(app)
+        .get('/api/v1/recipes/5')
+        .set({ Authorization: token })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.have.keys(['message']);
+          expect(res.body.message).to.eql('Recipe Not Found');
+          done();
+        });
+      });
+    });
+    describe('PUT: /recipes/:id', () => {
+      it('should return a message if invalid retrive id is supplied', (done) => {
+        chai.request(app)
+        .put('/api/v1/recipes/s')
+        .set({ Authorization: token })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.have.keys(['message']);
+          expect(res.body.message).to.eql(['Please input a valid id.']);
+          done();
+        });
+      });
+      it('should return a message if a user tires to modify a recipe he/she didn\'t add', (done) => {
+        chai.request(app)
+        .put('/api/v1/recipes/2')
+        .set({ Authorization: token })
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body).to.have.keys(['message']);
+          expect(res.body.message).to.eql('You can only update you recipe');
+          done();
+        });
+      });
+    });
+    describe('DELETE: /recipes/:id', () => {
+      it('should return a message if invalid retrive id is supplied', (done) => {
+        chai.request(app)
+        .del('/api/v1/recipes/s')
+        .set({ Authorization: token })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.have.keys(['message']);
+          expect(res.body.message).to.eql(['Please input a valid id.']);
+          done();
+        });
+      });
+      it('should return a message if a user tires to delete a recipe he/she didn\'t add', (done) => {
+        chai.request(app)
+        .del('/api/v1/recipes/2')
+        .set({ Authorization: token })
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body).to.have.keys(['message']);
+          expect(res.body.message).to.eql('You can only delete you recipe');
+          done();
+        });
+      });
+    });
  });
   
