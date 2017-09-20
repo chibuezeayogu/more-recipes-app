@@ -31,7 +31,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0,
-
+      },
+      views: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
       },
       addedBy: {
         type: Sequelize.INTEGER,
