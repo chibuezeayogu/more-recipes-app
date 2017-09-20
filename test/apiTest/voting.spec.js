@@ -14,7 +14,7 @@ let token;
       before((done) => {
         chai.request(app)
           .post('/api/v1/users/signin')
-          .send({ email: 'chibuezeayogu@hotmail.com', password: 'computer' })
+          .send({ email: 'chibuezeayogu@hotmail.com', password: 'computer123' })
           .end((err, res) => {
             token = res.body.token;
             done();

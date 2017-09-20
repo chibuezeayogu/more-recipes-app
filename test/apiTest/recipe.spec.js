@@ -14,7 +14,7 @@ let token;
       before((done) => {
         chai.request(app)
           .post('/api/v1/users/signin')
-          .send({ email: 'chibuezeayogu@hotmail.com', password: 'computer' })
+          .send({ email: 'chibuezeayogu@hotmail.com', password: 'computer123' })
           .end((err, res) => {
             token = res.body.token;
             done();
@@ -28,7 +28,7 @@ let token;
           .send({ title: 'egusi soup', description: 'how to cook', ingredients: 'pepper, salt, egusi', procedures: 'wash, fry, cook' })
           .end((err, res) => {
             expect(res.status).to.equal(201);
-            expect(res.body).to.have.keys(['message']);
+            expect(res.body).to.have.keys(['message', 'recipeInfo']);
             expect(res.body.message).to.eql('Added successfully');
             done();
           });
@@ -88,7 +88,7 @@ let token;
           .send({ title: 'egusi soup', description: 'how to cook', ingredients: 'pepper, salt, egusi', procedures: 'wash, fry, cook' })
           .end((err, res) => {
             expect(res.status).to.equal(201);
-            expect(res.body).to.have.keys(['message']);
+            expect(res.body).to.have.keys(['message', 'recipeInfo']);
             expect(res.body.message).to.eql('Added successfully');
             done();
           });
@@ -111,9 +111,9 @@ let token;
         .get('/api/v1/recipes/5')
         .set({ Authorization: token })
         .end((err, res) => {
-          expect(res.status).to.equal(400);
+          expect(res.status).to.equal(404);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql('Recipe Not Found');
+          expect(res.body.message).to.eql('Recipe not found');
           done();
         });
       });

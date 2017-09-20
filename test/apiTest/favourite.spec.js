@@ -14,7 +14,7 @@ let token;
       before((done) => {
         chai.request(app)
           .post('/api/v1/users/signin')
-          .send({ email: 'chibuezeayogu@hotmail.com', password: 'computer' })
+          .send({ email: 'chibuezeayogu@hotmail.com', password: 'computer123' })
           .end((err, res) => {
             token = res.body.token;
             done();
@@ -30,6 +30,17 @@ let token;
               expect(res.body).to.have.keys(['message']);
               expect(res.body.message).to.eql(['Please input a valid id.']);
               done();
+            });
+        });
+        it('should return a message if recipe id is not found', (done) => {
+            chai.request(app)
+            .put('/api/v1/users/5/add')
+            .set({ Authorization: token })
+            .end((err, res) => {
+            expect(res.status).to.equal(404);
+            expect(res.body).to.have.keys(['message']);
+            expect(res.body.message).to.eql('Recipe not found!');
+            done();
             });
         });
         it('should return a message if a user adds a recipe to his/her favourite', (done) => {
@@ -74,7 +85,7 @@ let token;
             .end((err, res) => {
               expect(res.status).to.equal(404);
               expect(res.body).to.have.keys(['message']);
-              expect(res.body.message).to.eql('Recipe Not found!');
+              expect(res.body.message).to.eql('Recipe not found!');
               done();
             });
         });
