@@ -13,10 +13,13 @@ const secret = process.env.SECRET;
 module.exports = {
   signup(req, res) {
       req.checkBody('firstname', 'firstname is required').notEmpty();
+      req.checkBody('firstname', 'firstname must be at least 3 characters long').matches(/^[a-zA-Z]{3,}$/);
       req.checkBody('lastname', 'lastname is required').notEmpty();
+      req.checkBody('lastname', 'lastname must be at least 3 characters long').matches(/^[a-zA-Z]{3,}$/);
       req.checkBody('email', 'email is required').notEmpty();
       req.checkBody('email', 'email is not valid').isEmail();
       req.checkBody('password', 'password is required').notEmpty();
+      req.checkBody('password', 'Password must be at least 8 characters and at most 32 characters long').matches(/^[a-zA-Z0-9]{8,32}$/);
       
       const errors = req.validationErrors();
       if (errors) {
