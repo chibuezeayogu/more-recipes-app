@@ -26,7 +26,7 @@ module.exports = {
                 }
             }).then((recipedata) => {
                 if(!recipedata){
-                    return res.status(404).send({message:'Recipe Not found!'})
+                    return res.status(404).send({message:'Recipe not found!'})
                 } else {
                     return Favourite
                         .find({
@@ -73,7 +73,7 @@ module.exports = {
           })
           .then((recipedata) => {
               if(!recipedata){
-                  return res.status(404).send({message:'Recipe Not found!'})
+                  return res.status(404).send({message:'Recipe not found!'})
               } else {
                 return Favourite
                     .find({
