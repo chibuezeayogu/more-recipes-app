@@ -5,7 +5,9 @@ const Recipedata = models.Recipedata;
 module.exports = {
  addRecipe(req, res) { 
     req.checkBody('title', 'title is required').notEmpty();
+    req.checkBody('title', 'title must be at least 8 characters long').matches(/^[a-zA-Z]{8,}$/);
     req.checkBody('description', 'description is required').notEmpty();
+    req.checkBody('description', 'description must be at least 8 characters long').matches(/^[a-zA-Z]{8,}$/);
     req.checkBody('ingredients', 'ingredients is required').notEmpty();
     req.checkBody('procedures', 'procedures is required').notEmpty();
     
