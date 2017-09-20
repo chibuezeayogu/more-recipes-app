@@ -7,6 +7,7 @@ module.exports = {
     postReview(req, res) {
         req.checkParams('id', 'Please input a valid id.').isInt();
         req.checkBody('comment', 'commnet is required').notEmpty();
+        req.checkBody('comment', 'commnet is required').matches(/^[a-zA-Z]{10,}$/);
         
         const errors = req.validationErrors();
         if (errors) {
