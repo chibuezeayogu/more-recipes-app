@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node --presets=es2015",
-    "start": "nodemon --exec npm run babel-node -- ./app.js",
+    "start": "nodemon --exec babel-node -- ./app.js",
     "build": "babel src -d dist",
     "test:db:migrate": "cross-env NODE_ENV=test sequelize db:migrate:undo:all && cross-env NODE_ENV=test sequelize db:migrate",
     "test:db:seed": "cross-env NODE_ENV=test sequelize db:seed:all",
