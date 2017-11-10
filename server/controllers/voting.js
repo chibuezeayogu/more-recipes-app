@@ -26,7 +26,7 @@ module.exports = {
                         attributes: ['voting'],
                         where: {
                             recipeId: req.params.id,
-                            userId: req.decoded.userId,
+                            userId: req.decoded.userdata.id,
                         }
                     })
                     .then((voting) => { 
@@ -36,7 +36,7 @@ module.exports = {
                                     view: false,
                                     voting: 1,
                                     recipeId: req.params.id,
-                                    userId: req.decoded.userId,
+                                    userId: req.decoded.userdata.id,
                                 })
                                 .then(() => {
                                     Recipedata.findById(req.params.id)
@@ -53,7 +53,7 @@ module.exports = {
                                     },{
                                         where: {
                                             recipeId: req.params.id,
-                                            userId: req.decoded.userId,
+                                            userId: req.decoded.userdata.id,
                                             }
                                     }
                                     
@@ -94,7 +94,7 @@ module.exports = {
                             attributes: ['voting'],
                             where: {
                                 recipeId: req.params.id,
-                                userId: req.decoded.userId,
+                                userId: req.decoded.userdata.id,
                             }
                         })
                         .then((voting) => {
@@ -104,7 +104,7 @@ module.exports = {
                                         view: false,
                                         voting: 0,
                                         recipeId: req.params.id,
-                                        userId: req.decoded.userId,
+                                        userId: req.decoded.userdata.id,
                                     })
                                     .then((voting) => {
                                         Recipedata.findById(req.params.id).then((recipedata) => {
@@ -121,7 +121,7 @@ module.exports = {
                                         },{
                                             where: {
                                                 recipeId: req.params.id,
-                                                userId: req.decoded.userId,
+                                                userId: req.decoded.userdata.id,
                                                 }
                                         }
                                     )
