@@ -1,3 +1,10 @@
+/**
+     * @description paginate function
+     * @param {Integer} limit - limit integer
+     * @param {Integer} offset - offset integer
+     * @param {integer} count - count integer
+     * @returns {object} result - result object
+     */
 const paginate = (limit, offset, count) => {
     /** totalCount : total number of records based on query
      * pageCount : total number of pages
@@ -11,7 +18,6 @@ const paginate = (limit, offset, count) => {
     result.currentPage = Math.floor(offset / limit) + 1;
     result.pageCount = Math.ceil(count / limit);
     result.pageSize = Number(limit);
-    
     return result;
   };
 
