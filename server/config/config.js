@@ -1,7 +1,9 @@
 
+require('dotenv').config();
+
 module.exports = {
   development: {
-    use_env_variable: 'MORE_RECIPE_DEV',
+    use_env_variable: 'DEV_DB',
     dialect: 'postgres'
   },
   test: {
@@ -12,4 +14,5 @@ module.exports = {
     use_env_variable: 'DATABASE_URL'
     
   }
+
 };
