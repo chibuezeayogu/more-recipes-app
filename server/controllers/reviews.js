@@ -6,8 +6,8 @@ const Recipedata = models.Recipedata;
 module.exports = {
     postReview(req, res) {
         req.checkParams('id', 'Please input a valid id.').isInt();
-        req.checkBody('comment', 'commnet is required').notEmpty();
-        req.checkBody('comment', 'commnet is required').matches(/^[a-zA-Z]{10,}$/);
+        req.checkBody('comment', 'comment is required').notEmpty();
+        req.checkBody('comment', 'comment should be at least 5 char long without leading space').matches(/[a-zA-Z0-9]{5,}$/);
         
         const errors = req.validationErrors();
         if (errors) {
@@ -28,7 +28,7 @@ module.exports = {
                             view: false,
                             comment: req.body.comment,
                             recipeId: req.params.id, 
-                            userId: req.decoded.userId,                
+                            userId: req.decoded.userdata.id,                
                         })
                         .then((reviews) => res.status(201).send({message:'Comment Posted'}))
                         .catch((error) => res.status(404).send({message:'Error!. Try again'}));
