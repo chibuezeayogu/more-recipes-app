@@ -19,10 +19,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      imageUrl: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
   });
   Userdata.associate = (models) => {
     Userdata.hasMany(models.Recipedata, {
-      foreignKey: 'addedBy',
+      foreignKey: 'userId',
       as: 'recipedatas',
     });
     Userdata.hasMany(models.Review, {
