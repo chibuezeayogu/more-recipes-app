@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes)  => {
       allowNull: false,
       type: DataTypes.TEXT,
     },
+    imageUrl: {
+      allowNull: false,
+      type: DataTypes.TEXT,
+    },
     upvotes: {
       allowNull: false,
       type: DataTypes.INTEGER,
@@ -32,14 +36,14 @@ module.exports = (sequelize, DataTypes)  => {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
-    addedBy: {
+    userId: {
       allowNull: false,
       type: DataTypes.INTEGER,
     },
   }); 
   Recipedata.associate = (models) => {
     Recipedata.belongsTo(models.Userdata, {
-      foreignKey: 'addedBy',
+      foreignKey: 'userId',
     });
     Recipedata.hasMany(models.Review, {
       foreignKey: 'recipeId',
