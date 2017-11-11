@@ -7,7 +7,7 @@ module.exports = {
     dialect: 'postgres'
   },
   test: {
-    use_env_variable: 'MORE_RECIPE_TEST',
+    use_env_variable: 'TEST_DB',
     dialect: 'postgres'
   },
   production: {
