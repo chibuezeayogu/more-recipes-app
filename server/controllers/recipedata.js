@@ -1,22 +1,43 @@
-// Import module dependencies
+//import module dependencies
 import models from '../models';
+import pagenate from '../helper/pagenate';
 
-//reference db model recipedata
+//create reference db model 
 const Recipedata = models.Recipedata;
+const Reviews = models.Review;
+const Favourites = models.Favourite;
+const Votings = models.Voting;
+
+/**
+ * exclude: holds attributes not to be returned
+ * query: hold query limit and offset for list recipe
+ */
+const exclude = {
+            exclude :['createdAt', 'updatedAt']
+          },
+      query = {};
+
 
 module.exports = {
-  //add recipe
- addRecipe(req, res) { 
-   //validate input field 
-   //make sure it doesn't contain leading empty space
-    req.checkBody('title', 'title is required').notEmpty();
-    //req.checkBody('title', 'title must at least contain a word').matches(/^\w[\w ,]*\w$/);
-    req.checkBody('description', 'description is required').notEmpty();
-    //req.checkBody('description', 'description must at least contain a word').matches(/^\w[\w ,.]*\w$/);
-    req.checkBody('ingredients', 'ingredients is required').notEmpty();
-    //req.checkBody('ingredients', 'ingredients must at least contain a word').matches(/^\w[\w ,.]*\w$/);
-    req.checkBody('procedures', 'procedures is required').notEmpty();
-    //req.checkBody('procedures', 'procedures must at least contain a word').matches(/^\w[\w ,.]*\w$/);
+  /**
+     * @description add recipe function
+     * @param {Object} req - Request object
+     * @param {Object} res - Response object
+     * @returns {object} json - payload
+     */
+  addRecipe(req, res) { 
+    /**
+     * validate input field 
+     * make sure it doesn't contain leading empty space
+     */
+      req.checkBody('title', 'title is required').notEmpty();
+      req.checkBody('title', 'title must at least contain a word').matches(/\w[\w ,]*\w$/);
+      req.checkBody('description', 'description is required').notEmpty();
+      req.checkBody('description', 'description must at least contain a word').matches(/\w[\w ,.]*\w$/);
+      req.checkBody('ingredients', 'ingredients is required').notEmpty();
+      req.checkBody('ingredients', 'ingredients must at least contain a word').matches(/\w[\w ,.]*\w$/);
+      req.checkBody('procedures', 'procedures is required').notEmpty();
+      req.checkBody('procedures', 'procedures must at least contain a word').matches(/\w[\w ,.]*\w$/);
     
     //output error if it occurs
     const errors = req.validationErrors();
@@ -26,6 +47,7 @@ module.exports = {
         message: errorObject,
       });
     }
+
     //insert recipe data into the database
     return Recipedata
       .create({
@@ -33,7 +55,8 @@ module.exports = {
         description: req.body.description,
         ingredients: req.body.ingredients,
         procedures: req.body.procedures,
-        addedBy: req.decoded.userId,
+        imageUrl: req.body.imageUrl,
+        userId: req.decoded.userdata.id,
       })
       .then((recipedata) => res.status(201).send({
         message: 'Added successfully', 
@@ -44,31 +67,90 @@ module.exports = {
                 ingredients: recipedata.ingredients,
                 procedures: recipedata.procedures,
               } }))
-      .catch((error) => res.status(400).send(error));;
+      .catch((error) => res.status(400).send({message: 'Error. Please try again'}));
   },
-  //get all recipes in the database
-  listRecipe(req, res) {
 
-    //query the db for all recipes
+  /**
+     * @description list recipe function
+     * @param {Object} req - Request object
+     * @param {Object} res - Response object
+     * @returns {object} json - payload
+     */
+  listRecipe(req, res) {
+    /**
+     * query limit: get query limit if supplie else use default
+     * query offset: get query offset if supplie else use default
+     */
+    query.limit = req.query.limit || 8;
+    query.offset = req.query.offset || 0;
+    
+    /**
+     * query the db for all recipes
+     * left join Reviews as reviews
+     * left join Favourites as favourites
+     * left join left join Votings as votings
+     * ordered by 'id' descending
+     */
     return Recipedata
-      .findAll()
+      .findAndCountAll({ 
+        include:[
+          {
+            model: Reviews,
+            as: 'reviews',
+            attributes: exclude
+          },
+          { 
+            model: Favourites,
+            as : 'favourites',
+            attributes: exclude
+          },
+          { 
+            model: Votings,
+            as : 'votings',
+            attributes: exclude
+          }
+        ],
+        attributes: exclude,
+        order:  [['id', 'DESC']],
+        limit: query.limit,
+        offset: query.offset
+      })
       .then((recipedata) => {
-        if (recipedata.length <= 0) {
-          //stop if no recipe was found
+        if (recipedata.rows.length <= 0) {
+
+          //return if no recipe was found
           return res.status(404).send({message:'No recipe was found!'});
         } 
-        //return found recipes
-        return res.status(200).send(recipedata)
+
+        /**
+         * pass query limit, query offset, recipedata.count to pagenate helper
+         * and return totalCount, currentPage, pageCount, and pageSize
+         * to pagenation
+         */ 
+        const pagenation = pagenate(query.limit, query.offset, recipedata.count);
+        
+        return res.status(200).send(
+          {
+            pagenation, 
+            recipe: recipedata.rows
+          }
+        );
       })
-      //if error occurs stop
       .catch((error) => res.status(400).send({message:'Error. Please try again'}));
   },
-  //get a paticular recipe
-  retrieveRecipe(req, res) {
-    //check if param is of type int
-    req.checkParams('id', 'Please input a valid id.').isInt();
 
-      //output error if it occurs
+   /**
+     * @description retrieve recipe function
+     * @param {Object} req - Request object
+     * @param {Object} res - Response object
+     * @returns {object} json - payload
+     */
+  retrieveRecipe(req, res) {
+
+      //check if param is of type integer
+      req.checkParams('id', 'Please input a valid id.').isInt();
+
+      //catch any error that might occure
       const errors = req.validationErrors();
       if (errors) {
         const errorObject = errors.map(error => error.msg);
@@ -76,13 +158,13 @@ module.exports = {
           message: errorObject,
         });
       }
-    //query the db for one recipe
-    return Recipedata
-      .findOne({
-        where:{
-          id: req.params.id,
-        }
-      })
+    
+      return Recipedata
+        .findOne({
+          where:{
+            id: req.params.id,
+          }
+        })
       .then((recipedata) => {
         if (recipedata) {
           return res.status(200).send({
@@ -92,6 +174,7 @@ module.exports = {
                 description: recipedata.description,
                 ingredients: recipedata.ingredients,
                 procedures: recipedata.procedures,
+                imageUrl: recipedata.imageUrl,
                 upvotes: recipedata.upvotes,
                 downvotes: recipedata.downvotes,
                 views: recipedata.views,
@@ -99,10 +182,18 @@ module.exports = {
         }
         return res.status(404).send({message: 'Recipe not found'});
       })
-      .catch((error) => res.status(400).send({message:'Error. Please try again'}));
+      .catch((error) => res.status(400).send({message: 'Error. Please try again'}));
   },
+
+  /**
+     * @description update recipe function
+     * @param {Object} req - Request object
+     * @param {Object} res - Response object
+     * @returns {object} json - payload
+     */
   updateRecipe(req, res) {
 
+    //check if param is of type integer
     req.checkParams('id', 'Please input a valid id.').isInt();
     
       //output error if it occurs
@@ -119,14 +210,14 @@ module.exports = {
       .findById(req.params.id)
       .then((recipedata) => {
         if(!recipedata){
-          return res.status(404).send({message:"Recipe not found"});
+          return res.status(404).send({message:'Recipe not found'});
         } else{
           
           //query the db for a recipe
           Recipedata
             .find({
               where:{
-                addedBy: req.decoded.userId,
+                userId: req.decoded.userdata.id,
                 id: req.params.id,
               }
             })
@@ -140,27 +231,37 @@ module.exports = {
                     description: req.body.description || recipedata.description,
                     ingredients: req.body.ingredients || recipedata.ingredients,
                     procedures: req.body.procedures || recipedata.procedures,
+                    imageUrl: req.body.procedures || recipedata.imageUrl,
                 })
                 .then((recipedata) => res.status(200).send({
-                  message:'Updated Successfully',
-                  recipeInfo :{
-                      id: recipedata.id,
-                      title: recipedata.title,
-                      description: recipedata.description,
-                      ingredients: recipedata.ingredients,
-                      procedures: recipedata.procedures,
-                      upvotes: recipedata.upvotes,
-                      downvotes: recipedata.downvotes,
-                      views: recipedata.views,
-                    } }))
+                    message: 'Updated Successfully',
+                    recipeInfo: {
+                        id: recipedata.id,
+                        title: recipedata.title,
+                        description: recipedata.description,
+                        ingredients: recipedata.ingredients,
+                        procedures: recipedata.procedures,
+                        image: recipedata.imageUrl,
+                        upvotes: recipedata.upvotes,
+                        downvotes: recipedata.downvotes,
+                        views: recipedata.views,
+                    } 
+                }))
                 
             })
           }
       })
       .catch((error) => res.status(500).send({message:'Error. Please try again'}));
   },
-  //delect a particular recipe
+  /**
+     * @description delete recipe function
+     * @param {Object} req - Request object
+     * @param {Object} res - Response object
+     * @returns {object} json - payload
+     */
   deleteRecipe(req, res) {
+
+    //check if params is of type integer
     req.checkParams('id', 'Please input a valid id.').isInt();
     
       //output error if it occurs
@@ -177,14 +278,14 @@ module.exports = {
         .findById(req.params.id)
         .then((recipedata) => {
           if(!recipedata){
-            return res.status(404).send({message:"Recipe not found"});
+            return res.status(404).send({message:'Recipe not found'});
           } else{
 
             //query the db for a recipe
             Recipedata
             .find({
               where:{
-                addedBy: req.decoded.userId,
+                userId: req.decoded.userdata.id,
                 id: req.params.id,
               }
             })
@@ -201,16 +302,117 @@ module.exports = {
         })
       .catch((error) => res.status(500).send({message:'Error. Please try again'}));
   },
-  //get recipes with the most upvotes
-  //in descending order
+  /**
+     * @description get recipe with most upvote function
+     * @param {Object} req - Request object
+     * @param {Object} res - Response object
+     * @returns {object} json - payload
+     */
   getMostUpVote(req, res) {
     return Recipedata
       .findAll({
         order: [['upvotes', 'DESC']],
-        limit: 5
+        where: {
+          upvotes: {
+            $gte : 1
+          }
+        },
+        attributes: exclude,
+        limit: 10
       })
       .then((recipedata) => res.status(200).send(recipedata))
-      .catch(error => res.status(200).send(error));
+      .catch(error => res.status(400).send({message: 'Error. Please try again'}));
+  },
 
+   /**
+     * @description search by ingredients function
+     * @param {Object} req - Request object
+     * @param {Object} res - Response object
+     * @returns {object} json - payload
+     */
+  searchByIngredients(req, res){
+    const searchTerm = req.query.q.trim();
+
+    /**
+     * query limit: get query limit if supplie else use default
+     * query offset: get query offset if supplie else use default
+     */
+    query.limit = req.query.limit || 8;
+    query.offset = req.query.offset || 0;
+    
+    /**
+     * query the db for all recipes
+     * left join Reviews as reviews
+     * left join Favourites as favourites
+     * left join left join Votings as votings
+     * ordered by 'id' descending
+     */
+    return Recipedata
+      .findAndCountAll({ 
+        include:[
+          {
+            model: Reviews,
+            as: 'reviews',
+            attributes: exclude
+          },
+          { 
+            model: Favourites,
+            as : 'favourites',
+            attributes: exclude
+          },
+          { 
+            model: Votings,
+            as : 'votings',
+            attributes: exclude
+          }
+        ],
+        where: {
+           ingredients: {
+              $iLike: `%${searchTerm}%`,
+            },
+        },
+        attributes: exclude,
+        order:  [['id', 'DESC']],
+        limit: query.limit,
+        offset: query.offset
+      })
+      .then((recipedata) => {
+        if (recipedata.rows.length <= 0) {
+
+          //return if no recipe was found
+          return res.status(404).send({message:'Search term does not match any document'});
+        } 
+
+        /**
+         * pass query limit, query offset, recipedata.count to pagenate helper
+         * and return totalCount, currentPage, pageCount, and pageSize
+         * to pagenation
+         */ 
+        const pagenation = pagenate(query.limit, query.offset, recipedata.count);
+        
+        return res.status(200).send(
+          {
+            pagenation, 
+            recipe: recipedata.rows
+          }
+        );
+      })
+      .catch((error) => res.status(400).send({message:'Error. Please try again'}));
+  },
+
+  /**
+     * @description increment views function
+     * @param {Object} req - Request object
+     * @param {Object} res - Response object
+     * @returns {object} json - payload
+     */
+  incrementViews(req, res){
+      return Recipedata
+          .findById(req.params.id)
+          .then((recipedata) => {
+              recipedata.increment('views');
+                return res.status(201).send();
+          })
+          .catch((error) => res.status(400).send({message:'Error. Please try again'}));        
   }
 };
