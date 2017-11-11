@@ -1,13 +1,21 @@
-//const Upvotes = require('../models').Upvotes;
-
+//import db models 
 import models from '../models';
 const Voting = models.Voting;
 const Recipedata = models.Recipedata;
 
 module.exports = {
+    /**
+     * @description up vote recipe function
+     * @param {Object} req - Request object
+     * @param {Object} res - Response object
+     * @returns {object} json - payload
+     */
     upVote(req, res) {
+
+        //check if param is of type integer
         req.checkParams('id', 'Please input a valid id.').isInt();
 
+        //catch any error that might occure
         const errors = req.validationErrors();
         if (errors) {
           const errorObject = errors.map(error => error.msg);
@@ -39,8 +47,12 @@ module.exports = {
                                     userId: req.decoded.userdata.id,
                                 })
                                 .then(() => {
-                                    Recipedata.findById(req.params.id)
-                                        .then((recipedata) => {recipedata.increment('upvotes');})
+                                    Recipedata
+                                    .findById(req.params.id)
+                                    .then((recipedata) => {
+                                            recipedata.increment('upvotes');
+                                    })
+
                                     return res.status(200).send({message:'Successfully upvoted'});
                                 })        
                         }else if(voting.voting === 1){
@@ -70,12 +82,21 @@ module.exports = {
                         .catch((error) => res.status(400).send({message:'Error!, Try again'}));
             }
         })
-        .catch((error) => res.status(400).send({message:'Error!, Try again'}));
+        .catch((error) => res.status(500).send({message:'Error!, Try again'}));
     },
 
+    /**
+     * @description down vote recipe function
+     * @param {Object} req - Request object
+     * @param {Object} res - Response object
+     * @returns {object} json - payload
+     */
     downVote(req, res) {
+
+        //check if param is of type integer
         req.checkParams('id', 'Please input a valid id.').isInt();
 
+        //catch any error that might occure
         const errors = req.validationErrors();
         if (errors) {
           const errorObject = errors.map(error => error.msg);
@@ -108,7 +129,8 @@ module.exports = {
                                     })
                                     .then((voting) => {
                                         Recipedata.findById(req.params.id).then((recipedata) => {
-                                            recipedata.increment('downvotes');}) 
+                                            recipedata.increment('downvotes');
+                                        }) 
                                         return res.status(200).send({message:'Successfully downvoted'}); 
                                     })
                             } else if(voting.voting == 0){
@@ -136,7 +158,7 @@ module.exports = {
                         .catch((error) => res.status(400).send({message:'Error!, Try again'}));  
                     }
             }) 
-            .catch((error) => res.status(400).send({message:'Error!, Try again'}));  
+            .catch((error) => res.status(500).send({message:'Error!, Try again'}));  
     },
 };
 
