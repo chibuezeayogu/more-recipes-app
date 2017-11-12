@@ -12,7 +12,7 @@ const Userdata =  models.Userdata;
 const secret = process.env.SECRET;
 
 
-module.exports = {
+export default {
 
   /**
      * sign up user
@@ -44,30 +44,26 @@ module.exports = {
           .find({where:{email: req.body.email}})
           .then((userdata) => {
               if(userdata) {
-                  return res.status(409).send({
-                      message: 'User already exists.'
-                  });
+                return res.status(409).send({
+                    message: 'User already exists.'
+                });
               }
               Userdata
-                  .create({
-                      firstname: req.body.firstname,
-                      lastname: req.body.lastname,
-                      email: req.body.email,
-                      password: req.body.password,
-                      imageUrl: req.body.imageUrl,
-                  })
+                .create({
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname,
+                    email: req.body.email,
+                    password: req.body.password,
+                    imageUrl: req.body.imageUrl,
+                })
               .then((userdata) =>  res.status(201).send({
                       message:'Registered successfully',
-                      userInfo: {  
-                          id: userdata.id,
-                          firstname: userdata.firstname,
-                          lastname: userdata.lastname,
-                          email: userdata.email 
-                      } 
+                      user: userdata
                   })
               ) 
-              .catch((error) => res.status(400).send(error));
+              .catch((error) => res.status(400).send({message: 'Error!. Try again'}));
             })
+            .catch((error) => res.status(400).send({message: 'Error!. Try again'}));
   },
   
   /**
@@ -110,11 +106,11 @@ module.exports = {
               });
             } else {
                 return res.status(409).send({
-                    message: 'Password mismatch'
+                    message: 'Invalide username or password'
                 });
             }
         })
-       .catch((error) => res.status(400).send(error));
+       .catch((error) => res.status(500).send({message: 'Error!. Try again'}));
     },  
   
   /**
@@ -129,16 +125,14 @@ module.exports = {
           .findOne({
             where:{
               id: req.decoded.userdata.id,
-            }
+            },
+            attributes: { exclude: ['password'] }
           })
           .then((userdata) => {
             if (!userdata) {
               return res.status(404).send({message: 'User not found'});
             }
-            return res.status(200).send({userInfo:{  id: userdata.id,
-                                          firstname: userdata.firstname,
-                                          lastname: userdata.lastname,
-                                          email: userdata.email } });
+            return res.status(200).send({user: userdata});
           })
           .catch((error) => res.status(500).send({message:'Error. Please try again'}));
   },
@@ -154,38 +148,47 @@ module.exports = {
     }
 
     //validate input
-    req.checkBody('firstname', 'firstname is required').notEmpty();
-    req.checkBody('firstname', 'firstname must be at least 3 characters long without space').matches(/[a-zA-Z]{3,}$/);
-    req.checkBody('lastname', 'lastname is required').notEmpty();
-    req.checkBody('lastname', 'lastname must be at least 3 characters long without space').matches(/[a-zA-Z]{3,}$/);
-    req.checkBody('password', 'password is required').notEmpty();
-    req.checkBody('password', 'Password must be at least 8 characters and at most 32 characters long without space').matches(/[a-zA-Z0-9.]{8,32}$/);
+    if(req.body.firstname || req.body.lastname || req.body.password) {
+      req.checkBody('firstname', 'firstname is required').notEmpty();
+      req.checkBody('firstname', 'firstname must be at least 3 characters long without space').matches(/[a-zA-Z]{3,}$/);
+      req.checkBody('lastname', 'lastname is required').notEmpty();
+      req.checkBody('lastname', 'lastname must be at least 3 characters long without space').matches(/[a-zA-Z]{3,}$/);
+      req.checkBody('password', 'password is required').notEmpty();
+      req.checkBody('password', 'Password must be at least 8 characters and at most 32 characters long without space').matches(/[a-zA-Z0-9.]{8,32}$/);
 
-    const errors = req.validationErrors();
-    if (errors) {
-      const errorObject = errors.map(error => error.msg);
-      return res.status(400).send({
-        message: errorObject,
-      });
+      const errors = req.validationErrors();
+      if (errors) {
+        const errorObject = errors.map(error => error.msg);
+        return res.status(400).send({
+          message: errorObject,
+        });
+      }
     }
 
     //query the db to check if user already exits or not
-    return Userdata
+    Userdata
       .findById(req.decoded.userdata.id)
       .then((userdata) => {
         if (!userdata) {
           return res.status(404).send({message: 'User not found'});
         }
         return userdata
-            .update(req.body)
+            .update({
+              firstname: req.body.firstname || userdata.firstname,
+              lastname: req.body.lastname || userdata.lastname,
+              imageUrl: req.body.imageUrl || userdata.imageUrl
+            })
             .then((userdata) => res.status(200).send({ 
                 message:'Updated successfully',
-                userInfo:{ 
+                user:{
                   id: userdata.id,
                   firstname: userdata.firstname,
                   lastname: userdata.lastname,
-                  email: userdata.email
-                } 
+                  email: userdata.email,
+                  imageUrl: userdata.imageUrl,
+                  createdAt: userdata.createdAt,
+                  updatedAt: userdata.updatedAt,
+                }
               }))
             .catch((error) => res.status(400).send(error));
       })

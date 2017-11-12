@@ -1,15 +1,12 @@
 //module, controllers and middlewares import
 import express from 'express';
-import controller from '../controllers';
+import favouriteController from '../controllers/favourites';
+import recipeController from '../controllers/recipedata';
+import votingController from '../controllers/voting';
+import reviewController from '../controllers/reviews';
+import userController from '../controllers/userdata';
+
 import verifyToken from '../middlewares/auth';
-
-
-const userController = controller.userdata,
-      recipeController = controller.recipedata,
-      votingController = controller.voting,
-      favouriteController = controller.favourite,
-      reviewController = controller.review;
-
 
 /**
  * Combine user, recipe, voting reviews and favourite routes
@@ -44,9 +41,6 @@ const routes =  (router) => {
         .put(verifyToken, recipeController.updateRecipe)
         .delete(verifyToken, recipeController.deleteRecipe);
 
-    router.route('/recipes/views/:id')
-        .put(verifyToken, recipeController.incrementViews);
-
     router.route('/recipes/:id/upvote')
         .put(verifyToken, votingController.upVote);
 
@@ -55,14 +49,14 @@ const routes =  (router) => {
         .put(verifyToken, votingController.downVote);
     
 
-    router.route('/users/:id/remove')   
+    router.route('/recipes/:id/removefavourite')   
         .delete(verifyToken, favouriteController.removeFromFavorite);
 
 
-    router.route('/users/:id/add')   
+    router.route('/recipes/:id/addfavourite')   
         .put(verifyToken, favouriteController.addToFavorite);
         
-    router.route('/users/:userId/favourites')   
+    router.route('/users/:userId/recipes')   
         .get(verifyToken, favouriteController.getAllFavourites);
         
     router.route('/recipes/:id/reviews')   

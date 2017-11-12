@@ -9,36 +9,32 @@ const Favourites = models.Favourite;
 const Votings = models.Voting;
 
 /**
- * exclude: holds attributes not to be returned
  * query: hold query limit and offset for list recipe
  */
-const exclude = {
-            exclude :['createdAt', 'updatedAt']
-          },
-      query = {};
+const query = {};
 
 
-module.exports = {
+export default {
   /**
      * @description add recipe function
      * @param {Object} req - Request object
      * @param {Object} res - Response object
      * @returns {object} json - payload
      */
-  addRecipe(req, res) { 
+  addRecipe(req, res) {
     /**
      * validate input field 
      * make sure it doesn't contain leading empty space
      */
-      req.checkBody('title', 'title is required').notEmpty();
-      req.checkBody('title', 'title must at least contain a word').matches(/\w[\w ,]*\w$/);
-      req.checkBody('description', 'description is required').notEmpty();
-      req.checkBody('description', 'description must at least contain a word').matches(/\w[\w ,.]*\w$/);
-      req.checkBody('ingredients', 'ingredients is required').notEmpty();
-      req.checkBody('ingredients', 'ingredients must at least contain a word').matches(/\w[\w ,.]*\w$/);
-      req.checkBody('procedures', 'procedures is required').notEmpty();
-      req.checkBody('procedures', 'procedures must at least contain a word').matches(/\w[\w ,.]*\w$/);
-    
+    req.checkBody('title', 'title is required').notEmpty();
+    req.checkBody('title', 'title must at least contain a word').matches(/\w[\w ,]*\w$/);
+    req.checkBody('description', 'description is required').notEmpty();
+    req.checkBody('description', 'description must at least contain a word').matches(/\w[\w ,.]*\w$/);
+    req.checkBody('ingredients', 'ingredients is required').notEmpty();
+    req.checkBody('ingredients', 'ingredients must at least contain a word').matches(/\w[\w ,.]*\w$/);
+    req.checkBody('procedures', 'procedures is required').notEmpty();
+    req.checkBody('procedures', 'procedures must at least contain a word').matches(/\w[\w ,.]*\w$/);
+
     //output error if it occurs
     const errors = req.validationErrors();
     if (errors) {
@@ -59,15 +55,10 @@ module.exports = {
         userId: req.decoded.userdata.id,
       })
       .then((recipedata) => res.status(201).send({
-        message: 'Added successfully', 
-              recipeInfo :{
-                id: recipedata.id,
-                title: recipedata.title,
-                description: recipedata.description,
-                ingredients: recipedata.ingredients,
-                procedures: recipedata.procedures,
-              } }))
-      .catch((error) => res.status(400).send({message: 'Error. Please try again'}));
+        message: 'Added successfully',
+        recipe: recipedata
+      }))
+      .catch((error) => res.status(400).send({ message: 'Error. Please try again' }));
   },
 
   /**
@@ -83,7 +74,7 @@ module.exports = {
      */
     query.limit = req.query.limit || 8;
     query.offset = req.query.offset || 0;
-    
+
     /**
      * query the db for all recipes
      * left join Reviews as reviews
@@ -92,97 +83,96 @@ module.exports = {
      * ordered by 'id' descending
      */
     return Recipedata
-      .findAndCountAll({ 
-        include:[
+      .findAndCountAll({
+        include: [
           {
             model: Reviews,
-            as: 'reviews',
-            attributes: exclude
+            as: 'reviews'
           },
-          { 
+          {
             model: Favourites,
-            as : 'favourites',
-            attributes: exclude
+            as: 'favourites'
           },
-          { 
+          {
             model: Votings,
-            as : 'votings',
-            attributes: exclude
+            as: 'votings'
           }
         ],
-        attributes: exclude,
-        order:  [['id', 'DESC']],
+        order: [['id', 'DESC']],
         limit: query.limit,
         offset: query.offset
       })
       .then((recipedata) => {
         if (recipedata.rows.length <= 0) {
-
-          //return if no recipe was found
-          return res.status(404).send({message:'No recipe was found!'});
-        } 
+          return res.status(404).send({ message: 'No recipe was found!' });
+        }
 
         /**
          * pass query limit, query offset, recipedata.count to pagenate helper
          * and return totalCount, currentPage, pageCount, and pageSize
          * to pagenation
-         */ 
+         */
         const pagenation = pagenate(query.limit, query.offset, recipedata.count);
-        
+
         return res.status(200).send(
           {
-            pagenation, 
+            pagenation,
             recipe: recipedata.rows
           }
         );
       })
-      .catch((error) => res.status(400).send({message:'Error. Please try again'}));
+      .catch((error) => res.status(400).send({ message: 'Error. Please try again' }));
   },
 
-   /**
-     * @description retrieve recipe function
-     * @param {Object} req - Request object
-     * @param {Object} res - Response object
-     * @returns {object} json - payload
-     */
+  /**
+    * @description retrieve recipe function
+    * @param {Object} req - Request object
+    * @param {Object} res - Response object
+    * @returns {object} json - payload
+    */
   retrieveRecipe(req, res) {
 
-      //check if param is of type integer
-      req.checkParams('id', 'Please input a valid id.').isInt();
+    //check if param is of type integer
+    req.checkParams('id', 'Please input a valid id.').isInt();
 
-      //catch any error that might occure
-      const errors = req.validationErrors();
-      if (errors) {
-        const errorObject = errors.map(error => error.msg);
-        return res.status(400).send({
-          message: errorObject,
-        });
-      }
-    
-      return Recipedata
-        .findOne({
-          where:{
-            id: req.params.id,
+    //catch any error that might occure
+    const errors = req.validationErrors();
+    if (errors) {
+      const errorObject = errors.map(error => error.msg);
+      return res.status(400).send({
+        message: errorObject,
+      });
+    }
+
+    Recipedata
+      .findOne({
+        include: [
+          {
+            model: Reviews,
+            as: 'reviews'
+          },
+          {
+            model: Favourites,
+            as: 'favourites'
+          },
+          {
+            model: Votings,
+            as: 'votings'
           }
-        })
+        ],
+        where: {
+          id: req.params.id,
+        }
+      })
       .then((recipedata) => {
         if (recipedata) {
-          return res.status(200).send({
-            recipeInfo :{
-                id: recipedata.id,
-                title: recipedata.title,
-                description: recipedata.description,
-                ingredients: recipedata.ingredients,
-                procedures: recipedata.procedures,
-                imageUrl: recipedata.imageUrl,
-                upvotes: recipedata.upvotes,
-                downvotes: recipedata.downvotes,
-                views: recipedata.views,
-              } });
+          recipedata.increment('views');
+          return res.status(200).send(recipedata
+          );
         }
-        return res.status(404).send({message: 'Recipe not found'});
+        return res.status(404).send({ message: 'Recipe not found' });
       })
-      .catch((error) => res.status(400).send({message: 'Error. Please try again'}));
+      .catch((error) => res.status(400).send({ message: 'Error. Please try again' }));
   },
 
   /**
@@ -195,63 +185,53 @@ module.exports = {
 
     //check if param is of type integer
     req.checkParams('id', 'Please input a valid id.').isInt();
-    
-      //output error if it occurs
-      const errors = req.validationErrors();
-      if (errors) {
-        const errorObject = errors.map(error => error.msg);
-        return res.status(400).send({
-          message: errorObject,
-        });
-      }
-    
+
+    //output error if it occurs
+    const errors = req.validationErrors();
+    if (errors) {
+      const errorObject = errors.map(error => error.msg);
+      return res.status(400).send({
+        message: errorObject,
+      });
+    }
+
     //query db to check if recipe exist
-    return Recipedata
+    Recipedata
       .findById(req.params.id)
       .then((recipedata) => {
-        if(!recipedata){
-          return res.status(404).send({message:'Recipe not found'});
-        } else{
-          
+        if (!recipedata) {
+          return res.status(404).send({ message: 'Recipe not found' });
+        } else {
+
           //query the db for a recipe
           Recipedata
             .find({
-              where:{
+              where: {
                 userId: req.decoded.userdata.id,
                 id: req.params.id,
               }
             })
             .then((recipedata) => {
-                if (!recipedata) {
-                  return res.status(404).send({message: 'You can only update you recipe'});
-                }
-                recipedata
-                  .update({
-                    title: req.body.title || recipedata.title,
-                    description: req.body.description || recipedata.description,
-                    ingredients: req.body.ingredients || recipedata.ingredients,
-                    procedures: req.body.procedures || recipedata.procedures,
-                    imageUrl: req.body.procedures || recipedata.imageUrl,
+              if (!recipedata) {
+                return res.status(404).send({ message: 'Operation not allowed. You can only update your recipe' });
+              }
+              recipedata
+                .update({
+                  title: req.body.title || recipedata.title,
+                  description: req.body.description || recipedata.description,
+                  ingredients: req.body.ingredients || recipedata.ingredients,
+                  procedures: req.body.procedures || recipedata.procedures,
+                  imageUrl: req.body.procedures || recipedata.imageUrl,
                 })
                 .then((recipedata) => res.status(200).send({
-                    message: 'Updated Successfully',
-                    recipeInfo: {
-                        id: recipedata.id,
-                        title: recipedata.title,
-                        description: recipedata.description,
-                        ingredients: recipedata.ingredients,
-                        procedures: recipedata.procedures,
-                        image: recipedata.imageUrl,
-                        upvotes: recipedata.upvotes,
-                        downvotes: recipedata.downvotes,
-                        views: recipedata.views,
-                    } 
-                }))
-                
-            })
-          }
+                  message: 'Updated Successfully',
+                  recipe: recipedata
+                }));
+
+            });
+        }
       })
-      .catch((error) => res.status(500).send({message:'Error. Please try again'}));
+      .catch((error) => res.status(500).send({ message: 'Error. Please try again' }));
   },
   /**
      * @description delete recipe function
@@ -263,44 +243,43 @@ module.exports = {
 
     //check if params is of type integer
     req.checkParams('id', 'Please input a valid id.').isInt();
-    
-      //output error if it occurs
-      const errors = req.validationErrors();
-      if (errors) {
-        const errorObject = errors.map(error => error.msg);
-        return res.status(400).send({
-          message: errorObject,
-        });
-      }
 
-      //query db to check if recipe exist
-      return Recipedata
-        .findById(req.params.id)
-        .then((recipedata) => {
-          if(!recipedata){
-            return res.status(404).send({message:'Recipe not found'});
-          } else{
+    //output error if it occurs
+    const errors = req.validationErrors();
+    if (errors) {
+      const errorObject = errors.map(error => error.msg);
+      return res.status(400).send({
+        message: errorObject,
+      });
+    }
 
-            //query the db for a recipe
-            Recipedata
+    //query db to check if recipe exist
+    Recipedata
+      .findById(req.params.id)
+      .then((recipedata) => {
+        if (!recipedata) {
+          return res.status(404).send({ message: 'Recipe not found' });
+        } 
+
+          //query the db for a recipe
+          Recipedata
             .find({
-              where:{
+              where: {
                 userId: req.decoded.userdata.id,
                 id: req.params.id,
               }
             })
             .then((recipedata) => {
               if (!recipedata) {
-                return res.status(404).send({message: 'You can only delete you recipe'});
+                return res.status(404).send({ message: 'Operation not allowed. You can only delete your recipe' });
               }
               recipedata
                 .destroy()
-                .then((recipedata) => res.status(200).send({message:'Delete Successfully'}))
-                .catch((error) => res.status(400).send({message:'Error. Please try again'}));
-            })
-          }
-        })
-      .catch((error) => res.status(500).send({message:'Error. Please try again'}));
+                .then((recipedata) => res.status(200).send({ message: 'Delete Successfully' }))
+                .catch((error) => res.status(400).send({ message: 'Error. Please try again' }));
+            });
+      })
+      .catch((error) => res.status(500).send({ message: 'Error. Please try again' }));
   },
   /**
      * @description get recipe with most upvote function
@@ -314,23 +293,22 @@ module.exports = {
         order: [['upvotes', 'DESC']],
         where: {
           upvotes: {
-            $gte : 1
+            $gte: 1
           }
         },
-        attributes: exclude,
         limit: 10
       })
       .then((recipedata) => res.status(200).send(recipedata))
-      .catch(error => res.status(400).send({message: 'Error. Please try again'}));
+      .catch(error => res.status(400).send({ message: 'Error. Please try again' }));
   },
 
-   /**
-     * @description search by ingredients function
-     * @param {Object} req - Request object
-     * @param {Object} res - Response object
-     * @returns {object} json - payload
-     */
-  searchByIngredients(req, res){
+  /**
+    * @description search by ingredients function
+    * @param {Object} req - Request object
+    * @param {Object} res - Response object
+    * @returns {object} json - payload
+    */
+  searchByIngredients(req, res) {
     const searchTerm = req.query.q.trim();
 
     /**
@@ -339,7 +317,7 @@ module.exports = {
      */
     query.limit = req.query.limit || 8;
     query.offset = req.query.offset || 0;
-    
+
     /**
      * query the db for all recipes
      * left join Reviews as reviews
@@ -347,32 +325,28 @@ module.exports = {
      * left join left join Votings as votings
      * ordered by 'id' descending
      */
-    return Recipedata
-      .findAndCountAll({ 
-        include:[
+    Recipedata
+      .findAndCountAll({
+        include: [
           {
             model: Reviews,
-            as: 'reviews',
-            attributes: exclude
+            as: 'reviews'
           },
-          { 
+          {
             model: Favourites,
-            as : 'favourites',
-            attributes: exclude
+            as: 'favourites'
           },
-          { 
+          {
             model: Votings,
-            as : 'votings',
-            attributes: exclude
+            as: 'votings'
           }
         ],
         where: {
-           ingredients: {
-              $iLike: `%${searchTerm}%`,
-            },
+          ingredients: {
+            $iLike: `%${searchTerm}%`,
+          },
         },
-        attributes: exclude,
-        order:  [['id', 'DESC']],
+        order: [['id', 'DESC']],
         limit: query.limit,
         offset: query.offset
       })
@@ -380,39 +354,23 @@ module.exports = {
         if (recipedata.rows.length <= 0) {
 
           //return if no recipe was found
-          return res.status(404).send({message:'Search term does not match any document'});
-        } 
+          return res.status(404).send({ message: 'Search term does not match any document' });
+        }
 
         /**
          * pass query limit, query offset, recipedata.count to pagenate helper
          * and return totalCount, currentPage, pageCount, and pageSize
          * to pagenation
-         */ 
+         */
         const pagenation = pagenate(query.limit, query.offset, recipedata.count);
-        
+
         return res.status(200).send(
           {
-            pagenation, 
+            pagenation,
             recipes: recipedata.rows
           }
         );
       })
-      .catch((error) => res.status(400).send({message:'Error. Please try again'}));
-  },
-
-  /**
-     * @description increment views function
-     * @param {Object} req - Request object
-     * @param {Object} res - Response object
-     * @returns {object} json - payload
-     */
-  incrementViews(req, res){
-      return Recipedata
-          .findById(req.params.id)
-          .then((recipedata) => {
-              recipedata.increment('views');
-                return res.status(201).send();
-          })
-          .catch((error) => res.status(400).send({message:'Error. Please try again'}));        
+      .catch((error) => res.status(400).send({ message: 'Error. Please try again' }));
   }
 };
