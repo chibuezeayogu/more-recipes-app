@@ -393,7 +393,7 @@ module.exports = {
         return res.status(200).send(
           {
             pagenation, 
-            recipe: recipedata.rows
+            recipes: recipedata.rows
           }
         );
       })
