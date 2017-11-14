@@ -26,7 +26,7 @@ export default {
       .findById(req.params.id)
       .then((recipedata) => {
         if (!recipedata) {
-          res.status(404).send({ message: 'Connot post. Recipe id not found' });
+          res.status(404).send({ message: 'Cannot post. Recipe id not found' });
         }
         
         Review

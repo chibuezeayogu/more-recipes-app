@@ -27,7 +27,7 @@ export default {
     .findById(req.params.id)
     .then((recipedata) => {
       if(!recipedata){
-          return res.status(400).send({message:'Recipe data not found'});
+          return res.status(404).send({message:'Recipe not found'});
       } 
       Voting.find({
         attributes: ['voting'],
@@ -110,7 +110,7 @@ export default {
       .findById(req.params.id)
       .then((recipedata) => {
         if(!recipedata){
-          return res.status(400).send({message:'Recipe data not found'});
+          return res.status(404).send({message:'Recipe not found'});
         }
           Voting
             .find({
@@ -154,7 +154,7 @@ export default {
                         userId: req.decoded.userdata.id,
                       }
                   })
-                  
+
                   Recipedata
                     .findById(req.params.id).then(recipedata => {
                         recipedata.increment('downvotes');
