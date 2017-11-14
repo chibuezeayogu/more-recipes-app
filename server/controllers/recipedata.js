@@ -27,13 +27,15 @@ export default {
      * make sure it doesn't contain leading empty space
      */
     req.checkBody('title', 'title is required').notEmpty();
-    req.checkBody('title', 'title must at least contain a word').matches(/\w[\w ,]*\w$/);
+    req.checkBody('title', 'title must at least contain a word without leading space').matches(/^\w[\w\d ,]*\w$/);
     req.checkBody('description', 'description is required').notEmpty();
-    req.checkBody('description', 'description must at least contain a word').matches(/\w[\w ,.]*\w$/);
+    req.checkBody('description', 'description must at least contain a word without leading space').matches(/^\w[a-zA-Z0-9 !:.?+=&%@!\-/,()]*\w$/);
     req.checkBody('ingredients', 'ingredients is required').notEmpty();
-    req.checkBody('ingredients', 'ingredients must at least contain a word').matches(/\w[\w ,.]*\w$/);
+    req.checkBody('ingredients', 'ingredients must at least contain a word without leading space').matches(/^\w[a-zA-Z0-9 !:.?+=&%@!\-/,()]*\w$/);
     req.checkBody('procedures', 'procedures is required').notEmpty();
-    req.checkBody('procedures', 'procedures must at least contain a word').matches(/\w[\w ,.]*\w$/);
+    req.checkBody('procedures', 'procedures must at least contain a word without leading space').matches(/^\w[a-zA-Z0-9 !:.?+=&%@!\-/,()]*\w$/);
+    req.checkBody('imageUrl', 'image url is required').notEmpty();
+    req.checkBody('imageUrl', 'image url is not valid').matches(/http:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
 
     //output error if it occurs
     const errors = req.validationErrors();
@@ -117,7 +119,7 @@ export default {
         return res.status(200).send(
           {
             pagenation,
-            recipe: recipedata.rows
+            recipes: recipedata.rows
           }
         );
       })
@@ -213,7 +215,7 @@ export default {
             })
             .then((recipedata) => {
               if (!recipedata) {
-                return res.status(404).send({ message: 'Operation not allowed. You can only update your recipe' });
+                return res.status(401).send({ message:'Operation not allowed. You can only update your recipe' });
               }
               recipedata
                 .update({
@@ -221,7 +223,7 @@ export default {
                   description: req.body.description || recipedata.description,
                   ingredients: req.body.ingredients || recipedata.ingredients,
                   procedures: req.body.procedures || recipedata.procedures,
-                  imageUrl: req.body.procedures || recipedata.imageUrl,
+                  imageUrl: req.body.imageUrl || recipedata.imageUrl,
                 })
                 .then((recipedata) => res.status(200).send({
                   message: 'Updated Successfully',
@@ -271,7 +273,7 @@ export default {
             })
             .then((recipedata) => {
               if (!recipedata) {
-                return res.status(404).send({ message: 'Operation not allowed. You can only delete your recipe' });
+                return res.status(401).send({ message: 'Operation not allowed. You can only delete your recipe' });
               }
               recipedata
                 .destroy()
@@ -298,7 +300,7 @@ export default {
         },
         limit: 10
       })
-      .then((recipedata) => res.status(200).send(recipedata))
+      .then((recipedata) => res.status(200).send({recipe:recipedata}))
       .catch(error => res.status(400).send({ message: 'Error. Please try again' }));
   },
 
