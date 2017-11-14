@@ -11,7 +11,7 @@ module.exports = {
     view: false,
     comment: 'good recipe',
     recipeId: 1,
-    userId: 1,
+    userId: 2,
     createdAt: new Date(),
     updatedAt: new Date(),
     }]),
