@@ -30,7 +30,7 @@ export default {
       req.checkBody('email', 'email is required').notEmpty();
       req.checkBody('email', 'email is not valid').isEmail();
       req.checkBody('password', 'password is required').notEmpty();
-      req.checkBody('password', 'Password must be at least 8 characters and at most 32 characters long without space').matches(/[a-zA-Z0-9.]{8,32}$/);
+      req.checkBody('password', 'Password must be at least 8 characters and at most 32 characters long without space').matches(/^[a-zA-Z0-9.]{8,32}$/);
       req.checkBody('imageUrl', 'image url is required').notEmpty();
       req.checkBody('imageUrl', 'image url is not valid ').matches(/http:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
       
