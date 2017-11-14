@@ -31,6 +31,8 @@ export default {
       req.checkBody('email', 'email is not valid').isEmail();
       req.checkBody('password', 'password is required').notEmpty();
       req.checkBody('password', 'Password must be at least 8 characters and at most 32 characters long without space').matches(/[a-zA-Z0-9.]{8,32}$/);
+      req.checkBody('imageUrl', 'image url is required').notEmpty();
+      req.checkBody('imageUrl', 'image url is not valid ').matches(/http:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
       
       const errors = req.validationErrors();
       if (errors) {
@@ -58,7 +60,15 @@ export default {
                 })
               .then((userdata) =>  res.status(201).send({
                       message:'Registered successfully',
-                      user: userdata
+                      user:{
+                        id: userdata.id,
+                        firstname: userdata.firstname,
+                        lastname: userdata.lastname,
+                        email: userdata.email,
+                        imageUrl: userdata.imageUrl,
+                        createdAt: userdata.createdAt,
+                        updatedAt: userdata.updatedAt,
+                      }
                   })
               ) 
               .catch((error) => res.status(400).send({message: 'Error!. Try again'}));
@@ -79,6 +89,7 @@ export default {
     req.checkBody('email', 'email is not valid').isEmail();
     req.checkBody('password', 'password is required').notEmpty();
     req.checkBody('password', 'password must be at least 8 characters and at most 32 characters long').matches(/[a-zA-Z0-9.]{8,32}$/);
+    
     
     const errors = req.validationErrors();
     if (errors) {
@@ -147,24 +158,6 @@ export default {
       return res.status(403).send({message: 'email cannot be changed'});
     }
 
-    //validate input
-    if(req.body.firstname || req.body.lastname || req.body.password) {
-      req.checkBody('firstname', 'firstname is required').notEmpty();
-      req.checkBody('firstname', 'firstname must be at least 3 characters long without space').matches(/[a-zA-Z]{3,}$/);
-      req.checkBody('lastname', 'lastname is required').notEmpty();
-      req.checkBody('lastname', 'lastname must be at least 3 characters long without space').matches(/[a-zA-Z]{3,}$/);
-      req.checkBody('password', 'password is required').notEmpty();
-      req.checkBody('password', 'Password must be at least 8 characters and at most 32 characters long without space').matches(/[a-zA-Z0-9.]{8,32}$/);
-
-      const errors = req.validationErrors();
-      if (errors) {
-        const errorObject = errors.map(error => error.msg);
-        return res.status(400).send({
-          message: errorObject,
-        });
-      }
-    }
-
     //query the db to check if user already exits or not
     Userdata
       .findById(req.decoded.userdata.id)
@@ -190,7 +183,7 @@ export default {
                   updatedAt: userdata.updatedAt,
                 }
               }))
-            .catch((error) => res.status(400).send(error));
+            .catch((error) => res.status(400).send({message:'Error. Please try again'}));
       })
       .catch((error) => res.status(500).send({message:'Error. Please try again'}));
   }
