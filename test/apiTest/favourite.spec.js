@@ -20,10 +20,21 @@ let token;
             done();
           });
       });
-    describe('PUT: /api/v1/users/:id/add', () => {
-        it('should return a message if no recipe id is supplied', (done) => {
+    describe('PUT: /api/v1/recipes/:id/addfavourite', () => {
+        it('should return an error message if no authorization token was found', (done) => {
             chai.request(app)
-            .put('/api/v1/users/s/add')
+              .put('/api/v1/recipes/1/addfavourite')
+              .end((err, res) => {
+                expect(res.status).to.equal(403);
+                expect(res.body).to.have.keys(['status', 'message']);
+                expect(res.body.status).to.eql('Failed');
+                expect(res.body.message).to.eql('No token provided.');
+                done();
+              });
+          });
+        it('should return an error message if no recipe id is supplied', (done) => {
+            chai.request(app)
+            .put('/api/v1/recipes/s/addfavourite')
             .set({ Authorization: token })
             .end((err, res) => {
               expect(res.status).to.equal(400);
@@ -32,9 +43,9 @@ let token;
               done();
             });
         });
-        it('should return a message if recipe id is not found', (done) => {
+        it('should return an error message if no recipe was not found', (done) => {
             chai.request(app)
-            .put('/api/v1/users/5/add')
+            .put('/api/v1/recipes/10/addfavourite')
             .set({ Authorization: token })
             .end((err, res) => {
             expect(res.status).to.equal(404);
@@ -43,33 +54,44 @@ let token;
             done();
             });
         });
-        it('should return a message if a user adds a recipe to his/her favourite', (done) => {
+        it('should return a success message if a user adds a recipe to his or her favourite', (done) => {
             chai.request(app)
-            .put('/api/v1/users/2/add')
+            .put('/api/v1/recipes/2/addfavourite')
             .set({ Authorization: token })
             .end((err, res) => {
             expect(res.status).to.equal(201);
             expect(res.body).to.have.keys(['message']);
-            expect(res.body.message).to.eql('Successfully added to you favourite');
+            expect(res.body.message).to.eql('Successfully added to your favourite');
             done();
             });
         });
         it('should return a message if a user tries to adds the same recipe to his favourite again', (done) => {
             chai.request(app)
-            .put('/api/v1/users/2/add')
+            .put('/api/v1/recipes/2/addfavourite')
             .set({ Authorization: token })
             .end((err, res) => {
             expect(res.status).to.equal(400);
             expect(res.body).to.have.keys(['message']);
-            expect(res.body.message).to.eql('Recipe already added to your Favourite');
+            expect(res.body.message).to.eql('Recipe already added to your favourite');
             done();
             });
         });
     });
     describe('DELETE: /api/v1/users/:id/remove', () => {
-        it('should return a message if no recipe id is supplied', (done) => {
+        it('should return an error message if no authorization token was found', (done) => {
             chai.request(app)
-            .del('/api/v1/users/s/remove')
+              .del('/api/v1/recipes/6/removefavourite')
+              .end((err, res) => {
+                expect(res.status).to.equal(403);
+                expect(res.body).to.have.keys(['status', 'message']);
+                expect(res.body.status).to.eql('Failed');
+                expect(res.body.message).to.eql('No token provided.');
+                done();
+              });
+          });
+        it('should return an error message if no recipe id is supplied', (done) => {
+            chai.request(app)
+            .del('/api/v1/recipes/d/removefavourite')
             .set({ Authorization: token })
             .end((err, res) => {
               expect(res.status).to.equal(400);
@@ -78,9 +100,9 @@ let token;
               done();
             });
         });
-        it('should return a message if invalid recipe id is supplied', (done) => {
+        it('should return an error message if recipe id supplied was not found', (done) => {
             chai.request(app)
-            .del('/api/v1/users/20/remove')
+            .del('/api/v1/recipes/6/removefavourite')
             .set({ Authorization: token })
             .end((err, res) => {
               expect(res.status).to.equal(404);
@@ -89,20 +111,20 @@ let token;
               done();
             });
         });
-        it('should return a message if a user removes a recipe from his/her favourite', (done) => {
+        it('should return a message if a user removes a recipe from his or her favourite', (done) => {
             chai.request(app)
-            .del('/api/v1/users/2/remove')
+            .del('/api/v1/recipes/2/removefavourite')
             .set({ Authorization: token })
             .end((err, res) => {
             expect(res.status).to.equal(200);
             expect(res.body).to.have.keys(['message']);
-            expect(res.body.message).to.eql('Recipe has been removed from your Favourite');
+            expect(res.body.message).to.eql('Recipe has been removed from your favourite');
             done();
             });
         });
-        it('should return a message if a user tries to remove the same recipe from his favourite again', (done) => {
+        it('should return an error message if a user tries to remove a recipe not in his or her favourite', (done) => {
             chai.request(app)
-            .del('/api/v1/users/2/remove')
+            .del('/api/v1/recipes/2/removefavourite')
             .set({ Authorization: token })
             .end((err, res) => {
             expect(res.status).to.equal(400);
