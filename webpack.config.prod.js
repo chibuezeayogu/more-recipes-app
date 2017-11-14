@@ -4,7 +4,8 @@ import webpack from 'webpack';
 export default  {
   devtool: 'source-map',
   entry: [
-    
+    'babel-polyfill',
+    'webpack-hot-middleware/client',
     './client/App'
   ],
   output: {
