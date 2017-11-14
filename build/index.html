@@ -1,0 +1,811 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>More-Recipe API</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#development" class="toc-h2 toc-link" data-title="Introduction">Development</a>
+                  </li>
+                  <li>
+                    <a href="#installation" class="toc-h2 toc-link" data-title="Introduction">Installation</a>
+                  </li>
+                  <li>
+                    <a href="#how-to-use-jwt-for-authentication-or-authorization" class="toc-h2 toc-link" data-title="Introduction">How to use JWT for Authentication or Authorization</a>
+                  </li>
+                  <li>
+                    <a href="#api-summary" class="toc-h2 toc-link" data-title="Introduction">API Summary</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#usersdata" class="toc-h1 toc-link" data-title="Usersdata">Usersdata</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#signup-user" class="toc-h2 toc-link" data-title="Usersdata">Signup User</a>
+                  </li>
+                  <li>
+                    <a href="#signin-user" class="toc-h2 toc-link" data-title="Usersdata">Signin User</a>
+                  </li>
+                  <li>
+                    <a href="#retrive-user" class="toc-h2 toc-link" data-title="Usersdata">Retrive User</a>
+                  </li>
+                  <li>
+                    <a href="#update-user" class="toc-h2 toc-link" data-title="Usersdata">Update User</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#recipes" class="toc-h1 toc-link" data-title="Recipes">Recipes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#add-recipe" class="toc-h2 toc-link" data-title="Recipes">Add Recipe</a>
+                  </li>
+                  <li>
+                    <a href="#retrive-recipe" class="toc-h2 toc-link" data-title="Recipes">Retrive Recipe</a>
+                  </li>
+                  <li>
+                    <a href="#update-recipe" class="toc-h2 toc-link" data-title="Recipes">Update Recipe</a>
+                  </li>
+                  <li>
+                    <a href="#delete-recipe" class="toc-h2 toc-link" data-title="Recipes">Delete Recipe</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-recipe" class="toc-h2 toc-link" data-title="Recipes">GET All Recipe</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#voting" class="toc-h1 toc-link" data-title="Voting">Voting</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#upvote-recipe" class="toc-h2 toc-link" data-title="Voting">Upvote Recipe</a>
+                  </li>
+                  <li>
+                    <a href="#downvote-recipe" class="toc-h2 toc-link" data-title="Voting">Downvote Recipe</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#favourita" class="toc-h1 toc-link" data-title="Favourita">Favourita</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#upvote-recipe" class="toc-h2 toc-link" data-title="Favourita">Upvote Recipe</a>
+                  </li>
+                  <li>
+                    <a href="#downvote-recipe" class="toc-h2 toc-link" data-title="Favourita">Downvote Recipe</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#reviews" class="toc-h1 toc-link" data-title="Reviews">Reviews</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post-reviews" class="toc-h2 toc-link" data-title="Reviews">Post Reviews</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><span>&copy; Andela, developed by Chibueze Ayogu</span></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>More-Recipe API contains several API end points that allows users to signup, signin, add, retrieve, edit, and delete recipe. User can also upvote or downvote a recipe, add recipe to his/her favourite or remove from his/her favourite, get recipes with most upvote in ascending order.  It also offers a way to ensure that only authorized users can perform certain operations.</p>
+<h2 id='development'>Development</h2>
+<p>The application was developed with <a href="http://nodejs.org/">NodeJs</a> and <a href="http://expressjs.com/">Express</a> is used for routing. The <a href="http://postgresql.com/">Postgresql</a> database was used with sequelize as the ORM</p>
+<h2 id='installation'>Installation</h2>
+<p>Follow the steps below to setup a local development environment. First ensure you have <a href="https://www.postgresql.org/">Postgresql</a> installed, and a version of <a href="http://nodejs.org/">Node.js</a> equal or greater than v6.8.0.</p>
+
+<ol>
+<li>Clone the repository from a terminal <code>git clone https://github.com/chibuezeayogu/Cohort-XXVI_More-RecipesApp.git</code>.</li>
+<li>Move into the project directory <code>cd Cohort-XXVI_More-RecipesApp</code></li>
+<li>Add<code>.env</code> and add any preferred postgresql DB_URL.</li>
+<li>Install project dependencies <code>npm install</code></li>
+<li>Start the express server <code>npm start</code>.</li>
+</ol>
+<h2 id='how-to-use-jwt-for-authentication-or-authorization'>How to use JWT for Authentication or Authorization</h2>
+<p>This document management system uses &quot;email &amp; password&quot; to authenticate users while generating token. To use the token returned after successful signin.
+1. Save the token to the browser local storage or session storage with a property name &quot;Authorization&quot;. Eg. <code>Authentication: token.</code>This gives users the priviledge to certain resources they have permission to.</p>
+
+<ol>
+<li>If using Postman to test the routes, copy the token from the login or sign up response to the headers with key name &quot;Authorization&quot;,Eg. <code>Authorization: token</code> which allows users to access resources they have permission to.</li>
+</ol>
+<h2 id='api-summary'>API Summary</h2><h3 id='userdata'>Userdata</h3>
+<table><thead>
+<tr>
+<th>EndPoint</th>
+<th>Functionality</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>POST /api/v1/users/signup</td>
+<td>Creates a new user.</td>
+</tr>
+<tr>
+<td>POST /api/v1/users/signup</td>
+<td>Logs in a user.</td>
+</tr>
+<tr>
+<td>GET /api/v1/users</td>
+<td>Retreives a logged in user&#39;s Profile based on the users id.</td>
+</tr>
+<tr>
+<td>PUT /api/v1/users</td>
+<td>Updates any logged in user&#39;s Profile  except email based on the users id</td>
+</tr>
+</tbody></table>
+<h3 id='recipedata'>Recipedata</h3>
+<table><thead>
+<tr>
+<th>EndPoint</th>
+<th>Functionality</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>POST /api/v1/recipes/:id</td>
+<td>Creates a new recipe. (available only to logged in users)</td>
+</tr>
+<tr>
+<td>GET /api/v1/recipes</td>
+<td>Gets all recipes. (available only to logged in users)</td>
+</tr>
+<tr>
+<td>GET /api/v1/recipes/:id</td>
+<td>Find a recipe by id. (available only to logged in users)</td>
+</tr>
+<tr>
+<td>PUT /api/v1/recipes/:id</td>
+<td>Updates a recipe attributes. (available only to the users who added the recipe)</td>
+</tr>
+<tr>
+<td>DELETE /api/v1/recipes/:id</td>
+<td>Delete a recipe. (available only to the users who added the recipe)</td>
+</tr>
+<tr>
+<td>GET /api/recipes?sort=upvotes&amp;order=descending</td>
+<td>Get all documents with title containing the search query (available only to logged in users)</td>
+</tr>
+</tbody></table>
+<h3 id='favourite'>Favourite</h3>
+<table><thead>
+<tr>
+<th>EndPoint</th>
+<th>Functionality</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PUT /api/v1/users/:id/add</td>
+<td>Add a recipe to users favourite. (available only to logged in users)</td>
+</tr>
+<tr>
+<td>PUT /api/v1/users/:id/remove</td>
+<td>Revove a recipe from users favourite. (available only to logged in users)</td>
+</tr>
+<tr>
+<td>GET /api/users/<userId>/recipe</td>
+<td>Get all users favourite recipes. (available only to logged in users)</td>
+</tr>
+</tbody></table>
+<h3 id='voting'>Voting</h3>
+<table><thead>
+<tr>
+<th>EndPoint</th>
+<th>Functionality</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PUT /api/v1/recipes/:id/upvote</td>
+<td>Upvote a recipe. (available only to logged in users)</td>
+</tr>
+<tr>
+<td>PUT /api/v1/recipes/:id/downupvote</td>
+<td>downvote a recipe. (available only to logged in users)</td>
+</tr>
+</tbody></table>
+<h3 id='reviews'>Reviews</h3>
+<table><thead>
+<tr>
+<th>EndPoint</th>
+<th>Functionality</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>POST /api/recipes/<recipeId>/reviews</td>
+<td>Post review for a recipe. (available only to logged in users)</td>
+</tr>
+</tbody></table>
+<h1 id='usersdata'>Usersdata</h1><h2 id='signup-user'>Signup User</h2>
+<blockquote>
+<p>Sample structures responce:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"firstname"</span><span class="p">:</span> <span class="s2">"Chibueze"</span><span class="p">,</span>
+    <span class="s2">"lastmane"</span><span class="p">:</span> <span class="s2">"Ayogu"</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"chibuezeayogu@hotmail.com"</span><span class="p">,</span>
+    <span class="s2">"password"</span><span class="p">:</span> <span class="s2">"password"</span>
+<span class="p">}</span>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Registered successfully"</span><span class="p">,</span>
+    <span class="s2">"userInfo"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"firstname"</span><span class="p">:</span> <span class="s2">"chibueze"</span><span class="p">,</span>
+        <span class="s2">"lastname"</span><span class="p">:</span> <span class="s2">"Ayogu"</span><span class="p">,</span>
+        <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"chibuezeayogu@hotmail.com"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><h3 id='request'>Request</h3>
+<ul>
+<li>Endpoint: POST: <code>/api/users/signup</code></li>
+<li>Requires: Authentication and Authorization</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response'>Response</h3>
+<ul>
+<li>Status: <code>201: Created</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h2 id='signin-user'>Signin User</h2>
+<blockquote>
+<p>Sample structures responce:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"chibuezeayogu@hotmail.com"</span><span class="p">,</span>
+    <span class="s2">"password"</span><span class="p">:</span> <span class="s2">"password"</span>
+<span class="p">}</span>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Logged in Successfully"</span><span class="p">,</span>
+    <span class="s2">"token"</span><span class="p">:</span> <span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE2LCJpYXQiOjE1MDU1ODMzNzV9.BBH_iTw5cI7wlrb6oj9K8kLH_QXQm0tVmunnsjiB5V4"</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-2'>Request</h3>
+<ul>
+<li>Endpoint: POST: <code>/api/users/signin</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-2'>Response</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h2 id='retrive-user'>Retrive User</h2>
+<blockquote>
+<p>Sample structures responce:</p>
+
+<p>Response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"userInfo"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"firstname"</span><span class="p">:</span> <span class="s2">"Graphael"</span><span class="p">,</span>
+        <span class="s2">"lastname"</span><span class="p">:</span> <span class="s2">"Akpan"</span><span class="p">,</span>
+        <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"andela2@hotmail.com"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-3'>Request</h3>
+<ul>
+<li>Endpoint: GET: <code>/api/users</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-3'>Response</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h2 id='update-user'>Update User</h2>
+<blockquote>
+<p>Sample structures responce:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"firstname"</span><span class="p">:</span> <span class="s2">"Graphael"</span><span class="p">,</span>
+    <span class="s2">"lastname"</span><span class="p">:</span> <span class="s2">"Akpan"</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Updated successfully"</span><span class="p">,</span>
+    <span class="s2">"userInfo"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"firstname"</span><span class="p">:</span> <span class="s2">"Raphael"</span><span class="p">,</span>
+        <span class="s2">"lastname"</span><span class="p">:</span> <span class="s2">"Akpan"</span><span class="p">,</span>
+        <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"andela2@hotmail.com"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-4'>Request</h3>
+<ul>
+<li>Endpoint: PUT: <code>/api/users</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-4'>Response</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h1 id='recipes'>Recipes</h1><h2 id='add-recipe'>Add Recipe</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span>
+    <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
+    <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"one teaspoon butter, six slices bacon, one large sweet potato, cubed"</span><span class="p">,</span>
+    <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown, about eight minutes Remove and chop                       coarsely."</span>
+<span class="p">}</span>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Added successfully"</span><span class="p">,</span>
+    <span class="s2">"recipeInfo"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span><span class="p">,</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
+        <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"one teaspoon butter, six slices bacon, one large sweet potato, cubed"</span><span class="p">,</span>
+        <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown, about eight minutes Remove and chop                   coarsely."</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><h3 id='request'>Request</h3>
+<ul>
+<li>Endpoint: POST: <code>/api/v1/recipes</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response'>Response</h3>
+<ul>
+<li>Status: <code>201: Created</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h2 id='retrive-recipe'>Retrive Recipe</h2>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>   
+    <span class="s2">"recipeInfo"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span><span class="p">,</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
+        <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"one teaspoon butter, six slices bacon, one large sweet potato, cubed"</span><span class="p">,</span>
+        <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown, about eight minutes Remove and chop                   coarsely."</span><span class="p">,</span>
+        <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-2'>Request</h3>
+<ul>
+<li>Endpoint: GET: <code>/api/v1/recipes/1</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-2'>Response:</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h2 id='update-recipe'>Update Recipe</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"one teaspoon butter, six slices bacon, one large sweet potato, cubed"</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>   
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Updated Successfully"</span><span class="p">,</span>
+    <span class="s2">"recipeInfo"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span><span class="p">,</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
+        <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1 teaspoon butter, 6 slices bacon, 1 large sweet potato"</span><span class="p">,</span>
+        <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown, about eight minutes Remove and chop coarsely."</span><span class="p">,</span>
+        <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-3'>Request</h3>
+<ul>
+<li>Endpoint: PUT: <code>/api/v1/recipes/1</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-3'>Response</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h2 id='delete-recipe'>Delete Recipe</h2>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Deleted Seccuessfully"</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-4'>Request</h3>
+<ul>
+<li>Endpoint: DELETE: <code>/api/v1/recipes/1</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-4'>Response</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h2 id='get-all-recipe'>GET All Recipe</h2>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span><span class="p">,</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
+        <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1 teaspoon butter, 6 slices bacon, 1 large sweet potato"</span><span class="p">,</span>
+        <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown, about eight minutes Remove and chop coarsely."</span><span class="p">,</span>
+        <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"addedBy"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span><span class="p">,</span>
+        <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Best Steak Marinade in Existence"</span><span class="p">,</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This is a family recipe that has been developed only over the last 5 years. In this short time it's made me famous in our close circle, but until now I've never shared it with anyone"</span><span class="p">,</span>
+        <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1/3 cup soy sauce, 1/2 cup olive oil"</span><span class="p">,</span>
+        <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Place the soy sauce, olive oil, lemon juice, Worcestershire sauce, garlic powder, basil, parsley, and pepper in a blender. Add hot pepper sauce and garlic, if desired. Blend on high speed for 30 seconds until thoroughly mixed."</span><span class="p">,</span>
+        <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"addedBy"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T10:13:17.786Z"</span><span class="p">,</span>
+        <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T10:13:17.786Z"</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre><h3 id='request-5'>Request</h3>
+<ul>
+<li>Endpoint: GET: <code>/api/v1/recipes</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-5'>Response</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h1 id='voting'>Voting</h1><h2 id='upvote-recipe'>Upvote Recipe</h2>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Successfully upvoted"</span>
+<span class="p">}</span>
+</code></pre><h3 id='request'>Request</h3>
+<ul>
+<li>Endpoint: POST: <code>/api/v1/recipes/2/upvote</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response'>Response</h3>
+<ul>
+<li>Status: <code>200: Created</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h2 id='downvote-recipe'>Downvote Recipe</h2>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Successfully downvoted"</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-2'>Request</h3>
+<ul>
+<li>Endpoint: GET: <code>/api/v1/recipes/2/downvote</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-2'>Response</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h1 id='favourita'>Favourita</h1><h2 id='upvote-recipe'>Upvote Recipe</h2>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Successfully added to you favourite"</span>
+<span class="p">}</span>
+</code></pre><h3 id='request'>Request</h3>
+<ul>
+<li>Endpoint: PUT: <code>/api/v1/users/:id/add</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response'>Response</h3>
+<ul>
+<li>Status: <code>200: Created</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h2 id='downvote-recipe'>Downvote Recipe</h2>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Recipe has been removed from your Favourite"</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-2'>Request</h3>
+<ul>
+<li>Endpoint: PUT: <code>/api/v1/users/:id/remove</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-2'>Response</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h1 id='reviews'>Reviews</h1><h2 id='post-reviews'>Post Reviews</h2>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Comment Posted"</span>
+<span class="p">}</span>
+</code></pre><h3 id='request'>Request</h3>
+<ul>
+<li>Endpoint: POST: <code>/api/v1/recipes/:id/upvote</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response'>Response</h3>
+<ul>
+<li>Status: <code>201: Created</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
