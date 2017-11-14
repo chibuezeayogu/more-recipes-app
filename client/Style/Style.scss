@@ -1,0 +1,40 @@
+$form-margin-top: 50px;
+
+
+.body-style {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+.main-style {
+    flex: 1 0 auto;
+  }
+
+.login-form {
+  height:350px;
+  width: 500px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 20px;
+   }
+   .signup-form {
+    height:400px;
+    width: 800px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 20px;
+     }
+  .img-wh {
+    width:365px;
+    height: 200px;
+  }
+
+  .img-wh-grid {
+    width:200px;
+    height:150px;
+  }
+
+  .bd {
+    margin: 18px
+  }
