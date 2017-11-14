@@ -61,6 +61,6 @@ const routes =  (router) => {
         
     router.route('/recipes/:id/reviews')   
         .post(verifyToken, reviewController.postReview);
-}
+};
 
 export default routes;
