@@ -44,7 +44,7 @@ app.use('/api/v1', router);
 // Log requests to the console
 app.use(logger('dev'));
 
- app.get('/', (req, res) => res.status(200).send({
+ app.get('/api', (req, res) => res.status(200).send({
   message: 'Welcome to More Recipe App',
   }));
 
