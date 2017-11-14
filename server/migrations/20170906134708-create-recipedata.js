@@ -22,6 +22,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
+      imageUrl: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
       upvotes: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -37,12 +41,12 @@ module.exports = {
         allowNull: false,
         defaultValue: 0,
       },
-      addedBy: {
+      userId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Userdata',
           key: 'id',
-          as: 'addedBy',
+          as: 'userId',
         },
       },
       createdAt: {

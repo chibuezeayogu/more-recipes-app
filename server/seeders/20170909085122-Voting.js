@@ -10,7 +10,7 @@ module.exports = {
   view: false,
   recipeId: 1,
   voting: 1,
-  userId: 1,
+  userId: 2,
   createdAt: new Date(),
   updatedAt: new Date(),
   }]),

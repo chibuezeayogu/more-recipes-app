@@ -1,14 +1,18 @@
-
+//module, controllers and middlewares import
 import express from 'express';
-import controller from '../controllers';
+import favouriteController from '../controllers/favourites';
+import recipeController from '../controllers/recipedata';
+import votingController from '../controllers/voting';
+import reviewController from '../controllers/reviews';
+import userController from '../controllers/userdata';
+
 import verifyToken from '../middlewares/auth';
 
-const userController = controller.userdata;
-const recipeController = controller.recipedata;
-const votingController = controller.voting;
-const favouriteController = controller.favourite;
-const reviewController = controller.review;
-
+/**
+ * Combine user, recipe, voting reviews and favourite routes
+ * @param {function} routes
+ * @returns {void}
+ */
 const routes =  (router) => {
     router.route('/users/signup')
         .post(userController.signup);
@@ -16,17 +20,20 @@ const routes =  (router) => {
     router.route('/users/signin')
         .post(userController.signin);
 
-
     router.route('/users')
         .get(verifyToken, userController.retrieve)
         .put(verifyToken, userController.update);
+        
+    router.route('/recipes')
+        .get(verifyToken, recipeController.listRecipe);
+    
+    router.route('/recipes/search')
+        .get(verifyToken, recipeController.searchByIngredients);
 
     router.route('/recipes/mostupvote')
         .get(verifyToken, recipeController.getMostUpVote);
-        
-        
+
     router.route('/recipes')
-        .get(verifyToken, recipeController.listRecipe)
         .post(verifyToken, recipeController.addRecipe);
 
     router.route('/recipes/:id')
@@ -42,11 +49,11 @@ const routes =  (router) => {
         .put(verifyToken, votingController.downVote);
     
 
-    router.route('/users/:id/remove')   
+    router.route('/recipes/:id/removefavourite')   
         .delete(verifyToken, favouriteController.removeFromFavorite);
 
 
-    router.route('/users/:id/add')   
+    router.route('/recipes/:id/addfavourite')   
         .put(verifyToken, favouriteController.addToFavorite);
         
     router.route('/users/:userId/recipes')   
@@ -54,6 +61,6 @@ const routes =  (router) => {
         
     router.route('/recipes/:id/reviews')   
         .post(verifyToken, reviewController.postReview);
-}
+};
 
 export default routes;
