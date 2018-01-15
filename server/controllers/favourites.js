@@ -1,46 +1,29 @@
-
-//import models from models directory
+// import models from models directory
 import models from '../models';
 
-//create reference to db model 
-const Favourite = models.Favourite,
-      Recipedata = models.Recipedata,
-      Userdata = models.Userdata;
+// create reference to db model
+const Favourite = models.Favourite;
+const Recipe = models.Recipe;
 
 // create reference to table models for association
-const Favourites = models.Favourite,
-      Recipedatas = models.Recipedata,
-      Userdatas = models.Userdata;
+const Favourites = models.Favourite;
 
 export default {
 
   /**
-   * @description add to favourites function
+   * @description add or remove favourite controller
    * @param {Object} req - Request object
    * @param {Object} res - Response object
-   * @returns {object} json - payload
+   * @returns {Object} json - payload
    */
-  addToFavorite(req, res) {
-
-    //check if a valid parameter id was entered
-    req.checkParams('id', 'Please input a valid id.').isInt();
-
-    //display error if it occurs
-    const errors = req.validationErrors();
-    if (errors) {
-      const errorObject = errors.map(error => error.msg);
-      return res.status(400).send({
-        message: errorObject,
-      });
-    }
-
-    Recipedata
+  addRemoveFavourite(req, res) {
+    Recipe
       .find({
         where: {
           id: req.params.id,
-        }
-      }).then((recipedata) => {
-        if (!recipedata) {
+        },
+      }).then((recipe) => {
+        if (!recipe) {
           return res.status(404).send({ message: 'Recipe not found!' });
         }
 
@@ -48,106 +31,58 @@ export default {
           .find({
             where: {
               recipeId: req.params.id,
-              userId: req.decoded.userdata.id,
-            }
+              userId: req.decoded.user.id,
+            },
           })
           .then((favourite) => {
             if (favourite == null) {
               Favourite
                 .create({
                   recipeId: req.params.id,
-                  userId: req.decoded.userdata.id,
+                  userId: req.decoded.user.id,
                 })
-                .then((favourite) => {
-                  return res.status(201).send({ message: 'Successfully added to your favourite' });
-                });
-            } else if (favourite) {
-              return res.status(400).send({ message: 'Recipe already added to your favourite' });
-            }
-          });
-      })
-      .catch((error) => res.status(500).send({ message: 'Error. Please try again' }));
-  },
-
-  /**
-  * @description remove favourites function
-  * @param {Object} req - Request object
-  * @param {Object} res - Response object
-  * @returns {object} json - payload
-  */
-  removeFromFavorite(req, res) {
-    req.checkParams('id', 'Please input a valid id.').isInt();
-
-    const errors = req.validationErrors();
-    if (errors) {
-      const errorObject = errors.map(error => error.msg);
-      return res.status(400).send({
-        message: errorObject,
-      });
-    }
-
-    Recipedata
-      .find({
-        where: {
-          id: req.params.id,
-        }
-      })
-      .then((recipedata) => {
-        if (!recipedata) {
-          return res.status(404).send({ message: 'Recipe not found!' });
-        }
-        
-        Favourite
-          .find({
-            where: {
-              recipeId: req.params.id,
-              userId: req.decoded.userdata.id,
-            }
-          })
-          .then((favourite) => {
-            if (!favourite) {
-              return res.status(400).send({ message: 'Recipe is not in your favourite' });
-            }
-
-            if (favourite) {
+                .then(response => res.status(201).send({
+                  message: 'Added to your favourite'
+                }));
+            } else {
               favourite
                 .destroy()
-                .then((favourite) => {
-                  return res.status(200).send({ message: 'Recipe has been removed from your favourite' });
-                });
+                .then(response => res.status(200).send({
+                  message: 'Removed from your favourite'
+                }));
             }
           });
-
-      })
-      .catch((error) => res.status(500).send({ message: 'Error. Please try again' }));
+      });
   },
 
   /**
-   * @description get all favourites function
+   * @description get user favourites controller
    * @param {Object} req - Request object
    * @param {Object} res - Response object
-   * @returns {object} json - payload
+   * @returns {Object} json - payload
    */
-  getAllFavourites(req, res) {
-
-    Recipedata
+  getUserFavourites(req, res) {
+    Recipe
       .findAll({
         include: [
           {
             model: Favourites,
             as: 'favourites',
+            attributes: [],
             where: {
-              userId: req.decoded.userdata.id
+              userId: req.decoded.user.id,
             },
           },
         ],
       })
-      .then((recipedata) => {
-        if (recipedata.length <= 0) {
-          return res.status(200).send({ message: 'You have not added any recipe to your favourite' });
+      .then((recipe) => {
+        if (recipe.length <= 0) {
+          return res.status(404).send({
+            message: 'You have not added any recipe(s) to your favourite'
+          });
         }
-        return res.status(200).send({ recipedata });
+        return res.status(200).send(recipe);
       })
-      .catch((error) => res.status(500).send({ message: 'Error. Please try again' }));
+      .catch(error => res.status(400).send({ message: error.message }));
   },
 };

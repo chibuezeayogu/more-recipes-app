@@ -1,7 +1,8 @@
 import path from 'path';
 import webpack from 'webpack';
+import Dotenv from 'dotenv-webpack';
 
-export default  {
+export default {
   devtool: 'source-map',
   entry: [
     'babel-polyfill',
@@ -15,9 +16,10 @@ export default  {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
+    new Dotenv(),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': "'production'"
+        NODE_ENV: "'production'"
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
@@ -29,17 +31,38 @@ export default  {
   module: {
     loaders: [
     // js
-    {
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'client')
-    },
-    // CSS
-    { 
-      test: /\.scss$/, 
-      include: path.join(__dirname, 'client'),
-      use: ['style-loader','css-loader','sass-loader']
-    }
+      {
+        test: /\.js$/,
+        loaders: ['babel-loader'],
+        include: path.join(__dirname, 'client')
+      },
+      // jsx
+      {
+        test: /\.jsx$/,
+        loaders: ['babel-loader'],
+        include: path.join(__dirname, 'client')
+      },
+      // CSS
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+        include: path.join(__dirname, 'client')
+      },
+      // image
+      {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        loader: 'url-loader?limit=250000'
+      },
+      // css
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader']
+      }
     ]
-  }
+  },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  },
 };

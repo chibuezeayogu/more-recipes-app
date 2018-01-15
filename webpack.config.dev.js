@@ -1,11 +1,13 @@
+
 import path from 'path';
 import webpack from 'webpack';
+import Dotenv from 'dotenv-webpack';
 
- export default {
+export default {
   devtool: 'source-map',
   entry: [
     'babel-polyfill',
-    'webpack-hot-middleware/client',
+    'webpack-hot-middleware/client?reload=true',
     './client/App'
   ],
   output: {
@@ -15,23 +17,44 @@ import webpack from 'webpack';
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new Dotenv()
   ],
   module: {
     loaders: [
     // js
-    {
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'client')
-    },
-    // CSS
-    { 
-      test: /\.scss$/, 
-      loaders: ['style-loader','css-loader','sass-loader'],
-      include: path.join(__dirname, 'client')
-    }
+      {
+        test: /\.js$/,
+        loaders: ['babel-loader'],
+        include: path.join(__dirname, 'client')
+      },
+      // jsx
+      {
+        test: /\.jsx$/,
+        loaders: ['babel-loader'],
+        include: path.join(__dirname, 'client')
+      },
+      // CSS
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+        include: path.join(__dirname, 'client')
+      },
+      // image
+      {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        loader: 'url-loader?limit=250000'
+      },
+      // css
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader']
+      }
     ]
   },
-  
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  },
 };

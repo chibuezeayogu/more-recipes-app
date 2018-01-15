@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   Favourite.associate = (models) => {
-    Favourite.belongsTo(models.Recipedata, {
+    Favourite.belongsTo(models.Recipe, {
       foreignKey: 'recipeId',
       onDelete: 'CASCADE',
     });
-    Favourite.belongsTo(models.Userdata, {
+    Favourite.belongsTo(models.User, {
       foreignKey: 'userId',
     });
   };
