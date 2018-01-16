@@ -3,9 +3,6 @@ import http from 'chai-http';
 import app from '../../app';
 import models from '../../server/models/';
 
-const should = chai.should();
-chai.use(http);
-
 const expect = chai.expect;
 chai.use(http);
 let token;
@@ -96,10 +93,19 @@ describe('Favourites', () => {
         .end((err, res) => {
           expect(res.status).to.equal(201);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql('Added to your favourite');
+          expect(res.body.message).to.eql('Added to your list of favourite');
           done();
         });
     });
+    it('should return found recipe if user has added recipe to his/her favourite ', (done) => {
+        chai.request(app)
+          .get('/api/v1/users/1/favouriteRecipes')
+          .set({ Authorization: token })
+          .end((err, res) => {
+            expect(res.status).to.equal(200);
+            done();
+          });
+      });
     it('should return a message `Removed from your favourite` if a user removes a recipe from his favourite', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/2/addRemoveFavourite')
@@ -107,7 +113,7 @@ describe('Favourites', () => {
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql('Removed from your favourite');
+          expect(res.body.message).to.eql('Removed from your list of favourites');
           done();
         });
     });

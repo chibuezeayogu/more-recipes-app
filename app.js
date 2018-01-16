@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // import module
 import express from 'express';
 import path from 'path';
@@ -9,7 +11,6 @@ import webpack from 'webpack';
 import routes from './server/routes/index';
 import config from './webpack.config.dev';
 
-require('dotenv').config();
 
 // setup app and
 const compiler = webpack(config);
@@ -43,7 +44,7 @@ app.use('/api/v1', router);
 app.use(logger('dev'));
 
 app.get('/api', (req, res) => res.status(200).send({
-  message: 'Welcome to More Recipe App',
+  message: 'Welcome to More Recipes App',
 }));
 
 /**

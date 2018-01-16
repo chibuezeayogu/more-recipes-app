@@ -1,9 +1,7 @@
 import models from '../models';
 
 // create reference db model
-const Review = models.Review;
-const Recipe = models.Recipe;
-const User = models.User;
+const { Review, Recipe, User } = models;
 
 export default {
   /**

@@ -1,8 +1,7 @@
 // import db models
-import models from '../models';
+import models from '../models'
 
-const Voting = models.Voting;
-const Recipe = models.Recipe;
+const { Voting, Recipe } = models;
 
 export default {
   /**
@@ -11,49 +10,49 @@ export default {
    * @param {Object} res - Response object
    * @returns {Object} json - payload
    */
-  upvote(req, res) {
+  upvote (req, res) {
     Recipe
       .findById(req.params.id)
       .then((recipe) => {
         if (!recipe) {
           return res.status(404).send({
             message: 'Recipe not found'
-          });
+          })
         }
-      });
+      })
 
     Voting.find({
       attributes: ['voting'],
       where: {
         recipeId: req.params.id,
-        userId: req.decoded.user.id,
-      },
+        userId: req.decoded.user.id
+      }
     })
       .then((voting) => {
-        if (voting == null) {
+        if (!voting) {
           Voting
             .create({
               view: false,
               voting: 1,
               recipeId: req.params.id,
-              userId: req.decoded.user.id,
+              userId: req.decoded.user.id
             })
             .then(() => {
               Recipe.findById(req.params.id).then((recipe) => {
                 recipe.increment('upvotes').then(() => res.status(201).send({
                   message: 'voting recorded',
                   recipe
-                }));
-              });
-            });
+                }))
+              })
+            })
         } else if (voting.voting === 1) {
           Voting.destroy(
             {
               where:
-                {
-                  recipeId: req.params.id,
-                  userId: req.decoded.user.id,
-                },
+              {
+                recipeId: req.params.id,
+                userId: req.decoded.user.id
+              }
             })
             .then(() => {
               Recipe.findById(req.params.id).then((recipe) => {
@@ -63,20 +62,20 @@ export default {
                     message:
                     'voting removed',
                     recipe
-                  }));
-              });
-            });
+                  }))
+              })
+            })
         } else if (voting.voting === 0) {
           Voting.update(
             {
-              voting: 1,
+              voting: 1
             },
             {
               where:
-                {
-                  recipeId: req.params.id,
-                  userId: req.decoded.user.id,
-                }
+              {
+                recipeId: req.params.id,
+                userId: req.decoded.user.id
+              }
             })
             .then(() => {
               Recipe
@@ -90,12 +89,12 @@ export default {
                     .then(updatedRecipe => res.status(200).send({
                       message: 'voting recorded',
                       recipe: updatedRecipe
-                    }));
-                });
-            });
+                    }))
+                })
+            })
         }
       })
-      .catch(error => res.status(400).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }))
   },
 
   /**
@@ -104,48 +103,48 @@ export default {
    * @param {Object} res - Response object
    * @returns {Object} json - payload
    */
-  downvote(req, res) {
+  downvote (req, res) {
     Recipe
       .findById(req.params.id)
       .then((recipe) => {
         if (!recipe) {
           return res.status(404).send({
             message: 'Recipe not found'
-          });
+          })
         }
         Voting
           .find({
             attributes: ['voting'],
             where: {
               recipeId: req.params.id,
-              userId: req.decoded.user.id,
+              userId: req.decoded.user.id
             }
           })
           .then((voting) => {
-            if (voting == null) {
+            if (!voting) {
               Voting
                 .create({
                   view: false,
                   voting: 0,
                   recipeId: req.params.id,
-                  userId: req.decoded.user.id,
+                  userId: req.decoded.user.id
                 })
                 .then(() => {
                   Recipe.findById(req.params.id).then((recipe) => {
                     recipe.increment('downvotes').then(() => res.status(200).send({
                       message: 'voting recorded',
                       recipe
-                    }));
-                  });
-                });
+                    }))
+                  })
+                })
             } else if (voting.voting === 0) {
               Voting.destroy(
                 {
                   where:
-                      {
-                        recipeId: req.params.id,
-                        userId: req.decoded.user.id,
-                      }
+                  {
+                    recipeId: req.params.id,
+                    userId: req.decoded.user.id
+                  }
                 })
                 .then(() => {
                   Recipe.findById(req.params.id).then((recipe) => {
@@ -154,22 +153,22 @@ export default {
                       .then(() => res.status(200).send({
                         message: 'voting removed',
                         recipe
-                      }));
-                  });
-                });
+                      }))
+                  })
+                })
             } else if (voting.voting === 1) {
               Voting
                 .update(
+                {
+                  voting: 0
+                },
+                {
+                  where:
                   {
-                    voting: 0,
-                  },
-                  {
-                    where:
-                      {
-                        recipeId: req.params.id,
-                        userId: req.decoded.user.id,
-                      }
-                  });
+                    recipeId: req.params.id,
+                    userId: req.decoded.user.id
+                  }
+                })
               Recipe
                 .findById(req.params.id)
                 .then((recipe) => {
@@ -181,12 +180,12 @@ export default {
                     .then(updatedRecipe => res.status(200).send({
                       message: 'voting recorded',
                       recipe: updatedRecipe
-                    }));
-                });
+                    }))
+                })
             }
           })
-          .catch(error => res.status(400).send({ message: error.message }));
-      });
+          .catch(error => res.status(400).send({ message: error.message }))
+      })
   },
 
   /**
@@ -195,25 +194,24 @@ export default {
    * @param {Object} res - Response object
    * @returns {Object} json - payload
    */
-  getUserVoting(req, res) {
+  getUserVoting (req, res) {
     Voting
       .findAll({
         where:
         {
           recipeId: req.params.id,
-          userId: req.decoded.user.id,
+          userId: req.decoded.user.id
         }
       })
       .then((voting) => {
         if (!voting) {
           return res.status(404).send({
             message: 'You have not upvoted nor downvoted any recipe'
-          });
+          })
         }
 
-        return res.status(200).send({ voting });
+        return res.status(200).send({ voting })
       })
-      .catch(error => res.status(400).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }))
   }
-};
-
+}

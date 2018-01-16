@@ -1,9 +1,9 @@
 // import module dependencies
 import models from '../models';
-import pagenate from '../helper/pagenate';
+import paginate from '../helper/paginate';
 
 // create reference db model
-const Recipe = models.Recipe;
+const { Recipe } = models;
 
 /**
  * query: hold query limit and offset
@@ -18,18 +18,19 @@ export default {
    * @returns {Object} json - payload
    */
   addRecipe(req, res) {
+    const { title, description, ingredients, procedures, imageUrl } = req.body;
     Recipe
       .create({
-        title: req.body.title,
-        description: req.body.description,
-        ingredients: req.body.ingredients,
-        procedures: req.body.procedures,
-        imageUrl: req.body.imageUrl,
-        addedBy: req.decoded.user.id,
+        title,
+        description,
+        ingredients,
+        procedures,
+        imageUrl,
+        addedBy: req.decoded.user.id
       })
       .then(recipe => res.status(201).send({
         message: 'Added successfully',
-        recipe,
+        recipe
       }))
       .catch(error => res.status(400).send({ message: error.message }));
   },
@@ -63,20 +64,20 @@ export default {
       })
       .then((recipe) => {
         if (recipe.rows.length <= 0) {
-          return res.status(404).send({ message: 'No recipe(s) was found!' });
+          return res.status(404).send({ message: 'No recipe was found!' });
         }
 
         /**
          * pass query limit, query offset, recipedata.count to pagenate helper
          * and return totalCount, currentPage, pageCount, and pageSize
-         * to pagenation
+         * to pagination
          */
-        const pagenation = pagenate(query.limit, query.offset, recipe.count);
+        const pagination = paginate(query.limit, query.offset, recipe.count);
 
         return res.status(200).send(
           {
-            pagenation,
-            recipes: recipe.rows,
+            pagination,
+            recipes: recipe.rows
           }
         );
       })
@@ -93,7 +94,7 @@ export default {
     Recipe
       .findOne({
         where: {
-          id: req.params.id,
+          id: req.params.id
         },
       })
       .then((recipe) => {
@@ -113,6 +114,7 @@ export default {
      * @returns {Object} json - payload
      */
   updateRecipe(req, res) {
+    const { title, description, ingredients, procedures, imageUrl } = req.body;
     // query db to check if recipe exist
     Recipe
       .findById(req.params.id)
@@ -120,34 +122,26 @@ export default {
         if (!recipe) {
           return res.status(404).send({ message: 'Recipe not found' });
         }
-        Recipe
-          .find({
-            where: {
-              addedBy: req.decoded.user.id,
-              id: req.params.id,
-            },
-          })
-          .then((recipe) => {
-            if (!recipe) {
-              return res.status(401).send({
-                message: 'Operation not allowed. You can only update your recipe'
-              });
-            }
-            recipe
-              .update({
-                title: req.body.title || recipe.title,
-                description: req.body.description || recipe.description,
-                ingredients: req.body.ingredients || recipe.ingredients,
-                procedures: req.body.procedures || recipe.procedures,
-                imageUrl: req.body.imageUrl || recipe.imageUrl,
-              })
-              .then(recipe => res.status(200).send({
-                message: 'Updated Successfully',
-                recipe,
-              }));
+
+        if (req.decoded.user.id !== recipe.addedBy) {
+          return res.status(401).send({
+            message: 'Operation not allowed. You can only update your recipe'
           });
+        }
+        recipe
+          .update({
+            title: title || recipe.title,
+            description: description || recipe.description,
+            ingredients: ingredients || recipe.ingredients,
+            procedures: procedures || recipe.procedures,
+            imageUrl: imageUrl || recipe.imageUrl
+          })
+          .then(recipe => res.status(200).send({
+            message: 'Updated Successfully',
+            recipe
+          }));
       })
-      .catch(error => res.status(500).send({ message: error.message }));
+  .catch(error => res.status(500).send({ message: error.message }));
   },
   /**
      * @description delete recipe controller
@@ -159,30 +153,20 @@ export default {
     // query db to check if recipe exist
     Recipe
       .findById(req.params.id)
-      .then((recipedata) => {
-        if (!recipedata) {
+      .then((recipe) => {
+        if (!recipe) {
           return res.status(404).send({ message: 'Recipe not found' });
         }
 
-        // query the db for a recipe
-        Recipe
-          .find({
-            where: {
-              addedBy: req.decoded.user.id,
-              id: req.params.id,
-            },
-          })
-          .then((recipe) => {
-            if (!recipe) {
-              return res.status(401).send({
-                message: 'Operation not allowed. You can only delete your recipe'
-              });
-            }
-            recipe
-              .destroy()
-              .then(response => res.status(200).send({ message: 'Delete Successfully' }))
-              .catch(error => res.status(400).send({ message: error.message }));
+        if (req.decoded.user.id !== recipe.addedBy) {
+          return res.status(401).send({
+            message: 'Operation not allowed. You can only delete your recipe'
           });
+        }
+        recipe
+          .destroy()
+          .then(response => res.status(200).send({ message: 'Delete Successfully' }))
+          .catch(error => res.status(400).send({ message: error.message }));
       })
       .catch(error => res.status(500).send({ message: error.message }));
   },
@@ -198,7 +182,7 @@ export default {
         order: [['upvotes', 'DESC']],
         where: {
           upvotes: {
-            $gte: 1,
+            $gte: 1
           },
         },
         limit: 10,
@@ -221,7 +205,7 @@ export default {
       query = {
         where: {
           title: {
-            $iLike: `%${req.query.title.trim()}%`,
+            $iLike: `%${req.query.title.trim()}%`
           },
         },
       };
@@ -229,7 +213,7 @@ export default {
       query = {
         where: {
           ingredients: {
-            $iLike: `%${req.query.ingredients.trim()}%`,
+            $iLike: `%${req.query.ingredients.trim()}%`
           },
         },
       };
@@ -266,12 +250,12 @@ export default {
          * and return totalCount, currentPage, pageCount, and pageSize
          * to pagenation
          */
-        const pagenation = pagenate(query.limit, query.offset, recipe.count);
+        const pagination = paginate(query.limit, query.offset, recipe.count);
 
         return res.status(200).send(
           {
-            pagenation,
-            recipes: recipe.rows,
+            pagination,
+            recipes: recipe.rows
           }
         );
       })
@@ -295,11 +279,11 @@ export default {
     Recipe
       .findAndCountAll({
         where: {
-          addedBy: req.decoded.user.id,
+          addedBy: req.decoded.user.id
         },
         order: [['id', 'DESC']],
         limit: query.limit,
-        offset: query.offset,
+        offset: query.offset
       })
       .then((recipes) => {
         if (recipes.length === 0) {
@@ -310,12 +294,12 @@ export default {
         /**
          * pass query limit, query offset, recipe.count to pagenate helper
          * and return totalCount, currentPage, pageCount, and pageSize
-         * to pagenation
+         * to pagination
          */
-        const pagenation = pagenate(query.limit, query.offset, recipes.count);
+        const pagination = paginate(query.limit, query.offset, recipes.count);
         return res.status(200).send({
-          pagenation,
-          recipes: recipes.rows,
+          pagination,
+          recipes: recipes.rows
         });
       })
       .catch(error => res.status(400).send({ message: error.message }));

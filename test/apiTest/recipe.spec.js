@@ -3,9 +3,6 @@ import http from 'chai-http';
 import app from '../../app';
 import models from '../../server/models/';
 
-const should = chai.should();
-chai.use(http);
-
 const expect = chai.expect;
 chai.use(http);
 let token;
@@ -386,7 +383,7 @@ describe('Recipes', () => {
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(200);
-          expect(res.body).to.have.keys(['pagenation', 'recipes']);
+          expect(res.body).to.have.keys(['pagination', 'recipes']);
           done();
         });
     });
@@ -419,7 +416,7 @@ describe('Recipes', () => {
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(200);
-          expect(res.body).to.have.keys(['pagenation', 'recipes']);
+          expect(res.body).to.have.keys(['pagination', 'recipes']);
           done();
         });
     });
@@ -485,7 +482,7 @@ describe('Recipes', () => {
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(200);
-          expect(res.body).to.have.keys(['pagenation', 'recipes']);
+          expect(res.body).to.have.keys(['pagination', 'recipes']);
           done();
         });
     });

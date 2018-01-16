@@ -1,12 +1,12 @@
+require('dotenv').config();
+
 // import modules
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt-nodejs';
 import models from '../models';
 
-require('dotenv').config();
-
 // create reference to db model
-const User = models.User;
+const { User } = models;
 
 // create variable to hold environmental variable SECRET
 const secret = process.env.SECRET;
@@ -21,28 +21,29 @@ export default {
      * @returns {Object} json - payload
      */
   signup(req, res) {
+    const { firstName, lastName, email, password, imageUrl } = req.body;
     User
-      .find({ where: { email: req.body.email } })
+      .find({ where: { email } })
       .then((response) => {
         if (response) {
           return res.status(409).send({
-            message: 'User already exists.',
+            message: 'User already exists.'
           });
         }
         User
           .create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            password: req.body.password,
-            imageUrl: req.body.imageUrl,
+            firstName,
+            lastName,
+            email,
+            password,
+            imageUrl
           })
           .then((user) => {
             const userData = { user };
             const token = jwt.sign(userData, secret);
             return res.status(201).send({
               message: 'Registered successfully',
-              token,
+              token
             });
           });
       })
@@ -57,19 +58,20 @@ export default {
      * @returns {Object} json - payload
      */
   signin(req, res) {
+    const { email, password } = req.body;
     User
-      .find({ where: { email: req.body.email } })
+      .find({ where: { email } })
       .then((user) => {
         if (!user) {
           return res.status(404).send({ message: 'User is not registered!.' });
         }
 
-        if (bcrypt.compareSync(req.body.password, user.password)) {
+        if (bcrypt.compareSync(password, user.password)) {
           const userData = { user };
           const token = jwt.sign(userData, secret);
           return res.status(200).send({
             message: 'Logged in Successfully',
-            token,
+            token
           });
         }
         return res.status(409).send({
@@ -93,7 +95,7 @@ export default {
         where: {
           id: req.decoded.user.id
         },
-        attributes: { exclude: ['createdAt', 'updatedAt'] },
+        attributes: { exclude: ['createdAt', 'updatedAt', 'password'] },
       })
       .then((user) => {
         if (!user) {
@@ -117,6 +119,8 @@ export default {
       });
     }
 
+    const { firstName, lastName, password, imageUrl, location, address, phone } = req.body;
+
     User
       .findById(req.decoded.user.id)
       .then((user) => {
@@ -125,13 +129,13 @@ export default {
         }
         return user
           .update({
-            firstName: req.body.firstName || user.firstName,
-            lastName: req.body.lastName || user.lastName,
-            password: req.body.password || user.password,
-            imageUrl: req.body.imageUrl || user.imageUrl,
-            location: req.body.location || user.location,
-            address: req.body.address || user.address,
-            phone: req.body.phone || user.phone,
+            firstName: firstName || user.firstName,
+            lastName: lastName || user.lastName,
+            password: password || user.password,
+            imageUrl: imageUrl || user.imageUrl,
+            location: location || user.location,
+            address: address || user.address,
+            phone: phone || user.phone
           })
           .then(user => res.status(200).send({
             message: 'Updated successfully',
@@ -143,7 +147,7 @@ export default {
               imageUrl: user.imageUrl,
               location: user.location,
               address: user.address,
-              phone: user.phone,
+              phone: user.phone
             },
           }))
           .catch(error => res.status(400).send({ message: error.message }));

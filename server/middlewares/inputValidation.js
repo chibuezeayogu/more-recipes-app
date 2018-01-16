@@ -7,7 +7,7 @@ const options = {
     lowercase: true,
     uppercase: true,
     specialCharacters: true,
-    numbers: true,
+    numbers: true
   },
 };
 
@@ -46,18 +46,15 @@ export const validateUserSignInFields = (req, res, next) => {
  */
 
 export const validateAddRecipeFileds = (req, res, next) => {
-  req.checkBody('title', 'title is required')
-    .notEmpty();
+  req.checkBody('title', 'title is required').notEmpty();
   req.checkBody('title',
     'title must at least contain a word without leading space')
     .matches(/^\w[\w\d ,]*\w$/);
-  req.checkBody('description', 'description is required')
-    .notEmpty();
+  req.checkBody('description', 'description is required').notEmpty();
   req.checkBody('description',
     'description must at least contain a word without leading space')
     .matches(/^\w[a-zA-Z0-9 !:.?+=&%@!\-/,()]*\w$/);
-  req.checkBody('ingredients', 'ingredients is required')
-    .notEmpty();
+  req.checkBody('ingredients', 'ingredients is required').notEmpty();
   req.checkBody('ingredients',
     'ingredients must at least contain a word without leading space')
     .matches(/^\w[a-zA-Z0-9 !:.?+=&%@!\-/,()]*\w$/);
@@ -72,9 +69,7 @@ export const validateAddRecipeFileds = (req, res, next) => {
   const errors = req.validationErrors();
   if (errors) {
     const errorObject = errors.map(error => error.msg);
-    return res.status(400).send({
-      message: errorObject,
-    });
+    return res.status(400).send({ message: errorObject });
   }
   next();
 };
@@ -89,7 +84,6 @@ export const validateAddRecipeFileds = (req, res, next) => {
  */
 
 export const validateUserSignUpFields = (req, res, next) => {
-  // validate input
   req.checkBody('firstName', 'first name is required').notEmpty();
   req.checkBody('firstName',
     'first name must be at least 3 and not start with an empty space')
@@ -111,9 +105,7 @@ export const validateUserSignUpFields = (req, res, next) => {
   const errors = req.validationErrors();
   if (errors) {
     const errorObject = errors.map(error => error.msg);
-    return res.status(400).send({
-      message: errorObject,
-    });
+    return res.status(400).send({ message: errorObject });
   }
 
   const { isValid } = validator.checkPassword(req.body.password);
@@ -138,13 +130,10 @@ export const validateParams = (req, res, next) => {
   // check if param is of type integer
   req.checkParams('id', 'Please input a valid id.').isInt();
 
-  // catch any error that might occure
   const errors = req.validationErrors();
   if (errors) {
     const errorObject = errors.map(error => error.msg);
-    return res.status(400).send({
-      message: errorObject,
-    });
+    return res.status(400).send({ message: errorObject });
   }
   next();
 };

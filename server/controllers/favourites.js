@@ -2,11 +2,10 @@
 import models from '../models';
 
 // create reference to db model
-const Favourite = models.Favourite;
-const Recipe = models.Recipe;
+const { Favourite, Recipe } = models;
 
 // create reference to table models for association
-const Favourites = models.Favourite;
+const Favourites = Favourite;
 
 export default {
 
@@ -20,7 +19,7 @@ export default {
     Recipe
       .find({
         where: {
-          id: req.params.id,
+          id: req.params.id
         },
       }).then((recipe) => {
         if (!recipe) {
@@ -31,7 +30,7 @@ export default {
           .find({
             where: {
               recipeId: req.params.id,
-              userId: req.decoded.user.id,
+              userId: req.decoded.user.id
             },
           })
           .then((favourite) => {
@@ -39,16 +38,16 @@ export default {
               Favourite
                 .create({
                   recipeId: req.params.id,
-                  userId: req.decoded.user.id,
+                  userId: req.decoded.user.id
                 })
                 .then(response => res.status(201).send({
-                  message: 'Added to your favourite'
+                  message: 'Added to your list of favourite'
                 }));
             } else {
               favourite
                 .destroy()
                 .then(response => res.status(200).send({
-                  message: 'Removed from your favourite'
+                  message: 'Removed from your list of favourites'
                 }));
             }
           });
@@ -70,15 +69,15 @@ export default {
             as: 'favourites',
             attributes: [],
             where: {
-              userId: req.decoded.user.id,
+              userId: req.decoded.user.id
             },
           },
         ],
       })
       .then((recipe) => {
-        if (recipe.length <= 0) {
+        if (recipe.length === 0) {
           return res.status(404).send({
-            message: 'You have not added any recipe(s) to your favourite'
+            message: 'You have not added any recipe to your favourite'
           });
         }
         return res.status(200).send(recipe);

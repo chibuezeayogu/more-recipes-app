@@ -3,8 +3,6 @@ import http from 'chai-http';
 import app from '../../app';
 import models from '../../server/models/';
 
-const should = chai.should();
-chai.use(http);
 
 const expect = chai.expect;
 chai.use(http);
