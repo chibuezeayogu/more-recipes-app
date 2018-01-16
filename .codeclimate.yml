@@ -1,9 +1,13 @@
-version: "2"
+engines:
+  duplication:
+    enabled: false
+    config:
+      languages:
+      - javascript
+ratings:
+  paths:
+  - "server/**/*.js"
 checks:
-  argument-count:
-    enabled: false
-  complex-logic:
-    enabled: false
   file-lines:
     enabled: false
   method-complexity:
@@ -12,23 +16,4 @@ checks:
     enabled: false
   method-lines:
     enabled: false
-  nested-control-flow:
-    enabled: false
-  return-statements:
-    enabled: false
-  similar-code:
-    enabled: false
-  identical-code:
-    enabled: false
-ratings:
-  paths:
-  - "server/**/*.js"
-plugins:
- rubocop:
-  enabled: true
- eslint:
-  enabled: true
-exclude_patterns:
-  - "node_modules/"
-  - "server/routes/"
-  - "server/test"
+
