@@ -7,3 +7,13 @@ engines:
 ratings:
   paths:
   - "server/**/*.js"
+checks:
+  file-lines:
+    enabled: false
+  method-complexity:
+    enabled: false
+  method-count:
+    enabled: false
+  method-lines:
+    enabled: false
+

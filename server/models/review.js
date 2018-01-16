@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
     view: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     comment: {
@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   Review.associate = (models) => {
-    Review.belongsTo(models.Recipedata, {
+    Review.belongsTo(models.Recipe, {
       foreignKey: 'recipeId',
       onDelete: 'CASCADE',
     });
-    Review.belongsTo(models.Userdata, {
+    Review.belongsTo(models.User, {
       foreignKey: 'userId',
     });
   };
