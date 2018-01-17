@@ -1,44 +1,33 @@
-//import dependencies
+// import dependencies
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+// import component
+import SignIn from './Components/SignIn.jsx';
+import SignUp from './Components/SignUp.jsx';
+import Main from './Components/Main.jsx';
+import store from './store';
 
-//import component
-import Home from './Components/Home';
-import SignIn from './Components/SignIn';
-import SignUp from './Components/SignUp';
-import InjectData from './Components/InjectData';
-import AddRecipe from './Components/AddRecipe';
-import RecipesGrid from './Components/RecipesGrid';
-import SingleRecipe from './Components/SingleRecipe';
-import store, { history } from './store';
 
 const requireAuth = (nextState, replace) => {
-    const token = localStorage.getItem('jwtToken');
-    if(!token){
-        replace('/signin');
-    }
-
+  const token = localStorage.getItem('jwtToken');
+  if (!token) {
+    replace('/signin');
+  }
 };
 
-
-const App =  (
-    <Provider store={store}>
-        <Router history={history}>
-            <Route path="/" component={InjectData}>
-                <IndexRoute component={Home}/>
-                <Route path="/signin" component={SignIn}/>
-                <Route path="/signup" component={SignUp}/>
-                <Route path="/addrecipe" component={AddRecipe} onEnter={requireAuth}/>
-                <Route path="/recipes" component={RecipesGrid} onEnter={requireAuth}/>
-                <Route path="/:id/recipe" component={SingleRecipe} onEnter={requireAuth}/>
-            </Route>
-        </Router>
-    </Provider>
-
+const App = (
+  <Provider store={store}>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Main} />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
+      </Switch>
+    </BrowserRouter>
+  </Provider>
 );
 
-
-render (App,  document.getElementById('root')); 
+render(App, document.getElementById('root'));
