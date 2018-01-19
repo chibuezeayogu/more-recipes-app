@@ -1,14 +1,22 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
- 
 import userData from './user';
-import recipes from './recipes';
+import recipeReducer from './recipeReducer';
 import comments from './comments';
-import favourite from './favourite';
+import favourites from './favourites';
 import voting from './Voting';
+import userRecipes from './userRecipes';
+import searchResult from './searchResult';
 
 const rootReducer = combineReducers({
-    recipes, comments, favourite, voting, userData, routing: routerReducer
+  recipeReducer,
+  comments,
+  favourites,
+  voting,
+  userData,
+  userRecipes,
+  searchResult,
+  routing: routerReducer
 });
 
 export default rootReducer;
