@@ -10,6 +10,9 @@ import SignUp from './Components/SignUp.jsx';
 import Main from './Components/Main.jsx';
 import store from './store';
 
+// import scss stylesheet
+import '../client/Style/style.scss';
+
 
 const requireAuth = (replace) => {
   const token = localStorage.getItem('jwtToken');

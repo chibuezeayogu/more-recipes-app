@@ -4,9 +4,6 @@ import Home from './Home.jsx';
 import Menu from './Hearder/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
 
-// import './../js/recipes.js';
-// import '../Style/test.scss';
-
 /**
  *
  * @description Main component for user to signin

@@ -59,7 +59,7 @@ class SignUp extends Component {
    * @param {Object} nextProps
    * @returns {void}
    */
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.userData.isAuthenticated) {
       this.props.history.push('/recipes');
     }
@@ -269,7 +269,7 @@ SignUp.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired,
-  createAccount: PropTypes.func.isRequired
+  createAccount: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
