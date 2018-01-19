@@ -11,7 +11,7 @@ import Main from './Components/Main.jsx';
 import store from './store';
 
 // import scss stylesheet
-import '../client/Style/style.scss';
+import './Style/style.scss';
 
 
 const requireAuth = (replace) => {
