@@ -4,35 +4,60 @@ import Home from './Home.jsx';
 import Menu from './Hearder/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
 
-import './../js/recipes.js';
-import '../Style/test.scss';
+// import './../js/recipes.js';
+// import '../Style/test.scss';
 
 /**
- * SignIn component for user to signin
+ *
+ * @description Main component for user to signin
+ *
  * @class
+ *
  * @extends Component
+ *
  */
 class Main extends Component {
-  constructor() {
-    super();
-  }
+
+  /**
+   * @description checks if a user is signed in
+   *
+   * @method
+   *
+   * @memberOf Main
+   *
+   * @returns {void}
+   *
+   */
   componentWillMount() {
-    const Token = localStorage.getItem('jwtToken');
-    if (Token) {
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
       this.props.history.push('/recipes');
     }
   }
 
   /**
- * @description initailize parallax
- * @method
- * @memberOf Main
- * @returns {void}
- */
+   * @description initailize parallax
+   *
+   * @method
+   *
+   * @memberOf Main
+   *
+   * @returns {void}
+   *
+   */
   componentDidMount() {
     $('.parallax').parallax();
   }
-
+/**
+   *
+   * @description renders JSX element
+   *
+   * @method
+   *
+   * @memberOf Mian
+   *
+   * @returns {void}
+ */
   render() {
     return (
       <div className="body">
