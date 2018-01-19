@@ -4,15 +4,18 @@ import image from '../../img/logo.jpg';
 
 
 /**
- * menu component unathenticated users
+ *
+ * @description menu component unathenticated users
+ *
  * @constant
+ *
  */
 const Menu = () => (
   <div>
     <nav>
       <div className="nav-wrapper black">
-        <a href="#!" className="brand-logo"><img src={image} className="responsive-img" alt="" style={{ height: 25 }} />More Recipes</a>
-        <a href="#!" data-activates="mobile-demo" className="button-collapse">
+        <a className="brand-logo"><img src={image} className="responsive-img" alt="" style={{ height: 25 }} />More Recipes</a>
+        <a data-activates="mobile-demo" className="button-collapse">
           <i className="material-icons">menu</i>
         </a>
         <ul className="right hide-on-med-and-down">

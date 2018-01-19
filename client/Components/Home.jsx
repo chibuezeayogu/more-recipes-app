@@ -1,9 +1,13 @@
 import React from 'react';
 
 /**
- * conastant function for landing page content
+ *
+ * @description conastant function for landing page content
+ *
  * @constant
+ *
  * @returns {void}
+ *
  */
 const Home = () => (
   <div className="main">
@@ -17,7 +21,6 @@ const Home = () => (
               More-Recipes provides a platform for users to share awesome and exciting recipe ideas they have invented or learnt...
             </h4>
           </div>
-          <br /><br />
         </div>
       </div>
       <div className="parallax" >

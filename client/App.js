@@ -1,5 +1,4 @@
 // import dependencies
-import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -11,7 +10,7 @@ import Main from './Components/Main.jsx';
 import store from './store';
 
 
-const requireAuth = (nextState, replace) => {
+const requireAuth = (replace) => {
   const token = localStorage.getItem('jwtToken');
   if (!token) {
     replace('/signin');
