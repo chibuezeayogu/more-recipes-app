@@ -13,10 +13,15 @@ import Footer from './Footer/Footer.jsx';
  */
 class SignIn extends Component {
   /**
+   *
    * @description initialize state
+   *
    * @constructor
+   *
    * @memberOf SignIn
+   *
    * @returns {void}
+   *
    */
   constructor() {
     super();
@@ -30,9 +35,13 @@ class SignIn extends Component {
 
   /**
    * @description routes to /recipes if user is authenticated
+   *
    * @method
+   *
    * @memberOf SignIn
+   *
    * @returns {void}
+   *
    */
   componentWillMount() {
     const Token = localStorage.getItem('jwtToken');
@@ -43,23 +52,34 @@ class SignIn extends Component {
 
   /**
    * @description routes to /recipes if user is authenticated
+   *
    * @method
+   *
    * @memberOf SignIn
+   *
    * @param {Object} nextProps
+   *
    * @returns {void}
+   *
    */
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.userData.isAuthenticated) {
       this.props.history.push('/recipes');
     }
   }
 
   /**
+   *
    * @description Set the state of user input
+   *
    * @method
+   *
    * @memberOf SignIn
+   *
    * @param {Event} e
+   *
    * @returns {void}
+   *
    */
   handleChange(e) {
     e.preventDefault();
@@ -69,10 +89,15 @@ class SignIn extends Component {
 
   /**
    * @description submits form
+   *
    * @method
+   *
    * @memberOf SignIn
+   *
    * @param {Event} e
+   *
    * @returns {void}
+   *
    */
   handleOnsubmit(e) {
     e.preventDefault();
@@ -87,9 +112,13 @@ class SignIn extends Component {
    /**
    *
    * @description renders JSX element
+   *
    * @method
+   *
    * @memberOf SignIn
+   *
    * @returns {void}
+   *
    */
   render() {
     return (
@@ -161,8 +190,9 @@ SignIn.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired,
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
 };
+
 
 const mapStateToProps = state => ({
   userData: state.userData

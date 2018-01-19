@@ -72,6 +72,11 @@ const SEARCH_RECIPE_ERROR = 'SEARCH_RECIPE_ERROR';
 
 const LOGOUT = 'LOGOUT';
 
+/**
+ * 
+ * @description combines all action types and export
+ * 
+ */
 export default {
   SIGN_UP,
   SIGN_UP_SUCCESS,
