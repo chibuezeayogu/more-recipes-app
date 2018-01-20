@@ -8,8 +8,11 @@ import Footer from './Footer/Footer.jsx';
 
 /**
  * SignIn component for user to signin
+ *
  * @class
+ *
  * @extends Component
+ *
  */
 class SignIn extends Component {
   /**

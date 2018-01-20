@@ -95,7 +95,7 @@ export const validateSignIn = (value) => {
    */
 export const validateAddRecipe = (value) => {
   const {
-    title, description, ingredients, procedures,
+    title, description, ingredients, procedures, image
   } = value;
   const errors = {};
 
@@ -121,6 +121,16 @@ export const validateAddRecipe = (value) => {
     errors.proceduresError = 'procedures is required';
   } else if (procedures.length < 5) {
     errors.proceduresError = 'procedures must be at least 5 characters long';
+  }
+
+  switch (image.type) {
+    case 'image/png':
+    case 'image/jpeg':
+    case 'image/gif':
+    case 'image/bmp':
+      break;
+    default:
+      errors.imageError = 'select a valid file type';
   }
 
   return { isError: !lodash.isEmpty(errors), errors };

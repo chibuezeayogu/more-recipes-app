@@ -71,19 +71,7 @@ export const downVoteRecipe = recipeId => ({
 
 /**
  *
- * @method
- *
- * @param {Integer} recipeId - recipe id
- *
- * @returns {Object} payload
- *
- */
-export const addToFavourite = recipeId => ({
-  type: actionTypes.ADD_TO_FAVOURITE,
-  recipeId
-});
-
-/**
+ * @description add or remove recipe from favourite
  *
  * @method
  *
@@ -92,8 +80,8 @@ export const addToFavourite = recipeId => ({
  * @returns {Object} payload
  *
  */
-export const removeFromFavourite = recipeId => ({
-  type: actionTypes.REMOVE_FROM_FAVOURITE,
+export const addOrRemoveFavourite = recipeId => ({
+  type: actionTypes.ADD_OR_REMOVE_FAVOURITE,
   recipeId
 });
 
