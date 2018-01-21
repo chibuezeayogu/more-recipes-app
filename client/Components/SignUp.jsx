@@ -8,21 +8,30 @@ import { createAccount } from '../action/actionCreators';
 import { validateSignUp } from './middleware/validateInputs';
 import Menu from './Hearder/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
+import SmallPreloader from './SmallPreloader.jsx';
+
 
 const CLOUDINARY_URL = process.env.CLOUDINARY_URL;
 const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET;
 
 /**
  * SignUp component for user to create an account
+ *
  * @class
+ *
  * @extends Component
+ *
  */
 class SignUp extends Component {
   /**
    * @description initialize state and binds functiom
+   *
    * @constructor
+   *
    * @memberOf SignUp
+   *
    * @returns {void}
+   *
    */
   constructor() {
     super();
@@ -41,22 +50,30 @@ class SignUp extends Component {
 
   /**
    * @description routes to /recipes if user is authenticated
+   *
    * @method
+   *
    * @memberOf SignIn
+   *
    * @returns {void}
+   *
    */
   componentWillMount() {
-    const Token = localStorage.getItem('jwtToken');
-    if (Token) {
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
       this.props.history.push('/recipes');
     }
   }
 
   /**
    * @description routes to /recipes if user is authenticated
+   *
    * @method
+   *
    * @memberOf SignUp
-   * @param {Object} nextProps
+   *
+   * @param {Object} nextProps - nextProps object
+   *
    * @returns {void}
    */
   componentWillReceiveProps(nextProps) {
@@ -67,9 +84,13 @@ class SignUp extends Component {
 
   /**
    * @description Set the state of user input
+   *
    * @method
+   *
    * @memberOf SignUp
-   * @param {Event} e
+   *
+   * @param {Event} e - e event
+   *
    * @returns {void}
    */
   handleChange(e) {
@@ -80,10 +101,15 @@ class SignUp extends Component {
 
   /**
    * @description validates image input and sets image state
+   *
    * @method
+   *
    * @memberOf SignUp
-   * @param {Event} e
+   *
+   * @param {Event} e - e event
+   *
    * @returns {void}
+   *
    */
   handleImageChange(e) {
     e.preventDefault();
@@ -94,10 +120,15 @@ class SignUp extends Component {
 
   /**
    * @description submits form
+   *
    * @method
+   *
    * @memberOf SignUp
-   * @param {Event} e
+   *
+   * @param {Event} e - e event
+   *
    * @returns {void}
+   *
    */
   handleOnsubmit(e) {
     e.preventDefault();
@@ -134,9 +165,13 @@ class SignUp extends Component {
    /**
    *
    * @description renders JSX element
+   *
    * @method
+   *
    * @memberOf SignIn
+   *
    * @returns {void}
+   * 
    */
   render() {
     return (

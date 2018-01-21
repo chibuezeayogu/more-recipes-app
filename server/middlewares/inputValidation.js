@@ -57,11 +57,11 @@ export const validateAddRecipeFileds = (req, res, next) => {
   req.checkBody('ingredients', 'ingredients is required').notEmpty();
   req.checkBody('ingredients',
     'ingredients must at least contain a word without leading space')
-    .matches(/^\w[a-zA-Z0-9 !:.?+=&%@!\-/,()]*\w$/);
+    .matches(/^\w[a-zA-Z0-9 !:;.?+=&%@!\-/,()]*\w$/);
   req.checkBody('procedures', 'procedures is required').notEmpty();
   req.checkBody('procedures',
     'procedures must at least contain a word without leading space')
-    .matches(/^\w[a-zA-Z0-9 !:.?+=&%@!\-/,()]*\w$/);
+    .matches(/^\w[a-zA-Z0-9 !:;.?+=&%@!\-/,()]*\w$/);
   req.checkBody('imageUrl', 'image url is required').notEmpty();
   req.checkBody('imageUrl', 'image url is not valid')
     .matches(/https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
