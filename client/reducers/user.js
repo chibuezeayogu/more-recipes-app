@@ -7,12 +7,12 @@ const initialState = {
   message: {}
 };
 
-export default (state = initialState, action) => {
+const userData = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SIGN_IN_SUCCESS:
       state = {
-        isAuthenticated: !isEmpty(action.userData),
-        currentUser: action.userData
+        isAuthenticated: !isEmpty(action.user),
+        currentUser: action.user
       };
       return state;
     case actionTypes.SIGN_IN_ERROR:
@@ -27,8 +27,8 @@ export default (state = initialState, action) => {
       return state;
     case actionTypes.SIGN_UP_SUCCESS:
       state = {
-        isAuthenticated: !isEmpty(action.userData),
-        currentUser: action.userData
+        isAuthenticated: !isEmpty(action.user),
+        currentUser: action.user
       };
       return state;
     case actionTypes.LOGOUT:
@@ -41,3 +41,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default userData;

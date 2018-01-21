@@ -1,9 +1,8 @@
 import 'babel-polyfill';
 
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+import jwt from 'jsonwebtoken';
 import { put, takeEvery, call } from 'redux-saga/effects';
-import { setAuthorizationToken } from '../util/setAuthToken';
 import actionTypes from '../action/actionTypes';
 
 axios.defaults.headers.post['Content-Type'] =
@@ -27,25 +26,23 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
  * @returns {void}
  *
  */
-function* loginUser(action) {
+function* signIn(action) {
+  const {
+    email, password
+  } = action;
   try {
     const response = yield call(axios.post, '/api/v1/users/signin',
       {
-        email: action.email,
-        password: action.password,
+        email,
+        password,
       });
-
-    const { token } = response.data;
+    const { data } = response;
+    const { token } = data;
+    const decode = jwt.decode(token);
     localStorage.setItem('jwtToken', token);
-    setAuthorizationToken(token);
-    const userData = jwtDecode(token);
-    yield put({ type: actionTypes.SIGN_IN_SUCCESS, userData });
+    yield put({ type: actionTypes.SIGN_IN_SUCCESS, user: decode.user });
   } catch (error) {
-    if (error.response.status === 409) {
-      Materialize.toast(error.response.data.message, 4000, 'red');
-    } else if (error.response.status === 404) {
-      Materialize.toast(error.response.data.message, 4000, 'red');
-    }
+    Materialize.toast(error.response.data.message, 4000, 'red');
   }
 }
 
@@ -60,35 +57,33 @@ function* loginUser(action) {
  *
  */
 function* createUser(action) {
+  const {
+    firstName, lastName, email, password, imageUrl
+  } = action;
   try {
     const response = yield call(axios.post, '/api/v1/users/signup',
       {
-        firstName: action.firstName,
-        lastName: action.lastName,
-        email: action.email,
-        password: action.password,
-        imageUrl: action.imageUrl,
+        firstName,
+        lastName,
+        email,
+        password,
+        imageUrl,
       });
 
     const { data } = response;
     const { token } = data;
     localStorage.setItem('jwtToken', token);
-    setAuthorizationToken(token);
-    const userData = jwtDecode(token);
-    yield put({ type: actionTypes.SIGN_UP_SUCCESS, userData });
+    const decode = jwt.decode(token);
+    yield put({ type: actionTypes.SIGN_UP_SUCCESS, user: decode.user });
   } catch (error) {
-    if (error.response.status === 409) {
-      Materialize.toast(error.response.data.message, 4000, 'red');
-    } else if (error.response.status === 400) {
-      Materialize.toast(error.response.data.message, 4000, 'red');
-    }
+    Materialize.toast(error.response.data.message, 4000, 'red');
   }
 }
 
 /**
  * watcher sagas: watches for dispatched action
- * watchSignIn: watches dispatch SIGN_IN action
- * watchSignUp: watches dispatch SIGN_UP action
+ * watchSignIn: watches SIGN_IN action
+ * watchSignUp: watches SIGN_UP action
  */
 
 /**
@@ -100,7 +95,7 @@ function* createUser(action) {
  *
  */
 export function* watchSignIn() {
-  yield takeEvery(actionTypes.SIGN_IN, loginUser);
+  yield takeEvery(actionTypes.SIGN_IN, signIn);
 }
 
 /**

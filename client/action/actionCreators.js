@@ -137,7 +137,9 @@ export const login = (email, password) => ({
 });
 
 /**
+ *
  * @method
+ *
  * @param {String} firstName - user first name
  *
  * @param {String} lastName - user last name
@@ -159,4 +161,29 @@ export const createAccount =
     email,
     password,
     imageUrl
+  });
+
+  /**
+   * 
+   * @description dispatches an action to gets all recipes in the db
+   * 
+   * @param {Integer} offset - query offset
+   * 
+   * @returns {void}
+   */
+  export const getAllRecipes = offset => ({
+    type: actionTypes.GET_ALL_RECIPES,
+    offset
+  });
+
+   /**
+   * 
+   * @description dispatches user logout action
+   * 
+   * @method
+   * 
+   * @returns {void}
+   */
+  export const SignOut = () => ({
+    type: actionTypes.LOGOUT
   });

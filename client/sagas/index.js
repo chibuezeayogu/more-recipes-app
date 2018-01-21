@@ -7,7 +7,7 @@ import {
 } from './comment';
 import {
   watchAddOrRemoveFavourite,
-  watchGetUserFavouritesRecipes
+  watchfetchUserFavouritesRecipes
 } from './favourite';
 import { watchFetchRecipes,
   watchFetchRecipe,
@@ -31,7 +31,7 @@ function* rootSaga() {
     watchFetchRecipe(),
     watchfetchRecipeComment(),
     watchAddOrRemoveFavourite(),
-    watchGetUserFavouritesRecipes(),
+    watchfetchUserFavouritesRecipes(),
     watchFetchUserRecipes(),
     watchSearchRecipe()
   ]);
