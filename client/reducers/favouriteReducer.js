@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_USER_FAVOURITE_RECIPES_SUCCESS:
       state = {
-        favourites: action.data.recipes,
+        recipes: action.data.favourites,
         isFetched: true,
         pagination: action.data.pagination
       };

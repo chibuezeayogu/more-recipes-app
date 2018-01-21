@@ -211,12 +211,6 @@ textarea {
   font-size: 20px;
 }
 
-.preloader-position{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
 .addrecipe-form {
   max-height:900px;
   min-height:750px;
@@ -224,16 +218,6 @@ textarea {
   margin: auto;
   margin-top: 50px;
   padding: 20px;
-
-
-  .img-wh {
-    max-width:450px;
-    max-height: 300px;
-  }
-
-  .button{
-    width: 952px;
-  }
 }
 
 .loader {
