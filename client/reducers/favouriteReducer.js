@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
         pagination: action.data.pagination
       };
       return state;
-    case actionTypes.ADD_TO_FAVOURITE_SUCCESS:
+    case actionTypes.ADD_OR_REMOVE_FAVOURITE_ERROR:
       return Object.assign(
         {},
         state,
@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
           [...state.favourites,
             action.data]
         });
-    case actionTypes.REMOVE_FROM_FAVOURITE_SUCCESS:
+    case actionTypes.ADD_OR_REMOVE_FAVOURITE_SUCCESS:
       index = state.favourites
         .findIndex(favourite => favourite.id == action.id);
       return Object.assign(

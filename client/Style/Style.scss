@@ -1,3 +1,4 @@
+
 .body {
   display: flex;
   min-height: 100vh;
@@ -105,14 +106,27 @@ ul.side-nav.fixed {
   height: auto;
 
   .card-content {
-    height: auto;
+    min-height: 130px;
   }
+
   .img-height {
     height:250px;
     min-width: 100%;
   }
+
   .red-heart {
     color: red;
+  }
+
+  .text-title {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px !important;
+    font-weight: bold;
+  }
+  
+  .text-title {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px !important;
   }
 }
 
@@ -164,6 +178,7 @@ ul.side-nav.fixed {
 
 h4 {
   font-family: fantasy;
+  align-content: center;
 }
 
 .no-content {
@@ -211,6 +226,12 @@ textarea {
   font-size: 20px;
 }
 
+.preloader-position{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .addrecipe-form {
   max-height:900px;
   min-height:750px;
@@ -218,6 +239,16 @@ textarea {
   margin: auto;
   margin-top: 50px;
   padding: 20px;
+
+
+  .img-wh {
+    max-width:450px;
+    max-height: 300px;
+  }
+
+  .button{
+    width: 952px;
+  }
 }
 
 .loader {
@@ -238,3 +269,7 @@ textarea {
   font-size: 20px !important;
 }
 
+.align-recipe {
+  margin-top: 50px;
+  width: '100%';
+}

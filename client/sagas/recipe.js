@@ -3,6 +3,7 @@ import 'babel-polyfill';
 import axios from 'axios';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
+import header from '../util/setAuthToken';
 
 axios.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded';
@@ -28,7 +29,7 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 function* fetchRecipes(action) {
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes?limit=4&offset=${action.offset}`);
+      `/api/v1/recipes?limit=4&offset=${action.offset}`, header);
     const { data } = response;
     yield put({ type: actionTypes.GET_ALL_RECIPES_SUCCESS, data });
   } catch (error) {
