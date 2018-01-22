@@ -5,10 +5,6 @@ import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
 import headers from '../util/setAuthToken';
 
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-
-
 /**
  * walker sagas will be called by watcher saga
  * when an action is dispatched
@@ -59,7 +55,7 @@ function* postComment(action) {
         postedBy,
         comment,
       },
-      header
+      headers()
     );
     const { data } = response;
     yield put({ type: actionTypes.POST_COMMENT_SUCCESS, data });
@@ -82,7 +78,7 @@ function* postComment(action) {
 function* fetchRecipeComment(action) {
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes/${action.recipeId}/reviews`, header());
+      `/api/v1/recipes/${action.recipeId}/reviews`, headers());
     const { data } = response;
     yield put({ type: actionTypes.GET_COMMENTS_SUCCESS, data });
   } catch (error) {

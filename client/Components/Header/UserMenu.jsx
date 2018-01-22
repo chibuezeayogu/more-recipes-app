@@ -111,10 +111,7 @@ class UserMenu extends Component {
                     data-activates="dropdown"
                     data-beloworigin="true"
                   > {userData.user.firstName}
-                    <i
-                      className="fa fa-caret-down"
-                      aria-hidden="true"
-                    />
+                    <i className="material-icons right">arrow_drop_down</i>
                   </a>
                 </li>
               </ul>

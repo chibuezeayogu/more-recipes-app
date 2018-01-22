@@ -3,11 +3,7 @@ import 'babel-polyfill';
 import axios from 'axios';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
-import headers from '../util/setAuthToken';
-
-axios.defaults.headers.post['Content-Type'] =
-  'application/x-www-form-urlencoded';
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+import setAuthorizationToken from '../util/setAuthToken';
 
 /**
  * walker sagas will be called by watcher saga
@@ -27,9 +23,10 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
  *
  */
 function* fetchRecipes(action) {
+  setAuthorizationToken();
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes?limit=8&offset=${action.offset}`, headers());
+      `/api/v1/recipes?limit=8&offset=${action.offset}`);
     const { data } = response;
     yield put({ type: actionTypes.GET_ALL_RECIPES_SUCCESS, data });
   } catch (error) {
@@ -49,9 +46,10 @@ function* fetchRecipes(action) {
  *
  */
 function* fetchRecipe(action) {
+  setAuthorizationToken();
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes/${action.recipeId}`, headers());
+      `/api/v1/recipes/${action.recipeId}`);
     const { data } = response;
     yield put({ type: actionTypes.GET_RECIPE_SUCCESS, data });
   } catch (error) {
@@ -74,24 +72,21 @@ function* fetchRecipe(action) {
  *
  */
 function* addRecipe(action) {
-  console.log(action, 'kkkkkkkkkkkkkkkkkk');
-  const { title, description, ingredients, procedures, imageUrl } = action
+  const { title, description, ingredients, procedures, imageUrl } = action;
+  setAuthorizationToken();
   try {
-    const response = yield call(axios.post, '/api/v1/recipes', {
-      title,
-      description,
-      ingredients,
-      procedures,
-      imageUrl,
-    },
-    headers()
-  );
+    const response = yield call(axios.post, 
+      '/api/v1/recipes', { 
+        title,
+        description,
+        ingredients,
+        procedures,
+        imageUrl
+    });
     const { data } = response;
     yield put({ type: actionTypes.ADD_RECIPE_SUCCESS, data });
   } catch (error) {
-    if (error.response.status === 400) {
       Materialize.toast(error.response.data.message, 4000, 'red');
-    }
   }
 }
 
@@ -107,17 +102,15 @@ function* addRecipe(action) {
  *
  */
 function* upVoteRecipe(action) {
+  setAuthorizationToken();
   try {
-    const response = yield call(axios.put, 
-      `/api/v1/recipes/${action.recipeId}/upvote`, headers());
+    const response = yield call(axios.put, `/api/v1/recipes/${action.recipeId}/upvote`);
     const { data } = response;
 
     Materialize.toast(data.message, 4000, 'green');
     yield put({ type: actionTypes.UP_VOTE_RECIPE_SUCCESS, data });
   } catch (error) {
-    if (error.response.status === 403) {
       Materialize.toast(error.response.data.message, 4000, 'red');
-    }
   }
 }
 
@@ -133,17 +126,15 @@ function* upVoteRecipe(action) {
  *
  */
 function* downVoteRecipe(action) {
+  setAuthorizationToken();
   try {
-    const response = yield call(axios.put, 
-      `/api/v1/recipes/${action.recipeId}/downvote`, headers());
+    const response = yield call(axios.put, `/api/v1/recipes/${action.recipeId}/downvote`);
     const { data } = response;
 
     Materialize.toast(data.message, 4000, 'green');
     yield put({ type: actionTypes.DOWN_VOTE_RECIPE_SUCCESS, data });
   } catch (error) {
-    if (error.response.status === 403) {
-      Materialize.toast(error.response.data.message, 4000, 'red');
-    }
+    Materialize.toast(error.response.data.message, 4000, 'red');
   }
 }
 
@@ -159,9 +150,10 @@ function* downVoteRecipe(action) {
  *
  */
 function* fetchUserRecipes(action) {
+  setAuthorizationToken();
   try {
     const response = yield call(axios.get, 
-      `/api/v1/users/${action.userId}/recipes`, headers());
+      `/api/v1/users/${action.userId}/recipes`);
     const { data } = response;
     yield put({ type: actionTypes.GET_USER_RECIPES_SUCCESS, data });
   } catch (error) {
@@ -181,9 +173,10 @@ function* fetchUserRecipes(action) {
  *
  */
 function* searchRecipe(action) {
+  setAuthorizationToken();
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes/search?title=${action.searchTerm}`, headers());
+      `/api/v1/recipes/search?title=${action.searchTerm}`);
     const { data } = response;
     yield put({ type: actionTypes.SEARCH_RECIPE_SUCCESS, data });
   } catch (error) {
@@ -285,3 +278,4 @@ export function* watchFetchUserRecipes() {
 export function* watchSearchRecipe() {
   yield takeEvery(actionTypes.SEARCH_RECIPE, searchRecipe);
 }
+

@@ -6,7 +6,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { createAccount } from '../action/actionCreators';
 import { validateSignUp } from '../middleware/validateInputs';
-import Menu from './Hearder/Menu.jsx';
+import Menu from './Header/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
 import SmallPreloader from './SmallPreloader.jsx';
 
@@ -141,13 +141,9 @@ class SignUp extends Component {
     const formData = new FormData();
     formData.append('file', this.state.image);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-    axios.defaults.headers.common = null;
     axios({
       url: CLOUDINARY_URL,
       method: 'POST',
-      hearders: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
       data: formData,
     }).then((data) => {
       this.setState({ imageUrl: data.data.secure_url, disabled: false });

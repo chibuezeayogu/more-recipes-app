@@ -3,8 +3,10 @@ import models from '../models';
 import paginate from '../helper/paginate';
 
 // create reference db model
-const { Recipe } = models;
+const { Recipe, Voting, Favourite } = models;
 
+const Votings = Voting;
+const Favourites = Favourite;
 /**
  * query: hold query limit and offset
  */
@@ -46,7 +48,7 @@ export default {
      * query limit: get query limit if supplie else use default
      * query offset: get query offset if supplie else use default
      */
-    query.limit = req.query.limit || 1;
+    query.limit = req.query.limit || 8;
     query.offset = req.query.offset || 0;
 
     /**
@@ -61,6 +63,18 @@ export default {
         order: [['id', 'DESC']],
         limit: query.limit,
         offset: query.offset,
+        include: [
+          {
+            model: Votings,
+            as: 'votings',
+            attributes: ['voting', 'userId']
+          },
+          {
+            model: Favourites,
+            as: 'favourites',
+            attributes: ['recipeId', 'userId']
+          }
+        ]
       })
       .then((recipe) => {
         if (recipe.rows.length <= 0) {
@@ -73,13 +87,12 @@ export default {
          * to pagination
          */
         const pagination = paginate(query.limit, query.offset, recipe.count);
-
+        
         return res.status(200).send(
           {
             pagination,
-            recipes: recipe.rows
-          }
-        );
+            recipes: recipe.rows,
+        });
       })
       .catch(error => res.status(400).send({ message: error.message }));
   },
@@ -96,10 +109,25 @@ export default {
         where: {
           id: req.params.id
         },
+        include: [
+          {
+            model: Votings,
+            as: 'votings',
+            attributes: ['voting', 'userId']
+          },
+          {
+            model: Favourites,
+            as: 'favourites',
+            attributes: ['recipeId', 'userId']
+          }
+        ]
       })
       .then((recipe) => {
-        if (recipe) {
-          recipe.increment('views');
+        if (recipe ) {
+          if(req.decoded.user.id !== recipe.addedBy) {
+            recipe.update({ views: recipe.views + 1 },
+              { fields: ['views'] });
+          }
           return res.status(200).send(recipe);
         }
         return res.status(404).send({ message: 'Recipe not found' });

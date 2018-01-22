@@ -199,14 +199,14 @@ export default {
       .findAll({
         where:
         {
-          recipeId: req.params.id,
           userId: req.decoded.user.id
-        }
+        },
+        attributes: ['voting', 'recipeId']
       })
       .then((voting) => {
         if (!voting) {
           return res.status(404).send({
-            message: 'You have not upvoted nor downvoted any recipe'
+            message: 'You have not upvoted or downvoted a recipe'
           })
         }
 

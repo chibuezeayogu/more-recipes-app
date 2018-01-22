@@ -84,4 +84,30 @@ export default {
       })
       .catch(error => res.status(400).send({ message: error.message }));
   },
+
+/**
+   * @description get user favourite recipe Ids
+   * @param {Object} req - Request object
+   * @param {Object} res - Response object
+   * @returns {Object} json - payload
+   */
+  getUserFavouriteIds(req, res) {
+    Favourite
+      .findAll({
+        where: {
+          userId: req.decoded.user.id
+        },
+        attributes: ['recipeId']
+      })
+      .then((recipe) => {
+        if (recipe.length === 0) {
+          return res.status(404).send({
+            message: 'You have not added any recipe to your favourite'
+          });
+        }
+        return res.status(200).send(recipe);
+      })
+      .catch(error => res.status(400).send({ message: error.message }));
+  },
 };
+

@@ -1,19 +1,24 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-// export const setAuthorizationToken = (token) => {
-//  if (token) {
-//      axios.defaults.headers.common['Authorization']= `${token}`; 
-//  } else {
-//      delete axios.defaults.headers.common['Authorization'];
-//  }
-// };
+export const setAuthorizationToken = () => {
+  const token =  localStorage.getItem('jwtToken');
+ if (token) {
+     axios.defaults.headers.common['Authorization']= `${token}`; 
+ } else {
+     delete axios.defaults.headers.common['Authorization'];
+ }
+};
+
+export default setAuthorizationToken;
 
 
 
-const headers = () => ({
-  headers: {
-    authorization: window.localStorage.jwtToken
-  }
-});
 
-export default headers;
+// const headers = () => ({
+//   headers: {
+//     'x-access-token': window.localStorage.jwtToken,
+//     'authorization': window.localStorage.jwtToken
+//   }
+// });
+
+// export default headers;

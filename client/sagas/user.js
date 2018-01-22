@@ -4,11 +4,7 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
-
-axios.defaults.headers.post['Content-Type'] =
-  'application/x-www-form-urlencoded';
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-
+import setAuthorizationToken from '../util/setAuthToken';
 
 /**
  * walker sagas will be called by watcher saga
@@ -72,8 +68,8 @@ function* createUser(action) {
 
     const { data } = response;
     const { token } = data;
-    localStorage.setItem('jwtToken', token);
     const decode = jwt.decode(token);
+    localStorage.setItem('jwtToken', token);
     yield put({ type: actionTypes.SIGN_UP_SUCCESS, user: decode.user });
   } catch (error) {
     Materialize.toast(error.response.data.message, 4000, 'red');

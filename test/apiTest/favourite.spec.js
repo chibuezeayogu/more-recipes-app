@@ -52,10 +52,10 @@ describe('Favourites', () => {
         });
     });
   });
-  describe('PUT: /api/v1/recipes/:id/addRemoveFavourite', () => {
+  describe('PUT: /api/v1/recipes/:id/addOrRemoveFavourite', () => {
     it('should return a message `No token provided.`if no authorization token was found', (done) => {
       chai.request(app)
-        .put('/api/v1/recipes/1/addRemoveFavourite')
+        .put('/api/v1/recipes/1/addOrRemoveFavourite')
         .end((err, res) => {
           expect(res.status).to.equal(401);
           expect(res.body).to.have.keys(['status', 'message']);
@@ -66,7 +66,7 @@ describe('Favourites', () => {
     });
     it('should return a message `Please input a valid id.` if invalid recipe id is supplied', (done) => {
       chai.request(app)
-        .put('/api/v1/recipes/s/addRemoveFavourite')
+        .put('/api/v1/recipes/s/addOrRemoveFavourite')
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -77,7 +77,7 @@ describe('Favourites', () => {
     });
     it('should return a message `Recipe not found!` if recipe was not found', (done) => {
       chai.request(app)
-        .put('/api/v1/recipes/10/addRemoveFavourite')
+        .put('/api/v1/recipes/10/addOrRemoveFavourite')
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(404);
@@ -88,7 +88,7 @@ describe('Favourites', () => {
     });
     it('should return a message `Added to your favourite` if a user adds a recipe to his or her favourite', (done) => {
       chai.request(app)
-        .put('/api/v1/recipes/2/addRemoveFavourite')
+        .put('/api/v1/recipes/2/addOrRemoveFavourite')
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(201);
@@ -108,7 +108,7 @@ describe('Favourites', () => {
       });
     it('should return a message `Removed from your favourite` if a user removes a recipe from his favourite', (done) => {
       chai.request(app)
-        .put('/api/v1/recipes/2/addRemoveFavourite')
+        .put('/api/v1/recipes/2/addOrRemoveFavourite')
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(200);
