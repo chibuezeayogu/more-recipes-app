@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { login } from '../action/actionCreators';
-import { validateSignIn } from './middleware/validateInputs';
+import { validateSignIn } from '../middleware/validateInputs';
 import Menu from './Hearder/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
 
@@ -137,7 +137,7 @@ class SignIn extends Component {
             >
               <div className="row">
                 <div className="input-field col s12">
-                  <i className="material-icons prefix">mail_outline</i>
+                  <i className="fa fa-envelope prefix" aria-hidden="true" />
                   <input
                     id="email"
                     name="email"
@@ -153,7 +153,7 @@ class SignIn extends Component {
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <i className="material-icons prefix">vpn_key</i>
+                  <i className="fa fa-key prefix" aria-hidden="true" />
                   <input
                     id="password"
                     name="password"
@@ -173,8 +173,7 @@ class SignIn extends Component {
                   className="btn right green"
                   type="submit"
                   name="action"
-                >Sign In
-                  <i className="material-icons right">send</i>
+                >Login
                 </button>
               </div>
             </form>

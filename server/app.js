@@ -1,6 +1,5 @@
 require('dotenv').config();
 
-// import module
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
@@ -8,12 +7,8 @@ import logger from 'morgan';
 import http from 'http';
 import expressValidator from 'express-validator';
 import webpack from 'webpack';
-import routes from './server/routes/index';
-import config from './webpack.config.dev';
+import routes from './routes/index';
 
-
-// setup app and
-const compiler = webpack(config);
 const app = express();
 const router = express.Router();
 
@@ -36,43 +31,19 @@ app.use((req, res, next) => {
   next();
 });
 
-
 routes(router);
 app.use('/api/v1', router);
 
-// Log requests to the console
 app.use(logger('dev'));
 
-app.get('/api', (req, res) => res.status(200).send({
+app.get('/api/v1', (req, res) => res.status(200).send({
   message: 'Welcome to More Recipes App',
 }));
 
-/**
-   * @description api documentation route
-   * @param {Object} req - Request object
-   * @param {Object} res - Response object
-   */
-app.get('/API-Documentation', (req, res) => {
-  res.sendFile(path.join(__dirname, './build/index.html'));
-});
+app.use('/API-Documentation', express.static('build'));
 
-// require and use webpack-dev-middleware
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath
-}));
-
-// use webpack-hot-middleware
-app.use(require('webpack-hot-middleware')(compiler));
-
-/**
-   * @description client route
-   * @param {Object} req - Request object
-   * @param {Object} res - Response object
-   */
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/index.html'));
-});
+app.use('/', express.static('dist'));
+app.use('*', express.static('dist'));
 
 const port = parseInt(process.env.PORT, 10) || 26000;
 app.set('port', port);

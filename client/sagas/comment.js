@@ -3,6 +3,7 @@ import 'babel-polyfill';
 import axios from 'axios';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
+import headers from '../util/setAuthToken';
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
@@ -28,7 +29,7 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 function* deleteComment(action) {
   try {
     const response = yield call(axios.post,
-      `/api/v1/recipes/${action.index}/reviews`);
+      `/api/v1/recipes/${action.index}/reviews`, headers());
     
     const { data } = response;
 
@@ -57,7 +58,9 @@ function* postComment(action) {
         recipeId: id,
         postedBy,
         comment,
-      });
+      },
+      header
+    );
     const { data } = response;
     yield put({ type: actionTypes.POST_COMMENT_SUCCESS, data });
   } catch (error) {
@@ -79,7 +82,7 @@ function* postComment(action) {
 function* fetchRecipeComment(action) {
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes/${action.recipeId}/reviews`);
+      `/api/v1/recipes/${action.recipeId}/reviews`, header());
     const { data } = response;
     yield put({ type: actionTypes.GET_COMMENTS_SUCCESS, data });
   } catch (error) {

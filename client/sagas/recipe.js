@@ -3,7 +3,7 @@ import 'babel-polyfill';
 import axios from 'axios';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
-import header from '../util/setAuthToken';
+import headers from '../util/setAuthToken';
 
 axios.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded';
@@ -29,7 +29,7 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 function* fetchRecipes(action) {
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes?limit=4&offset=${action.offset}`, header);
+      `/api/v1/recipes?limit=8&offset=${action.offset}`, headers());
     const { data } = response;
     yield put({ type: actionTypes.GET_ALL_RECIPES_SUCCESS, data });
   } catch (error) {
@@ -51,7 +51,7 @@ function* fetchRecipes(action) {
 function* fetchRecipe(action) {
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes/${action.recipeId}`);
+      `/api/v1/recipes/${action.recipeId}`, headers());
     const { data } = response;
     yield put({ type: actionTypes.GET_RECIPE_SUCCESS, data });
   } catch (error) {
@@ -64,7 +64,7 @@ function* fetchRecipe(action) {
 
 /**
  *
- * @description poste recipe
+ * @description add a new recipe
  *
  * @method
  *
@@ -73,7 +73,8 @@ function* fetchRecipe(action) {
  * @returns {void}
  *
  */
-function* postRecipe(action) {
+function* addRecipe(action) {
+  console.log(action, 'kkkkkkkkkkkkkkkkkk');
   const { title, description, ingredients, procedures, imageUrl } = action
   try {
     const response = yield call(axios.post, '/api/v1/recipes', {
@@ -82,7 +83,9 @@ function* postRecipe(action) {
       ingredients,
       procedures,
       imageUrl,
-    });
+    },
+    headers()
+  );
     const { data } = response;
     yield put({ type: actionTypes.ADD_RECIPE_SUCCESS, data });
   } catch (error) {
@@ -105,7 +108,8 @@ function* postRecipe(action) {
  */
 function* upVoteRecipe(action) {
   try {
-    const response = yield call(axios.put, `/api/v1/recipes/${action.recipeId}/upvote`);
+    const response = yield call(axios.put, 
+      `/api/v1/recipes/${action.recipeId}/upvote`, headers());
     const { data } = response;
 
     Materialize.toast(data.message, 4000, 'green');
@@ -131,7 +135,7 @@ function* upVoteRecipe(action) {
 function* downVoteRecipe(action) {
   try {
     const response = yield call(axios.put, 
-      `/api/v1/recipes/${action.recipeId}/downvote`);
+      `/api/v1/recipes/${action.recipeId}/downvote`, headers());
     const { data } = response;
 
     Materialize.toast(data.message, 4000, 'green');
@@ -157,7 +161,7 @@ function* downVoteRecipe(action) {
 function* fetchUserRecipes(action) {
   try {
     const response = yield call(axios.get, 
-      `/api/v1/users/${action.userId}/recipes`);
+      `/api/v1/users/${action.userId}/recipes`, headers());
     const { data } = response;
     yield put({ type: actionTypes.GET_USER_RECIPES_SUCCESS, data });
   } catch (error) {
@@ -179,7 +183,7 @@ function* fetchUserRecipes(action) {
 function* searchRecipe(action) {
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes/search?title=${action.searchTerm}`);
+      `/api/v1/recipes/search?title=${action.searchTerm}`, headers());
     const { data } = response;
     yield put({ type: actionTypes.SEARCH_RECIPE_SUCCESS, data });
   } catch (error) {
@@ -222,8 +226,16 @@ export function* watchFetchRecipe() {
   yield takeEvery(actionTypes.GET_RECIPE, fetchRecipe);
 }
 
+/**
+ * @description watching ADD_RECIPE action
+ *
+ * @method
+ *
+ * @returns {void}
+ *
+ */
 export function* watchAddRecipe() {
-  yield takeEvery(actionTypes.ADD_RECIPE, postRecipe);
+  yield takeEvery(actionTypes.ADD_RECIPE, addRecipe);
 }
 
 /**

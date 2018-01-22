@@ -170,7 +170,7 @@ class UserMenu extends Component {
 
         <ul id="dropdown" className="dropdown-content">
           <div className="divider" />
-          <li>
+          <li className="bla">
             <Link to="/user/profile">
               <i className="fa fa-user" aria-hidden="true" /> My Profile
             </Link>

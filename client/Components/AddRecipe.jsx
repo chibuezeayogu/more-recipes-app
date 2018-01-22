@@ -4,31 +4,30 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { createAccount } from '../action/actionCreators';
-import { validateSignUp } from '../middleware/validateInputs';
-import Menu from './Hearder/Menu.jsx';
-import Footer from './Footer/Footer.jsx';
+import { createRecipe } from '../action/actionCreators';
 import SmallPreloader from './SmallPreloader.jsx';
-
+import Footer from './Footer/Footer.jsx';
+import UserMenu from './Hearder/UserMenu.jsx';
+import { validateAddRecipe } from '../middleware/validateInputs';
 
 const CLOUDINARY_URL = process.env.CLOUDINARY_URL;
 const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET;
 
 /**
- * SignUp component for user to create an account
+ * @description AddRecipe component for user to create a new recipe
  *
  * @class
  *
  * @extends Component
  *
  */
-class SignUp extends Component {
-  /**
+class AddRecipe extends Component {
+   /**
    * @description initialize state and binds functiom
    *
    * @constructor
    *
-   * @memberOf SignUp
+   * @memberOf AddRecipe
    *
    * @returns {void}
    *
@@ -36,63 +35,54 @@ class SignUp extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
+      title: '',
+      description: '',
+      ingredients: '',
+      procedures: '',
       imageUrl: '',
       image: {},
       errors: {},
       disabled: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleOnsubmit = this.handleOnsubmit.bind(this);
   }
 
-  /**
+   /**
    * @description routes to /recipes if user is authenticated
    *
    * @method
    *
-   * @memberOf SignIn
+   * @memberOf AddRecipe
    *
    * @returns {void}
    *
    */
   componentWillMount() {
     const token = localStorage.getItem('jwtToken');
-    if (token) {
-      this.props.history.push('/recipes');
+    if (!token) {
+      this.props.history.push('/signin');
     }
   }
-
-  /**
+   /**
    * @description routes to /recipes if user is authenticated
    *
    * @method
    *
-   * @memberOf SignUp
+   * @memberOf AddRecipe
    *
-   * @param {Object} nextProps - nextProps object
+   * @param {Object} nextProps
    *
    * @returns {void}
+   *
    */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.userData.isAuthenticated) {
+    if (nextProps.recipeReducer.isCreated) {
       this.props.history.push('/recipes');
     }
   }
 
-  /**
-   * @description Set the state of user input
-   *
-   * @method
-   *
-   * @memberOf SignUp
-   *
-   * @param {Event} e - e event
-   *
-   * @returns {void}
-   */
+
   handleChange(e) {
     e.preventDefault();
     this.setState({ errors: {} });
@@ -100,16 +90,15 @@ class SignUp extends Component {
   }
 
   /**
-   * @description validates image input and sets image state
+   * @description get image input and add to state
    *
    * @method
    *
-   * @memberOf SignUp
+   * @memberOf AddRecipe
    *
-   * @param {Event} e - e event
+   * @param {Event} e
    *
    * @returns {void}
-   *
    */
   handleImageChange(e) {
     e.preventDefault();
@@ -119,20 +108,21 @@ class SignUp extends Component {
   }
 
   /**
+   *
    * @description submits form
    *
    * @method
    *
-   * @memberOf SignUp
+   * @memberOf AddRecipe
    *
-   * @param {Event} e - e event
+   * @param {Event} e
    *
    * @returns {void}
    *
    */
   handleOnsubmit(e) {
     e.preventDefault();
-    const err = validateSignUp(this.state);
+    const err = validateAddRecipe(this.state);
     if (err.isError) {
       return this.setState({ errors: err.errors });
     }
@@ -142,6 +132,7 @@ class SignUp extends Component {
     formData.append('file', this.state.image);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
     axios.defaults.headers.common = null;
+
     axios({
       url: CLOUDINARY_URL,
       method: 'POST',
@@ -152,134 +143,123 @@ class SignUp extends Component {
     }).then((data) => {
       this.setState({ imageUrl: data.data.secure_url, disabled: false });
       const {
-        firstName,
-        lastName,
-        email,
-        password,
-        imageUrl
+        title, description, ingredients, procedures, imageUrl,
       } = this.state;
-      this.props.createAccount(firstName, lastName, email, password, imageUrl);
+      console.log(imageUrl, 'image');
+      this.props.createRecipe(title, description, ingredients, procedures, imageUrl);
     }).catch(() => { 
       this.setState({ disabled: false });
       Materialize.toast("Error! Please try again", 4000, 'red');
-    });;
+    });
   }
 
-   /**
+  /**
    *
    * @description renders JSX element
    *
    * @method
    *
-   * @memberOf SignIn
+   * @memberOf SignUp
    *
    * @returns {void}
-   * 
+   *
    */
   render() {
     return (
-      <div className="body">
-        <Menu />
+      <div className="body grey lighten-5">
+        <UserMenu />
         <div className="main">
-          <div className="signup-form z-depth-4">
-            <div className="col l6 m8 s12 offset-l6 offset-m4">
-              <h4 className="center">Create Account</h4>
-              <hr />
-              <form
-                className="col l6 m8 s12 offset-l3 offset-m2"
-                onSubmit={e => this.handleOnsubmit(e)}
-              >
+          <div className="container">
+            <div className="addrecipe-form z-depth-4">
+              <div className="col l6 m8 s12 offset-l6 offset-m4">
+                <h4 className="center">Add Recipe</h4>
+                <hr />
+              </div>
+              <form onSubmit={this.handleOnsubmit}>
                 <div className="row">
                   <div className="input-field col s12">
-                    <i className="fa fa-user-circle prefix" aria-hidden="true" />
                     <input
-                      id="firstName"
-                      name="firstName"
+                      id="title"
+                      name="title"
                       type="text"
-                      value={this.state.firstName}
+                      value={this.state.title}
                       onChange={this.handleChange}
                     />
-                    <label htmlFor="firstName" className="active">
-                      First Name
+                    <label htmlFor="title" className="active">Title</label>
+                  </div>
+                  <span className="right red-text">
+                    {this.state.errors.titleError}
+                  </span>
+                </div>
+                <div className="row">
+                  <div className="input-field col s12">
+                    <input
+                      id="description"
+                      name="description"
+                      type="text"
+                      value={this.state.description}
+                      onChange={this.handleChange}
+                    />
+                    <label
+                      htmlFor="description"
+                      className="active"
+                    >Description
                     </label>
                   </div>
-                  <span className="right red-text error-font">
-                    {this.state.errors.firstNameError}
+                  <span className="right red-text">
+                    {this.state.errors.descriptionError}
                   </span>
                 </div>
                 <div className="row">
                   <div className="input-field col s12">
-                    <i className="fa fa-user-circle prefix" aria-hidden="true" />
-                    <input
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      value={this.state.lastName}
+                    <textarea
+                      id="ingredients"
+                      name="ingredients"
+                      value={this.state.ingredients}
                       onChange={this.handleChange}
+                      placeholder="enter ingredients seperated by semicolon(;)"
                     />
-                    <label htmlFor="lastName" className="active">
-                      Last Name
-                    </label>
                   </div>
-                  <span className="right red-text error-font">
-                    {this.state.errors.lastNameError}
+                  <span className="right red-text">
+                    {this.state.errors.ingredientsError}
                   </span>
                 </div>
                 <div className="row">
                   <div className="input-field col s12">
-                    <i className="fa fa-envelope prefix" aria-hidden="true" />
-                    <input
-                      id="email"
-                      name="email"
-                      type="text"
-                      value={this.state.email}
-                      onChange={this.handleChange}
-                    />
-                    <label htmlFor="email" className="active">Email</label>
-                  </div>
-                  <span className="right red-text error-font">
-                    {this.state.errors.emailError}
-                  </span>
-                </div>
-                <div className="row">
-                  <div className="input-field col s12">
-                    <i className="fa fa-key prefix" aria-hidden="true" />
-                    <input
-                      id="password"
-                      name="password"
-                      type="password"
+                    <textarea
+                      id="procedures"
+                      name="procedures"
                       value={this.state.password}
                       onChange={this.handleChange}
-                      autoComplete="off"
+                      placeholder="enter procedures seperated by semicolon(;)"
                     />
-                    <label htmlFor="password">Password</label>
                   </div>
-                  <span className="right red-text error-font">
-                    {this.state.errors.passwordError}
+                  <span className="right red-text">
+                    {this.state.errors.proceduresError}
                   </span>
                 </div>
                 <div className="row">
                   <div className="input-field col s12">
-                    <i className="fa fa-picture-o prefix" aria-hidden="true" />
+                    <i className="material-icons prefix">insert_photo</i>
                     <input
                       type="file"
                       name="profileImage"
                       onChange={e => this.handleImageChange(e)}
                     />
                   </div>
-                  <span className="right red-text error-font">
+                  <span className="right red-text">
                     {this.state.errors.imageError}
                   </span>
                 </div>
-                <hr />
-                <div className="row right">
+                <div className="row">
                   <button
                     className="btn right green"
                     type="submit"
                     name="action"
-                  > Sign Up
+                  >Post
                   </button>
                 </div>
+                <hr />
                 <div className="row center">
                   <div>
                     {this.state.disabled ?
@@ -299,18 +279,19 @@ class SignUp extends Component {
   }
 }
 
-SignUp.propTypes = {
-  userData: PropTypes.shape({
-    isAuthenticated: PropTypes.bool.isRequired
-  }).isRequired,
+AddRecipe.propTypes = {
+  createRecipe: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired,
-  createAccount: PropTypes.func.isRequired,
+  recipeReducer: PropTypes.shape({
+    isCreated: PropTypes.bool.isRequired
+  }).isRequired
 };
 
 const mapStateToProps = state => ({
-  userData: state.userData
+  recipeReducer: state.recipeReducer,
 });
 
-export default connect(mapStateToProps, { createAccount })(SignUp);
+export default connect(mapStateToProps, { createRecipe })(AddRecipe);
+
