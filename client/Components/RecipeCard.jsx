@@ -1,4 +1,5 @@
 import React from 'react';
+import jwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +14,8 @@ import { Link } from 'react-router-dom';
  *  @returns {void}
  */
 const RecipeCard = (props) => {
+  const token = localStorage.getItem('jwtToken');
+  const { user } = jwtDecode(token);
   const { recipe } = props;
   return (
     <div className="col s12 m4 l3">
@@ -34,12 +37,24 @@ const RecipeCard = (props) => {
         </div>
         <div className="card-action black-text center grey lighten-4">
           <a className="black-text">
-            <i className="fa fa-thumbs-up" aria-hidden="true"> {recipe.upvotes}
-            </i>
+            {
+              recipe.votings.voting === 1 && recipe.votings.voting === user.id ?
+              <i className="fa fa-thumbs-up" aria-hidden="true"> {recipe.upvotes}
+              </i>
+              :
+              <i className="fa fa-thumbs-o-up" aria-hidden="true"> {recipe.upvotes}
+              </i>
+            }      
           </a>
           <a className="black-text">
+          {
+            (recipe.votings.voting && recipe.votings.voting === 0) && recipe.votings.userId === user.id ?
             <i className="fa fa-thumbs-down" aria-hidden="true"> {recipe.downvotes}
             </i>
+            :
+            <i className="fa fa-thumbs-o-down" aria-hidden="true"> {recipe.downvotes}
+            </i>
+          }    
           </a>
           <a className="black-text">
             <i className="fa fa-eye" aria-hidden="true"> {recipe.views}

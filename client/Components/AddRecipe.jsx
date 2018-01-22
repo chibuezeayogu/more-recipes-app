@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { createRecipe } from '../action/actionCreators';
 import SmallPreloader from './SmallPreloader.jsx';
 import Footer from './Footer/Footer.jsx';
-import UserMenu from './Hearder/UserMenu.jsx';
+import UserMenu from './Header/UserMenu.jsx';
 import { validateAddRecipe } from '../middleware/validateInputs';
 
 const CLOUDINARY_URL = process.env.CLOUDINARY_URL;
@@ -131,14 +131,10 @@ class AddRecipe extends Component {
     const formData = new FormData();
     formData.append('file', this.state.image);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-    axios.defaults.headers.common = null;
 
     axios({
       url: CLOUDINARY_URL,
       method: 'POST',
-      hearders: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
       data: formData,
     }).then((data) => {
       this.setState({ imageUrl: data.data.secure_url, disabled: false });

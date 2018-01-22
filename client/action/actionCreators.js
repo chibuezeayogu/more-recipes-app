@@ -100,6 +100,8 @@ export const getRecipeComment = recipeId => ({
 });
 
 /**
+ * 
+ * @description dispatches action to post review for recipe
  *
  * @method
  *
@@ -187,3 +189,32 @@ export const createAccount =
   export const SignOut = () => ({
     type: actionTypes.LOGOUT
   });
+
+  /**
+   * 
+   * @description dispatches get recipe action
+   * 
+   * @method
+   * 
+   * @returns {void}
+   */
+  export const getRecipe = recipeId => ({
+    type: actionTypes.GET_RECIPE,
+    recipeId
+  });
+
+   /**
+   * 
+   * @description dispatches action to get user favourite recipe ids
+   *
+   * @method
+   * 
+   * @returns {void}
+   */
+  export const getUserFavouriteRecipeIds = userId => ({
+    type: actionTypes.GET_USER_FAVOURITE_RECIPE_Ids,
+    userId
+  });
+
+
+

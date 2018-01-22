@@ -62,6 +62,14 @@ export default (state = initialState, action) => {
           recipes: [...state.recipes.slice(0, index),
             action.data,
             ...state.recipes.slice(index + 1)],
+          isFetched: true,
+        });
+    case actionTypes.GET_RECIPE_ERROR:
+      return Object.assign(
+        {},
+        state,
+        {
+          isFetched: false,
         });
     case actionTypes.GET_ALL_RECIPES_ERROR:
       state = {

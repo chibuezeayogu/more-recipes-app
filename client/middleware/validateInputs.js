@@ -14,8 +14,11 @@ const validator = new ValidatePassword(options);
 
 /**
    * @description validateSignUp function
+   *
    * @param {Object} value - object
+   *
    * @returns {Object} return - return object
+   *
    */
 export const validateSignUp = (value) => {
   const {
@@ -70,8 +73,11 @@ export const validateSignUp = (value) => {
 
 /**
    * @description validateSignIn function
+   *
    * @param {Object} value - object
+   *
    * @returns {Object} return - return object
+   *
    */
 export const validateSignIn = (value) => {
   const { email, password } = value;
@@ -90,8 +96,11 @@ export const validateSignIn = (value) => {
 
 /**
    * @description validateAddRecipe function
+   *
    * @param {Object} value - object
+   *
    * @returns {Object} result - result object
+   *
    */
 export const validateAddRecipe = (value) => {
   const {
@@ -135,3 +144,25 @@ export const validateAddRecipe = (value) => {
 
   return { isError: !lodash.isEmpty(errors), errors };
 };
+
+/**
+   * @description validateSignIn function
+   *
+   * @param {Object} value - object
+   *
+   * @returns {Object} return - return object
+   *
+   */
+  export const validateComment = (value) => {
+    const { comment } = value;
+    const errors = {};
+  
+    if (comment.trim().length === 0) {
+      errors.commentError = 'comment is required';
+    } else if (comment.length < 5) {
+      errors.commentError = 'comment must be at least 5 character';
+    }
+  
+    return { isError: !lodash.isEmpty(errors), errors };
+  };
+  

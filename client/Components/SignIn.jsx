@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { login } from '../action/actionCreators';
 import { validateSignIn } from '../middleware/validateInputs';
-import Menu from './Hearder/Menu.jsx';
+import Menu from './Header/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
 
 /**

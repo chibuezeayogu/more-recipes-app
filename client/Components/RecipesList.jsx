@@ -4,7 +4,7 @@ import Pagination from 'rc-pagination';
 import { connect } from 'react-redux';
 import { getAllRecipes } from '../action/actionCreators';
 import RecipeCard from './RecipeCard.jsx';
-import UserMenu from './Hearder/UserMenu.jsx';
+import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 import Preloader from './Preloder.jsx';
 import 'rc-pagination/assets/index.css';
@@ -50,6 +50,17 @@ class RecipesList extends Component {
     }
   }
 
+   /**
+   * @description checks if next recipes is fetched and disables is loading
+   *
+   * @method
+   *
+   * @memberOf RecipesList
+   *
+   * @param {Object} nextProps - nextProps object
+   *
+   * @returns {void}
+   */
   componentWillReceiveProps(nextProps) {
     if (nextProps.recipeReducer.isFetched) {
       this.setState({ isLoading: false });
@@ -88,7 +99,7 @@ class RecipesList extends Component {
     const { recipes, pagination } = this.props.recipeReducer;
     let allRecipes, renderPagination;
     if (recipes && recipes.length === 0) {
-        allRecipes = <h4>This page has no recipe</h4>;
+        allRecipes = <h4 className="center-align">This page has no recipe</h4>;
     } else if (recipes.length > 0) {
       allRecipes = recipes.map(recipe => (<RecipeCard
         {...this.props}
@@ -106,7 +117,7 @@ class RecipesList extends Component {
               <h4 className="center">Recipes</h4>
               <hr />
             </div>
-            <div className="row left align-recipe">
+            <div className="row left align-recipe" style={{ width: '100%' }}>
               {this.state.isLoading ? <Preloader /> : allRecipes}
             </div>
           </div>
@@ -148,6 +159,7 @@ RecipesList.propTypes = {
 const mapStateToProps = state => ({
   recipeReducer: state.recipeReducer,
   userData: state.userData,
+  favouriteReducer: state.favouriteReducer
 });
 
 export default connect(mapStateToProps, { getAllRecipes })(RecipesList);

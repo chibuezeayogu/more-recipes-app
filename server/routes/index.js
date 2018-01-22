@@ -50,7 +50,7 @@ const routes = (router) => {
     .put(verifyToken, validateParams, recipeController.updateRecipe)
     .delete(verifyToken, validateParams, recipeController.deleteRecipe);
 
-  router.route('/recipes/:id/addRemoveFavourite')
+  router.route('/recipes/:id/addOrRemoveFavourite')
     .put(verifyToken, validateParams, favouriteController.addRemoveFavourite);
 
   router.route('/recipes/:id/downvote')
@@ -59,8 +59,14 @@ const routes = (router) => {
   router.route('/recipes/:id/upvote')
     .put(verifyToken, validateParams, votingController.upvote);
 
+  router.route('/users/:userId/recipes/votedRecipeIds')
+    .get(verifyToken,checkAndValidateUserParams, votingController.getUserVoting);
+
   router.route('/users/:userId/favouriteRecipes')
     .get(verifyToken, checkAndValidateUserParams, favouriteController.getUserFavourites);
+
+    router.route('/users/:userId/favouriteRecipeIds')
+    .get(verifyToken, checkAndValidateUserParams, favouriteController.getUserFavouriteIds);
 
   router.route('/recipes/:id/reviews')
     .post(verifyToken, validateParams, validateCommentField, reviewController.postReview)
