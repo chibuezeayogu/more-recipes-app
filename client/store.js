@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { setAuthorizationToken } from './util/setAuthToken';
 
  import rootReducer from './reducers/index.js';
  import rootSaga from './sagas/index.js';
@@ -18,8 +17,6 @@ import { setAuthorizationToken } from './util/setAuthToken';
  
 
 export const history = syncHistoryWithStore(browserHistory, store);
-
-setAuthorizationToken(localStorage.jwtToken);
 
  if(module.hot) {
     module.hot.accept('./reducers/', () => {

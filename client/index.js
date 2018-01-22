@@ -10,6 +10,7 @@ import SignUp from './Components/SignUp.jsx';
 import Main from './Components/Main.jsx';
 import RecipesList from './Components/RecipesList.jsx';
 import NotFound from './Components/NotFound.jsx';
+import AddRecipe from './Components/AddRecipe.jsx';
 import store from './store';
 
 // import scss stylesheet
@@ -31,6 +32,7 @@ const App = (
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/recipes" component={RecipesList} onEnter={requireAuth} />
+        <Route path="/addrecipe" component={AddRecipe} onEnter={requireAuth} />
         <Route path="*" component={NotFound} onEnter={requireAuth} />
       </Switch>
     </BrowserRouter>

@@ -3,6 +3,7 @@ import 'babel-polyfill';
 import axios from 'axios';
 import { put, takeEvery, all, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
+import headers from '../util/setAuthToken';
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
@@ -21,7 +22,7 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 function* addOrRemoveFavourite(action) {
   try {
     const response = yield call(axios.put,
-      `/api/v1/recipes/${action.recipeId}/addRemoveFavourite`);
+      `/api/v1/recipes/${action.recipeId}/addRemoveFavourite`, headers());
     const { data } = response;
 
     Materialize.toast(data.message, 4000, 'green');
@@ -47,7 +48,7 @@ function* addOrRemoveFavourite(action) {
 function* fetchUserFavourites(action) {
   try {
     const response = yield call(axios.get,
-      `/api/v1/users/${action.userId}/favouriteRecipes`);
+      `/api/v1/users/${action.userId}/favouriteRecipes`, headers());
     const { data } = response;
     yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_SUCCESS, data });
   } catch (error) {
@@ -74,7 +75,7 @@ function* fetchUserFavourites(action) {
 function* fetchUserFavouriteRecipes(action) {
   try {
     const response = yield call(axios.get,
-      `/api/v1/users/${action.userId}/favouriteRecipes`);
+      `/api/v1/users/${action.userId}/favouriteRecipes`, headers());
     const { data } = response;
     yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_SUCCESS, data });
   } catch (error) {

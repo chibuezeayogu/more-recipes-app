@@ -1,56 +1,70 @@
 
-import path from 'path';
-import webpack from 'webpack';
-import Dotenv from 'dotenv-webpack';
+const path = require('path');
+const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-export default {
+
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: './client/index.html',
+  filename: 'index.html',
+  inject: 'body',
+  minify: {
+    collapseWhitespace: true,
+    collapseInlineTagWhitespace: true,
+    removeComments: true,
+    removeRedundantAttributes: true
+  }
+});
+
+module.exports = {
   devtool: 'source-map',
   entry: [
     'babel-polyfill',
-    'webpack-hot-middleware/client?reload=true',
-    './client/App'
+    './client/index.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundles.js',
-    publicPath: '/static/'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   plugins: [
+    new ExtractTextPlugin('./css/style.css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new Dotenv()
+    new Dotenv(),
+    HtmlWebpackPluginConfig
   ],
   module: {
-    loaders: [
-    // js
+    rules: [
       {
-        test: /\.js$/,
-        loaders: ['babel-loader'],
-        include: path.join(__dirname, 'client')
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
       },
-      // jsx
       {
-        test: /\.jsx$/,
-        loaders: ['babel-loader'],
-        include: path.join(__dirname, 'client')
+        test: /\.s?css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'sass-loader'
+            }
+          ]
+        })
       },
-      // CSS
       {
-        test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader'],
-        include: path.join(__dirname, 'client')
-      },
-      // image
-      {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: 'url-loader?limit=250000'
-      },
-      // css
-      {
-        test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
+        test: /\.(jpe?g|gif|png)$/,
+        loader: 'file-loader?name=images/[name].[ext]'
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   },
   node: {
     fs: 'empty',
