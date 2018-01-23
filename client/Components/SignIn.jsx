@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { login } from '../action/actionCreators';
-import { validateSignIn } from '../middleware/validateInputs';
+import { validateSignIn } from '../util/validateInputs';
 import Menu from './Header/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
 

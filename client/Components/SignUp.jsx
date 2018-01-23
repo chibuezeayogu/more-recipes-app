@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { createAccount } from '../action/actionCreators';
-import { validateSignUp } from '../middleware/validateInputs';
+import { validateSignUp } from '../util/validateInputs';
 import Menu from './Header/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
 import SmallPreloader from './SmallPreloader.jsx';

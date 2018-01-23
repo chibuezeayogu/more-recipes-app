@@ -47,12 +47,20 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('./css/style.css'),
-    new Dotenv(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env':
+      {
+        NODE_ENV: JSON.stringify('production'),
+        CLOUDINARY_UPLOAD_PRESET : 
+        JSON.stringify(process.env.CLOUDINARY_UPLOAD_PRESET),
+        CLOUDINARY_URL: JSON.stringify(process.env.CLOUDINARY_URL),
+        AUTHORIZED_EMAIL: JSON.stringify(process.env.AUTHORIZED_EMAIL),
+        AUTHORIZED_PASSWORD: JSON.stringify(process.env.AUTHORIZED_PASSWORD),
+        APP_LINK: JSON.stringify(process.env. APP_LINK),
+      }
     }),
-    webpackoptimizeUglifyJsPluginConfig,
-    HtmlWebpackPluginConfig
+  webpackoptimizeUglifyJsPluginConfig,
+  HtmlWebpackPluginConfig
   ],
   module: {
     rules: [

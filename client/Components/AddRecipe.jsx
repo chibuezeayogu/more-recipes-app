@@ -8,7 +8,7 @@ import { createRecipe } from '../action/actionCreators';
 import SmallPreloader from './SmallPreloader.jsx';
 import Footer from './Footer/Footer.jsx';
 import UserMenu from './Header/UserMenu.jsx';
-import { validateAddRecipe } from '../middleware/validateInputs';
+import { validateAddRecipe } from '../util/validateInputs';
 
 const CLOUDINARY_URL = process.env.CLOUDINARY_URL;
 const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET;
@@ -253,6 +253,7 @@ class AddRecipe extends Component {
                     className="btn right green"
                     type="submit"
                     name="action"
+                    style={{ marginRight: 10 }}
                   >Post
                   </button>
                 </div>

@@ -76,7 +76,7 @@ class UserMenu extends Component {
               <a href="#!" className="brand-logo">
                 <img
                   src={image}
-                  className="responsive-img"
+                  className="responsive-img image-raduis"
                   alt=""
                   style={{ height: 25 }}
                 />More Recipes
@@ -139,13 +139,13 @@ class UserMenu extends Component {
                 <div className="divider" />
                 <li>
                   <Link to="/user/profile">
-                    <i className="fa fa-user-plus" aria-hidden="true" /> Profile
+                    <i className="fa fa-user" aria-hidden="true" /> Profile
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
                   <Link to="/user/recipes">
-                    <i className="fa fa-user" aria-hidden="true" /> My Recipes
+                    <i className="fa fa-cutlery" aria-hidden="true" /> My Recipes
                   </Link>
                 </li>
                 <div className="divider" />
@@ -165,29 +165,34 @@ class UserMenu extends Component {
           </nav>
         </div>
 
-        <ul id="dropdown" className="dropdown-content">
+        <ul id="dropdown" className="dropdown-content black-text">
           <div className="divider" />
-          <li className="bla">
-            <Link to="/user/profile">
-              <i className="fa fa-user" aria-hidden="true" /> My Profile
+          <li className="black-text">
+            <Link to="/user/profile" className="black-text">
+              <i 
+                className="fa fa-user black-text" 
+                aria-hidden="true" /> My Profile
             </Link>
           </li>
           <div className="divider" />
-          <li>
-            <Link to="/user/recipes">
-              <i className="fa fa-user" aria-hidden="true" /> My Recipes
+          <li className="black-text">
+            <Link to="/user/recipes" className="black-text">
+              <i className="fa fa-cutlery black-text" 
+                aria-hidden="true" /> My Recipes
             </Link>
           </li>
           <div className="divider" />
-          <li>
-            <Link to="/user/favourites">
-              <i className="fa fa-heart" aria-hidden="true" /> My Favourites
+          <li className="black-text">
+            <Link to="/user/favourites" className="black-text">
+              <i className="fa fa-heart black-text" 
+                aria-hidden="true" /> My Favourites
             </Link>
           </li>
           <div className="divider" />
-          <li>
-            <Link to="/" onClick={e => this.logout(e)}>
-              <i className="fa fa-sign-out"aria-hidden="true" /> Logout
+          <li className="black-text">
+            <Link to="/" onClick={e => this.logout(e)} className="black-text">
+              <i className="fa fa-sign-out black-text"
+                aria-hidden="true" /> Logout
             </Link>
           </li>
         </ul>
