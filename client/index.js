@@ -12,6 +12,7 @@ import RecipesList from './Components/RecipesList.jsx';
 import NotFound from './Components/NotFound.jsx';
 import AddRecipe from './Components/AddRecipe.jsx';
 import SingleRecipe from './Components/SingleRecipe.jsx';
+import UserFavouritesList from './Components/UserFavouritesList.jsx';
 import store from './store';
 
 // import scss stylesheet
@@ -35,6 +36,7 @@ const App = (
         <Route path="/recipes/:id" component={SingleRecipe} onEnter={requireAuth} />
         <Route path="/recipes" component={RecipesList} onEnter={requireAuth} />
         <Route path="/addrecipe" component={AddRecipe} onEnter={requireAuth} />
+        <Route path="/user/favourites" component={UserFavouritesList} onEnter={requireAuth} />
         <Route path="*" component={NotFound} onEnter={requireAuth} />
       </Switch>
     </BrowserRouter>

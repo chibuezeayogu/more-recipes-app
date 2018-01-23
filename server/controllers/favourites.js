@@ -1,5 +1,6 @@
 // import models from models directory
 import models from '../models';
+import paginate from '../helper/paginate';
 
 // create reference to db model
 const { Favourite, Recipe } = models;
@@ -7,13 +8,20 @@ const { Favourite, Recipe } = models;
 // create reference to table models for association
 const Favourites = Favourite;
 
+
+const query = {};
+
 export default {
 
   /**
    * @description add or remove favourite controller
+   *
    * @param {Object} req - Request object
+   *
    * @param {Object} res - Response object
+   *
    * @returns {Object} json - payload
+   *
    */
   addRemoveFavourite(req, res) {
     Recipe
@@ -56,13 +64,25 @@ export default {
 
   /**
    * @description get user favourites controller
+   *
    * @param {Object} req - Request object
+   *
    * @param {Object} res - Response object
+   *
    * @returns {Object} json - payload
+   *
    */
   getUserFavourites(req, res) {
+
+    /**
+     * query limit: get query limit if supplie else use default
+     * query offset: get query offset if supplie else use default
+     */
+    query.limit = req.query.limit || 8;
+    query.offset = req.query.offset || 0;
+
     Recipe
-      .findAll({
+      .findAndCountAll({
         include: [
           {
             model: Favourites,
@@ -73,23 +93,45 @@ export default {
             },
           },
         ],
+        order: [['id', 'DESC']],
+        limit: query.limit,
+        offset: query.offset,
       })
-      .then((recipe) => {
-        if (recipe.length === 0) {
+      .then((favourites) => {
+        if (favourites.rows.length === 0) {
           return res.status(404).send({
             message: 'You have not added any recipe to your favourite'
           });
         }
-        return res.status(200).send(recipe);
+        console.log(favourites.count, 'favourite pagination');
+         /**
+         * pass query limit, query offset, recipedata.count to pagenate helper
+         * and return totalCount, currentPage, pageCount, and pageSize
+         * to pagination
+         */
+        const pagination = paginate(query.limit, query.offset, favourites.count);
+
+        console.log(paginate, 'favourite pagination');
+
+        return res.status(200).send(
+          {
+            pagination,
+            favourites: favourites.rows,
+        });
       })
       .catch(error => res.status(400).send({ message: error.message }));
   },
 
 /**
+   * 
    * @description get user favourite recipe Ids
+   *
    * @param {Object} req - Request object
+   *
    * @param {Object} res - Response object
+   *
    * @returns {Object} json - payload
+   *
    */
   getUserFavouriteIds(req, res) {
     Favourite

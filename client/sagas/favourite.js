@@ -3,7 +3,7 @@ import 'babel-polyfill';
 import axios from 'axios';
 import { put, takeEvery, all, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
-import headers from '../util/setAuthToken';
+import setAuthorizationToken from '../util/setAuthToken';
 
 /**
  * watcher sagas: watches for dispatched action
@@ -25,16 +25,18 @@ import headers from '../util/setAuthToken';
  *
  */
 function* addOrRemoveFavourite(action) {
+  setAuthorizationToken();
   try {
     const response = yield call(axios.put,
-      `/api/v1/recipes/${action.recipeId}/addOrRemoveFavourite`, headers());
+      `/api/v1/recipes/${action.recipeId}/addOrRemoveFavourite`);
     const { data } = response;
-
+      console.log(response.status, 'sfgsfgfgfgsfgsfgsfgsfdgsfdgsdf');
     Materialize.toast(data.message, 4000, 'green');
     if (response.status === 200) {
-      yield put({ type: actionTypes.ADD_OR_REMOVE_FAVOURITE, action });
+      yield put({ type: actionTypes.ADD_OR_REMOVE_FAVOURITE_SUCCESS, action });
     }
   } catch (error) {
+    Materialize.toast(error.response.data.message, 4000, 'red');
     yield put({ type: actionTypes.ADD_OR_REMOVE_FAVOURITE_ERROR });
   }
 }
@@ -51,12 +53,17 @@ function* addOrRemoveFavourite(action) {
  *
  */
 function* fetchUserFavouriteRecipes(action) {
+  console.log('got here fevourites api');
+  setAuthorizationToken();
   try {
     const response = yield call(axios.get,
-      `/api/v1/users/${action.userId}/favouriteRecipes`);
+      `/api/v1/users/${action.userId}/favouriteRecipes?limit=8&offset=${action.offset}`);
     const { data } = response;
+    console.log(data, 'favourites data');
+    Materialize.toast(response.data.message, 4000, 'red');
     yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_SUCCESS, data });
   } catch (error) {
+    Materialize.toast(error.response.data.message, 4000, 'red');
     yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_ERROR });
   }
 }
@@ -70,6 +77,7 @@ function* fetchUserFavouriteRecipes(action) {
  *
  */
 function* fetchUserFavouritesRecipeIds(action) {
+  setAuthorizationToken();
   try {
     const response = yield call(axios.get,
       `/api/v1/users/${action.userId}/favouriteRecipeIds`);
@@ -111,6 +119,7 @@ export function* watchAddOrRemoveFavourite() {
  *
  */
 export function* watchfetchUserFavouritesRecipes() {
+  console.log('watching fevourites api');
   yield takeEvery(actionTypes.GET_USER_FAVOURITE_RECIPES,
     fetchUserFavouriteRecipes);
 }

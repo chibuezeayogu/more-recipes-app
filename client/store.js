@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
