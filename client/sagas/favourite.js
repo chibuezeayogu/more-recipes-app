@@ -5,12 +5,12 @@ import { put, takeEvery, all, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
 import setAuthorizationToken from '../util/setAuthToken';
 
-/**
- * watcher sagas: watches for dispatched action
- * watchAddORRemoveFavourite: watches dispatch ADD_OR_REMOVE_FAVOURITE action
- * watchGetUserFavouritesRecipes: watches dispatch
- * GET_USER_FAVOURITE_RECIPES action
- *
+
+ /**
+ * walker sagas will be called by watcher saga
+ * when an action is dispatched
+ * walker sagas: addOrRemoveFavourite, fetchUserFavouriteRecipes,
+ * fetchUserFavouritesRecipeIds, fetchUserFavouritesRecipeIds
  */
 
 /**
@@ -25,18 +25,17 @@ import setAuthorizationToken from '../util/setAuthToken';
  *
  */
 function* addOrRemoveFavourite(action) {
+  const { recipeId } = action;
   setAuthorizationToken();
   try {
     const response = yield call(axios.put,
-      `/api/v1/recipes/${action.recipeId}/addOrRemoveFavourite`);
+      `/api/v1/recipes/${recipeId}/addOrRemoveFavourite`);
     const { data } = response;
-      console.log(response.status, 'sfgsfgfgfgsfgsfgsfgsfdgsfdgsdf');
     Materialize.toast(data.message, 4000, 'green');
     if (response.status === 200) {
-      yield put({ type: actionTypes.ADD_OR_REMOVE_FAVOURITE_SUCCESS, action });
+      yield put({ type: actionTypes.ADD_OR_REMOVE_FAVOURITE_SUCCESS, recipeId});
     }
   } catch (error) {
-    Materialize.toast(error.response.data.message, 4000, 'red');
     yield put({ type: actionTypes.ADD_OR_REMOVE_FAVOURITE_ERROR });
   }
 }
@@ -53,7 +52,6 @@ function* addOrRemoveFavourite(action) {
  *
  */
 function* fetchUserFavouriteRecipes(action) {
-  console.log('got here fevourites api');
   setAuthorizationToken();
   try {
     const response = yield call(axios.get,
@@ -63,7 +61,6 @@ function* fetchUserFavouriteRecipes(action) {
     Materialize.toast(response.data.message, 4000, 'red');
     yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_SUCCESS, data });
   } catch (error) {
-    Materialize.toast(error.response.data.message, 4000, 'red');
     yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_ERROR });
   }
 }
@@ -119,7 +116,6 @@ export function* watchAddOrRemoveFavourite() {
  *
  */
 export function* watchfetchUserFavouritesRecipes() {
-  console.log('watching fevourites api');
   yield takeEvery(actionTypes.GET_USER_FAVOURITE_RECIPES,
     fetchUserFavouriteRecipes);
 }

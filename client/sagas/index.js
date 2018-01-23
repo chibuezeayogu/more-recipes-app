@@ -13,8 +13,9 @@ import {
 import { watchFetchRecipes,
   watchFetchRecipe,
   watchAddRecipe,
-  watchUpVoteRecipe,
-  watchDownVoteRecipe,
+  watchDeleteRecipe,
+  watchUpvoteRecipe,
+  watchDownvoteRecipe,
   watchFetchUserRecipes,
   watchSearchRecipe
 } from './recipe';
@@ -27,8 +28,9 @@ function* rootSaga() {
     watchDeleteComment(),
     watchFetchRecipes(),
     watchAddRecipe(),
-    watchUpVoteRecipe(),
-    watchDownVoteRecipe(),
+    watchDeleteRecipe(),
+    watchUpvoteRecipe(),
+    watchDownvoteRecipe(),
     watchFetchRecipe(),
     watchfetchRecipeComment(),
     watchAddOrRemoveFavourite(),

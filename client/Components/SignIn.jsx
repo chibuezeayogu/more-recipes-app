@@ -170,7 +170,7 @@ class SignIn extends Component {
               </div>
               <div className="row">
                 <button
-                  className="btn right green"
+                  className="btn right green form-margin"
                   type="submit"
                   name="action"
                 >Login

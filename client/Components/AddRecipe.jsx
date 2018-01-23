@@ -167,7 +167,7 @@ class AddRecipe extends Component {
         <UserMenu />
         <div className="main">
           <div className="container">
-            <div className="addrecipe-form z-depth-4">
+            <div className="addrecipe-form z-depth-1">
               <div className="col l6 m8 s12 offset-l6 offset-m4">
                 <h4 className="center">Add Recipe</h4>
                 <hr />
@@ -184,7 +184,7 @@ class AddRecipe extends Component {
                     />
                     <label htmlFor="title" className="active">Title</label>
                   </div>
-                  <span className="right red-text">
+                  <span className="right red-text error-margin">
                     {this.state.errors.titleError}
                   </span>
                 </div>
@@ -203,7 +203,7 @@ class AddRecipe extends Component {
                     >Description
                     </label>
                   </div>
-                  <span className="right red-text">
+                  <span className="right red-text error-margin">
                     {this.state.errors.descriptionError}
                   </span>
                 </div>
@@ -217,7 +217,7 @@ class AddRecipe extends Component {
                       placeholder="enter ingredients seperated by semicolon(;)"
                     />
                   </div>
-                  <span className="right red-text">
+                  <span className="right red-text error-margin">
                     {this.state.errors.ingredientsError}
                   </span>
                 </div>
@@ -231,7 +231,7 @@ class AddRecipe extends Component {
                       placeholder="enter procedures seperated by semicolon(;)"
                     />
                   </div>
-                  <span className="right red-text">
+                  <span className="right red-text error-margin">
                     {this.state.errors.proceduresError}
                   </span>
                 </div>
@@ -244,7 +244,7 @@ class AddRecipe extends Component {
                       onChange={e => this.handleImageChange(e)}
                     />
                   </div>
-                  <span className="right red-text">
+                  <span className="right red-text error-margin">
                     {this.state.errors.imageError}
                   </span>
                 </div>

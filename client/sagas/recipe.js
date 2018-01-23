@@ -8,7 +8,8 @@ import setAuthorizationToken from '../util/setAuthToken';
 /**
  * walker sagas will be called by watcher saga
  * when an action is dispatched
- * walker sagas: fetchRecipes, fetchRecipe
+ * walker sagas: fetchRecipes, fetchRecipe,
+ * addRecipe, upVoteRecipe, downVoteRecipe
  */
 
 /**
@@ -101,7 +102,7 @@ function* addRecipe(action) {
  * @returns {void}
  *
  */
-function* upVoteRecipe(action) {
+function* upvoteRecipe(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.put, `/api/v1/recipes/${action.recipeId}/upvote`);
@@ -125,7 +126,7 @@ function* upVoteRecipe(action) {
  * @returns {void}
  *
  */
-function* downVoteRecipe(action) {
+function* downvoteRecipe(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.put, `/api/v1/recipes/${action.recipeId}/downvote`);
@@ -153,12 +154,40 @@ function* fetchUserRecipes(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get, 
-      `/api/v1/users/${action.userId}/recipes`);
+      `/api/v1/users/${action.userId}/recipes?limit=8&offset=${action.offset}`);
     const { data } = response;
     yield put({ type: actionTypes.GET_USER_RECIPES_SUCCESS, data });
   } catch (error) {
    yield put({ type: actionTypes.GET_USER_RECIPES_ERROR });
   }
+}
+
+/**
+ *
+ * @description delete recipe
+ *
+ * @method
+ *
+ * @param {Object} action - recipe id
+ *
+ * @returns {void}
+ *
+ */
+function* deleteRecipe(action) {
+  console.log(' got here called api');
+  console.log(action, 'got here called api');
+
+  const { id } = action;
+  setAuthorizationToken();
+  try{
+    const response = yield call(axios.delete, `/api/v1/recipes/${id}`);
+
+    yield put({ type: actionTypes.DELETE_RECIPE_SUCCESS, id });
+
+  } catch(error) {
+    yield put({ type: actionTypes.DELETE_RECIPE_ERROR });
+  }
+
 }
 
 /**
@@ -189,8 +218,8 @@ function* searchRecipe(action) {
  * watchFetchRecipes: watching GET_ALL_RECIPES action
  * watchFetchRecipe: watching GET_RECIPE action
  * watchFetchRecipes: watching GET_ALL_RECIPES action
- * watchUpVoteRecipe: watching UP_VOTE_RECIPE action
- * watchDownVoteRecipe: watching DOWN_VOTE_RECIPE action
+ * watchUpvoteRecipe: watching UP_VOTE_RECIPE action
+ * watchDownvoteRecipe: watching DOWN_VOTE_RECIPE action
  * watchFetchUserRecipes: watching GET_USER_RECIPES action
  * watchSearchRecipe: watching SEARCH_RECIPE action
  */
@@ -239,8 +268,8 @@ export function* watchAddRecipe() {
  * @returns {void}
  *
  */
-export function* watchUpVoteRecipe() {
-  yield takeEvery(actionTypes.UP_VOTE_RECIPE, upVoteRecipe);
+export function* watchUpvoteRecipe() {
+  yield takeEvery(actionTypes.UP_VOTE_RECIPE, upvoteRecipe);
 }
 
 /**
@@ -251,8 +280,8 @@ export function* watchUpVoteRecipe() {
  * @returns {void}
  *
  */
-export function* watchDownVoteRecipe() {
-  yield takeEvery(actionTypes.DOWN_VOTE_RECIPE, downVoteRecipe);
+export function* watchDownvoteRecipe() {
+  yield takeEvery(actionTypes.DOWN_VOTE_RECIPE, downvoteRecipe);
 }
 
 /**
@@ -279,3 +308,16 @@ export function* watchSearchRecipe() {
   yield takeEvery(actionTypes.SEARCH_RECIPE, searchRecipe);
 }
 
+
+/**
+ * @description watching DELETE_RECIPE action
+ *
+ * @method
+ *
+ * @returns {void}
+ *
+ */
+export function* watchDeleteRecipe() {
+  console.log(' got here called api');
+  yield takeEvery(actionTypes.DELETE_RECIPE, deleteRecipe);
+}

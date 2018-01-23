@@ -2,6 +2,7 @@ import React from 'react';
 import jwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 /**
  *
@@ -27,15 +28,21 @@ const RecipeCard = (props) => {
             className="responsive-img img-height"
           />
         </Link>
-        <div className="card-content black-text grey lighten-5">
+        <div 
+          className="card-content black-text grey lighten-5">
           <span className="card-title text-title">
             {recipe.title}
           </span>
           <p className="text-description">
             {recipe.description.substring(0, 25)}...
           </p>
+          <hr />
+          <p className="text-description">
+          posted { moment(new Date(recipe.createdAt)).fromNow()}
+          </p>
         </div>
-        <div className="card-action black-text center grey lighten-4">
+        <div className="card-action black-text center grey lighten-4"
+        style={{ margin: 5 }}>
           <a className="black-text">
               <i className="fa fa-thumbs-up" aria-hidden="true"> {recipe.upvotes}
               </i>
