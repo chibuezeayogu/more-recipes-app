@@ -8,7 +8,7 @@ import Comments from './Comments.jsx';
 import Preloader from './Preloder.jsx';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
-import { validateComment } from '../middleware/validateInputs';
+import { validateComment } from '../util/validateInputs';
 
 
 /**
@@ -298,7 +298,9 @@ class SingleRecipe extends Component {
                      <p>{recipes[index].title}</p>
                     </h4>
                     <hr />
-                    <div className="flow-text" style={{ fontStyle: 'italic' }}>
+                    <div 
+                      className="flow-text" 
+                      style={{ fontStyle: 'italic', fontSize: 20 }}>
                      <p>{recipes[index].description}</p>
                     </div>
                   </div>
@@ -363,6 +365,7 @@ class SingleRecipe extends Component {
                         className="btn waves-effect waves-light green right"
                         type="submit"
                         name="action"
+                        style={{ marginRight: 10 }}
                       >Submit
                         <i className="material-icons right">send</i>
                       </button>

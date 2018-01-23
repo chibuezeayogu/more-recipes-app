@@ -1,4 +1,5 @@
 import models from '../models';
+import reviewNotifier from '../helper/reviewNotifier';
 
 // create reference db model
 const { Review, Recipe, User } = models;
@@ -34,14 +35,18 @@ export default {
   },
 
   /**
-     * @description post review controller
-     * @param {Object} req - Request object
-     * @param {Object} res - Response object
-     * @returns {Object} json - payload
-     */
+   * @description post review controller
+   *
+   * @param {Object} req - Request object
+   *
+   * @param {Object} res - Response object
+   *
+   * @returns {Object} json - payload
+   */
   postReview(req, res) {
+    const { id } = req.params
     return Recipe
-      .findById(req.params.id)
+      .findById(id)
       .then((recipe) => {
         if (!recipe) {
           res.status(404).send({
@@ -67,11 +72,14 @@ export default {
                     id: comment.id
                   }
                 })
-                .then(review => res.status(201).send({
+                .then(review => {
+                  reviewNotifier(Recipe, User, id, review.comment, review.User);
+                  res.status(201).send({
                   message:
                   'Comment Posted',
                   review
-                }));
+                })
+              });
             }
           })
           .catch(error => res.status(400).send({ message: error.message }));

@@ -204,6 +204,7 @@ h4 {
 textarea {
   min-height: 80px;
   min-width: 300px;
+  padding: 10px;
 }
 
 .dropdown-content {
@@ -272,4 +273,8 @@ textarea {
 .align-recipe {
   margin-top: 50px;
   width: '100%';
+}
+
+.image-raduis {
+  border-radius: 20px;
 }
