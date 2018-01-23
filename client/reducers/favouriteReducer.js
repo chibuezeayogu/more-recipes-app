@@ -18,19 +18,9 @@ export default (state = initialState, action) => {
         pagination: action.data.pagination
       };
       return state;
-    case actionTypes.ADD_OR_REMOVE_FAVOURITE_ERROR:
-      return Object.assign(
-        {},
-        state,
-        {
-          favourites:
-          [...state.favourites,
-            action.data]
-        });
     case actionTypes.ADD_OR_REMOVE_FAVOURITE_SUCCESS:
-        console.log('got here');
       index = state.favourites
-        .findIndex(favourite => favourite.id == action.recipeId);
+        .findIndex(favourite => favourite.id === action.recipeId);
       return Object.assign(
         {},
         state,
@@ -39,23 +29,12 @@ export default (state = initialState, action) => {
             ...state.favourites.slice(index + 1)],
         });
     case actionTypes.GET_USER_FAVOURITE_RECIPES_ERROR:
-      state = {
-        favourites: [],
-        isFetched: true,
-      };
-      return state;
-    case actionTypes.GET_USER_FAVOURITE_RECIPE_Ids_SUCCESS:
-      state = {
-        favouritedIds: action.data,
-        isFetched: true,
-      };
-      return state;
-      case actionTypes.GET_USER_FAVOURITE_RECIPE_Ids_ERROR:
-    state = {
-      favouritedIds: [],
-      isFetched: false,
-    };
-    return state;
+    return Object.assign(
+      {},
+      state,
+      {
+        isFetched: true
+      });
     default:
       return state;
   }

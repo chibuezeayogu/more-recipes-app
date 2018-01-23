@@ -1,10 +1,12 @@
 import React from 'react';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
+
 /**
 * The page the user gets when an invalid route is entered
 * in the address bar.
 * @description
+*
 * @method
 *
 * @returns react elements.

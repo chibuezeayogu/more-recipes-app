@@ -29,10 +29,15 @@
     .img-wh {
       max-width:450px;
       max-height: 300px;
+    } 
+
+    .error-margin {
+      margin-right: 10px;
     }
 
     .button{
       width: 952px;
+      margin-right: 10px;
     }
 }
 
@@ -241,6 +246,9 @@ textarea {
   margin-top: 50px;
   padding: 20px;
 
+  .error-margin {
+    margin-right: 10px;
+  }
 
   .img-wh {
     max-width:450px;
@@ -275,6 +283,6 @@ textarea {
   width: '100%';
 }
 
-.image-raduis {
+.image-radius {
   border-radius: 20px;
 }

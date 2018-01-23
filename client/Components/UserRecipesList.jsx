@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Preloader from './Preloder.jsx';
 import jwtDecode from 'jwt-decode';
+import UserRecipeCard from './UserRecipeCard.jsx';
 import Pagination from 'rc-pagination';
+import UserMenu from './Header/UserMenu.jsx';
+import Footer from './Footer/Footer.jsx';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../action/actionCreators';
-import UserFavouriteCard from './UserFavouriteCard.jsx';
-import UserMenu from './Header/UserMenu.jsx';
-import Footer from './Footer/Footer.jsx';
-import Preloader from './Preloder.jsx';
 import 'rc-pagination/assets/index.css';
 
 /**
  *
- * @description RecipesList used to display recipes
+ * @description UserRecipesList used to display recipes
  *
  * @class
  *
  * @extends Component
  *
  */
-class UserFavouritesList extends Component {
+class UserRecipesList extends Component {
   constructor() {
     super();
     this.onChange = this.onChange.bind(this);
@@ -32,7 +32,7 @@ class UserFavouritesList extends Component {
    *
    * @method
    *
-   * @memberOf UserFavouritesList
+   * @memberOf UserRecipesList
    *
    * @returns {void}
    *
@@ -46,26 +46,26 @@ class UserFavouritesList extends Component {
       const currentPage = this.props.location.search.substring(6);
       if (Number(currentPage) && Number(currentPage) > 0) {
         const offset = 8 * (currentPage - 1);
-        this.props.getUserFavourites(offset);
+        this.props.getUserRecipes(user.id, offset);
       } else {
-        this.props.getUserFavourites(user.id, 0);
+        this.props.getUserRecipes(user.id, 0);
       }
     }
   }
 
    /**
-   * @description checks if next recipes is fetched and disables is loading
+   * @description checks if next recipes is fetched and disables isLoading
    *
    * @method
    *
-   * @memberOf UserFavouritesList
+   * @memberOf UserRecipesList
    *
    * @param {Object} nextProps - nextProps object
    *
    * @returns {void}
    */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.favouriteReducer.isFetched) {
+    if (nextProps.userRecipeReducer.isFetched) {
       this.setState({ isLoading: false });
     }
   }
@@ -84,9 +84,9 @@ class UserFavouritesList extends Component {
   onChange(page) {
     const token = localStorage.getItem('jwtToken');
     const { user } = jwtDecode(token);
-    this.props.history.push(`/user/favourites?page=${page}`);
+    this.props.history.push(`/user/recipes?page=${page}`);
     const offset = 8 * (page - 1);
-    this.props.getUserFavourites(user.id, offset);
+    this.props.getUserRecipes(user.id, offset);
   }
 
   /**
@@ -95,23 +95,23 @@ class UserFavouritesList extends Component {
    *
    * @method
    *
-   * @memberOf UserFavouritesList
+   * @memberOf UserRecipesList
    *
    * @returns {void}
    *
    */
   render() {
-    const { favourites, pagination } = this.props.favouriteReducer;
-    let favouriteRecipes;
-    if (favourites && favourites.length === 0) {
-      favouriteRecipes = <h4 className="center-align">
-      You have no recipe in your favourite
+    const { recipes, pagination } = this.props.userRecipeReducer;
+    let userRecipes;
+    if (recipes && recipes.length === 0) {
+      userRecipes = <h4 className="center-align">
+      You have not added any recipe
       </h4>;
-    } else if (favourites.length > 0) {
-      favouriteRecipes = favourites.map(favourite => (<UserFavouriteCard
+    } else if (recipes.length > 0) {
+      userRecipes = recipes.map(recipe => (<UserRecipeCard
         {...this.props}
-        key={favourite.id}
-        favourite={favourite}
+        key={recipe.id}
+        recipe={recipe}
       />));
     }
     return (
@@ -120,16 +120,16 @@ class UserFavouritesList extends Component {
         <div className="main">
           <div className="container">
             <div className="row">
-              <h4 className="center">Favourite Recipes</h4>
+              <h4 className="center">My Recipes</h4>
               <hr />
             </div>
             <div className="row left align-recipe" style={{ width: '100%' }}>
-              {this.state.isLoading ? <Preloader /> : favouriteRecipes}
+              {this.state.isLoading ? <Preloader /> : userRecipes}
             </div>
           </div>
         </div>
         <div className="row s12 m6 l3">
-        { favourites.length > 0 ?
+        { recipes.length > 0 ?
             <Pagination
               onChange={this.onChange}
               current={pagination.currentPage}
@@ -145,29 +145,19 @@ class UserFavouritesList extends Component {
   }
 }
 
-UserFavouritesList.propTypes = {
-  recipeReducer: PropTypes.shape({
-    pagination: PropTypes.shape({
-      currentPage: PropTypes.number,
-      pageSize: PropTypes.number,
-      totalCount: PropTypes.number
-    }),
-  }).isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired,
-  location: PropTypes.shape({
-    search: PropTypes.string
-  }).isRequired,
-  getUserFavourites: PropTypes.func.isRequired,
+UserRecipesList.propTypes = {
+  getUserRecipes: PropTypes.func.isRequired,
+  userRecipeReducer: PropTypes.shape({
+    recipes: PropTypes.object.isRequired,
+    isFetched: PropTypes.bool.isRequired
+  }).isRequired
 };
 
 const mapStateToProps = state => ({
-  recipeReducer: state.recipeReducer,
+  userRecipeReducer: state.userRecipeReducer,
   userData: state.userData,
-  favouriteReducer: state.favouriteReducer
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserFavouritesList);
+export default connect(mapStateToProps, mapDispatchToProps)(UserRecipesList);

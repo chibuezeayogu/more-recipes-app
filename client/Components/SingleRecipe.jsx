@@ -278,7 +278,7 @@ class SingleRecipe extends Component {
                           <i
                             className="fa fa-eye"
                             aria-hidden="true"
-                          />{recipes[index].views}
+                          /> {recipes[index].views}
                         </a>
                         <a
                           className="black-text"

@@ -42,7 +42,7 @@ class UserMenu extends Component {
    *
    * @memberOf UserMenu
    *
-   * @param {Event} e
+   * @param {Event} e - even object
    *
    * @returns {void}
    *
@@ -76,7 +76,7 @@ class UserMenu extends Component {
               <a href="#!" className="brand-logo">
                 <img
                   src={image}
-                  className="responsive-img image-raduis"
+                  className="responsive-img image-radius"
                   alt=""
                   style={{ height: 25 }}
                 />More Recipes

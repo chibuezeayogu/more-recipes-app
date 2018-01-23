@@ -71,6 +71,16 @@ export default (state = initialState, action) => {
         {
           isFetched: false,
         });
+    case actionTypes.DELETE_COMMENT_SUCCESS:
+      index = state.recipes
+        .findIndex(recipes => recipes.id == action.recipeId);
+    return Object.assign(
+      {},
+      state,
+      {
+        recipes: [...state.recipes.slice(0, index),
+          ...state.recipes.slice(index + 1)],
+      });
     case actionTypes.GET_ALL_RECIPES_ERROR:
       state = {
         isFetched: true,

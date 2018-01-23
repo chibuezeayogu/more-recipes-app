@@ -36,9 +36,9 @@ export const createRecipe =
  * @returns {Object} payload
  *
  */
-export const delRecipe = recipeId => ({
+export const delRecipe = id => ({
   type: actionTypes.DELETE_RECIPE,
-  recipeId
+  id
 });
 
 /**
@@ -230,6 +230,22 @@ export const createAccount =
    */
   export const getUserFavourites = (userId, offset) => ({
     type: actionTypes.GET_USER_FAVOURITE_RECIPES,
+    userId,
+    offset
+  });
+
+  /**
+   * 
+   * @description dispatches action to get user recipes
+   *
+   * @method
+   * 
+   * @param {Integer} offset - user id
+   * 
+   * @returns {void}
+   */
+  export const getUserRecipes = (userId, offset) => ({
+    type: actionTypes.GET_USER_RECIPES,
     userId,
     offset
   });

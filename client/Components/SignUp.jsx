@@ -178,7 +178,7 @@ class SignUp extends Component {
       <div className="body">
         <Menu />
         <div className="main">
-          <div className="signup-form z-depth-4">
+          <div className="signup-form z-depth-1">
             <div className="col l6 m8 s12 offset-l6 offset-m4">
               <h4 className="center">Create Account</h4>
               <hr />
@@ -200,7 +200,7 @@ class SignUp extends Component {
                       First Name
                     </label>
                   </div>
-                  <span className="right red-text error-font">
+                  <span className="right red-text error-font error-margin">
                     {this.state.errors.firstNameError}
                   </span>
                 </div>
@@ -218,7 +218,7 @@ class SignUp extends Component {
                       Last Name
                     </label>
                   </div>
-                  <span className="right red-text error-font">
+                  <span className="right red-text error-font error-margin">
                     {this.state.errors.lastNameError}
                   </span>
                 </div>
@@ -234,7 +234,7 @@ class SignUp extends Component {
                     />
                     <label htmlFor="email" className="active">Email</label>
                   </div>
-                  <span className="right red-text error-font">
+                  <span className="right red-text error-font error-margin">
                     {this.state.errors.emailError}
                   </span>
                 </div>
@@ -251,7 +251,7 @@ class SignUp extends Component {
                     />
                     <label htmlFor="password">Password</label>
                   </div>
-                  <span className="right red-text error-font">
+                  <span className="right red-text error-font error-margin">
                     {this.state.errors.passwordError}
                   </span>
                 </div>
@@ -264,11 +264,10 @@ class SignUp extends Component {
                       onChange={e => this.handleImageChange(e)}
                     />
                   </div>
-                  <span className="right red-text error-font">
+                  <span className="right red-text error-font error-margin">
                     {this.state.errors.imageError}
                   </span>
                 </div>
-                <hr />
                 <div className="row right">
                   <button
                     className="btn right green"

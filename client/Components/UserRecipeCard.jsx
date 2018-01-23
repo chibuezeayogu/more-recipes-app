@@ -15,34 +15,38 @@ import swal from 'sweetalert'
  *
  *  @returns {void}
  */
-class UserFavouriteCard extends Component {
+class UserRecipeCard extends Component {
 
-  handelFavourites(id, title) {
+  handelEditRecipe(id) {
+    this.props.addOrRemoveFavourite(id);
+   }
+
+  handelDeleteRecipe(id, title) {
     swal({
-        title: "Are you sure?",
-        text: `You want to remove "${title}" from your favourite!`,
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          this.props.addOrRemoveFavourite(id);
-        }
-      });
+      title: "Are you sure?",
+      text: `You want to delete "${title}"!`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        this.props.delRecipe(id);
+      } 
+    });
   }
 
 
   render() {
     const token = localStorage.getItem('jwtToken');
     const { user } = jwtDecode(token);
-    const { favourite } = this.props;
+    const { recipe } = this.props;
     return (
       <div className="col s12 m4 l3">
         <div className="card hoverable">
-          <Link to={`/recipes/${favourite.id}`}>
+          <Link to={`/recipes/${recipe.id}`}>
             <img
-              src={favourite.imageUrl}
+              src={recipe.imageUrl}
               alt=""
               className="responsive-img img-height"
             />
@@ -50,45 +54,55 @@ class UserFavouriteCard extends Component {
           <div 
             className="card-content black-text grey lighten-5">
             <span className="card-title text-title">
-              {favourite.title}
+              {recipe.title}
             </span>
             <p className="text-description">
-              {favourite.description.substring(0, 25)}...
+              {recipe.description.substring(0, 25)}...
             </p>
             <hr />
             <p className="text-description">
-            posted { moment(new Date(favourite.createdAt)).fromNow()}
+              posted { moment(new Date(recipe.createdAt)).fromNow()}
             </p>
           </div>
           <div 
-            className="card-action black-text center grey lighten-4"
+            className="card-action black-text grey lighten-4 center"
             style={{ margin: 5 }}>
             <a className="black-text">
               <i 
                 className="fa fa-thumbs-o-up" 
-                  aria-hidden="true"> {favourite.upvotes}
+                  aria-hidden="true"> {recipe.upvotes}
               </i>     
             </a>
             <a 
               className="black-text">
               <i 
                 className="fa fa-thumbs-o-down" 
-                  aria-hidden="true"> {favourite.downvotes}
+                  aria-hidden="true"> {recipe.downvotes}
               </i>  
             </a>
-            <a className="black-text">
+            {/* <a className="black-text">
               <i 
                 className="fa fa-eye" 
-                  aria-hidden="true"> {favourite.views}
+                  aria-hidden="true"> {recipe.views}
               </i>
-            </a>
+            </a> */}
             <a 
               className="black-text" 
-                onClick={() => this.handelFavourites(favourite.id, favourite.title)}
+                onClick={() => this.handelEditRecipe(recipe.id)}
                 style={{ cursor: 'pointer' }}
               >
               <i 
-                className="fa fa-heart red-heart" 
+                className="fa fa-pencil-square-o black-text" 
+                  aria-hidden="true" /> 
+            </a>
+
+            <a 
+              className="black-text" 
+                onClick={() => this.handelDeleteRecipe(recipe.id, recipe.title)}
+                style={{ cursor: 'pointer' }}
+              >
+              <i 
+                className="fa fa-trash" 
                   aria-hidden="true" /> 
             </a>
           </div>
@@ -98,8 +112,8 @@ class UserFavouriteCard extends Component {
   };
 }
 
-UserFavouriteCard.propTypes = {
-  favourite: PropTypes.shape({
+UserRecipeCard .propTypes = {
+  recipe: PropTypes.shape({
     id: PropTypes.number.isRequired,
     upvotes: PropTypes.number.isRequired,
     downvotes: PropTypes.number.isRequired,
@@ -110,4 +124,4 @@ UserFavouriteCard.propTypes = {
   }).isRequired
 };
 
-export default UserFavouriteCard;
+export default UserRecipeCard;
