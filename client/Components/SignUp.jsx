@@ -145,6 +145,9 @@ class SignUp extends Component {
     axios({
       url: CLOUDINARY_URL,
       method: 'POST',
+      hearders: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
       data: formData,
     }).then((data) => {
       this.setState({ imageUrl: data.data.secure_url, disabled: false });
@@ -156,9 +159,9 @@ class SignUp extends Component {
         imageUrl
       } = this.state;
       this.props.createAccount(firstName, lastName, email, password, imageUrl);
-    }).catch(() => { 
+    }).catch((error) => { 
       this.setState({ disabled: false });
-      Materialize.toast("Error! Please try again", 4000, 'red');
+      Materialize.toast("Error! Please try again"+error.message, 4000, 'red');
     });;
   }
 
