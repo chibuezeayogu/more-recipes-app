@@ -206,8 +206,10 @@ export const createAccount =
    /**
    * 
    * @description dispatches action to get user favourite recipe ids
-   *
+   * 
    * @method
+   *
+   * @param {Integer} userId - user id
    * 
    * @returns {void}
    */
@@ -216,5 +218,20 @@ export const createAccount =
     userId
   });
 
+  /**
+   * 
+   * @description dispatches action to get user favourite recipes
+   *
+   * @method
+   * 
+   * @param {Integer} userId - user id
+   * 
+   * @returns {void}
+   */
+  export const getUserFavourites = (userId, offset) => ({
+    type: actionTypes.GET_USER_FAVOURITE_RECIPES,
+    userId,
+    offset
+  });
 
 

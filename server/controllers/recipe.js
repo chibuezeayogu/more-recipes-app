@@ -53,9 +53,6 @@ export default {
 
     /**
      * query the db for all recipes
-     * left join Reviews as reviews
-     * left join Favourites as favourites
-     * left join left join Votings as votings
      * ordered by 'id' descending
      */
     Recipe
@@ -63,21 +60,9 @@ export default {
         order: [['id', 'DESC']],
         limit: query.limit,
         offset: query.offset,
-        include: [
-          {
-            model: Votings,
-            as: 'votings',
-            attributes: ['voting', 'userId']
-          },
-          {
-            model: Favourites,
-            as: 'favourites',
-            attributes: ['recipeId', 'userId']
-          }
-        ]
       })
       .then((recipe) => {
-        if (recipe.rows.length <= 0) {
+        if (recipe.rows.length === 0) {
           return res.status(404).send({ message: 'No recipe was found!' });
         }
 

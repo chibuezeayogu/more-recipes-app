@@ -236,7 +236,7 @@
               </ul>
           </li>
           <li>
-            <a href="#usersdata" class="toc-h1 toc-link" data-title="Usersdata">Usersdata</a>
+            <a href="#usersdata" class="toc-h1 toc-link" data-title="Usersdata">User</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#signup-user" class="toc-h2 toc-link" data-title="Usersdata">Signup User</a>
@@ -284,7 +284,7 @@
               </ul>
           </li>
           <li>
-            <a href="#favourita" class="toc-h1 toc-link" data-title="Favourita">Favourita</a>
+            <a href="#favourite" class="toc-h1 toc-link" data-title="Favourita">Favourite</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#upvote-recipe" class="toc-h2 toc-link" data-title="Favourita">Upvote Recipe</a>
@@ -325,13 +325,13 @@
 <li>Start the express server <code>npm start</code>.</li>
 </ol>
 <h2 id='how-to-use-jwt-for-authentication-or-authorization'>How to use JWT for Authentication or Authorization</h2>
-<p>This document management system uses &quot;email &amp; password&quot; to authenticate users while generating token. To use the token returned after successful signin.
+<p>This More Recipes uses &quot;email &amp; password&quot; to authenticate users while generating token. To use the token returned after successful signin.
 1. Save the token to the browser local storage or session storage with a property name &quot;Authorization&quot;. Eg. <code>Authentication: token.</code>This gives users the priviledge to certain resources they have permission to.</p>
 
 <ol>
 <li>If using Postman to test the routes, copy the token from the login or sign up response to the headers with key name &quot;Authorization&quot;,Eg. <code>Authorization: token</code> which allows users to access resources they have permission to.</li>
 </ol>
-<h2 id='api-summary'>API Summary</h2><h3 id='userdata'>Userdata</h3>
+<h2 id='api-summary'>API Summary</h2><h3 id='userdata'>User</h3>
 <table><thead>
 <tr>
 <th>EndPoint</th>
@@ -343,7 +343,7 @@
 <td>Creates a new user.</td>
 </tr>
 <tr>
-<td>POST /api/v1/users/signup</td>
+<td>POST /api/v1/users/signin</td>
 <td>Logs in a user.</td>
 </tr>
 <tr>
@@ -355,7 +355,7 @@
 <td>Updates any logged in user&#39;s Profile  except email based on the users id</td>
 </tr>
 </tbody></table>
-<h3 id='recipedata'>Recipedata</h3>
+<h3 id='recipedata'>Recipe</h3>
 <table><thead>
 <tr>
 <th>EndPoint</th>
@@ -383,8 +383,12 @@
 <td>Delete a recipe. (available only to the users who added the recipe)</td>
 </tr>
 <tr>
-<td>GET /api/recipes?sort=upvotes&amp;order=descending</td>
-<td>Get all documents with title containing the search query (available only to logged in users)</td>
+<td>GET /api/rv1//users/:userId/recipes</td>
+<td>Get all recipes belonging to a particular user (available only to logged in users)</td>
+</tr>
+<tr>
+<td>GET /api/v1/recipes?sort=upvotes&amp;order=descending</td>
+<td>Get all recipes with title containing the search query (available only to logged in users)</td>
 </tr>
 </tbody></table>
 <h3 id='favourite'>Favourite</h3>
@@ -395,12 +399,12 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>PUT /api/v1/users/:id/add</td>
-<td>Add a recipe to users favourite. (available only to logged in users)</td>
+<td>PUT /api/v1/recipes/:id/addOrRemoveFavourite</td>
+<td>Add or remove a recipe to/from users favourite. (available only to logged in users)</td>
 </tr>
 <tr>
-<td>PUT /api/v1/users/:id/remove</td>
-<td>Revove a recipe from users favourite. (available only to logged in users)</td>
+<td>Get /api/v1/users/:userId/favouriteRecipes</td>
+<td>Get all recipes in the users favourite. (available only to logged in users)</td>
 </tr>
 <tr>
 <td>GET /api/users/<userId>/recipe</td>
@@ -419,7 +423,7 @@
 <td>Upvote a recipe. (available only to logged in users)</td>
 </tr>
 <tr>
-<td>PUT /api/v1/recipes/:id/downupvote</td>
+<td>PUT /api/v1/recipes/:id/downvote</td>
 <td>downvote a recipe. (available only to logged in users)</td>
 </tr>
 </tbody></table>
@@ -435,7 +439,7 @@
 <td>Post review for a recipe. (available only to logged in users)</td>
 </tr>
 </tbody></table>
-<h1 id='usersdata'>Usersdata</h1><h2 id='signup-user'>Signup User</h2>
+<h1 id='usersdata'>Users</h1><h2 id='signup-user'>Signup User</h2>
 <blockquote>
 <p>Sample structures responce:</p>
 </blockquote>
@@ -746,7 +750,7 @@
 <li>Status: <code>200: OK</code></li>
 <li>Body <code>(application/json)</code></li>
 </ul>
-<h1 id='favourita'>Favourita</h1><h2 id='upvote-recipe'>Upvote Recipe</h2>
+<h1 id='favourita'>Favourite</h1><h2 id='upvote-recipe'>Upvote Recipe</h2>
 <blockquote>
 <p>Response</p>
 </blockquote>
@@ -786,12 +790,31 @@
 <blockquote>
 <p>Response:</p>
 </blockquote>
+
+
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
     <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Comment Posted"</span>
+    <span class="s2">"review"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="s2">"view"</span><span class="p">:</span> <span class="s2">"false"</span><span class="p">,</span>
+        <span class="s2">"comment"</span><span class="p">:</span> <span class="s2">"Nice Recipe."</span><span class="p">,</span>
+        <span class="s2">"userId"</span><span class="p">:</span> <span class="s2">2</span><span class="p">,</span>
+        <span class="s2">"recipeId"</span><span class="p">:</span> <span class="s2">20</span><span class="p">,</span>
+        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2018-01-23T03:01:04.276Z"</span><span class="p">,</span>
+        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2018-01-23T03:01:04.276Z"</span><span class="p">,</span>
+        <span class="s2">"User"</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s2">"firstName"</span><span class="p">:</span> <span class="s2">"Chibueze"</span><span class="p">,</span>
+              <span class="s2">"lastName"</span><span class="p">:</span> <span class="s2">"Ayogu"</span><span class="p">,</span>
+              <span class="s2">"imageUrl"</span><span class="p">:</span> <span class="s2">"https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg"</span>
+          <span class="p">}</span>
+    <span class="p">}</span>
+
 <span class="p">}</span>
 </code></pre><h3 id='request'>Request</h3>
+
+
 <ul>
-<li>Endpoint: POST: <code>/api/v1/recipes/:id/upvote</code></li>
+<li>Endpoint: POST: <code>/api/v1/recipes/:id/reviews</code></li>
 <li>Body <code>(application/json)</code></li>
 </ul>
 <h3 id='response'>Response</h3>

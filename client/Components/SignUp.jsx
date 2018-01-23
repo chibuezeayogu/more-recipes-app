@@ -141,6 +141,7 @@ class SignUp extends Component {
     const formData = new FormData();
     formData.append('file', this.state.image);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    delete axios.defaults.headers.common['Authorization'];
     axios({
       url: CLOUDINARY_URL,
       method: 'POST',

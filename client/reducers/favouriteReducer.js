@@ -28,13 +28,15 @@ export default (state = initialState, action) => {
             action.data]
         });
     case actionTypes.ADD_OR_REMOVE_FAVOURITE_SUCCESS:
+        console.log('got here');
       index = state.favourites
-        .findIndex(favourite => favourite.id == action.id);
+        .findIndex(favourite => favourite.id == action.recipeId);
       return Object.assign(
         {},
         state,
         {
-          favourites: action.data
+          favourites: [...state.favourites.slice(0, index),
+            ...state.favourites.slice(index + 1)],
         });
     case actionTypes.GET_USER_FAVOURITE_RECIPES_ERROR:
       state = {

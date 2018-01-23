@@ -35,9 +35,7 @@ class SingleRecipe extends Component {
       comment: '',
       errors: {}
     };
-    this.handleUpvote = this.handleUpvote.bind(this);
-    this.handleDownvote = this.handleDownvote.bind(this);
-    this.handleAddToFavourite = this.handleAddToFavourite.bind(this);
+
     this.handleChange = this.handleChange.bind(this);
     this.renderComment = this.renderComment.bind(this);
   }
@@ -61,7 +59,6 @@ class SingleRecipe extends Component {
       const { id } = this.props.match.params;
       this.props.getRecipe(id);
       this.props.getRecipeComment(id);
-      this.props.getUserFavouriteRecipeIds(user.id)
     }
   }
 
@@ -256,7 +253,7 @@ class SingleRecipe extends Component {
                       <div className="card-action center grey lighten-5">
                         <a
                           className="black-text"
-                          onClick={this.handleUpvote}
+                          onClick={() => this.handleUpvote(id)}
                           style={{ cursor: 'pointer' }}
                         >
                           <i
@@ -266,7 +263,7 @@ class SingleRecipe extends Component {
                         </a>
                         <a
                           className="black-text"
-                          onClick={this.handleDownvote}
+                          onClick={() => this.handleDownvote(id)}
                           style={{ cursor: 'pointer' }}
                         >
                           <i
@@ -286,7 +283,7 @@ class SingleRecipe extends Component {
                         <a
                           className="black-text"
                           style={{ cursor: 'pointer' }}
-                          onClick={this.handleAddToFavourite}
+                          onClick={() => this.handleAddToFavourite(id)}
                         >
                           <i
                             className="fa fa-heart"

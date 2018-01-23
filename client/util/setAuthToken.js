@@ -10,15 +10,3 @@ export const setAuthorizationToken = () => {
 };
 
 export default setAuthorizationToken;
-
-
-
-
-// const headers = () => ({
-//   headers: {
-//     'x-access-token': window.localStorage.jwtToken,
-//     'authorization': window.localStorage.jwtToken
-//   }
-// });
-
-// export default headers;
