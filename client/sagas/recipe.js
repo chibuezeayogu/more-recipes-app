@@ -318,6 +318,17 @@ export function* watchSearchRecipe() {
  *
  */
 export function* watchDeleteRecipe() {
-  console.log(' got here called api');
   yield takeEvery(actionTypes.DELETE_RECIPE, deleteRecipe);
+}
+
+/**
+ * @description watching GET_MOST_FAVOURITED_RECIPE action
+ *
+ * @method
+ *
+ * @returns {void}
+ *
+ */
+export function* watchFetchMostRecipe() {
+  yield takeEvery(actionTypes.GET_MOST_FAVOURITED_RECIPE, fetchMostRecipe);
 }
