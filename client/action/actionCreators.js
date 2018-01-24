@@ -250,4 +250,22 @@ export const createAccount =
     offset
   });
 
+/**
+   * 
+   * @description dispatches action to search for recipes
+   *
+   * @method
+   * 
+   * @param {Integer} searchTerm - searched word
+   * 
+   * @returns {void}
+   */
+  export const search = searchTerm => ({
+    type: actionTypes.SEARCH_RECIPE,
+    searchTerm
+  });
+
+export const mostUpvotedRecipe = () => ({
+  type: actionTypes.GET_MOST_FAVOURITED_RECIPE
+})
 

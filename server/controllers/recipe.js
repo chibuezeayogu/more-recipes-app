@@ -185,11 +185,23 @@ export default {
   },
   /**
      * @description controller to get recipe with most upvote
+     *
      * @param {Object} req - Request object
+     *
      * @param {Object} res - Response object
+     * 
      * @returns {Object} json - payload
      */
   getMostUpVote(req, res) {
+
+     /**
+     * query limit: get query limit if supplie else use default
+     * query offset: get query offset if supplie else use default
+     */
+    query.limit = req.query.limit || 8;
+    query.offset = req.query.offset || 0;
+
+
     return Recipe
       .findAll({
         order: [['upvotes', 'DESC']],

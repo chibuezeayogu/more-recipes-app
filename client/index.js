@@ -14,6 +14,8 @@ import NotFound from './Components/NotFound.jsx';
 import AddRecipe from './Components/AddRecipe.jsx';
 import SingleRecipe from './Components/SingleRecipe.jsx';
 import UserFavouritesList from './Components/UserFavouritesList.jsx';
+import Search from './Components/Search.jsx';
+
 import store from './store';
 
 // import scss stylesheet
@@ -34,6 +36,7 @@ const App = (
         <Route exact path="/" component={Main} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/search" component={Search} onEnter={requireAuth} />
         <Route path="/recipes/:id" component={SingleRecipe} onEnter={requireAuth} />
         <Route path="/recipes" component={RecipesList} onEnter={requireAuth} />
         <Route path="/addrecipe" component={AddRecipe} onEnter={requireAuth} />
