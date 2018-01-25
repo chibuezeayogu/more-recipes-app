@@ -42,7 +42,7 @@ Authentication
 * Authenticated users can search for and retrieve any recipes based on the recipe title or ingredients 
 
 ## Usage
-Click [here](more-recipes-api.herokuapp.com) to access the application. Or download or clone this repository and run it on your machine.
+Click [here](https://more-recipes-api.herokuapp.com) to access the application. Or download or clone this repository and run it on your machine.
 
 ## For local installation & testing:
 - If you don't have NodeJS already installed go here and install it.
