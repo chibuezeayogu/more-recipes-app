@@ -10,7 +10,7 @@ More-Recipes provides a platform for users to share the awesome and exciting rec
 
 # Features of More Recipe API
 
-Authentication
+### Authentication
 * JSON Web Token (JWT) is used to authenticate users.
 * The API creates a token everytime a user logs in.
 * The user supplies the token created, which is verified by the API before the user can access certain protected endpoints.
