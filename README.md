@@ -82,7 +82,7 @@ Please read [this](https://github.com/chibuezeayogu/Cohort-XXVI_More-RecipesApp
 * Open the project, click on the clone or download button, then copy the url that pops up.
 * Open your terminal and run the command git clone url where url is the url from the previous step.
 * Navigate into the cloned project directory.
-* For example, if you cloned the project into the desktop directory, then run cd desktop which takes you into the desktop, then cd Cohort-XXVI_More-RecipesApp
+* For example, if you cloned the project into the desktop directory, then run cd desktop which takes you into the desktop, then `cd Cohort-XXVI_More-RecipesApp`
 *  to enter the project directory.
 * Once in the project directory, install all project dependencies by running npm install.
 * Create your feature branch on your local machine by running `git checkout -b branchName`, where branchNameis the name of your feature branch.
