@@ -4,7 +4,8 @@ const initialState = {
   favourites: [],
   isFetched: false,
   pagination: {},
-  favouritedIds: []
+  favouritedIds: [],
+  isDeleted: false
 };
 
 let index;
@@ -27,6 +28,8 @@ export default (state = initialState, action) => {
         {
           favourites: [...state.favourites.slice(0, index),
             ...state.favourites.slice(index + 1)],
+            isDeleted: true,
+            isFetched: false,
         });
     case actionTypes.GET_USER_FAVOURITE_RECIPES_ERROR:
     return Object.assign(

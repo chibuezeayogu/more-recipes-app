@@ -55,9 +55,8 @@ function* fetchUserFavouriteRecipes(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get,
-      `/api/v1/users/${action.userId}/favouriteRecipes?limit=8&offset=${action.offset}`);
+      `/api/v1/users/${action.userId}/favouriteRecipes?limit=6&offset=${action.offset}`);
     const { data } = response;
-    console.log(data, 'favourites data');
     Materialize.toast(response.data.message, 4000, 'red');
     yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_SUCCESS, data });
   } catch (error) {

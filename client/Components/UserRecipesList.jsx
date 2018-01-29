@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Preloader from './Preloder.jsx';
 import jwtDecode from 'jwt-decode';
-import UserRecipeCard from './UserRecipeCard.jsx';
+import { bindActionCreators } from 'redux';
 import Pagination from 'rc-pagination';
+import { connect } from 'react-redux';
+import UserRecipeCard from './UserRecipeCard.jsx';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import * as actionCreators from '../action/actionCreators';
+import { onPageChange, onPageReload } from '../util/pageFunctions'
 import 'rc-pagination/assets/index.css';
 
 /**
@@ -39,16 +40,14 @@ class UserRecipesList extends Component {
    */
   componentWillMount() {
     const token = localStorage.getItem('jwtToken');
+    const currentPage = this.props.location.search.substring(6);
     const { user } = jwtDecode(token);
     if (!token) {
       this.props.history.push('/');
     } else {
-      const currentPage = this.props.location.search.substring(6);
-      if (Number(currentPage) && Number(currentPage) > 0) {
-        const offset = 8 * (currentPage - 1);
+      const { isTrue, offset } = onPageReload(currentPage);
+      if (isTrue) {
         this.props.getUserRecipes(user.id, offset);
-      } else {
-        this.props.getUserRecipes(user.id, 0);
       }
     }
   }
@@ -65,8 +64,17 @@ class UserRecipesList extends Component {
    * @returns {void}
    */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.userRecipeReducer.isFetched) {
+    const token = localStorage.getItem('jwtToken');
+    const { user } = jwtDecode(token);
+    const { isFetched, recipes, isDeleted, pagination } = nextProps.userRecipeReducer;
+    if (isFetched) {
       this.setState({ isLoading: false });
+    } else {
+      const { isTrue, offset } = onPageChange(recipes, isDeleted, pagination);
+      if (isTrue) {
+        this.setState({ isLoading: true });
+        this.props.getUserRecipes(user.id, offset);
+      }
     }
   }
 
@@ -85,7 +93,7 @@ class UserRecipesList extends Component {
     const token = localStorage.getItem('jwtToken');
     const { user } = jwtDecode(token);
     this.props.history.push(`/user/recipes?page=${page}`);
-    const offset = 8 * (page - 1);
+    const offset = 6 * (page - 1);
     this.props.getUserRecipes(user.id, offset);
   }
 
@@ -103,7 +111,7 @@ class UserRecipesList extends Component {
   render() {
     const { recipes, pagination } = this.props.userRecipeReducer;
     let userRecipes;
-    if (recipes && recipes.length === 0) {
+    if (recipes && recipes.length === 0 && !this.state.isLoading) {
       userRecipes = <h4 className="center-align">
       You have not added any recipe
       </h4>;
@@ -148,7 +156,7 @@ class UserRecipesList extends Component {
 UserRecipesList.propTypes = {
   getUserRecipes: PropTypes.func.isRequired,
   userRecipeReducer: PropTypes.shape({
-    recipes: PropTypes.object.isRequired,
+    recipes: PropTypes.shape.isRequired,
     isFetched: PropTypes.bool.isRequired
   }).isRequired
 };

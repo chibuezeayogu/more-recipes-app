@@ -69,7 +69,7 @@ export default (state = initialState, action) => {
         {},
         state,
         {
-          isFetched: false,
+          isFetched: false
         });
     case actionTypes.DELETE_COMMENT_SUCCESS:
       index = state.recipes

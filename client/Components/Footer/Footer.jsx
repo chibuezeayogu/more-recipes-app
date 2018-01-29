@@ -2,8 +2,11 @@ import React from 'react';
 
 /**
  * constant page footer
+ *
  * @constant
+ *
  * @returns {void}
+ *
  */
 const Footer = () => (
   <footer className="page-footer black footer">

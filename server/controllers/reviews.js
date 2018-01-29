@@ -16,7 +16,7 @@ export default {
       .findAll({
         include: {
           model: User,
-          attributes: ['firstName', 'lastName', 'imageUrl'],
+          attributes: ['id', 'firstName', 'lastName', 'imageUrl'],
         },
         where: {
           recipeId: req.params.id
@@ -66,7 +66,7 @@ export default {
                 .find({
                   include: {
                     model: User,
-                    attributes: ['firstName', 'lastName', 'imageUrl']
+                    attributes: ['id', 'firstName', 'lastName', 'imageUrl']
                   },
                   where: {
                     id: comment.id

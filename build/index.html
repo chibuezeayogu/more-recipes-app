@@ -219,7 +219,7 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Welcome to More Recipes Api</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#development" class="toc-h2 toc-link" data-title="Introduction">Development</a>
@@ -310,7 +310,8 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
+        <h1 id='introduction'>Welcome to More Recipes API</h1>
+        <h2 id='development'>Introduction</h2>
 <p>More-Recipe API contains several API end points that allows users to signup, signin, add, retrieve, edit, and delete recipe. User can also upvote or downvote a recipe, add recipe to his/her favourite or remove from his/her favourite, get recipes with most upvote in ascending order.  It also offers a way to ensure that only authorized users can perform certain operations.</p>
 <h2 id='development'>Development</h2>
 <p>The application was developed with <a href="http://nodejs.org/">NodeJs</a> and <a href="http://expressjs.com/">Express</a> is used for routing. The <a href="http://postgresql.com/">Postgresql</a> database was used with sequelize as the ORM</p>
@@ -383,13 +384,19 @@
 <td>Delete a recipe. (available only to the users who added the recipe)</td>
 </tr>
 <tr>
-<td>GET /api/rv1//users/:userId/recipes</td>
+<td>GET /api/v1/users/:userId/recipes</td>
 <td>Get all recipes belonging to a particular user (available only to logged in users)</td>
 </tr>
 <tr>
-<td>GET /api/v1/recipes?sort=upvotes&amp;order=descending</td>
-<td>Get all recipes with title containing the search query (available only to logged in users)</td>
+<td>GET /api/v1/recipes/mostupvote</td>
+<td>Get all recipes with the most up vote (available only to logged in users)</td>
 </tr>
+<tr>
+<td>GET /api/v1/users/:userId/favouriteRecipes</td>
+<td>Get all recipes belonging to a particular user (available only to logged in users)</td>
+</tr>
+
+
 </tbody></table>
 <h3 id='favourite'>Favourite</h3>
 <table><thead>
@@ -403,7 +410,7 @@
 <td>Add or remove a recipe to/from users favourite. (available only to logged in users)</td>
 </tr>
 <tr>
-<td>Get /api/v1/users/:userId/favouriteRecipes</td>
+<td>GET /api/v1/users/:userId/favouriteRecipes</td>
 <td>Get all recipes in the users favourite. (available only to logged in users)</td>
 </tr>
 <tr>
@@ -438,16 +445,21 @@
 <td>POST /api/recipes/:recipeId/reviews</td>
 <td>Post review for a recipe. (available only to logged in users)</td>
 </tr>
+<tr>
+<td>GET /api/recipes/:recipeId/reviews</td>
+<td>Get reviews for a recipe. (available only to logged in users)</td>
+</tr>
 </tbody></table>
 <h1 id='usersdata'>Users</h1><h2 id='signup-user'>Signup User</h2>
 <blockquote>
-<p>Sample structures responce:</p>
+<p>Request:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
     <span class="s2">"firstname"</span><span class="p">:</span> <span class="s2">"Chibueze"</span><span class="p">,</span>
     <span class="s2">"lastmane"</span><span class="p">:</span> <span class="s2">"Ayogu"</span><span class="p">,</span>
     <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"chibuezeayogu@hotmail.com"</span><span class="p">,</span>
     <span class="s2">"password"</span><span class="p">:</span> <span class="s2">"password"</span>
+    <span class="s2">"imageUrl"</span><span class="p">:</span> <span class="s2">"https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg"</span>
 <span class="p">}</span>
 </code></pre>
 <blockquote>
@@ -455,12 +467,7 @@
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
     <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Registered successfully"</span><span class="p">,</span>
-    <span class="s2">"userInfo"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">"firstname"</span><span class="p">:</span> <span class="s2">"chibueze"</span><span class="p">,</span>
-        <span class="s2">"lastname"</span><span class="p">:</span> <span class="s2">"Ayogu"</span><span class="p">,</span>
-        <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"chibuezeayogu@hotmail.com"</span>
-    <span class="p">}</span>
+    <span class="s2">"token"</span><span class="p">:</span> <span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE2LCJpYXQiOjE1MDU1ODMzNzV9.BBH_iTw5cI7wlrb6oj9K8kLH_QXQm0tVmunnsjiB5V4"</span>
 <span class="p">}</span>
 </code></pre><h3 id='request'>Request</h3>
 <ul>
@@ -475,7 +482,7 @@
 </ul>
 <h2 id='signin-user'>Signin User</h2>
 <blockquote>
-<p>Sample structures responce:</p>
+<p>Request:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
     <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"chibuezeayogu@hotmail.com"</span><span class="p">,</span>
@@ -501,16 +508,16 @@
 </ul>
 <h2 id='retrive-user'>Retrive User</h2>
 <blockquote>
-<p>Sample structures responce:</p>
-
 <p>Response:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
-    <span class="s2">"userInfo"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"user"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="s2">"firstname"</span><span class="p">:</span> <span class="s2">"Graphael"</span><span class="p">,</span>
-        <span class="s2">"lastname"</span><span class="p">:</span> <span class="s2">"Akpan"</span><span class="p">,</span>
+        <span class="s2">"firstName"</span><span class="p">:</span> <span class="s2">"Graphael"</span><span class="p">,</span>
+        <span class="s2">"lastName"</span><span class="p">:</span> <span class="s2">"Akpan"</span><span class="p">,</span>
         <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"andela2@hotmail.com"</span>
+        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span><span class="p">,</span>
+        <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre><h3 id='request-3'>Request</h3>
@@ -526,7 +533,7 @@
 </ul>
 <h2 id='update-user'>Update User</h2>
 <blockquote>
-<p>Sample structures responce:</p>
+<p>Resquest:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
     <span class="s2">"firstname"</span><span class="p">:</span> <span class="s2">"Graphael"</span><span class="p">,</span>
@@ -538,11 +545,13 @@
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
     <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Updated successfully"</span><span class="p">,</span>
-    <span class="s2">"userInfo"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"user"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
         <span class="s2">"firstname"</span><span class="p">:</span> <span class="s2">"Raphael"</span><span class="p">,</span>
         <span class="s2">"lastname"</span><span class="p">:</span> <span class="s2">"Akpan"</span><span class="p">,</span>
         <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"andela2@hotmail.com"</span>
+        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span><span class="p">,</span>
+        <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre><h3 id='request-4'>Request</h3>
@@ -556,7 +565,11 @@
 <li>Status: <code>200: OK</code></li>
 <li>Body <code>(application/json)</code></li>
 </ul>
-<h1 id='recipes'>Recipes</h1><h2 id='add-recipe'>Add Recipe</h2>
+
+
+
+<h1 id='recipes'>Recipes</h1>
+<h2 id='add-recipe'>Add Recipe</h2>
 <blockquote>
 <p>Request:</p>
 </blockquote>
@@ -564,7 +577,8 @@
     <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span>
     <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
     <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"one teaspoon butter, six slices bacon, one large sweet potato, cubed"</span><span class="p">,</span>
-    <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown, about eight minutes Remove and chop                       coarsely."</span>
+    <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown, about eight minutes Remove and chop coarsely."</span>
+    <span class="s2">"imageUrl"</span><span class="p">:</span> <span class="s2">"https://res.cloudinary.com/chibuezeayogu/image/upload/v1516758547/yn6qad8hnxqqtt4jpikk.jpg"</span>
 <span class="p">}</span>
 </code></pre>
 <blockquote>
@@ -572,12 +586,14 @@
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
     <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Added successfully"</span><span class="p">,</span>
-    <span class="s2">"recipeInfo"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"recipe"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span><span class="p">,</span>
         <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
         <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"one teaspoon butter, six slices bacon, one large sweet potato, cubed"</span><span class="p">,</span>
         <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown, about eight minutes Remove and chop                   coarsely."</span>
+        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span><span class="p">,</span>
+        <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre><h3 id='request'>Request</h3>
@@ -591,12 +607,15 @@
 <li>Status: <code>201: Created</code></li>
 <li>Body <code>(application/json)</code></li>
 </ul>
+
+
+
 <h2 id='retrive-recipe'>Retrive Recipe</h2>
 <blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>   
-    <span class="s2">"recipeInfo"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"recipe"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span><span class="p">,</span>
         <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
@@ -618,6 +637,8 @@
 <li>Status: <code>200: OK</code></li>
 <li>Body <code>(application/json)</code></li>
 </ul>
+
+
 <h2 id='update-recipe'>Update Recipe</h2>
 <blockquote>
 <p>Request:</p>
@@ -631,12 +652,13 @@
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>   
     <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Updated Successfully"</span><span class="p">,</span>
-    <span class="s2">"recipeInfo"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"recipe"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span><span class="p">,</span>
         <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
         <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1 teaspoon butter, 6 slices bacon, 1 large sweet potato"</span><span class="p">,</span>
         <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown, about eight minutes Remove and chop coarsely."</span><span class="p">,</span>
+        <span class="s2">"imageUrl"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown, about eight minutes Remove and chop coarsely."</span><span class="p">,</span>
         <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span>
@@ -671,38 +693,47 @@
 <li>Status: <code>200: OK</code></li>
 <li>Body <code>(application/json)</code></li>
 </ul>
+
 <h2 id='get-all-recipe'>GET All Recipe</h2>
 <blockquote>
 <p>Response</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
-    <span class="p">{</span>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"pagination"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"totalCount"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">"currentPage"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"pageCount"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"pageSize"</span><span class="p">:</span> <span class="mi">2</span>
+  <span class="p">},</span>
+  <span class="s2">"recipes"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
         <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
         <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span><span class="p">,</span>
         <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
-        <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1 teaspoon butter, 6 slices bacon, 1 large sweet potato"</span><span class="p">,</span>
-        <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown, about eight minutes Remove and chop coarsely."</span><span class="p">,</span>
+        <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1 teaspoon butter; 6 slices bacon; 1 large sweet potato"</span><span class="p">,</span>
+        <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown; about eight minutes Remove and chop coarsely."</span><span class="p">,</span>
         <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">"addedBy"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span><span class="p">,</span>
         <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Best Steak Marinade in Existence"</span><span class="p">,</span>
-        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This is a family recipe that has been developed only over the last 5 years. In this short time it's made me famous in our close circle, but until now I've never shared it with anyone"</span><span class="p">,</span>
-        <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1/3 cup soy sauce, 1/2 cup olive oil"</span><span class="p">,</span>
-        <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Place the soy sauce, olive oil, lemon juice, Worcestershire sauce, garlic powder, basil, parsley, and pepper in a blender. Add hot pepper sauce and garlic, if desired. Blend on high speed for 30 seconds until thoroughly mixed."</span><span class="p">,</span>
-        <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s2">"addedBy"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T10:13:17.786Z"</span><span class="p">,</span>
-        <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T10:13:17.786Z"</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="s2">"id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Best Steak Marinade in Existence"</span><span class="p">,</span>
+          <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This is a family recipe that has been developed only over the last 5 years. In this short time it's made me famous in our close circle, but until now I've never shared it with anyone"</span><span class="p">,</span>
+          <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1/3 cup soy sauce; 1/2 cup olive oil"</span><span class="p">,</span>
+          <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Place the soy sauce; olive oil; lemon juice; Worcestershire sauce; garlic powder; basil; parsley; and pepper in a blender; Add hot pepper sauce and garlic; if desired, blend on high speed for 30 seconds until thoroughly mixed."</span><span class="p">,</span>
+          <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="s2">"addedBy"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T10:13:17.786Z"</span><span class="p">,</span>
+          <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T10:13:17.786Z"</span>
+      <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
 </code></pre><h3 id='request-5'>Request</h3>
 <ul>
 <li>Endpoint: GET: <code>/api/v1/recipes</code></li>
@@ -714,12 +745,67 @@
 <li>Status: <code>200: OK</code></li>
 <li>Body <code>(application/json)</code></li>
 </ul>
-<h1 id='voting'>Voting</h1><h2 id='upvote-recipe'>Upvote Recipe</h2>
+<h2 id='get-all-recipe'>GET User Recipes</h2>
 <blockquote>
 <p>Response</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
-    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Successfully upvoted"</span>
+  <span class="s2">"pagination"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"totalCount"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">"currentPage"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"pageCount"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"pageSize"</span><span class="p">:</span> <span class="mi">2</span>
+  <span class="p">},</span>
+  <span class="s2">"recipes"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span><span class="p">,</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
+        <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1 teaspoon butter; 6 slices bacon; 1 large sweet potato"</span><span class="p">,</span>
+        <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown; about eight minutes Remove and chop coarsely."</span><span class="p">,</span>
+        <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"addedBy"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span><span class="p">,</span>
+        <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="s2">"id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Best Steak Marinade in Existence"</span><span class="p">,</span>
+          <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This is a family recipe that has been developed only over the last 5 years. In this short time it's made me famous in our close circle, but until now I've never shared it with anyone"</span><span class="p">,</span>
+          <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1/3 cup soy sauce; 1/2 cup olive oil"</span><span class="p">,</span>
+          <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Place the soy sauce; olive oil; lemon juice; Worcestershire sauce; garlic powder; basil; parsley; and pepper in a blender; Add hot pepper sauce and garlic; if desired, blend on high speed for 30 seconds until thoroughly mixed."</span><span class="p">,</span>
+          <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="s2">"addedBy"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T10:13:17.786Z"</span><span class="p">,</span>
+          <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T10:13:17.786Z"</span>
+      <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-5'>Request</h3>
+<ul>
+<li>Endpoint: GET: <code>/api/v1/users/:userId/recipes</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-5'>Response</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+
+
+
+<h1 id='voting'>Voting</h1>
+<h2 id='upvote-recipe'>Upvote Recipe</h2>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"voting recorded"</span>
 <span class="p">}</span>
 </code></pre><h3 id='request'>Request</h3>
 <ul>
@@ -737,7 +823,7 @@
 <p>Response</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
-    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Successfully downvoted"</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"voting recorded"</span>
 <span class="p">}</span>
 </code></pre><h3 id='request-2'>Request</h3>
 <ul>
@@ -750,71 +836,21 @@
 <li>Status: <code>200: OK</code></li>
 <li>Body <code>(application/json)</code></li>
 </ul>
-<h1 id='favourita'>Favourite</h1><h2 id='upvote-recipe'>Upvote Recipe</h2>
+
+
+
+<h1 id='favourita'>Favourite</h1>
+<h2 id='upvote-recipe'>Add to Favourite</h2>
 <blockquote>
 <p>Response</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
-    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Successfully added to you favourite"</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Added to your list of favourite"</span>
 <span class="p">}</span>
 </code></pre><h3 id='request'>Request</h3>
 <ul>
-<li>Endpoint: PUT: <code>/api/v1/users/:id/add</code></li>
+<li>Endpoint: PUT: <code>/api/v1/recipes/2/addOrRemoveFavourite</code></li>
 <li>Requires: Authentication</li>
-<li>Body <code>(application/json)</code></li>
-</ul>
-<h3 id='response'>Response</h3>
-<ul>
-<li>Status: <code>200: Created</code></li>
-<li>Body <code>(application/json)</code></li>
-</ul>
-<h2 id='downvote-recipe'>Downvote Recipe</h2>
-<blockquote>
-<p>Response</p>
-</blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
-    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Recipe has been removed from your Favourite"</span>
-<span class="p">}</span>
-</code></pre><h3 id='request-2'>Request</h3>
-<ul>
-<li>Endpoint: PUT: <code>/api/v1/users/:id/remove</code></li>
-<li>Requires: Authentication</li>
-<li>Body <code>(application/json)</code></li>
-</ul>
-<h3 id='response-2'>Response</h3>
-<ul>
-<li>Status: <code>200: OK</code></li>
-<li>Body <code>(application/json)</code></li>
-</ul>
-<h1 id='reviews'>Reviews</h1><h2 id='post-reviews'>Post Reviews</h2>
-<blockquote>
-<p>Response:</p>
-</blockquote>
-
-
-<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
-    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Comment Posted"</span>
-    <span class="s2">"review"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-        <span class="s2">"view"</span><span class="p">:</span> <span class="s2">"false"</span><span class="p">,</span>
-        <span class="s2">"comment"</span><span class="p">:</span> <span class="s2">"Nice Recipe."</span><span class="p">,</span>
-        <span class="s2">"userId"</span><span class="p">:</span> <span class="s2">2</span><span class="p">,</span>
-        <span class="s2">"recipeId"</span><span class="p">:</span> <span class="s2">20</span><span class="p">,</span>
-        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2018-01-23T03:01:04.276Z"</span><span class="p">,</span>
-        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2018-01-23T03:01:04.276Z"</span><span class="p">,</span>
-        <span class="s2">"User"</span><span class="p">:</span> <span class="p">{</span>
-              <span class="s2">"firstName"</span><span class="p">:</span> <span class="s2">"Chibueze"</span><span class="p">,</span>
-              <span class="s2">"lastName"</span><span class="p">:</span> <span class="s2">"Ayogu"</span><span class="p">,</span>
-              <span class="s2">"imageUrl"</span><span class="p">:</span> <span class="s2">"https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg"</span>
-          <span class="p">}</span>
-    <span class="p">}</span>
-
-<span class="p">}</span>
-</code></pre><h3 id='request'>Request</h3>
-
-
-<ul>
-<li>Endpoint: POST: <code>/api/v1/recipes/:id/reviews</code></li>
 <li>Body <code>(application/json)</code></li>
 </ul>
 <h3 id='response'>Response</h3>
@@ -823,7 +859,182 @@
 <li>Body <code>(application/json)</code></li>
 </ul>
 
-      </div>
+
+<h2 id='downvote-recipe'>Remove from Favourite</h2>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Removed from your list of favourites"</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-2'>Request</h3>
+<ul>
+<li>Endpoint: PUT: <code>/api/v1/recipes/2/addOrRemoveFavourite</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-2'>Response</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+
+
+
+<h2 id='get-user-recipe'>Get user Favourites</h2>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"pagination"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"totalCount"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">"currentPage"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"pageCount"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"pageSize"</span><span class="p">:</span> <span class="mi">2</span>
+  <span class="p">},</span>
+  <span class="s2">"favourites"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Healthy Sweet Potato and Bacon Breakfast Casserole"</span><span class="p">,</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This casserole is a way to have healthy fats and delicious veggies without all the bad stuff."</span><span class="p">,</span>
+        <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1 teaspoon butter; 6 slices bacon; 1 large sweet potato"</span><span class="p">,</span>
+        <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Cook bacon in a skillet on medium heat until golden brown; about eight minutes Remove and chop coarsely."</span><span class="p">,</span>
+        <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"addedBy"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span><span class="p">,</span>
+        <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T09:06:49.519Z"</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="s2">"id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Best Steak Marinade in Existence"</span><span class="p">,</span>
+          <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"This is a family recipe that has been developed only over the last 5 years. In this short time it's made me famous in our close circle, but until now I've never shared it with anyone"</span><span class="p">,</span>
+          <span class="s2">"ingredients"</span><span class="p">:</span> <span class="s2">"1/3 cup soy sauce; 1/2 cup olive oil"</span><span class="p">,</span>
+          <span class="s2">"procedures"</span><span class="p">:</span> <span class="s2">"Place the soy sauce; olive oil; lemon juice; Worcestershire sauce; garlic powder; basil; parsley; and pepper in a blender; Add hot pepper sauce and garlic; if desired, blend on high speed for 30 seconds until thoroughly mixed."</span><span class="p">,</span>
+          <span class="s2">"upvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="s2">"downvotes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="s2">"views"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="s2">"addedBy"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T10:13:17.786Z"</span><span class="p">,</span>
+          <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-09-17T10:13:17.786Z"</span>
+      <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre><h3 id='request-2'>Request</h3>
+<ul>
+<li>Endpoint: GET: <code>/api/v1/users/:userId/favouriteRecipes</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-2'>Response</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+
+
+<h1 id='reviews'>Reviews</h1>
+<h2 id='post-review'>Post Review</h2>
+<blockquote>
+  <p>Request:</p>
+  </blockquote>
+  <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"comment"</span><span class="p">:</span> <span class="s2">"Nice Recipe"</span>
+<span class="p">}</span>
+  </code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Comment Posted"</span>
+    <span class="s2">"review"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="s2">"view"</span><span class="p">:</span> <span class="s2">"false"</span><span class="p">,</span>
+        <span class="s2">"comment"</span><span class="p">:</span> <span class="s2">"Nice Recipe."</span><span class="p">,</span>
+        <span class="s2">"userId"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"recipeId"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2018-01-23T03:01:04.276Z"</span><span class="p">,</span>
+        <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2018-01-23T03:01:04.276Z"</span><span class="p">,</span>
+        <span class="s2">"User"</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="s2">"firstName"</span><span class="p">:</span> <span class="s2">"Chibueze"</span><span class="p">,</span>
+              <span class="s2">"lastName"</span><span class="p">:</span> <span class="s2">"Ayogu"</span><span class="p">,</span>
+              <span class="s2">"imageUrl"</span><span class="p">:</span> <span class="s2">"https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg"</span>
+        <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><h3 id='request'>Request</h3>
+
+
+<ul>
+<li>Endpoint: POST: <code>/api/v1/recipes/:recipeId/reviews</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response'>Response</h3>
+<ul>
+<li>Status: <code>201: Created</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+
+
+
+
+
+<h2 id='get-reviews'>Get Reviews</h2>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>  
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+      <span class="s2">"view"</span><span class="p">:</span> <span class="s2">"false"</span><span class="p">,</span>
+      <span class="s2">"comment"</span><span class="p">:</span> <span class="s2">"Nice Recipe."</span><span class="p">,</span>
+      <span class="s2">"userId"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">"recipeId"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+      <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2018-01-23T03:01:04.276Z"</span><span class="p">,</span>
+      <span class="s2">"createdAt"</span><span class="p">:</span> <span class="s2">"2018-01-23T03:01:04.276Z"</span><span class="p">,</span>
+      <span class="s2">"User"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"firstName"</span><span class="p">:</span> <span class="s2">"Chibueze"</span><span class="p">,</span>
+        <span class="s2">"lastName"</span><span class="p">:</span> <span class="s2">"Ayogu"</span><span class="p">,</span>
+        <span class="s2">"imageUrl"</span><span class="p">:</span> <span class="s2">"https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg"</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre><h3 id='request-2'>Request</h3>
+<ul>
+<li>Endpoint: GET: <code>/api/v1/recipes/:recipeId/reviews</code></li>
+<li>Requires: Authentication</li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+<h3 id='response-2'>Response:</h3>
+<ul>
+<li>Status: <code>200: OK</code></li>
+<li>Body <code>(application/json)</code></li>
+</ul>
+
+<h1 id='erros'>Errors</h1>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified recipe could not be found.</td>
+</tr>
+</tbody></table>
+</div>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="javascript">javascript</a>

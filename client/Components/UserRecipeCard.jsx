@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
 
 /**
  *
@@ -18,7 +18,7 @@ import swal from 'sweetalert'
 class UserRecipeCard extends Component {
 
   handelEditRecipe(id) {
-    this.props.addOrRemoveFavourite(id);
+    this.props.history.push(`/user/recipes/${id}/edit`);
    }
 
   handelDeleteRecipe(id, title) {
@@ -42,26 +42,27 @@ class UserRecipeCard extends Component {
     const { user } = jwtDecode(token);
     const { recipe } = this.props;
     return (
-      <div className="col s12 m4 l3">
+      <div className="col s12 m6 l4">
         <div className="card hoverable">
           <Link to={`/recipes/${recipe.id}`}>
             <img
               src={recipe.imageUrl}
               alt=""
               className="responsive-img img-height"
+              style={{ width: '100%' }}
             />
           </Link>
           <div 
             className="card-content black-text grey lighten-5">
-            <span className="card-title text-title">
+            <span className="card-title text-title truncate">
               {recipe.title}
             </span>
-            <p className="text-description">
-              {recipe.description.substring(0, 25)}...
+            <p className="text-description truncate">
+              {recipe.description}
             </p>
             <hr />
-            <p className="text-description">
-              posted { moment(new Date(recipe.createdAt)).fromNow()}
+            <p className="text-description truncate">
+              Posted { moment(new Date(recipe.createdAt)).fromNow()}
             </p>
           </div>
           <div 
@@ -80,19 +81,14 @@ class UserRecipeCard extends Component {
                   aria-hidden="true"> {recipe.downvotes}
               </i>  
             </a>
-            {/* <a className="black-text">
-              <i 
-                className="fa fa-eye" 
-                  aria-hidden="true"> {recipe.views}
-              </i>
-            </a> */}
             <a 
               className="black-text" 
-                onClick={() => this.handelEditRecipe(recipe.id)}
-                style={{ cursor: 'pointer' }}
+              onClick={() => this.handelEditRecipe(recipe.id)}
+              style={{ cursor: 'pointer' }}
               >
-              <i 
-                className="fa fa-pencil-square-o black-text" 
+                <i 
+                  className="fa fa-pencil-square-o black-text"
+                  
                   aria-hidden="true" /> 
             </a>
 

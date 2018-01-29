@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -8,7 +8,8 @@ import { createRecipe } from '../action/actionCreators';
 import SmallPreloader from './SmallPreloader.jsx';
 import Footer from './Footer/Footer.jsx';
 import UserMenu from './Header/UserMenu.jsx';
-import { validateAddRecipe } from '../util/validateInputs';
+import imageToFormData from '../util/ImageUpload';
+import { validateAddRecipeForm } from '../util/validateInputs';
 
 const CLOUDINARY_URL = process.env.CLOUDINARY_URL;
 const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET;
@@ -82,11 +83,21 @@ class AddRecipe extends Component {
     }
   }
 
-
-  handleChange(e) {
-    e.preventDefault();
+/**
+   * @description Set the state of user input
+   *
+   * @method
+   *
+   * @memberOf SignUp
+   *
+   * @param {Event} event - event object
+   *
+   * @returns {void}
+   */
+  handleChange(event) {
+    event.preventDefault();
     this.setState({ errors: {} });
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   /**
@@ -96,13 +107,13 @@ class AddRecipe extends Component {
    *
    * @memberOf AddRecipe
    *
-   * @param {Event} e
+   * @param {Event} event - event object
    *
    * @returns {void}
    */
-  handleImageChange(e) {
-    e.preventDefault();
-    const file = e.target.files[0];
+  handleImageChange(event) {
+    event.preventDefault();
+    const file = event.target.files[0];
     this.setState({ errors: {}, image: {} });
     this.setState({ image: file });
   }
@@ -115,36 +126,26 @@ class AddRecipe extends Component {
    *
    * @memberOf AddRecipe
    *
-   * @param {Event} e
+   * @param {Event} event 
    *
    * @returns {void}
    *
    */
-  handleOnsubmit(e) {
-    e.preventDefault();
-    const err = validateAddRecipe(this.state);
+  handleOnsubmit(event) {
+    event.preventDefault();
+    const err = validateAddRecipeForm(this.state);
     if (err.isError) {
       return this.setState({ errors: err.errors });
     }
-
     this.setState({ disabled: true });
-    const formData = new FormData();
-    formData.append('file', this.state.image);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    const uploadData = imageToFormData(this.state.image);
     delete axios.defaults.headers.common['Authorization'];
-    
-    axios({
-      url: CLOUDINARY_URL,
-      method: 'POST',
-      data: formData,
-    }).then((data) => {
-      this.setState({ imageUrl: data.data.secure_url, disabled: false });
-      const {
-        title, description, ingredients, procedures, imageUrl,
-      } = this.state;
-      console.log(imageUrl, 'image');
-      this.props.createRecipe(title, description, ingredients, procedures, imageUrl);
-    }).catch(() => { 
+
+    axios(uploadData)
+      .then((data) => {
+      this.setState({ imageUrl: data.data.secure_url });
+      this.props.createRecipe(this.state);
+    }).catch((error) => { 
       this.setState({ disabled: false });
       Materialize.toast("Error! Please try again", 4000, 'red');
     });
@@ -167,7 +168,7 @@ class AddRecipe extends Component {
         <UserMenu />
         <div className="main">
           <div className="container">
-            <div className="addrecipe-form z-depth-1">
+            <div className="addrecipe-form ">
               <div className="col l6 m8 s12 offset-l6 offset-m4">
                 <h4 className="center">Add Recipe</h4>
                 <hr />
@@ -196,6 +197,7 @@ class AddRecipe extends Component {
                       type="text"
                       value={this.state.description}
                       onChange={this.handleChange}
+                      style={{ wordWrap: 'break-word' }}
                     />
                     <label
                       htmlFor="description"
@@ -226,7 +228,7 @@ class AddRecipe extends Component {
                     <textarea
                       id="procedures"
                       name="procedures"
-                      value={this.state.password}
+                      value={this.state.procedures}
                       onChange={this.handleChange}
                       placeholder="enter procedures seperated by semicolon(;)"
                     />
@@ -236,23 +238,36 @@ class AddRecipe extends Component {
                   </span>
                 </div>
                 <div className="row">
-                  <div className="input-field col s12">
-                    <i className="material-icons prefix">insert_photo</i>
-                    <input
-                      type="file"
-                      name="profileImage"
-                      onChange={e => this.handleImageChange(e)}
-                    />
-                  </div>
-                  <span className="right red-text error-margin">
+                  <div 
+                    className="file-field input-field" 
+                    style={{ marginLeft: 10, marginRight: 10 }}>
+                    <div className="btn green">
+                      <span> 
+                        <i className="material-icons">insert_photo
+                        </i>
+                      </span>
+                      <input 
+                        type="file" 
+                        multiple 
+                        onChange={event => this.handleImageChange(event)} />
+                    </div>
+                    <div className="file-path-wrapper">
+                      <input 
+                        className="file-path validate" 
+                        type="text" 
+                        placeholder="Upload recipe image" />
+                    </div>
+                    <span className="right red-text error-margin">
                     {this.state.errors.imageError}
                   </span>
+                  </div>
                 </div>
                 <div className="row">
                   <button
                     className="btn right green"
                     type="submit"
                     name="action"
+                    disabled={this.state.disabled}
                     style={{ marginRight: 10 }}
                   >Post
                   </button>

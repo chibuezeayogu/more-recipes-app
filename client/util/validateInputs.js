@@ -20,7 +20,7 @@ const validator = new ValidatePassword(options);
    * @returns {Object} return - return object
    *
    */
-export const validateSignUp = (value) => {
+export const validateSignUpForm = (value) => {
   const {
     firstName, lastName, email, password, image
   } = value;
@@ -72,14 +72,14 @@ export const validateSignUp = (value) => {
 };
 
 /**
-   * @description validateSignIn function
+   * @description validateSignInForm function
    *
    * @param {Object} value - object
    *
    * @returns {Object} return - return object
    *
    */
-export const validateSignIn = (value) => {
+export const validateSignInForm  = (value) => {
   const { email, password } = value;
   const errors = {};
 
@@ -102,7 +102,7 @@ export const validateSignIn = (value) => {
    * @returns {Object} result - result object
    *
    */
-export const validateAddRecipe = (value) => {
+export const validateAddRecipeForm  = (value) => {
   const {
     title, description, ingredients, procedures, image
   } = value;
@@ -153,7 +153,7 @@ export const validateAddRecipe = (value) => {
    * @returns {Object} return - return object
    *
    */
-  export const validateComment = (value) => {
+  export const validateCommentForm  = (value) => {
     const { comment } = value;
     const errors = {};
   
@@ -166,3 +166,83 @@ export const validateAddRecipe = (value) => {
     return { isError: !lodash.isEmpty(errors), errors };
   };
   
+
+  /**
+   * @description validateEditRecipeForm function
+   *
+   * @param {Object} value - object
+   *
+   * @returns {Object} return - return object
+   */
+  export const validateEditRecipeForm = (value) => {
+    const {
+      title, description, ingredients, procedures, image
+    } = value;
+    const errors = {};
+  
+    if (title.trim().length === 0) {
+      errors.titleError = 'title is required';
+    } else if (title.length < 5) {
+      errors.titleError = 'title must be at least 5 characters long';
+    }
+  
+    if (description.trim().length === 0) {
+      errors.descriptionError = 'description is required';
+    } else if (description.length < 5) {
+      errors.descriptionError = 'description must be at least 5 characters long';
+    }
+  
+    if (ingredients.trim().length === 0) {
+      errors.ingredientsError = 'ingredients is required';
+    } else if (ingredients.length < 5) {
+      errors.ingredientsError = 'ingredients must be at least 5 characters long';
+    }
+  
+    if (procedures.trim().length === 0) {
+      errors.proceduresError = 'procedures is required';
+    } else if (procedures.length < 5) {
+      errors.proceduresError = 'procedures must be at least 5 characters long';
+    }
+
+    // if (image) {
+    //   switch (image.type) {
+    //     case 'image/png':
+    //     case 'image/jpeg':
+    //     case 'image/gif':
+    //     case 'image/bmp':
+    //       break;
+    //     default:
+    //       errors.imageError = 'select a valid file type';
+    //   }
+    // }
+  
+    return { isError: !lodash.isEmpty(errors), errors };
+  };
+
+
+   /**
+   * @description validateImage function
+   *
+   * @param {Object} value - object
+   *
+   * @returns {Object} return - return object
+   */
+  export const validateImage = (value) => {
+    const { image } = value;
+    const errors = {};
+
+    if (image) {
+      switch (image.type) {
+        case 'image/png':
+        case 'image/jpeg':
+        case 'image/gif':
+        case 'image/bmp':
+          break;
+        default:
+          errors.imageError = 'select a valid file type';
+      }
+    }
+  
+    return { isError: !lodash.isEmpty(errors), errors };
+  };
+
