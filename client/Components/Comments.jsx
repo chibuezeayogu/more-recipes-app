@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 const Comments = (props) => {
   const { review } = props;
@@ -9,11 +10,16 @@ const Comments = (props) => {
         alt=""
         className="circle responsive-img"
       />
-      <span className="title strong">{review.User.firstName}</span>
-      <p>
+      <span className="text-title bold">{review.User.firstName}</span>
+   
+      <p 
+        className="" 
+        style={{ wordWrap: 'break-word' }}>
         {review.comment}
       </p>
-      <a href="#!" className="secondary-content" />
+      <div className="secondary-content">
+      { moment(new Date(review.createdAt)).fromNow()}
+      </div>
     </li>
   );
 };

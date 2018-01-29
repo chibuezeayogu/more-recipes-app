@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../action/actionCreators';
 import UserFavouriteCard from './UserFavouriteCard.jsx';
+import { onPageChange, onPageReload } from '../util/pageFunctions';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 import Preloader from './Preloder.jsx';
@@ -39,16 +40,14 @@ class UserFavouritesList extends Component {
    */
   componentWillMount() {
     const token = localStorage.getItem('jwtToken');
+    const currentPage = this.props.location.search.substring(6);
     const { user } = jwtDecode(token);
     if (!token) {
       this.props.history.push('/');
     } else {
-      const currentPage = this.props.location.search.substring(6);
-      if (Number(currentPage) && Number(currentPage) > 0) {
-        const offset = 8 * (currentPage - 1);
-        this.props.getUserFavourites(offset);
-      } else {
-        this.props.getUserFavourites(user.id, 0);
+      const { isTrue, offset } = onPageReload(currentPage);
+      if (isTrue) {
+        this.props.getUserFavourites(user.id, offset);
       }
     }
   }
@@ -65,8 +64,17 @@ class UserFavouritesList extends Component {
    * @returns {void}
    */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.favouriteReducer.isFetched) {
+    const token = localStorage.getItem('jwtToken');
+    const { user } = jwtDecode(token);
+    const { isFetched, favourites, isDeleted, pagination } = nextProps.favouriteReducer;
+    if (isFetched) {
       this.setState({ isLoading: false });
+    } else {
+      const { isTrue, offset } = onPageChange(favourites, isDeleted, pagination);
+      if (isTrue) {
+        this.setState({ isLoading: true });
+        this.props.getUserFavourites(user.id, offset);
+      }
     }
   }
 
@@ -85,7 +93,7 @@ class UserFavouritesList extends Component {
     const token = localStorage.getItem('jwtToken');
     const { user } = jwtDecode(token);
     this.props.history.push(`/user/favourites?page=${page}`);
-    const offset = 8 * (page - 1);
+    const offset = 6 * (page - 1);
     this.props.getUserFavourites(user.id, offset);
   }
 
@@ -103,7 +111,7 @@ class UserFavouritesList extends Component {
   render() {
     const { favourites, pagination } = this.props.favouriteReducer;
     let favouriteRecipes;
-    if (favourites && favourites.length === 0) {
+    if (favourites && favourites.length === 0 && !this.state.isLoading) {
       favouriteRecipes = <h4 className="center-align">
       You have no recipe in your favourite
       </h4>;

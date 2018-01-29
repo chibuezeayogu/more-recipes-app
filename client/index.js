@@ -14,6 +14,7 @@ import NotFound from './Components/NotFound.jsx';
 import AddRecipe from './Components/AddRecipe.jsx';
 import SingleRecipe from './Components/SingleRecipe.jsx';
 import UserFavouritesList from './Components/UserFavouritesList.jsx';
+import EditRecipe from './Components/EditRecipe.jsx';
 import Search from './Components/Search.jsx';
 
 import store from './store';
@@ -41,6 +42,7 @@ const App = (
         <Route path="/recipes" component={RecipesList} onEnter={requireAuth} />
         <Route path="/addrecipe" component={AddRecipe} onEnter={requireAuth} />
         <Route path="/user/favourites" component={UserFavouritesList} onEnter={requireAuth} />
+        <Route path="/user/recipes/:id/edit" component={EditRecipe} onEnter={requireAuth} />
         <Route path="/user/recipes" component={UserRecipesList} onEnter={requireAuth} />
         <Route path="*" component={NotFound} onEnter={requireAuth} />
       </Switch>

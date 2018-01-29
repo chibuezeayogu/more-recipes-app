@@ -78,7 +78,7 @@ class UserMenu extends Component {
                   src={image}
                   className="responsive-img image-radius"
                   alt=""
-                  style={{ height: 25 }}
+                  style={{ height: 25, marginRight: 10, marginLeft: 10 }}
                 />More Recipes
               </a>
               <a

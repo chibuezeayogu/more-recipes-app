@@ -48,7 +48,7 @@ export default {
      * query limit: get query limit if supplie else use default
      * query offset: get query offset if supplie else use default
      */
-    query.limit = req.query.limit || 8;
+    query.limit = req.query.limit || 6;
     query.offset = req.query.offset || 0;
 
     /**
@@ -198,7 +198,7 @@ export default {
      * query limit: get query limit if supplie else use default
      * query offset: get query offset if supplie else use default
      */
-    query.limit = req.query.limit || 8;
+    query.limit = req.query.limit || 6;
     query.offset = req.query.offset || 0;
 
 
@@ -223,26 +223,12 @@ export default {
     * @returns {Object} json - payload
     */
 
-  searchByTitleORIngredient(req, res) {
-    let query = {};
+  search(req, res) {
 
-    if (req.query.title) {
-      query = {
-        where: {
-          title: {
-            $iLike: `%${req.query.title.trim()}%`
-          },
-        },
-      };
-    } else {
-      query = {
-        where: {
-          ingredients: {
-            $iLike: `%${req.query.ingredients.trim()}%`
-          },
-        },
-      };
-    }
+    const search = req.query.search.split(' ');
+
+    const recipeIngredints = search.map(value => ({ ingredients: { $iLike: `%${value}%` } }));
+    const recipeTitle = search.map(value => ({ name: { $iLike: `%${value}%` } }));
 
     /**
      * query limit: get query limit if supplie else use default
@@ -260,7 +246,11 @@ export default {
      */
     Recipe
       .findAndCountAll(
-        query, {
+        {
+          where: {
+            $or:
+            recipeIngredints.concat(recipeTitle),
+          }, 
           order: [['id', 'DESC']],
           limit: query.limit,
           offset: query.offset,

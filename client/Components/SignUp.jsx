@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { createAccount } from '../action/actionCreators';
-import { validateSignUp } from '../util/validateInputs';
+import { validateSignUpForm } from '../util/validateInputs';
 import Menu from './Header/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
 import SmallPreloader from './SmallPreloader.jsx';
+import imageToFormData from '../util/ImageUpload';
 
 
 const CLOUDINARY_URL = process.env.CLOUDINARY_URL;
@@ -132,34 +133,23 @@ class SignUp extends Component {
    */
   handleOnsubmit(e) {
     e.preventDefault();
-    const err = validateSignUp(this.state);
+    const err = validateSignUpForm(this.state);
     if (err.isError) {
       return this.setState({ errors: err.errors });
     }
 
     this.setState({ disabled: true });
-    const formData = new FormData();
-    formData.append('file', this.state.image);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    const uploadData = imageToFormData(this.state.image);
     delete axios.defaults.headers.common['Authorization'];
-    axios({
-      url: CLOUDINARY_URL,
-      method: 'POST',
-      data: formData,
-    }).then((data) => {
-      this.setState({ imageUrl: data.data.secure_url, disabled: false });
-      const {
-        firstName,
-        lastName,
-        email,
-        password,
-        imageUrl
-      } = this.state;
-      this.props.createAccount(firstName, lastName, email, password, imageUrl);
-    }).catch(() => { 
+
+    axios(uploadData)
+      .then((data) => {
+      this.setState({ imageUrl: data.data.secure_url });
+      this.props.createAccount(this.state);
+    }).catch((error) => { 
       this.setState({ disabled: false });
       Materialize.toast("Error! Please try again", 4000, 'red');
-    });;
+    });
   }
 
    /**

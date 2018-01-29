@@ -40,7 +40,7 @@ const routes = (router) => {
     .get(verifyToken, recipeController.getMostUpVote);
 
   router.route('/recipes/search')
-    .get(verifyToken, recipeController.searchByTitleORIngredient);
+    .get(verifyToken, recipeController.search);
 
   router.route('/users/:userId/recipes')
     .get(verifyToken, checkAndValidateUserParams, recipeController.userRecipes);

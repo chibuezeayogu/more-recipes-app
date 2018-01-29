@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { login } from '../action/actionCreators';
-import { validateSignIn } from '../util/validateInputs';
+import { validateSignInForm } from '../util/validateInputs';
 import Menu from './Header/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
 
@@ -104,7 +104,7 @@ class SignIn extends Component {
    */
   handleOnsubmit(e) {
     e.preventDefault();
-    const err = validateSignIn(this.state);
+    const err = validateSignInForm(this.state);
     if (err.isError) {
       return this.setState({ errors: err.errors });
     }

@@ -24,7 +24,7 @@ const Home = () => (
         </div>
       </div>
       <div className="parallax" >
-        <img src="http://res.cloudinary.com/chibuezeayogu/image/upload/v1514924945/recipe1_agzmiy.jpg" alt="" className="responsive-img" />
+        <img src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1514924945/recipe1_agzmiy.jpg" alt="" className="responsive-img" />
       </div>
     </div>
     <div className="container">
@@ -34,7 +34,7 @@ const Home = () => (
             <div className="icon-block">
               <h5 className="center home-recipes-title">Healthy Thanksgiving Recipes</h5>
               <p className="light">
-                <img src="http://res.cloudinary.com/chibuezeayogu/image/upload/v1515501870/tdjhjgqnpb6hppffgvf1.jpg" alt="" className="responsive-img circle" />
+                <img src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1515501870/tdjhjgqnpb6hppffgvf1.jpg" alt="" className="responsive-img circle" />
               </p>
             </div>
           </div>
@@ -42,7 +42,7 @@ const Home = () => (
             <div className="icon-block">
               <h5 className="center home-recipes-title">Chipotle Chilaquiles Recipe</h5>
               <p className="light">
-                <img src="http://res.cloudinary.com/chibuezeayogu/image/upload/v1516351138/chipotle_m8kfnh.jpg" alt="" className="responsive-img circle" />
+                <img src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1516351138/chipotle_m8kfnh.jpg" alt="" className="responsive-img circle" />
               </p>
             </div>
           </div>
@@ -50,7 +50,7 @@ const Home = () => (
             <div className="icon-block">
               <h5 className="center home-recipes-title">One-Pot Chicken Recipe</h5>
               <p className="light">
-                <img src="http://res.cloudinary.com/chibuezeayogu/image/upload/v1516351164/one_pot_yx9qfs.jpg" alt="" className="responsive-img circle" />
+                <img src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1516351164/one_pot_yx9qfs.jpg" alt="" className="responsive-img circle" />
               </p>
             </div>
           </div>
@@ -69,7 +69,7 @@ const Home = () => (
         </div>
       </div>
       <div className="parallax">
-        <img src="http://res.cloudinary.com/chibuezeayogu/image/upload/v1514927987/recipe4_re5xt9.jpg" alt="Unsplashed background img 2" />
+        <img src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1514927987/recipe4_re5xt9.jpg" alt="Unsplashed background img 2" />
       </div>
     </div>
     <div className="container">

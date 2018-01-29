@@ -42,7 +42,7 @@ class RecipesList extends Component {
     } else {
       const currentPage = this.props.location.search.substring(6);
       if (Number(currentPage) && Number(currentPage) > 0) {
-        const offset = 8 * (currentPage - 1);
+        const offset = 6 * (currentPage - 1);
         this.props.getAllRecipes(offset);
       } else {
         this.props.getAllRecipes(0);
@@ -80,7 +80,7 @@ class RecipesList extends Component {
    */
   onChange(page) {
     this.props.history.push(`/recipes?page=${page}`);
-    const offset = 8 * (page - 1);
+    const offset = 6 * (page - 1);
     this.props.getAllRecipes(offset);
   }
 

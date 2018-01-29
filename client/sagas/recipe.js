@@ -4,6 +4,7 @@ import axios from 'axios';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
 import setAuthorizationToken from '../util/setAuthToken';
+import imageToFormData from '../util/ImageUpload';
 
 /**
  * walker sagas will be called by watcher saga
@@ -27,7 +28,7 @@ function* fetchRecipes(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes?limit=8&offset=${action.offset}`);
+      `/api/v1/recipes?limit=6&offset=${action.offset}`);
     const { data } = response;
     yield put({ type: actionTypes.GET_ALL_RECIPES_SUCCESS, data });
   } catch (error) {
@@ -50,14 +51,11 @@ function* fetchRecipe(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes/${action.recipeId}`);
+      `/api/v1/recipes/${action.id}`);
     const { data } = response;
     yield put({ type: actionTypes.GET_RECIPE_SUCCESS, data });
   } catch (error) {
-    if (error.response.status === 400) {
-      Materialize.toast(error.response.data.message, 4000, 'red');
       yield put({ type: actionTypes.GET_RECIPE_ERROR });
-    }
   }
 }
 
@@ -73,11 +71,12 @@ function* fetchRecipe(action) {
  *
  */
 function* addRecipe(action) {
+  console.log(action);
   const { title, description, ingredients, procedures, imageUrl } = action;
   setAuthorizationToken();
   try {
     const response = yield call(axios.post, 
-      '/api/v1/recipes', { 
+      '/api/v1/recipes/', { 
         title,
         description,
         ingredients,
@@ -105,7 +104,8 @@ function* addRecipe(action) {
 function* upvoteRecipe(action) {
   setAuthorizationToken();
   try {
-    const response = yield call(axios.put, `/api/v1/recipes/${action.recipeId}/upvote`);
+    const response = yield call(axios.put,
+      `/api/v1/recipes/${action.recipeId}/upvote`);
     const { data } = response;
 
     Materialize.toast(data.message, 4000, 'green');
@@ -129,7 +129,8 @@ function* upvoteRecipe(action) {
 function* downvoteRecipe(action) {
   setAuthorizationToken();
   try {
-    const response = yield call(axios.put, `/api/v1/recipes/${action.recipeId}/downvote`);
+    const response = yield call(axios.put,
+      `/api/v1/recipes/${action.recipeId}/downvote`);
     const { data } = response;
 
     Materialize.toast(data.message, 4000, 'green');
@@ -154,7 +155,7 @@ function* fetchUserRecipes(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get, 
-      `/api/v1/users/${action.userId}/recipes?limit=8&offset=${action.offset}`);
+      `/api/v1/users/${action.userId}/recipes?limit=6&offset=${action.offset}`);
     const { data } = response;
     yield put({ type: actionTypes.GET_USER_RECIPES_SUCCESS, data });
   } catch (error) {
@@ -210,6 +211,37 @@ function* searchRecipe(action) {
     yield put({ type: actionTypes.SEARCH_RECIPE_SUCCESS, data });
   } catch (error) {
     yield put({ type: actionTypes.SEARCH_RECIPE_ERROR });
+  }
+}
+
+/**
+ *
+ * @description makes api call to update user recipe
+ *
+ * @method
+ *
+ * @param {Object} action - recipe id
+ *
+ * @returns {void}
+ *
+ */
+function* editRecipe(action) {
+  const { id, title, description, ingredients, procedures, imageUrl } = action;
+  setAuthorizationToken();
+  try {
+    const response = yield call(axios.put,
+      `/api/v1/recipes/${id}`, { 
+        title,
+        description,
+        ingredients,
+        procedures,
+        imageUrl
+    });
+    const { data } = response;
+    console.log(data, 'updated');
+    yield put({ type: actionTypes.EDIT_RECIPE_SUCCESS, data });
+  } catch (error) {
+    yield put({ type: actionTypes.EDIT_RECIPE_ERROR });
   }
 }
 
@@ -332,3 +364,16 @@ export function* watchDeleteRecipe() {
 export function* watchFetchMostRecipe() {
   yield takeEvery(actionTypes.GET_MOST_FAVOURITED_RECIPE, fetchMostRecipe);
 }
+
+/**
+ * @description watching GET_MOST_FAVOURITED_RECIPE action
+ *
+ * @method
+ *
+ * @returns {void}
+ *
+ */
+export function* watchEditRecipe() {
+  yield takeEvery(actionTypes.EDIT_RECIPE, editRecipe);
+}
+

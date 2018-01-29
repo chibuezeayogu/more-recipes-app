@@ -17,15 +17,17 @@ import actionTypes from './actionTypes';
  * @returns {Object} payload
  *
  */
-export const createRecipe =
-  (title, description, ingredients, procedures, imageUrl) => ({
+export const createRecipe = (state) => {
+  const { title, description, ingredients, procedures, imageUrl } = state;
+  return {
     type: actionTypes.ADD_RECIPE,
     title,
     description,
     ingredients,
     procedures,
     imageUrl
-  });
+  };
+}
 
 /**
  *
@@ -155,15 +157,17 @@ export const login = (email, password) => ({
  * @returns {Object} payload
  *
  */
-export const createAccount =
-  (firstName, lastName, email, password, imageUrl) => ({
+export const createAccount = (state) => {
+  const { firstName, lastName, email, password, imageUrl } = state;
+   return {
     type: actionTypes.SIGN_UP,
     firstName,
     lastName,
     email,
     password,
     imageUrl
-  });
+  };
+}
 
   /**
    * 
@@ -198,9 +202,9 @@ export const createAccount =
    * 
    * @returns {void}
    */
-  export const getRecipe = recipeId => ({
+  export const getRecipe = id => ({
     type: actionTypes.GET_RECIPE,
-    recipeId
+    id
   });
 
    /**
@@ -240,7 +244,9 @@ export const createAccount =
    *
    * @method
    * 
-   * @param {Integer} offset - user id
+   * @param {Integer} userId - user id
+   * 
+   * @param {Integer} offset - query offset
    * 
    * @returns {void}
    */
@@ -265,7 +271,37 @@ export const createAccount =
     searchTerm
   });
 
-export const mostUpvotedRecipe = () => ({
-  type: actionTypes.GET_MOST_FAVOURITED_RECIPE
-})
 
+// export const mostUpvotedRecipe = () => ({
+//   type: actionTypes.GET_MOST_FAVOURITED_RECIPE
+// })
+
+/**
+ *
+ * @method
+ *
+ * @param {String} title - recipe title
+ *
+ * @param {String} description - recipe description
+ *
+ * @param {String} ingredients - recipe ingredients
+ *
+ * @param {String} procedures - recipe procedures
+ *
+ * @param {String} imageURL - recipe imageUrl
+ *
+ * @returns {Object} payload
+ *
+ */
+export const editRecipe = (id, state) => {
+  const {title, description, ingredients, procedures, imageUrl } = state;
+  return {
+    type: actionTypes.EDIT_RECIPE,
+    id,
+    title,
+    description,
+    ingredients,
+    procedures,
+    imageUrl
+  };
+};

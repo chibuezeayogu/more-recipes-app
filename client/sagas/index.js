@@ -17,13 +17,15 @@ import { watchFetchRecipes,
   watchUpvoteRecipe,
   watchDownvoteRecipe,
   watchFetchUserRecipes,
-  watchSearchRecipe
+  watchSearchRecipe,
+  watchEditRecipe
 } from './recipe';
 
 function* rootSaga() {
   yield all([
     watchSignIn(),
     watchSignUp(),
+    watchEditRecipe(),
     watchPostComment(),
     watchDeleteComment(),
     watchFetchRecipes(),

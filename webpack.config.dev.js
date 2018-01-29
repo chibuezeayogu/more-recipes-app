@@ -32,7 +32,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('./css/style.css'),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new Dotenv(),
     HtmlWebpackPluginConfig
   ],

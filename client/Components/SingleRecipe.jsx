@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import jwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../action/actionCreators';
@@ -8,7 +9,7 @@ import Comments from './Comments.jsx';
 import Preloader from './Preloder.jsx';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
-import { validateComment } from '../util/validateInputs';
+import { validateCommentForm } from '../util/validateInputs';
 
 
 /**
@@ -62,6 +63,12 @@ class SingleRecipe extends Component {
     }
   }
 
+  componentDidMount() {
+    $(document).ready(function(){
+      $('.tooltipped').tooltip({delay: 50});
+    });
+       
+  }
   /**
    * @description checks if next recipes is fetched and disables is loading
    *
@@ -161,7 +168,7 @@ class SingleRecipe extends Component {
     const token = localStorage.getItem('jwtToken');
     const { user } = jwtDecode(token);
     const comment = this.state.comment;
-    const err = validateComment(this.state);
+    const err = validateCommentForm(this.state);
     console.log(err);
     if (err.isError) {
       return this.setState({ errors: err.errors });
@@ -242,17 +249,21 @@ class SingleRecipe extends Component {
                 <hr />
               </div>
               <div className="row space">
-                <div className="row s12 m6">
-                  <div className="col s12 m6">
+                <div className="row s12 m6 l6">
+                  <div className="col s12 m6 l6">
                     <div className="card">
                       <img
                         src={recipes[index].imageUrl}
                         alt=""
                         className="responsive-img"
+                        style={{ width: '100%' }}
                       />
                       <div className="card-action center grey lighten-5">
                         <a
-                          className="black-text"
+                          className="black-text tooltipped"
+                          data-position="bottom" 
+                          data-delay="50" 
+                          data-tooltip="up vote"
                           onClick={() => this.handleUpvote(id)}
                           style={{ cursor: 'pointer' }}
                         >
@@ -262,7 +273,10 @@ class SingleRecipe extends Component {
                           /> {recipes[index].upvotes}
                         </a>
                         <a
-                          className="black-text"
+                          className="black-text tooltipped"
+                          data-position="bottom" 
+                          data-delay="50" 
+                          data-tooltip="down vote"
                           onClick={() => this.handleDownvote(id)}
                           style={{ cursor: 'pointer' }}
                         >
@@ -273,7 +287,10 @@ class SingleRecipe extends Component {
                           </i>
                         </a>
                         <a
-                          className="black-text"
+                          className="black-text tooltipped"
+                          data-position="bottom" 
+                          data-delay="50" 
+                          data-tooltip="views"
                         >
                           <i
                             className="fa fa-eye"
@@ -281,7 +298,10 @@ class SingleRecipe extends Component {
                           /> {recipes[index].views}
                         </a>
                         <a
-                          className="black-text"
+                          className="black-text tooltipped"
+                          data-position="bottom" 
+                          data-delay="50" 
+                          data-tooltip="views"
                           style={{ cursor: 'pointer' }}
                           onClick={() => this.handleAddToFavourite(id)}
                         >
@@ -293,15 +313,17 @@ class SingleRecipe extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="col s4 m4 ">
-                    <h4 className="flow-text bold" style={{ heigth: 50 }}> 
+                  <div className="col s12 m6 l6">
+                    <h4 
+                      className="flow-text bold" 
+                      style={{ heigth: 40, wordWrap: 'break-word' }}> 
                      <p>{recipes[index].title}</p>
                     </h4>
                     <hr />
                     <div 
                       className="flow-text" 
-                      style={{ fontStyle: 'italic', fontSize: 20 }}>
-                     <p>{recipes[index].description}</p>
+                      style={{ fontStyle: 'italic', fontSize: 20, wordWrap: 'break-word' }}>
+                     <blockquote>{recipes[index].description}</blockquote>
                     </div>
                   </div>
                 </div>
@@ -314,6 +336,7 @@ class SingleRecipe extends Component {
                         (
                           <li
                             className="collection-item"
+                            style={{ wordWrap: 'break-word' }}
                             key={i}
                           >
                             {ingredient}
@@ -329,6 +352,7 @@ class SingleRecipe extends Component {
                         (
                           <li
                             className="collection-item"
+                            style={{ wordWrap: 'break-word' }}
                             key={i}
                           >
                             {procedure}
@@ -339,11 +363,6 @@ class SingleRecipe extends Component {
                 </div>
                 <div className="row s12 m6">
                   <h4>Comments</h4>
-                  <ul className="collection">
-                    {this.renderComment()}
-                  </ul>
-                </div>
-                <div className="row s12 m6">
                   <form onSubmit={e => this.handleOnsubmit(e)}>
                     <div className="row">
                       <div className="input-field col s12">
@@ -371,7 +390,11 @@ class SingleRecipe extends Component {
                       </button>
                     </div>
                   </form>
+                  <ul className="collection">
+                    {this.renderComment()}
+                  </ul>
                 </div>
+                
               </div>
             </div>
         </div>

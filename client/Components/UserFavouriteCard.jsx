@@ -38,26 +38,27 @@ class UserFavouriteCard extends Component {
     const { user } = jwtDecode(token);
     const { favourite } = this.props;
     return (
-      <div className="col s12 m4 l3">
+      <div className="col s12 m6 l4">
         <div className="card hoverable">
           <Link to={`/recipes/${favourite.id}`}>
             <img
               src={favourite.imageUrl}
               alt=""
               className="responsive-img img-height"
+              style={{ width: '100%' }}
             />
           </Link>
           <div 
             className="card-content black-text grey lighten-5">
-            <span className="card-title text-title">
+            <span className="card-title text-title truncate">
               {favourite.title}
             </span>
-            <p className="text-description">
-              {favourite.description.substring(0, 25)}...
+            <p className="text-description truncate">
+              {favourite.description}
             </p>
             <hr />
-            <p className="text-description">
-            posted { moment(new Date(favourite.createdAt)).fromNow()}
+            <p className="text-description truncate">
+            Posted { moment(new Date(favourite.createdAt)).fromNow()}
             </p>
           </div>
           <div 

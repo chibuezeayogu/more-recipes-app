@@ -17,7 +17,8 @@ const Menu = () => (
         <a className="brand-logo">
           <img src={image} 
             className="responsive-img image-radius" 
-            alt="" style={{ height: 25 }} />More Recipes</a>
+            alt="" style={{ height: 25, marginRight: 10, marginLeft: 10 }} />
+            More Recipes</a>
         <a 
           data-activates="mobile-demo" 
           className="button-collapse">

@@ -31,6 +31,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/API-Documentation', express.static('build'));
 routes(router);
 app.use('/api/v1', router);
 
@@ -40,7 +41,6 @@ app.get('/api/v1', (req, res) => res.status(200).send({
   message: 'Welcome to More Recipes App',
 }));
 
-app.use('/API-Documentation', express.static('build'));
 
 app.use('/', express.static('dist'));
 app.use('*', express.static('dist'));

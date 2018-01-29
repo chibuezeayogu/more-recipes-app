@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
 import setAuthorizationToken from '../util/setAuthToken';
+import imageToFormData from '../util/ImageUpload';
 
 /**
  * walker sagas will be called by watcher saga
@@ -39,6 +40,7 @@ function* signIn(action) {
     yield put({ type: actionTypes.SIGN_IN_SUCCESS, user: decode.user });
   } catch (error) {
     Materialize.toast(error.response.data.message, 4000, 'red');
+    yield put({ type: actionTypes.SIGN_IN_ERROR });
   }
 }
 
@@ -53,9 +55,7 @@ function* signIn(action) {
  *
  */
 function* createUser(action) {
-  const {
-    firstName, lastName, email, password, imageUrl
-  } = action;
+  const { firstName, lastName, email, password, imageUrl } = action;
   try {
     const response = yield call(axios.post, '/api/v1/users/signup',
       {
