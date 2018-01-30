@@ -23,7 +23,7 @@ describe('Users', () => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
           expect(res.body.message).to.eql(['first name is required',
-            'first name must be at least 3 and not start with an empty space']);
+            'first name must be at least 3 characters long']);
           done();
         });
     });
@@ -40,7 +40,7 @@ describe('Users', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['first name must be at least 3 and not start with an empty space']);
+          expect(res.body.message).to.eql(['first name must be at least 3 characters long']);
           done();
         });
     });
@@ -58,7 +58,7 @@ describe('Users', () => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
           expect(res.body.message).to.eql(['last name is required',
-            'last name must be at least 3 character and not start with an empty space']);
+            'last name must be at least 3 character long']);
           done();
         });
     });
@@ -75,7 +75,7 @@ describe('Users', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['last name must be at least 3 character and not start with an empty space']);
+          expect(res.body.message).to.eql(['last name must be at least 3 character long']);
           done();
         });
     });
@@ -127,24 +127,7 @@ describe('Users', () => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
           expect(res.body.message).to.eql(['password is required',
-            'Password must be at least 8 and at most 32 characters without space']);
-          done();
-        });
-    });
-    it('should return an error message if password contains empty space', (done) => {
-      chai.request(app)
-        .post('/api/v1/users/signup')
-        .send({
-          firstName: 'chibueze',
-          lastName: 'Ayogu',
-          email: 'new@hotmail.com',
-          password: ' ',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['Password must be at least 8 and at most 32 characters without space']);
+            'password must be at least 8 characters long']);
           done();
         });
     });
@@ -161,7 +144,7 @@ describe('Users', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['Password must be at least 8 and at most 32 characters without space']);
+          expect(res.body.message).to.eql(['password must be at least 8 characters long']);
           done();
         });
     });
@@ -178,7 +161,7 @@ describe('Users', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql('password must contain `uppercase, lowercase, number, and spacial character`');
+          expect(res.body.message).to.eql('password must contain `uppercase, lowercase, number, and special character`');
           done();
         });
     });

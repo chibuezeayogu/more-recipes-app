@@ -26,11 +26,28 @@ const userData = (state = initialState, action) => {
       };
       return state;
     case actionTypes.SIGN_UP_SUCCESS:
-      state = {
+      return Object.assign(
+        {},
+        state,
+        {
+          currentUser: action.user,
+          isAuthenticated: !isEmpty(action.user),
+        });
+    case actionTypes.GET_USER_SUCCESS:
+    return Object.assign(
+      {},
+      state,
+      {
+        currentUser: action.user,
         isAuthenticated: !isEmpty(action.user),
-        currentUser: action.user
-      };
-      return state;
+      });
+    case actionTypes.EDIT_PROFILE_SUCCESS:
+      return Object.assign(
+        {},
+        state,
+        {
+          currentUser: action.user
+        });
     case actionTypes.LOGOUT:
       state = {
         isAuthenticated: false,

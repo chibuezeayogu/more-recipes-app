@@ -232,7 +232,7 @@ textarea {
   font-size: 20px;
 }
 
-.preloader-position{
+.preloader-position {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -323,3 +323,37 @@ textarea {
     height: 100%;
   }
 }
+
+
+
+.profile-details-page {
+  min-height: 800; 
+  width: 90%;
+  overflow: hidden;
+  margin: 0 auto;
+  
+  .profile-image {
+    height: 200;
+    display: block;
+    margin: 50px auto;
+  }
+
+  .profile-input {
+    font-size: 25;
+    font-weight: 100;
+    color: black !important;
+    padding-bottom: 3px;
+    border-bottom: '1px solid lightgray';
+  }
+
+  .profile-input-display {
+    margin: 5px auto;
+
+    .profile-label {
+      font-size: 16;
+      font-weight: bold;
+    }
+  }
+}
+
+

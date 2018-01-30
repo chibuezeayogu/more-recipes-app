@@ -374,7 +374,9 @@ class SingleRecipe extends Component {
                           placeholder="Enter Comment"
                         />
                       </div>
-                      <span className="right red-text">
+                      <span
+                        className="right red-text" 
+                        style={{ marginRight: 10 }}>
                         {this.state.errors.commentError}
                       </span>
                     </div>

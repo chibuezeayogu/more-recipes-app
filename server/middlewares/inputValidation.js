@@ -46,22 +46,24 @@ export const validateUserSignInFields = (req, res, next) => {
  */
 
 export const validateAddRecipeFileds = (req, res, next) => {
+  req.sanitize('title').trim();
+  req.sanitize('description').trim();
+  req.sanitize('ingredients').trim();
+  req.sanitize('procedures').trim();
+  req.sanitize('imageUrl').trim();
+
   req.checkBody('title', 'title is required').notEmpty();
-  req.checkBody('title',
-    'title must at least contain a word without leading space')
-    .matches(/^\w[\w\d ,]*\w$/);
+  req.checkBody('title', 'title must be at least 5 characters long')
+    .isLength({ min: 5 });;
   req.checkBody('description', 'description is required').notEmpty();
-  req.checkBody('description',
-    'description must at least contain a word without leading space')
-    .matches(/^\w[a-zA-Z0-9 !:.?+=&%@!\-/,()]*\w$/);
+  req.checkBody('description', 'description must be at least 5 characters long')
+    .isLength({ min: 5 });
   req.checkBody('ingredients', 'ingredients is required').notEmpty();
-  req.checkBody('ingredients',
-    'ingredients must at least contain a word without leading space')
-    .matches(/^\w[a-zA-Z0-9 !:;.?+=&%@!\-/,()]*\w$/);
+  req.checkBody('ingredients', 'ingredients must be at least 5 characters long')
+    .isLength({ min: 5 });
   req.checkBody('procedures', 'procedures is required').notEmpty();
-  req.checkBody('procedures',
-    'procedures must at least contain a word without leading space')
-    .matches(/^\w[a-zA-Z0-9 !:;.?+=&%@!\-/,()]*\w$/);
+  req.checkBody('procedures', 'procedures must be at least 5 characters long')
+    .isLength({ min: 5 });
   req.checkBody('imageUrl', 'image url is required').notEmpty();
   req.checkBody('imageUrl', 'image url is not valid')
     .matches(/https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
@@ -84,20 +86,23 @@ export const validateAddRecipeFileds = (req, res, next) => {
  */
 
 export const validateUserSignUpFields = (req, res, next) => {
+  req.sanitize('firstName').trim();
+  req.sanitize('lastName').trim();
+  req.sanitize('email').trim();
+  req.sanitize('password').trim();
+  req.sanitize('imageUrl').trim();
+
   req.checkBody('firstName', 'first name is required').notEmpty();
-  req.checkBody('firstName',
-    'first name must be at least 3 and not start with an empty space')
-    .matches(/^[a-zA-Z]{3,}$/);
+  req.checkBody('firstName', 'first name must be at least 3 characters long')
+    .isLength({ min: 3 });
   req.checkBody('lastName', 'last name is required').notEmpty();
-  req.checkBody('lastName',
-    'last name must be at least 3 character and not start with an empty space')
-    .matches(/^[a-zA-Z]{3,}$/);
+  req.checkBody('lastName', 'last name must be at least 3 character long')
+    .isLength({ min: 3 });
   req.checkBody('email', 'email is required').notEmpty();
   req.checkBody('email', 'email is not valid').isEmail();
   req.checkBody('password', 'password is required').notEmpty();
-  req.checkBody('password',
-    'Password must be at least 8 and at most 32 characters without space')
-    .matches(/[a-zA-Z0-9!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,32}$/);
+  req.checkBody('password', 'password must be at least 8 characters long')
+    .isLength({ min: 8 });;
   req.checkBody('imageUrl', 'image url is required').notEmpty();
   req.checkBody('imageUrl', 'image url is not valid')
     .matches(/https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
@@ -112,7 +117,7 @@ export const validateUserSignUpFields = (req, res, next) => {
   if (!isValid) {
     return res.status(400).send({
       message:
-      'password must contain `uppercase, lowercase, number, and spacial character`'
+      'password must contain `uppercase, lowercase, number, and special character`'
     });
   }
   next();

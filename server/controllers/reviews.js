@@ -20,7 +20,8 @@ export default {
         },
         where: {
           recipeId: req.params.id
-        }
+        },
+        order: [['id', 'DESC']],
       })
       .then((review) => {
         if (review.length === 0) {

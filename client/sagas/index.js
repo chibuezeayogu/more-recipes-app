@@ -1,5 +1,9 @@
 import { all } from 'redux-saga/effects';
-import { watchSignIn, watchSignUp } from './user';
+import {
+  watchSignIn,
+  watchSignUp,
+  watchEditProfile,
+  watchGetUser } from './user';
 import {
   watchPostComment,
   watchDeleteComment,
@@ -29,7 +33,9 @@ function* rootSaga() {
     watchPostComment(),
     watchDeleteComment(),
     watchFetchRecipes(),
+    watchGetUser(),
     watchAddRecipe(),
+    watchEditProfile(),
     watchDeleteRecipe(),
     watchUpvoteRecipe(),
     watchDownvoteRecipe(),

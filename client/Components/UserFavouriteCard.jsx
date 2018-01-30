@@ -63,7 +63,7 @@ class UserFavouriteCard extends Component {
           </div>
           <div 
             className="card-action black-text center grey lighten-4"
-            style={{ margin: 5 }}>
+            style={{ margin: 1 }}>
             <a className="black-text">
               <i 
                 className="fa fa-thumbs-o-up" 
