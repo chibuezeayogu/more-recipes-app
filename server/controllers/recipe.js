@@ -225,10 +225,10 @@ export default {
 
   search(req, res) {
 
-    const search = req.query.search.split(' ');
+    const search = req.query.q.split(' ');
 
     const recipeIngredints = search.map(value => ({ ingredients: { $iLike: `%${value}%` } }));
-    const recipeTitle = search.map(value => ({ name: { $iLike: `%${value}%` } }));
+    const recipeTitle = search.map(value => ({ title: { $iLike: `%${value}%` } }));
 
     /**
      * query limit: get query limit if supplie else use default

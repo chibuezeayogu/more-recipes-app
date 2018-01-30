@@ -18,8 +18,8 @@ export default (state = initialState, action) => {
         {},
         state,
         {
-          reviews: [...state.reviews,
-            action.data.review]
+          reviews: [action.data.review,
+            ...state.reviews]
         });
     case actionTypes.POST_COMMENT_ERROR:
       return state;

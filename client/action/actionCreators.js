@@ -305,3 +305,48 @@ export const editRecipe = (id, state) => {
     imageUrl
   };
 };
+
+/**
+ *
+ * @method
+ *
+ * @param {String} firstName - user first name
+ *
+ * @param {String} lastName - user last name
+ *
+ * @param {String} email - user email
+ *
+ * @param {String} password - user password
+ *
+ * @param {String} imageUrl - user imageUrl
+ *
+ * @returns {Object} payload
+ *
+ */
+export const editProfile = (id, state) => {
+  const { firstName, lastName, location, phone, address, imageUrl } = state;
+   return {
+    type: actionTypes.EDIT_PROFILE,
+    id,
+    firstName,
+    lastName,
+    location,
+    phone,
+    address,
+    imageUrl
+  };
+}
+
+/**
+ *
+ * @method
+ *
+ * @param {id} id - user id
+ *
+ * @returns {Object} payload
+ *
+ */
+export const getUser = (id) => ({
+  type: actionTypes.GET_USER,
+  id
+})

@@ -43,7 +43,7 @@ describe('Recipes', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['title is required', 'title must at least contain a word without leading space']);
+          expect(res.body.message).to.eql(['title is required', 'title must be at least 5 characters long']);
           done();
         });
     });
@@ -52,7 +52,7 @@ describe('Recipes', () => {
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
-          title: ' Nigerian Beans Recipes',
+          title: 'reci',
           description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
           ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
           procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
@@ -61,7 +61,7 @@ describe('Recipes', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['title must at least contain a word without leading space']);
+          expect(res.body.message).to.eql(['title must be at least 5 characters long']);
           done();
         });
     });
@@ -79,17 +79,17 @@ describe('Recipes', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['description is required', 'description must at least contain a word without leading space']);
+          expect(res.body.message).to.eql(['description is required', 'description must be at least 5 characters long']);
           done();
         });
     });
-    it('should return an error message if description is supplied with leading space', (done) => {
+    it('should return an error message if description is less than 5 characters', (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
           title: 'Nigerian Beans Recipes',
-          description: ' Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
+          description: 'Nice',
           ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
           procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
           imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
@@ -97,7 +97,7 @@ describe('Recipes', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['description must at least contain a word without leading space']);
+          expect(res.body.message).to.eql(['description must be at least 5 characters long']);
           done();
         });
     });
@@ -115,25 +115,25 @@ describe('Recipes', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['ingredients is required', 'ingredients must at least contain a word without leading space']);
+          expect(res.body.message).to.eql(['ingredients is required', 'ingredients must be at least 5 characters long']);
           done();
         });
     });
-    it('should return an error message if ingredients is suipplied leading empty space', (done) => {
+    it('should return an error message if ingredients is less than 5 characters', (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
           title: 'Nigerian Beans Recipes',
           description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
-          ingredients: ' 350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
+          ingredients: '350g',
           procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
           imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['ingredients must at least contain a word without leading space']);
+          expect(res.body.message).to.eql(['ingredients must be at least 5 characters long']);
           done();
         });
     });
@@ -151,11 +151,11 @@ describe('Recipes', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['procedures is required', 'procedures must at least contain a word without leading space']);
+          expect(res.body.message).to.eql(['procedures is required', 'procedures must be at least 5 characters long']);
           done();
         });
     });
-    it('should return an error messsage if procedures is supplied with leading space', (done) => {
+    it('should return an error messsage if procedures is less than 5 characters', (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
@@ -163,13 +163,13 @@ describe('Recipes', () => {
           title: 'Nigerian Beans Recipes',
           description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
           ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
-          procedures: ' Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
+          procedures: 'Pour',
           imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['procedures must at least contain a word without leading space']);
+          expect(res.body.message).to.eql(['procedures must be at least 5 characters long']);
           done();
         });
     });
@@ -253,7 +253,7 @@ describe('Recipes', () => {
     });
     it('should return a message `Recipe not found` if recipe is not found', (done) => {
       chai.request(app)
-        .get('/api/v1/recipes/5')
+        .get('/api/v1/recipes/100')
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(404);
@@ -401,7 +401,7 @@ describe('Recipes', () => {
   describe('GET: /api/v1/recipes', () => {
     it('should return a message `No token provided.` if no authorization token was found', (done) => {
       chai.request(app)
-        .get('/api/v1/recipes/search?title=water')
+        .get('/api/v1/recipes/search?q=water')
         .end((err, res) => {
           expect(res.status).to.equal(401);
           expect(res.body).to.have.keys(['status', 'message']);
@@ -412,7 +412,7 @@ describe('Recipes', () => {
     });
     it('should return `pagenation` and `recipes` that match the searchterm', (done) => {
       chai.request(app)
-        .get('/api/v1/recipes/search?title=recipe')
+        .get('/api/v1/recipes/search?q=recipe')
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(200);
@@ -422,7 +422,7 @@ describe('Recipes', () => {
     });
     it('should return a message `Search term did not match any recipe` if no match was found', (done) => {
       chai.request(app)
-        .get('/api/v1/recipes/search?title=monkey')
+        .get('/api/v1/recipes/search?q=monkey')
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(404);

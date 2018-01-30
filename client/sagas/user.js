@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
 import setAuthorizationToken from '../util/setAuthToken';
-import imageToFormData from '../util/ImageUpload';
 
 /**
  * walker sagas will be called by watcher saga
@@ -77,6 +76,63 @@ function* createUser(action) {
 }
 
 /**
+ * @description createUser generator function
+ *
+ * @method
+ *
+ * @param {Object} action - action object
+ *
+ * @returns {void}
+ *
+ */
+function* editProfile(action) {
+  const { id, firstName, lastName, location, phone, address, imageUrl } =  action;
+  setAuthorizationToken();
+  try {
+    const response = yield call(axios.put, `/api/v1/users/${id}`,
+      {
+        firstName,
+        lastName,
+        location,
+        phone,
+        address,
+        imageUrl
+      });
+      const { data } = response;
+      console.log(response, 'edit success');
+      console.log(data, 'data success');
+
+    yield put({ type: actionTypes.EDIT_PROFILE_SUCCESS, user: data.user });
+  } catch (error) {
+    Materialize.toast(error.response.data.message, 4000, 'red');
+  }
+}
+
+/**
+ * @description createUser generator function
+ *
+ * @method
+ *
+ * @param {Object} action - action object
+ *
+ * @returns {void}
+ *
+ */
+function* getUser(action) {
+  const { id } =  action;
+  setAuthorizationToken()
+  try {
+    const response = yield call(axios.get, `/api/v1/users/${id}`)
+      
+    const { data } = response;
+    yield put({ type: actionTypes.GET_USER_SUCCESS, user: data.user });
+  } catch (error) {
+    Materialize.toast(error.response.data.message, 4000, 'red');
+  }
+}
+
+
+/**
  * watcher sagas: watches for dispatched action
  * watchSignIn: watches SIGN_IN action
  * watchSignUp: watches SIGN_UP action
@@ -105,3 +161,29 @@ export function* watchSignIn() {
 export function* watchSignUp() {
   yield takeEvery(actionTypes.SIGN_UP, createUser);
 }
+
+/**
+ * @description watching EDIT_PROFILE action
+ *
+ * @method
+ *
+ * @returns {void}
+ *
+ */
+export function* watchEditProfile() {
+  yield takeEvery(actionTypes.EDIT_PROFILE, editProfile);
+}
+
+/**
+ * @description watching GET_USER action
+ *
+ * @method
+ *
+ * @returns {void}
+ *
+ */
+export function* watchGetUser() {
+  yield takeEvery(actionTypes.GET_USER, getUser);
+}
+
+

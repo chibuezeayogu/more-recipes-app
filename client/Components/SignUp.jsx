@@ -174,7 +174,7 @@ class SignUp extends Component {
               <hr />
               <form
                 className="col l6 m8 s12 offset-l3 offset-m2"
-                onSubmit={e => this.handleOnsubmit(e)}
+                onSubmit={event => this.handleOnsubmit(event)}
               >
                 <div className="row">
                   <div className="input-field col s12">

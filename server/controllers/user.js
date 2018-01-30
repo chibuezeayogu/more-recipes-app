@@ -15,10 +15,15 @@ export default {
 
   /**
      * @description creates a new user controller
+     *
      * @method
+     *
      * @param {Object} req - Request object
+     *
      * @param {Object} res - Response object
+     *
      * @returns {Object} json - payload
+     *
      */
   signup(req, res) {
     const { firstName, lastName, email, password, imageUrl } = req.body;
@@ -52,10 +57,15 @@ export default {
 
   /**
      * @description sign in user controller
+     *
      * @method
+     *
      * @param {Object} req - Request object
+     * 
      * @param {Object} res - Response object
+     *
      * @returns {Object} json - payload
+     *
      */
   signin(req, res) {
     const { email, password } = req.body;
@@ -83,10 +93,15 @@ export default {
 
   /**
      * @description retrive user controller
+     *
      * @method
+     *
      * @param {Object} req - Request object
+     *
      * @param {Object} res - Response object
+     *
      * @returns {Object} json - payload
+     *
      */
   retrieve(req, res) {
     // query the db to check if user already exits or not
@@ -108,9 +123,13 @@ export default {
 
   /**
      * @description update user controller
+     *
      * @param {Object} req - Request object
+     *
      * @param {Object} res - Response object
+     *
      * @returns {Object} json - payload
+     *
      */
   update(req, res) {
     if (req.body.email) {
@@ -131,7 +150,6 @@ export default {
           .update({
             firstName: firstName || user.firstName,
             lastName: lastName || user.lastName,
-            password: password || user.password,
             imageUrl: imageUrl || user.imageUrl,
             location: location || user.location,
             address: address || user.address,
@@ -143,7 +161,6 @@ export default {
               id: user.id,
               firstName: user.firstName,
               lastName: user.lastName,
-              email: user.email,
               imageUrl: user.imageUrl,
               location: user.location,
               address: user.address,

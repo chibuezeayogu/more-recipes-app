@@ -67,7 +67,7 @@ class UserRecipeCard extends Component {
           </div>
           <div 
             className="card-action black-text grey lighten-4 center"
-            style={{ margin: 5 }}>
+            >
             <a className="black-text">
               <i 
                 className="fa fa-thumbs-o-up" 

@@ -15,6 +15,7 @@ import AddRecipe from './Components/AddRecipe.jsx';
 import SingleRecipe from './Components/SingleRecipe.jsx';
 import UserFavouritesList from './Components/UserFavouritesList.jsx';
 import EditRecipe from './Components/EditRecipe.jsx';
+import UserProfile from './Components/UserProfile.jsx';
 import Search from './Components/Search.jsx';
 
 import store from './store';
@@ -28,6 +29,9 @@ const requireAuth = (replace) => {
   if (!token) {
     replace('/signin');
   }
+  //  else {
+  //   store.dispatch()
+  // }
 };
 
 const App = (
@@ -44,6 +48,7 @@ const App = (
         <Route path="/user/favourites" component={UserFavouritesList} onEnter={requireAuth} />
         <Route path="/user/recipes/:id/edit" component={EditRecipe} onEnter={requireAuth} />
         <Route path="/user/recipes" component={UserRecipesList} onEnter={requireAuth} />
+        <Route path="/user/profile" component={UserProfile} onEnter={requireAuth} />
         <Route path="*" component={NotFound} onEnter={requireAuth} />
       </Switch>
     </BrowserRouter>
