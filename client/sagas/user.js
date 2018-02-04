@@ -85,6 +85,7 @@ export function* createUser(action) {
  */
 export function* editProfile(action) {
   const { id, firstName, lastName, location, phone, address, imageUrl } =  action;
+  setAuthorizationToken()
   try {
     const response = yield call(axios.put, `/api/v1/users/${id}`,
       {
