@@ -56,6 +56,7 @@ module.exports = {
         AUTHORIZED_EMAIL: JSON.stringify(process.env.AUTHORIZED_EMAIL),
         AUTHORIZED_PASSWORD: JSON.stringify(process.env.AUTHORIZED_PASSWORD),
         APP_LINK: JSON.stringify(process.env.APP_LINK),
+        SECRET: JSON.stringify(process.env.SECRET),
       }
     }),
   webpackoptimizeUglifyJsPluginConfig,
