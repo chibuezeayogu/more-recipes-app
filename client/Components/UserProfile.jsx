@@ -198,7 +198,7 @@ class UserProfile extends Component {
        this.setState({ disabled: false, onUpdate: false });
        Materialize.toast("Error! Please try again", 4000, 'red');
      });
-    } esle {
+    } else {
       this.props.editProfile(this.state);
       this.setState({ onUpdate: false});
     }
