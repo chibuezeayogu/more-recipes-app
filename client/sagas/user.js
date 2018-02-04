@@ -22,15 +22,12 @@ import setAuthorizationToken from '../util/setAuthToken';
  * @returns {void}
  *
  */
-function* signIn(action) {
-  const {
-    email, password
-  } = action;
+export function* signIn(action) {
   try {
     const response = yield call(axios.post, '/api/v1/users/signin',
       {
-        email,
-        password,
+        email: action.email,
+        password: action.password
       });
     const { data } = response;
     const { token } = data;
@@ -53,7 +50,7 @@ function* signIn(action) {
  * @returns {void}
  *
  */
-function* createUser(action) {
+export function* createUser(action) {
   const { firstName, lastName, email, password, imageUrl } = action;
   try {
     const response = yield call(axios.post, '/api/v1/users/signup',
@@ -72,6 +69,7 @@ function* createUser(action) {
     yield put({ type: actionTypes.SIGN_UP_SUCCESS, user: decode.user });
   } catch (error) {
     Materialize.toast(error.response.data.message, 4000, 'red');
+    yield put({ type: actionTypes.SIGN_UP_ERROR });
   }
 }
 
@@ -85,9 +83,8 @@ function* createUser(action) {
  * @returns {void}
  *
  */
-function* editProfile(action) {
+export function* editProfile(action) {
   const { id, firstName, lastName, location, phone, address, imageUrl } =  action;
-  setAuthorizationToken();
   try {
     const response = yield call(axios.put, `/api/v1/users/${id}`,
       {
@@ -99,9 +96,6 @@ function* editProfile(action) {
         imageUrl
       });
       const { data } = response;
-      console.log(response, 'edit success');
-      console.log(data, 'data success');
-
     yield put({ type: actionTypes.EDIT_PROFILE_SUCCESS, user: data.user });
   } catch (error) {
     Materialize.toast(error.response.data.message, 4000, 'red');
@@ -118,14 +112,13 @@ function* editProfile(action) {
  * @returns {void}
  *
  */
-function* getUser(action) {
+export function* fetchUser(action) {
   const { id } =  action;
-  setAuthorizationToken()
+  setAuthorizationToken();
   try {
     const response = yield call(axios.get, `/api/v1/users/${id}`)
-      
     const { data } = response;
-    yield put({ type: actionTypes.GET_USER_SUCCESS, user: data.user });
+    yield put({ type: actionTypes.FETCH_USER_SUCCESS, user: data.user });
   } catch (error) {
     Materialize.toast(error.response.data.message, 4000, 'red');
   }
@@ -175,15 +168,15 @@ export function* watchEditProfile() {
 }
 
 /**
- * @description watching GET_USER action
+ * @description watching FETCH_USER action
  *
  * @method
  *
  * @returns {void}
  *
  */
-export function* watchGetUser() {
-  yield takeEvery(actionTypes.GET_USER, getUser);
+export function* watchFetchUser() {
+  yield takeEvery(actionTypes.FETCH_USER, fetchUser);
 }
 
 

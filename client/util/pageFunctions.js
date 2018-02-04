@@ -1,6 +1,15 @@
 import lodash from 'lodash';
 
-
+/**
+*
+* @description on delete check if the page still contains a recipe
+* else go to page one
+*
+* @param {Integer} currentPage - active page in pagination
+*
+* @returns {Object} payload - returns page offset and boolean
+*
+*/
 export const onPageChange = (recipes, isDeleted, pagination) => {
   let offset,
     isTrue = false;
@@ -18,7 +27,15 @@ export const onPageChange = (recipes, isDeleted, pagination) => {
 };
 
 
-
+/**
+ *
+ * @description on page reload check get the current page
+ *
+ * @param {Integer} currentPage - active page in pagination
+ *
+ * @returns {Object} payload - returns page offset and boolean
+ *
+ */
 export const onPageReload = (currentPage) => {
     let offset, 
       isTrue = false;

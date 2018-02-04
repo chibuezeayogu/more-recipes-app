@@ -7,7 +7,7 @@ const expect = chai.expect;
 chai.use(http);
 let token;
 
-describe('Votings', () => {
+describe('Vote:', () => {
   before((done) => {
     chai.request(app)
       .post('/api/v1/users/signin')
@@ -17,8 +17,10 @@ describe('Votings', () => {
         done();
       });
   });
-  describe('PUT: /api/v1/recipes/:id/upvote', () => {
-    it('should return a message `No token provided.` if no authorization token was found', (done) => {
+  
+  describe('Upvote Recipe', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .put('/api/v1/recipes/1/upvote')
         .end((err, res) => {
@@ -29,7 +31,8 @@ describe('Votings', () => {
           done();
         });
     });
-    it('should return a message `Please input a valid id.` if recipe id supplied is not of type integer', (done) => {
+    it('should return an error message if recipe id is not of type integer',
+      (done) => {
       chai.request(app)
         .put('/api/v1/recipes/s/upvote')
         .set({ Authorization: token })
@@ -40,7 +43,7 @@ describe('Votings', () => {
           done();
         });
     });
-    it('should return a message `Recipe not found` if recipe is not found', (done) => {
+    it('should return an error message if recipe is not found', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/20/upvote')
         .set({ Authorization: token })
@@ -51,7 +54,7 @@ describe('Votings', () => {
           done();
         });
     });
-    it('should return a message `voting recorded` if a user upvotes a recipe', (done) => {
+    it('should return a message if a user upvotes a recipe', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/3/upvote')
         .set({ Authorization: token })
@@ -62,7 +65,8 @@ describe('Votings', () => {
           done();
         });
     });
-    it('should return a message `voting removed` if a user tries to upvote a recipe he/she just upvoted', (done) => {
+    it(`should return a message if a user tries to downvotes a recipe 
+      he/she just upvoted`, (done) => {
       chai.request(app)
         .put('/api/v1/recipes/3/upvote')
         .set({ Authorization: token })
@@ -73,7 +77,7 @@ describe('Votings', () => {
           done();
         });
     });
-    it('should return a message `voting recorded` if a user upvotes a recipe', (done) => {
+    it('should return a message if a user upvotes a recipe', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/3/upvote')
         .set({ Authorization: token })
@@ -84,7 +88,8 @@ describe('Votings', () => {
           done();
         });
     });
-    it('should return a message `voting recorded` if a user downvotes a recipe he/she previously upvoted', (done) => {
+    it(`should return a message if a user downvotes a recipe he/she
+      previously upvoted`, (done) => {
       chai.request(app)
         .put('/api/v1/recipes/3/downvote')
         .set({ Authorization: token })
@@ -96,8 +101,10 @@ describe('Votings', () => {
         });
     });
   });
-  describe('GET: /api/v1/recipes/mostupvote', () => {
-    it('should return a message `No token provided.` if no authorization token was found', (done) => {
+
+  describe('Most Upvoted Recipe', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .get('/api/v1/recipes/mostupvote')
         .end((err, res) => {
@@ -114,13 +121,15 @@ describe('Votings', () => {
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(200);
-          expect(res.body).to.have.keys(['recipe']);
+          expect(res.body).to.have.keys(['pagination', 'recipes']);
           done();
         });
     });
   });
-  describe('PUT: /api/v1/recipes/:id/downvote', () => {
-    it('should return a message `No token provided.` if no authorization token was found', (done) => {
+
+  describe('PUT: Downvote Recipe', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .put('/api/v1/recipes/3/downvote')
         .end((err, res) => {
@@ -131,7 +140,8 @@ describe('Votings', () => {
           done();
         });
     });
-    it('should return a message `Please input a valid id.` if recipe id supplied is not of type integer', (done) => {
+    it('should return an error message if recipe id is not of type integer',
+      (done) => {
       chai.request(app)
         .put('/api/v1/recipes/s/downvote')
         .set({ Authorization: token })
@@ -142,7 +152,7 @@ describe('Votings', () => {
           done();
         });
     });
-    it('should return a message `Recipe not found` if recipe is not found', (done) => {
+    it('should return an error message if recipe is not found', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/10/downvote')
         .set({ Authorization: token })
@@ -153,7 +163,7 @@ describe('Votings', () => {
           done();
         });
     });
-    it('should return a message `voting recorded` if a user upvotes a recipe', (done) => {
+    it('should return a message if a user upvotes a recipe', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/3/upvote')
         .set({ Authorization: token })
@@ -164,7 +174,7 @@ describe('Votings', () => {
           done();
         });
     });
-    it('should return a message `voting recorded` if a user downvotes a recipe', (done) => {
+    it('should return a message if a user downvotes a recipe', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/3/downvote')
         .set({ Authorization: token })
@@ -175,7 +185,8 @@ describe('Votings', () => {
           done();
         });
     });
-    it('should return a message `voting removed` if a user tries to downvote a recipe he/she just downvoted', (done) => {
+    it(`should return a message if a user tries to downvote a recipe he/she
+      just downvoted`, (done) => {
       chai.request(app)
         .put('/api/v1/recipes/3/downvote')
         .set({ Authorization: token })

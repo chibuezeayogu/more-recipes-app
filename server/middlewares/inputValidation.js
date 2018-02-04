@@ -16,11 +16,17 @@ const validator = new ValidatePassword(options);
 
 /**
  * @description validate User Sign In Fields
+ *
  * @method
+ *
  * @param {Object} req - Request object
+ *
  * @param {Object} res - Response object
+ *
  * @param {Object} next - callback
+ *
  * @returns {object} json - payload
+ *
  */
 export const validateUserSignInFields = (req, res, next) => {
   req.checkBody('email', 'email is required').notEmpty();
@@ -38,10 +44,15 @@ export const validateUserSignInFields = (req, res, next) => {
 
 /**
  * @description validate add recipe fileds middleware
+ *
  * @method
+ *
  * @param {Object} req - Request object
+ *
  * @param {Object} res - Response object
+ *
  * @param {Object} next - callback
+ *
  * @returns {object} json - payload
  */
 
@@ -78,10 +89,15 @@ export const validateAddRecipeFileds = (req, res, next) => {
 
 /**
  * @description validate user sign up fields middleware
+ *
  * @method
+ *
  * @param {Object} req - Request object
+ *
  * @param {Object} res - Response object
+ *
  * @param {Object} next - callback
+ *
  * @returns {object} json - payload
  */
 
@@ -117,7 +133,7 @@ export const validateUserSignUpFields = (req, res, next) => {
   if (!isValid) {
     return res.status(400).send({
       message:
-      'password must contain `uppercase, lowercase, number, and special character`'
+      'password must contain uppercase, lowercase, number, and special character'
     });
   }
   next();
@@ -125,9 +141,13 @@ export const validateUserSignUpFields = (req, res, next) => {
 
 /**
  * @description validate Params
+ *
  * @param {Object} req - Request object
+ *
  * @param {Object} res - Response object
+ *
  * @param {Object} next - callback
+ *
  * @returns {object} json - payload
  */
 
@@ -145,16 +165,20 @@ export const validateParams = (req, res, next) => {
 
 /**
  * @description validate Comment Field
+ *
  * @param {Object} req - Request object
- * @param {Object} res - Response objecj
+ *
+ * @param {Object} res - Response object
+ *
  * @param {Object} next - callback
+ *
  * @returns {object} json - payload
  */
 export const validateCommentField = (req, res, next) => {
+  req.sanitize('comment').trim();
   req.checkBody('comment', 'comment is required').notEmpty();
-  req.checkBody('comment',
-    'comment should be at least 5 character long without leading space')
-    .matches(/^\w[a-zA-Z0-9 !:.?+=&%@!]{5,}$/);
+  req.checkBody('comment', 'comment should be at least 5 character long')
+    .isLength({ min: 5 });
 
   const errors = req.validationErrors();
   if (errors) {
@@ -168,17 +192,20 @@ export const validateCommentField = (req, res, next) => {
 
 /**
  * @description check if userId params is of type integer
+ *
  * and check if user is logged in
+ *
  * @param {Object} req - Request object
+ *
  * @param {Object} res - Response object
+ *
  * @param {Object} next - callback
+ *
  * @returns {object} json - payload
  */
 export const checkAndValidateUserParams = (req, res, next) => {
-  // check if param is of type integer
   req.checkParams('userId', 'Please input a valid userId.').isInt();
 
-  // catch any error that might occure
   const errors = req.validationErrors();
   if (errors) {
     const errorObject = errors.map(error => error.msg);

@@ -24,15 +24,15 @@ import imageToFormData from '../util/ImageUpload';
  * @returns {void}
  *
  */
-function* fetchRecipes(action) {
+export function* fetchRecipes(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get,
       `/api/v1/recipes?limit=6&offset=${action.offset}`);
     const { data } = response;
-    yield put({ type: actionTypes.GET_ALL_RECIPES_SUCCESS, data });
+    yield put({ type: actionTypes.FETCH_ALL_RECIPES_SUCCESS, data });
   } catch (error) {
-    yield put({ type: actionTypes.GET_ALL_RECIPES_ERROR });
+    yield put({ type: actionTypes.FETCH_ALL_RECIPES_ERROR });
   }
 }
 
@@ -53,9 +53,9 @@ function* fetchRecipe(action) {
     const response = yield call(axios.get,
       `/api/v1/recipes/${action.id}`);
     const { data } = response;
-    yield put({ type: actionTypes.GET_RECIPE_SUCCESS, data });
+    yield put({ type: actionTypes.FETCH_RECIPE_SUCCESS, data });
   } catch (error) {
-      yield put({ type: actionTypes.GET_RECIPE_ERROR });
+      yield put({ type: actionTypes.FETCH_RECIPE_ERROR });
   }
 }
 
@@ -71,7 +71,6 @@ function* fetchRecipe(action) {
  *
  */
 function* addRecipe(action) {
-  console.log(action);
   const { title, description, ingredients, procedures, imageUrl } = action;
   setAuthorizationToken();
   try {
@@ -157,9 +156,9 @@ function* fetchUserRecipes(action) {
     const response = yield call(axios.get, 
       `/api/v1/users/${action.userId}/recipes?limit=6&offset=${action.offset}`);
     const { data } = response;
-    yield put({ type: actionTypes.GET_USER_RECIPES_SUCCESS, data });
+    yield put({ type: actionTypes.FETCH_USER_RECIPES_SUCCESS, data });
   } catch (error) {
-   yield put({ type: actionTypes.GET_USER_RECIPES_ERROR });
+   yield put({ type: actionTypes.FETCH_USER_RECIPES_ERROR });
   }
 }
 
@@ -175,9 +174,6 @@ function* fetchUserRecipes(action) {
  *
  */
 function* deleteRecipe(action) {
-  console.log(' got here called api');
-  console.log(action, 'got here called api');
-
   const { id } = action;
   setAuthorizationToken();
   try{
@@ -206,7 +202,7 @@ function* searchRecipe(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes/search?title=${action.searchTerm}`);
+      `/api/v1/recipes/search?q=${action.searchTerm}`);
     const { data } = response;
     yield put({ type: actionTypes.SEARCH_RECIPE_SUCCESS, data });
   } catch (error) {
@@ -246,18 +242,42 @@ function* editRecipe(action) {
 }
 
 /**
+ *
+ * @description makes api call to fetch most upvoted recipes
+ *
+ * @method
+ *
+ * @param {Object} action - recipe id
+ *
+ * @returns {void}
+ *
+ */
+function* fetchMostUpvotedRecipes() {
+  setAuthorizationToken();
+  try {
+    const response = yield call(axios.get, 
+      '/api/v1/recipes/mostupvote');
+    const { data } = response;
+    yield put({ type: actionTypes.FETCH_MOST_UPVOTED_RECIPES_SUCCESS, data });
+  } catch (error) {
+   yield put({ type: actionTypes.FETCH_MOST_UPVOTED_RECIPES_ERROR });
+  }
+}
+
+
+/**
  * watcher sagas: watches for dispatched action
- * watchFetchRecipes: watching GET_ALL_RECIPES action
- * watchFetchRecipe: watching GET_RECIPE action
- * watchFetchRecipes: watching GET_ALL_RECIPES action
+ * watchFetchRecipes: watching FETCH_ALL_RECIPES action
+ * watchFetchRecipe: watching FETCH_RECIPE action
+ * watchFetchRecipes: watching FETCH_ALL_RECIPES action
  * watchUpvoteRecipe: watching UP_VOTE_RECIPE action
  * watchDownvoteRecipe: watching DOWN_VOTE_RECIPE action
- * watchFetchUserRecipes: watching GET_USER_RECIPES action
+ * watchFetchUserRecipes: watching FETCH_USER_RECIPES action
  * watchSearchRecipe: watching SEARCH_RECIPE action
  */
 
 /**
- * @description watching GET_ALL_RECIPES action
+ * @description watching FETCH_ALL_RECIPES action
  *
  * @method
  *
@@ -265,11 +285,11 @@ function* editRecipe(action) {
  *
  */
 export function* watchFetchRecipes() {
-  yield takeEvery(actionTypes.GET_ALL_RECIPES, fetchRecipes);
+  yield takeEvery(actionTypes.FETCH_ALL_RECIPES, fetchRecipes);
 }
 
 /**
- * @description watching GET_RECIPE action
+ * @description watching FETCH_RECIPE action
  *
  * @method
  *
@@ -277,7 +297,7 @@ export function* watchFetchRecipes() {
  *
  */
 export function* watchFetchRecipe() {
-  yield takeEvery(actionTypes.GET_RECIPE, fetchRecipe);
+  yield takeEvery(actionTypes.FETCH_RECIPE, fetchRecipe);
 }
 
 /**
@@ -317,7 +337,7 @@ export function* watchDownvoteRecipe() {
 }
 
 /**
- * @description watching GET_USER_RECIPES action
+ * @description watching FETCH_USER_RECIPES action
  *
  * @method
  *
@@ -325,7 +345,7 @@ export function* watchDownvoteRecipe() {
  *
  */
 export function* watchFetchUserRecipes() {
-  yield takeEvery(actionTypes.GET_USER_RECIPES, fetchUserRecipes);
+  yield takeEvery(actionTypes.FETCH_USER_RECIPES, fetchUserRecipes);
 }
 
 /**
@@ -354,7 +374,7 @@ export function* watchDeleteRecipe() {
 }
 
 /**
- * @description watching GET_MOST_FAVOURITED_RECIPE action
+ * @description watching FETCH_MOST_FAVOURITED_RECIPE action
  *
  * @method
  *
@@ -362,11 +382,11 @@ export function* watchDeleteRecipe() {
  *
  */
 export function* watchFetchMostRecipe() {
-  yield takeEvery(actionTypes.GET_MOST_FAVOURITED_RECIPE, fetchMostRecipe);
+  yield takeEvery(actionTypes.FETCH_MOST_FAVOURITED_RECIPE, fetchMostRecipe);
 }
 
 /**
- * @description watching GET_MOST_FAVOURITED_RECIPE action
+ * @description watching FETCH_MOST_FAVOURITED_RECIPE action
  *
  * @method
  *
@@ -377,3 +397,14 @@ export function* watchEditRecipe() {
   yield takeEvery(actionTypes.EDIT_RECIPE, editRecipe);
 }
 
+/**
+ * @description watching FETCH_MOST_UPVOTED_RECIPES action
+ *
+ * @method
+ *
+ * @returns {void}
+ *
+ */
+export function* watchFetchMostUpvotedRecipes() {
+  yield takeEvery(actionTypes.FETCH_MOST_UPVOTED_RECIPES, fetchMostUpvotedRecipes);
+}

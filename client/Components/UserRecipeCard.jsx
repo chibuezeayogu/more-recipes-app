@@ -38,8 +38,6 @@ class UserRecipeCard extends Component {
 
 
   render() {
-    const token = localStorage.getItem('jwtToken');
-    const { user } = jwtDecode(token);
     const { recipe } = this.props;
     return (
       <div className="col s12 m6 l4">

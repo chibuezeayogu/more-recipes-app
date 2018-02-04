@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
-import { SignOut } from '../../action/actionCreators';
+import { signOut } from '../../action/actionCreators';
 import { Link } from 'react-router-dom';
-import image from '../../img/logo.jpg';
+import { withRouter } from 'react-router-dom';
 
 /**
  * menu component athenticated users
@@ -13,7 +13,7 @@ import image from '../../img/logo.jpg';
  * @extends Component
  *
  */
-class UserMenu extends Component {
+export class UserMenu extends Component {
   /**
    * @description initializes dropdown and button collapse
    *
@@ -49,9 +49,9 @@ class UserMenu extends Component {
    */
   logout(e) {
     e.preventDefault();
-    this.props.SignOut();
+    this.props.signOut();
     localStorage.removeItem('jwtToken');
-    this.context.router.history.push('/signin');
+    this.props.history.push('/signin');
   }
 
   /**
@@ -66,8 +66,6 @@ class UserMenu extends Component {
    *
    */
   render() {
-    const token = localStorage.getItem('jwtToken');
-    const userData = jwtDecode(token);
     return (
       <div>
         <div>
@@ -75,7 +73,8 @@ class UserMenu extends Component {
             <div className="nav-wrapper black">
               <a href="#!" className="brand-logo">
                 <img
-                  src={image}
+                  src={'https://res.cloudinary.com/chibuezeayogu/image/upload'+
+            '/v1516130489/yy3vdswodkvr3mj5lts1.jpg'}
                   className="responsive-img image-radius"
                   alt=""
                   style={{ height: 25, marginRight: 10, marginLeft: 10 }}
@@ -110,7 +109,7 @@ class UserMenu extends Component {
                     className="dropdown-button"
                     data-activates="dropdown"
                     data-beloworigin="true"
-                  > {userData.user.firstName}
+                  > {this.props.userData.currentUser.email}
                     <i className="material-icons right">arrow_drop_down</i>
                   </a>
                 </li>
@@ -201,16 +200,13 @@ class UserMenu extends Component {
   }
 }
 
-UserMenu.contextTypes = {
-  router: PropTypes.object.isRequired
-};
 
 UserMenu.propTypes = {
-  SignOut: PropTypes.func.isRequired,
+  signOut: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   userData: state.userData,
 });
 
-export default connect(mapStateToProps, { SignOut })(UserMenu);
+export default withRouter(connect(mapStateToProps, { signOut })(UserMenu));

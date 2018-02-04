@@ -13,30 +13,6 @@ import headers from '../util/setAuthToken';
 
 /**
  *
- * @description deletes comment posted by a user.
- *
- * @method
- *
- * @param {Object} action - action object
- *
- * @returns {void}
- *
- */
-function* deleteComment(action) {
-  try {
-    const response = yield call(axios.post,
-      `/api/v1/recipes/${action.index}/reviews`, headers());
-    
-    const { data } = response;
-
-    yield put({ type: actionTypes.DELETE_COMMENT_SUCCESS, data });
-  } catch (error) {
-    yield put({ type: actionTypes.DELETE_COMMENT_ERROR });
-  }
-}
-
-/**
- *
  * @description post user comment.
  *
  * @method
@@ -66,7 +42,7 @@ function* postComment(action) {
 
 /**
  *
- * @description get recipe comments.
+ * @description fetch recipe comments.
  *
  * @method
  *
@@ -80,9 +56,9 @@ function* fetchRecipeComment(action) {
     const response = yield call(axios.get,
       `/api/v1/recipes/${action.recipeId}/reviews`, headers());
     const { data } = response;
-    yield put({ type: actionTypes.GET_COMMENTS_SUCCESS, data });
+    yield put({ type: actionTypes.FETCH_COMMENTS_SUCCESS, data });
   } catch (error) {
-    yield put({ type: actionTypes.GET_COMMENTS_ERROR });
+    yield put({ type: actionTypes.FETCH_COMMENTS_ERROR });
   }
 }
 
@@ -90,7 +66,7 @@ function* fetchRecipeComment(action) {
  * watcher sagas: watches for dispatched action
  * atchPostComment: watches dispatch POST_COMMENT action
  * watchDeleteComment: watches dispatch DELETE_COMMENT action
- *watchfetchRecipeComment: watches dispatch GET_COMMENTS action
+ *watchfetchRecipeComment: watches dispatch FETCH_COMMENTS action
  */
 
 /**
@@ -107,19 +83,7 @@ export function* watchPostComment() {
 }
 
 /**
- * @description watching DELETE_COMMENT action
- *
- * @method
- *
- * @returns {void}
- *
- */
-export function* watchDeleteComment() {
-  yield takeEvery(actionTypes.DELETE_COMMENT, deleteComment);
-}
-
-/**
- * @description watching GET_COMMENTS action
+ * @description watching FETCH_COMMENTS action
  *
  * @method
  *
@@ -127,5 +91,5 @@ export function* watchDeleteComment() {
  *
  */
 export function* watchfetchRecipeComment() {
-  yield takeEvery(actionTypes.GET_COMMENTS, fetchRecipeComment);
+  yield takeEvery(actionTypes.FETCH_COMMENTS, fetchRecipeComment);
 }

@@ -63,13 +63,16 @@ const routes = (router) => {
     .get(verifyToken,checkAndValidateUserParams, votingController.getUserVoting);
 
   router.route('/users/:userId/favouriteRecipes')
-    .get(verifyToken, checkAndValidateUserParams, favouriteController.getUserFavourites);
+    .get(verifyToken, checkAndValidateUserParams,
+        favouriteController.getUserFavourites);
 
-    router.route('/users/:userId/favouriteRecipeIds')
-    .get(verifyToken, checkAndValidateUserParams, favouriteController.getUserFavouriteIds);
+  router.route('/users/:userId/favouriteRecipeIds')
+    .get(verifyToken, checkAndValidateUserParams,
+        favouriteController.getUserFavouriteIds);
 
   router.route('/recipes/:id/reviews')
-    .post(verifyToken, validateParams, validateCommentField, reviewController.postReview)
+    .post(verifyToken, validateParams, validateCommentField, 
+      reviewController.postReview)
     .get(verifyToken, validateParams, reviewController.getReviews);
 };
 

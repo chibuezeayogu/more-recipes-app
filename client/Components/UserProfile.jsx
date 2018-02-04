@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { editProfile, getUser } from '../action/actionCreators';
+import { editProfile, fetchUser } from '../action/actionCreators';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
+import SmallPreloader from './SmallPreloader.jsx';
+import { validateUpdateProfileForm } from '../util/validateInputs';
+import imageToFormData from '../util/ImageUpload';
+
 
 /**
  * @description
@@ -21,7 +26,7 @@ class UserProfile extends Component {
    *
    * @memberOf UserProfile
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   constructor() {
@@ -32,12 +37,12 @@ class UserProfile extends Component {
       lastName: '',
       phone: '',
       imageUrl:'',
+      image: {},
       location: '',
       address: '',
-      gender: '',
-      editButton: '',
       errors: {},
       disabled: true,
+      onUpdate: false
     };
   
     this.handleChange = this.handleChange.bind(this);
@@ -47,65 +52,168 @@ class UserProfile extends Component {
     this.handleCancel= this.handleCancel.bind(this);
   }
 
+  /**
+   * @description dispatch an action to fetch user details 
+   *
+   * @method
+   * 
+   * @memberOf UserProfile
+   *
+   * @param {Object} nextProps
+   * 
+   * @returns {Undifiend}
+   *
+   */
+  
   componentWillMount() {
-    this.props.getUser(1);
+    const { id } = this.props.userData.currentUser;
+    this.props.fetchUser(id);
   }
 
+  /**
+   * @description sets State for input fileds 
+   *
+   * @method
+   * 
+   * @memberOf UserProfile
+   *
+   * @param {Object} nextProps
+   * 
+   * @returns {Undifiend}
+   *
+   */
   componentWillReceiveProps(nextProps) {
     const { currentUser } = nextProps.userData;
     this.setState({
-      isLoading: false,
       disabled: true,
       id: currentUser.id,
       firstName: currentUser.firstName || '',
       lastName: currentUser.lastName || '',
-      email: currentUser.email || '',
       phone: currentUser.phone || '',
       location: currentUser.location|| '',
       address: currentUser.address || '',
+      isLoading: false,
     });
   }
   
   /**
+   * @description gets selected image
+   *
+   * @method
    * 
+   * @memberOf UserProfile
+   *
+   * @param {Object} event
+   * 
+   * @returns {Undifiend}
+   *
    */
   handleImageChange(event) {
     event.preventDefault();
+    const file = event.target.files[0];
+    this.setState({ errors: {} });
 
+    this.setState({ errors: {}, image: file });
   }
 
+  /**
+   * @description gets user input
+   *
+   * @method
+   * 
+   * @memberOf UserProfile
+   *
+   * @param {Object} event
+   * 
+   * @returns {Undifiend}
+   *
+   */
   handleChange(event) {
     this.setState({ errors: {} });
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  /**
+   * @description sets input field to editable
+   *
+   * @method
+   * 
+   * @memberOf UserProfile
+   *
+   * @param {Object} event
+   * 
+   * @returns {Undifiend}
+   *
+   */
   handleEdit(event) {
     event.preventDefault();
     this.setState({ disabled: false });
-    console.log('disabled', this.state.disabled);
+
   }
 
+   /**
+   * @description sets input field to readonly
+   *
+   * @method
+   *
+   * @memberOf UserProfile
+   *
+   * @param {Object} event
+   *
+   * @returns {Undifiend}
+   *
+   */
   handleCancel(event) {
     event.preventDefault();
     this.setState({ disabled: true });
-    console.log('disabled', this.state.disabled);
   }
 
   /**
+   * @description submits edit profile form
+   *
+   * @method
+   *
+   * @memberOf UserProfile
+   *
+   * @param {Object} event
    * 
    */
   handleOnsubmit(event) {
     event.preventDefault();
-    this.props.editProfile(1, this.state);
-    console.log('action called');
-
+    const err = validateUpdateProfileForm(this.state);
+    if (err.isError) {
+      return this.setState({ errors: err.errors });
+    }
+    this.setState({ disabled: true, onUpdate: true });
+    
+    const uploadData = imageToFormData(this.state.image);
+    delete axios.defaults.headers.common['Authorization'];
+    axios(uploadData)
+      .then((data) => {
+      this.setState({ imageUrl: data.data.secure_url });
+      this.props.editProfile(this.state);
+      this.setState({ onUpdate: false });
+    }).catch((error) => { 
+      this.setState({ disabled: false, onUpdate: false });
+      Materialize.toast("Error! Please try again", 4000, 'red');
+    });
   }
 
-
+ /**
+   *
+   * @description renders JSX element
+   *
+   * @method
+   *
+   * @memberOf UserProfile
+   *
+   * @returns {Undefined}
+   */
   render() {
+    const { imageUrl } = this.props.userData.currentUser;
     return (
       <div className="body">
-        <UserMenu />
+        <UserMenu {...this.props} />
         <div className="main">
           <div className="container">
             <div className="row white" style={{ height: 100 }}>
@@ -118,7 +226,7 @@ class UserProfile extends Component {
               >
               <div className="col s12 m6 l5">
                 <img 
-                  src={'http://res.cloudinary.com/chibuezeayogu/image/upload/v1516785634/xqrzf0nkvzpnlvyesakm.jpg'} 
+                  src={imageUrl} 
                   alt="" 
                   className="responsive-img circle center profile-image"
                 />
@@ -134,6 +242,9 @@ class UserProfile extends Component {
                   value={this.state.firstName}
                   onChange={this.handleChange}
                 />
+                <span className="right red-text error-margin">
+                  {this.state.errors.firstNameError}
+                </span>
               </div>
               <div className="profile-input-display">
                 <div className="profile-label">LAST NAME</div>
@@ -145,13 +256,9 @@ class UserProfile extends Component {
                   value={this.state.lastName}
                   onChange={this.handleChange}
                 />
-              </div>
-              <div className="profile-input-display">
-                <div className="profile-label">EMAIL</div>
-                <div
-                  className="profile-input"
-                >{this.state.email}
-                </div>
+                <span className="right red-text error-margin">
+                  {this.state.errors.lastNameError}
+                </span>
               </div>
               <div className="profile-input-display">
                 <div className="profile-label">PHONE</div>
@@ -163,6 +270,9 @@ class UserProfile extends Component {
                   value={this.state.phone}
                   onChange={this.handleChange}
                 />
+                <span className="right red-text error-margin">
+                  {this.state.errors.phoneError}
+                </span>
               </div>
               <div className="profile-input-display">
                 <div className="profile-label">LOCATION</div>
@@ -174,6 +284,9 @@ class UserProfile extends Component {
                   value={this.state.location}
                   onChange={this.handleChange}
                 />
+                <span className="right red-text error-margin">
+                  {this.state.errors.locationError}
+                </span>
               </div>
               <div className="profile-input-display">
                 <div className="profile-label">ADDRESS</div>
@@ -185,7 +298,39 @@ class UserProfile extends Component {
                   value={this.state.address}
                   onChange={this.handleChange}
                 />
+                <span className="right red-text error-margin">
+                  {this.state.errors.addressError}
+                </span>
               </div>
+              <div className="file-field input-field"
+                style={
+                  this.state.disabled
+                  ? { display: 'none' }
+                  : { display: 'block' }
+                }>
+                <div className="btn green">
+                  <span> 
+                    <i 
+                      className="material-icons"
+                    >insert_photo
+                    </i>
+                  </span>
+                  <input 
+                    type="file" 
+                    multiple 
+                    onChange={this.handleImageChange} />
+                </div>
+                <div className="file-path-wrapper">
+                  <input 
+                    className="file-path validate" 
+                    type="text"
+                    placeholder="Upload profile image" />
+                </div>
+                <span className="right red-text error-margin">
+                {this.state.errors.imageError}
+              </span>
+              </div>
+              <div>
               <button 
                 className="btn modal-trigger green" 
                 onClick={this.handleEdit} 
@@ -193,18 +338,29 @@ class UserProfile extends Component {
               </button>
               <button 
                 className="btn green" 
+                disabled={this.state.disabled}
                 style={{ marginRight: 5 }}>Update
               </button>
               <button 
                 className="btn red lighten-1"
                 onClick={this.handleCancel}>Cancel
               </button>
-             
-              </div>
-              </div>
-              </form>
+            </div>
+            <hr />
+            <div className="row center">
+              <div>
+                {this.state.onUpdate ?
+                  <SmallPreloader />
+                :
+                ''
+                }
               </div>
             </div>
+            </div>
+            </div>
+            </form>
+            </div>
+          </div>
         <Footer />
       </div>
     );
@@ -216,4 +372,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps,
-  { editProfile, getUser })(UserProfile);
+  { editProfile, fetchUser })(UserProfile);

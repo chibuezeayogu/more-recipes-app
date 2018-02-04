@@ -18,8 +18,9 @@ describe('Reviews', () => {
         done();
       });
   });
-  describe('GET: /recipes/:id/reviews', () => {
-    it('should return a message `No token provided.` if no authorization token was found', (done) => {
+  describe('Get Recipe Review', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .get('/api/v1/recipes/3/reviews')
         .end((err, res) => {
@@ -30,7 +31,8 @@ describe('Reviews', () => {
           done();
         });
     });
-    it('should return a message `Please input a valid id.` if recipe id supplied is not of type integer', (done) => {
+    it(`should return an error message if recipe id supplied is not of type
+      integer`, (done) => {
       chai.request(app)
         .get('/api/v1/recipes/s/reviews')
         .set({ Authorization: token })
@@ -41,7 +43,7 @@ describe('Reviews', () => {
           done();
         });
     });
-    it('should return a message `Recipe not found` if recipe is not found', (done) => {
+    it('should return an error message if recipe is not found', (done) => {
       chai.request(app)
         .get('/api/v1/recipes/5/reviews')
         .set({ Authorization: token })
@@ -52,7 +54,8 @@ describe('Reviews', () => {
           done();
         });
     });
-    it('should return a message if recipe has not been recviewd', (done) => {
+    it('should return an error message if recipe has not been reviewed',
+      (done) => {
       chai.request(app)
         .get('/api/v1/recipes/5/reviews')
         .set({ Authorization: token })
@@ -63,8 +66,10 @@ describe('Reviews', () => {
         });
     });
   });
-  describe('POST: /recipes/:id/reviews', () => {
-    it('should return a message `No token provided.` if no authorization token was found', (done) => {
+
+  describe('Post Review', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .post('/api/v1/recipes/3/reviews')
         .end((err, res) => {
@@ -75,7 +80,8 @@ describe('Reviews', () => {
           done();
         });
     });
-    it('should return a message `Please input a valid id.` if recipe id supplied is not of type integer', (done) => {
+    it(`should return an error message if recipe id supplied is not of
+      type integer`, (done) => {
       chai.request(app)
         .post('/api/v1/recipes/s/reviews')
         .set({ Authorization: token })
@@ -87,7 +93,7 @@ describe('Reviews', () => {
           done();
         });
     });
-    it('should return a message `Recipe not found` if recipe is not found', (done) => {
+    it('should return an error message if recipe is not found', (done) => {
       chai.request(app)
         .post('/api/v1/recipes/5/reviews')
         .set({ Authorization: token })
@@ -107,11 +113,14 @@ describe('Reviews', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['comment is required', 'comment should be at least 5 character long without leading space']);
+          expect(res.body.message).to.eql(
+            ['comment is required', 'comment should be at least 5 character long']
+          );
           done();
         });
     });
-    it('should return a message `comment should be at least 5 character long without leading space` if comment is supplied but didn\'t meet the required length', (done) => {
+    it('should return an error message if comment is less than 5 characters',
+      (done) => {
       chai.request(app)
         .post('/api/v1/recipes/3/reviews')
         .set({ Authorization: token })
@@ -119,7 +128,9 @@ describe('Reviews', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['comment should be at least 5 character long without leading space']);
+          expect(res.body.message).to.eql(
+            ['comment should be at least 5 character long']
+          );
           done();
         });
     });

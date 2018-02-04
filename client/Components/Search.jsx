@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { search } from '../action/actionCreators';
+import InfiniteScroll from 'react-infinite-scroller';
+import { search, fetchRecipesWithMostUpvote } from '../action/actionCreators';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 import SearchResult from './SearchResult.jsx';
@@ -13,37 +14,56 @@ class Search extends Component {
     super();
     this.onChange = this.onChange.bind(this);
     this.state = ({ isLoading: false });
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
-  handleSearch(e) {
-    e.preventDefault();
-    const serchTerm = e.target.value;
-    if ((e.target.value).length >= 3) {
-      this.props.search(serchTerm);
-      this.state = ({ isLoading: true });
-    } 
+  componentWillMount() {
+    this.props.fetchRecipesWithMostUpvote();
   }
-
+  /**
+   * @description checks if the there is a new props
+   *
+   * @method
+   *
+   * @memberOf Search
+   *
+   * @param {Object} nextProps - nextProps object
+   *
+   * @returns {Undefined}
+   */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.searchResultReducer.isFetched) {
+    if (nextProps.searchReducer.isFetched) {
       this.setState({ isLoading: false });
     }
   }
+
+
+
+  handleSearch(event) {
+    event.preventDefault();
+    const serchTerm = event.target.value;
+    if ((event.target.value).length > 2) {
+      this.props.search(serchTerm);
+      this.state = ({ isLoading: true });
+    } else {
+      this.props.history.push(`/search`);
+      this.props.fetchRecipesWithMostUpvote();
+    }
+  }
+
   /**
    * @description handels page change
    *
    * @method
    *
-   * @memberOf RecipesList
+   * @memberOf Search
    *
-   * @param {page} page - current page
+   * @param {Integer} page - current page
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   onChange(page) {
-    this.props.history.push(`/recipes?page=${page}`);
-    const offset = 8 * (page - 1);
-    this.props.getAllRecipes(offset);
+
   }
 
  /**
@@ -52,16 +72,16 @@ class Search extends Component {
    *
    * @method
    *
-   * @memberOf RecipeList
+   * @memberOf Search
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   render() {
-    const { recipes, pagination } = this.props.searchResultReducer;
+    const { recipes, display, pagination } = this.props.searchReducer;
     return (
       <div className="body">
-        <UserMenu />
+        <UserMenu {...this.props} />
         <div className="main">
           <div className="container">
             <div className="row">
@@ -70,7 +90,7 @@ class Search extends Component {
             </div>
             <div className="row">
               <form className="col s12"
-                onChange={e => this.handleSearch(e)}>
+                onChange={this.handleSearch}>
                 <div className="row">
                   <div className="input-field col s12">
                     <input id="search" type="text" />
@@ -79,6 +99,7 @@ class Search extends Component {
                 </div>
               </form>
             </div>
+            <h4 className="center">{display}</h4>
             {this.state.isLoading ?
               <Preloader />
             :
@@ -105,8 +126,8 @@ class Search extends Component {
 
 const mapStateToProps = state => ({
   userData: state.userData,
-  searchResultReducer: state.searchResultReducer
+  searchReducer: state.searchReducer
 });
 
-export default connect(mapStateToProps, { search })(Search);
-
+export default connect(mapStateToProps,
+  { search, fetchRecipesWithMostUpvote })(Search);

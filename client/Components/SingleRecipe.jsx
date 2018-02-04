@@ -10,6 +10,7 @@ import Preloader from './Preloder.jsx';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 import { validateCommentForm } from '../util/validateInputs';
+import findIndex from '../util/findIndex';
 
 
 /**
@@ -27,7 +28,7 @@ class SingleRecipe extends Component {
    *
    * @memberOf SingleRecipe
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   constructor() {
     super();
@@ -49,18 +50,14 @@ class SingleRecipe extends Component {
    *
    * @memberOf SingleRecipe
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   componentWillMount() {
-    const token = localStorage.getItem('jwtToken');
-    if (!token) {
-      this.props.history.push('/');
-    } else {
-      const { user } = jwtDecode(token);
-      const { id } = this.props.match.params;
-      this.props.getRecipe(id);
-      this.props.getRecipeComment(id);
-    }
+    const { currentUser } = this.props.userData;
+    const { id } = this.props.match.params;
+    this.props.fetchRecipe(id);
+    this.props.fetchRecipeComment(id);
+    this.props.fetchUserFavouritesIds(currentUser.id);
   }
 
   componentDidMount() {
@@ -78,7 +75,7 @@ class SingleRecipe extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.recipeReducer.isFetched === true ||
@@ -95,7 +92,7 @@ class SingleRecipe extends Component {
    *
    * @memberOf SingleRecipe
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   handleUpvote() {
     const { id } = this.props.match.params;
@@ -110,11 +107,13 @@ class SingleRecipe extends Component {
    *
    * @memberOf SingleRecipe
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   handleAddToFavourite() {
     const { id } = this.props.match.params;
     this.props.addOrRemoveFavourite(id);
+    const { currentUser } = this.props.userData;
+    this.props.fetchUserFavouritesIds(currentUser.id);
   }
 
   /**
@@ -125,7 +124,7 @@ class SingleRecipe extends Component {
    *
    * @memberOf SingleRecipe
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   handleDownvote() {
     const { id } = this.props.match.params;
@@ -139,43 +138,54 @@ class SingleRecipe extends Component {
    *
    * @memberOf SingleRecipe
    *
-   * @param {Event} e - event
+   * @param {Object} event - event 
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
-  handleChange(e) {
-    e.preventDefault();
+  handleChange(event) {
+    event.preventDefault();
     this.setState({ errors: {} });
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   /**
    *
-   * @description
+   * @description submits user comment
    *
    * @method
    *
-   * @param {Event} e
+   * @param {Object} event - event object
    *
    * @memberOf SingleRecipe
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
-  handleOnsubmit(e) {
-    e.preventDefault();
+  handleOnsubmit(event) {
+    event.preventDefault();
     const { id } = this.props.match.params;
-    const token = localStorage.getItem('jwtToken');
-    const { user } = jwtDecode(token);
+    const { currentUser } = this.props.userData;
     const comment = this.state.comment;
     const err = validateCommentForm(this.state);
-    console.log(err);
     if (err.isError) {
       return this.setState({ errors: err.errors });
     }
-    this.props.postComment(id, user.id, comment);
+    this.props.postComment(id, currentUser.id, comment);
+    event.target.reset();
   }
 
+  /**
+   *
+   * @description renders recipe comment
+   *
+   * @method
+   *
+   * @param {Object} event - event object
+   *
+   * @memberOf SingleRecipe
+   *
+   * @returns {Undefined}
+   */
 
   renderComment() {
     const { commentReducer, ...rest } = this.props;
@@ -198,18 +208,13 @@ class SingleRecipe extends Component {
    *
    * @memberOf SingleRecipe
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   render() {
-    const token = localStorage.getItem('jwtToken');
-    const { user } = jwtDecode(token);
     const { id } = this.props.match.params;
     const { recipeReducer, favouriteReducer } = this.props;
     const { recipes, isFetched } =  recipeReducer;
-    const { favouritedIds } = favouriteReducer;
-    const index = recipes.findIndex(recipe => recipe.id === parseInt(id, 10));
-    
-
+    const index = findIndex(recipes, id);
     if (this.state.isLoading) {
       return (
         <div className="body grey lighten-5">
@@ -304,11 +309,11 @@ class SingleRecipe extends Component {
                           data-tooltip="views"
                           style={{ cursor: 'pointer' }}
                           onClick={() => this.handleAddToFavourite(id)}
-                        >
-                          <i
-                            className="fa fa-heart"
-                            aria-hidden="true"
-                          />
+                        > 
+                        <i
+                          className="fa fa-heart"
+                          aria-hidden="true"
+                        />
                         </a>
                       </div>
                     </div>
@@ -363,7 +368,9 @@ class SingleRecipe extends Component {
                 </div>
                 <div className="row s12 m6">
                   <h4>Comments</h4>
-                  <form onSubmit={e => this.handleOnsubmit(e)}>
+                  <form 
+                    onSubmit={e => this.handleOnsubmit(e)} 
+                    ref={form => this.form = form}>
                     <div className="row">
                       <div className="input-field col s12">
                         <textarea
@@ -396,7 +403,6 @@ class SingleRecipe extends Component {
                     {this.renderComment()}
                   </ul>
                 </div>
-                
               </div>
             </div>
         </div>
@@ -407,8 +413,8 @@ class SingleRecipe extends Component {
 }
 
 SingleRecipe.propTypes = {
-  getRecipe: PropTypes.func.isRequired,
-  getRecipeComment: PropTypes.func.isRequired,
+  fetchRecipe: PropTypes.func.isRequired,
+  fetchRecipeComment: PropTypes.func.isRequired,
   recipeReducer: PropTypes.shape({
     recipes: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -445,6 +451,7 @@ const mapStateToProps = state => ({
   userData: state.userData,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(actionCreators, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleRecipe);

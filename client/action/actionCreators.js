@@ -96,8 +96,8 @@ export const addOrRemoveFavourite = recipeId => ({
  * @returns {Object} payload
  *
  */
-export const getRecipeComment = recipeId => ({
-  type: actionTypes.GET_COMMENTS,
+export const fetchRecipeComment = recipeId => ({
+  type: actionTypes.FETCH_COMMENTS,
   recipeId
 });
 
@@ -171,14 +171,14 @@ export const createAccount = (state) => {
 
   /**
    * 
-   * @description dispatches an action to gets all recipes in the db
+   * @description dispatches an action to fetch all recipes in the db
    * 
    * @param {Integer} offset - query offset
    * 
    * @returns {void}
    */
-  export const getAllRecipes = offset => ({
-    type: actionTypes.GET_ALL_RECIPES,
+  export const fetchAllRecipes = offset => ({
+    type: actionTypes.FETCH_ALL_RECIPES,
     offset
   });
 
@@ -190,26 +190,26 @@ export const createAccount = (state) => {
    * 
    * @returns {void}
    */
-  export const SignOut = () => ({
+  export const signOut = () => ({
     type: actionTypes.LOGOUT
   });
 
   /**
    * 
-   * @description dispatches get recipe action
+   * @description dispatches fetch recipe action
    * 
    * @method
    * 
    * @returns {void}
    */
-  export const getRecipe = id => ({
-    type: actionTypes.GET_RECIPE,
+  export const fetchRecipe = id => ({
+    type: actionTypes.FETCH_RECIPE,
     id
   });
 
    /**
    * 
-   * @description dispatches action to get user favourite recipe ids
+   * @description dispatches action to fetch user favourite recipe ids
    * 
    * @method
    *
@@ -217,14 +217,14 @@ export const createAccount = (state) => {
    * 
    * @returns {void}
    */
-  export const getUserFavouriteRecipeIds = userId => ({
-    type: actionTypes.GET_USER_FAVOURITE_RECIPE_Ids,
+  export const fetchUserFavouriteRecipeIds = userId => ({
+    type: actionTypes.FETCH_USER_FAVOURITE_RECIPE_Ids,
     userId
   });
 
   /**
    * 
-   * @description dispatches action to get user favourite recipes
+   * @description dispatches action to fetch user favourite recipes
    *
    * @method
    * 
@@ -232,15 +232,31 @@ export const createAccount = (state) => {
    * 
    * @returns {void}
    */
-  export const getUserFavourites = (userId, offset) => ({
-    type: actionTypes.GET_USER_FAVOURITE_RECIPES,
+  export const fetchUserFavourites = (userId, offset) => ({
+    type: actionTypes.FETCH_USER_FAVOURITE_RECIPES,
     userId,
     offset
   });
 
+
   /**
    * 
-   * @description dispatches action to get user recipes
+   * @description dispatches action to fetch user favourite recipes Ids
+   *
+   * @method
+   * 
+   * @param {Integer} userId - user id
+   * 
+   * @returns {void}
+   */
+  export const fetchUserFavouritesIds = (userId) => ({
+    type: actionTypes.FETCH_USER_FAVOURITE_RECIPE_Ids,
+    userId
+  });
+
+  /**
+   * 
+   * @description dispatches action to fetch user recipes
    *
    * @method
    * 
@@ -250,8 +266,8 @@ export const createAccount = (state) => {
    * 
    * @returns {void}
    */
-  export const getUserRecipes = (userId, offset) => ({
-    type: actionTypes.GET_USER_RECIPES,
+  export const fetchUserRecipes = (userId, offset) => ({
+    type: actionTypes.FETCH_USER_RECIPES,
     userId,
     offset
   });
@@ -293,8 +309,8 @@ export const createAccount = (state) => {
  * @returns {Object} payload
  *
  */
-export const editRecipe = (id, state) => {
-  const {title, description, ingredients, procedures, imageUrl } = state;
+export const editRecipe = (state) => {
+  const { id, title, description, ingredients, procedures, imageUrl } = state;
   return {
     type: actionTypes.EDIT_RECIPE,
     id,
@@ -323,8 +339,8 @@ export const editRecipe = (id, state) => {
  * @returns {Object} payload
  *
  */
-export const editProfile = (id, state) => {
-  const { firstName, lastName, location, phone, address, imageUrl } = state;
+export const editProfile = (state) => {
+  const { id, firstName, lastName, location, phone, address, imageUrl } = state;
    return {
     type: actionTypes.EDIT_PROFILE,
     id,
@@ -346,7 +362,33 @@ export const editProfile = (id, state) => {
  * @returns {Object} payload
  *
  */
-export const getUser = (id) => ({
-  type: actionTypes.GET_USER,
+export const fetchUser = (id) => ({
+  type: actionTypes.FETCH_USER,
   id
+})
+
+
+/**
+ *
+ * @method
+ *
+ * @param {id} id - user id
+ *
+ * @returns {Object} payload
+ *
+ */
+export const setCurrentUser = (user) => ({
+  type: actionTypes.SET_CURRENT_USER,
+  user
+})
+
+/**
+ *
+ * @method
+ *
+ * @returns {Object} payload
+ *
+ */
+export const fetchRecipesWithMostUpvote = () => ({
+  type: actionTypes.FETCH_MOST_UPVOTED_RECIPES,
 })

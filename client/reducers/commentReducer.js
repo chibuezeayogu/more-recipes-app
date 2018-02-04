@@ -6,13 +6,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_COMMENTS_SUCCESS:
-      return Object.assign(
-        {},
-        state,
+    case actionTypes.FETCH_COMMENTS_SUCCESS:
+      state =
         {
           reviews: action.data
-        });
+        };
+        return state;
     case actionTypes.POST_COMMENT_SUCCESS:
       return Object.assign(
         {},

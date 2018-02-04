@@ -147,7 +147,8 @@ export default {
             message: 'You have not added any recipe to your favourite'
           });
         }
-        return res.status(200).send(recipe);
+        const recipeIds = recipe.map(recipe => recipe.recipeId);
+        return res.status(200).send(recipeIds);
       })
       .catch(error => res.status(400).send({ message: error.message }));
   },

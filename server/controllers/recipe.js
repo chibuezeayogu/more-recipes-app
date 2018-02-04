@@ -63,7 +63,7 @@ export default {
       })
       .then((recipe) => {
         if (recipe.rows.length === 0) {
-          return res.status(404).send({ message: 'No recipe was found!' });
+          return res.status(404).send({ message: 'Recipe not found' });
         }
 
         /**
@@ -178,7 +178,9 @@ export default {
         }
         recipe
           .destroy()
-          .then(response => res.status(200).send({ message: 'Delete Successfully' }))
+          .then(response => res.status(200).send({
+            message: 'Delete Successfully'
+          }))
           .catch(error => res.status(400).send({ message: error.message }));
       })
       .catch(error => res.status(500).send({ message: error.message }));
@@ -203,7 +205,7 @@ export default {
 
 
     return Recipe
-      .findAll({
+      .findAndCountAll({
         order: [['upvotes', 'DESC']],
         where: {
           upvotes: {
@@ -212,7 +214,20 @@ export default {
         },
         limit: 10,
       })
-      .then(recipe => res.status(200).send({ recipe }))
+      .then(recipe => {
+        /**
+         * pass query limit, query offset, recipedata.count to pagenate helper
+         * and return totalCount, currentPage, pageCount, and pageSize
+         * to pagination
+         */
+        
+        const pagination = paginate(query.limit, query.offset, recipe.count);
+        
+        res.status(200).send({
+          pagination,
+          recipes: recipe.rows
+        })
+      })
       .catch(error => res.status(400).send({ message: error.message }));
   },
 
@@ -227,8 +242,10 @@ export default {
 
     const search = req.query.q.split(' ');
 
-    const recipeIngredints = search.map(value => ({ ingredients: { $iLike: `%${value}%` } }));
-    const recipeTitle = search.map(value => ({ title: { $iLike: `%${value}%` } }));
+    const recipeIngredients = search.map(value => ({ ingredients:
+      { $iLike: `%${value}%` } }));
+    const recipeTitle = search.map(value => ({ title:
+      { $iLike: `%${value}%` } }));
 
     /**
      * query limit: get query limit if supplie else use default
@@ -249,7 +266,7 @@ export default {
         {
           where: {
             $or:
-            recipeIngredints.concat(recipeTitle),
+            recipeIngredients.concat(recipeTitle),
           }, 
           order: [['id', 'DESC']],
           limit: query.limit,
@@ -257,7 +274,9 @@ export default {
         })
       .then((recipe) => {
         if (recipe.rows.length <= 0) {
-          return res.status(404).send({ message: 'Search term did not match any recipe' });
+          return res.status(404).send({
+            message: 'Search term did not match any recipe'
+          });
         }
 
         /**

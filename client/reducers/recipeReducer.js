@@ -1,6 +1,7 @@
 
 import actionTypes from '../action/actionTypes';
 import lodash from 'lodash';
+import findIndex from '../util/findIndex';
 
 const initialState = {
   isCreated: false,
@@ -12,7 +13,7 @@ let index;
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_ALL_RECIPES_SUCCESS:
+    case actionTypes.FETCH_ALL_RECIPES_SUCCESS:
       state = {
         recipes: action.data.recipes,
         isFetched: true,
@@ -20,8 +21,7 @@ export default (state = initialState, action) => {
       };
       return state;
     case actionTypes.ADD_RECIPE_SUCCESS:
-      index = state.recipes
-        .findIndex(recipes => recipes.id == action.data.id);
+      index = findIndex(state.recipes, action.data.id);
       return Object.assign(
         {},
         state,
@@ -30,8 +30,7 @@ export default (state = initialState, action) => {
           isCreated: !lodash.isEmpty(action.data)
         });
     case actionTypes.UP_VOTE_RECIPE_SUCCESS:
-      index = state.recipes
-        .findIndex(recipes => recipes.id == action.data.recipe.id);
+      index = findIndex(state.recipes, action.data.recipe.id);
       return Object.assign(
         {},
         state,
@@ -42,8 +41,7 @@ export default (state = initialState, action) => {
         });
 
     case actionTypes.DOWN_VOTE_RECIPE_SUCCESS:
-      index = state.recipes
-        .findIndex(recipes => recipes.id == action.data.recipe.id);
+      index = findIndex(state.recipes, action.data.recipe.id);
       return Object.assign(
         {},
         state,
@@ -52,9 +50,8 @@ export default (state = initialState, action) => {
             action.data.recipe,
             ...state.recipes.slice(index + 1)],
         });
-    case actionTypes.GET_RECIPE_SUCCESS:
-      index = state.recipes
-        .findIndex(recipes => recipes.id == action.data.id);
+    case actionTypes.FETCH_RECIPE_SUCCESS:
+      index = findIndex(state.recipes, action.data.id);
       return Object.assign(
         {},
         state,
@@ -64,7 +61,7 @@ export default (state = initialState, action) => {
             ...state.recipes.slice(index + 1)],
           isFetched: true,
         });
-    case actionTypes.GET_RECIPE_ERROR:
+    case actionTypes.FETCH_RECIPE_ERROR:
       return Object.assign(
         {},
         state,
@@ -72,16 +69,15 @@ export default (state = initialState, action) => {
           isFetched: false
         });
     case actionTypes.DELETE_COMMENT_SUCCESS:
-      index = state.recipes
-        .findIndex(recipes => recipes.id == action.recipeId);
-    return Object.assign(
-      {},
-      state,
-      {
-        recipes: [...state.recipes.slice(0, index),
-          ...state.recipes.slice(index + 1)],
-      });
-    case actionTypes.GET_ALL_RECIPES_ERROR:
+      index = findIndex(state.recipes, action.recipeId);
+      return Object.assign(
+        {},
+        state,
+        {
+          recipes: [...state.recipes.slice(0, index),
+            ...state.recipes.slice(index + 1)],
+        });
+    case actionTypes.FETCH_ALL_RECIPES_ERROR:
       state = {
         isFetched: true,
         recipes: []

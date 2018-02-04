@@ -12,11 +12,9 @@ import moment from 'moment';
  *
  * @param {Object} props - property object
  *
- *  @returns {void}
+ *  @returns {Undefined}
  */
 const RecipeCard = (props) => {
-  const token = localStorage.getItem('jwtToken');
-  const { user } = jwtDecode(token);
   const { recipe } = props;
   return (
     <div className="col s12 m6 l4">

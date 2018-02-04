@@ -7,9 +7,19 @@ const expect = chai.expect;
 chai.use(http);
 
 let token;
-describe('Users', () => {
-  describe('POST: /api/v1/users/signup', () => {
-    it('should return an error message if first name is not supplied', (done) => {
+describe('User:', () => {
+  before((done) => {
+    chai.request(app)
+      .post('/api/v1/users/signin')
+      .send({ email: 'chibuezeayogu@hotmail.com', password: 'Password1.@' })
+      .end((err, res) => {
+        token = res.body.token;
+        done();
+      });
+  });
+  describe('User Sign Up', () => {
+    it(`should return an error message if first name is not
+      supplied`, (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send({
@@ -17,7 +27,8 @@ describe('Users', () => {
           lastName: 'Ayogu',
           email: 'new@hotmail.com',
           password: '12345678',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -27,7 +38,8 @@ describe('Users', () => {
           done();
         });
     });
-    it('should return an message if first name lenght is less than 3 character', (done) => {
+    it(`should return an  error message if first name lenght is less than
+      3 character`, (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send({
@@ -35,16 +47,20 @@ describe('Users', () => {
           lastName: 'Ayogu',
           email: 'new@hotmail.com',
           password: '12345678',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['first name must be at least 3 characters long']);
+          expect(res.body.message).to.eql(
+            ['first name must be at least 3 characters long']
+          );
           done();
         });
     });
-    it('should return an error message if last name is not supplied', (done) => {
+    it('should return an error message if last name is not supplied',
+      (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send({
@@ -52,7 +68,8 @@ describe('Users', () => {
           lastName: '',
           email: 'new@hotmail.com',
           password: '12345678',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -62,7 +79,8 @@ describe('Users', () => {
           done();
         });
     });
-    it('should return an error message if last name lenght is less than 3 character', (done) => {
+    it(`should return an error message if last name is less than
+      3 character`, (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send({
@@ -70,12 +88,15 @@ describe('Users', () => {
           lastName: 'AB',
           email: 'new@hotmail.com',
           password: '12345678',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['last name must be at least 3 character long']);
+          expect(res.body.message).to.eql(
+            ['last name must be at least 3 character long']
+          );
           done();
         });
     });
@@ -87,16 +108,20 @@ describe('Users', () => {
           lastName: 'Ayogu',
           email: '',
           password: '12345678',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['email is required', 'email is not valid']);
+          expect(res.body.message).to.eql(
+            ['email is required', 'email is not valid']
+          );
           done();
         });
     });
-    it('should return an error message if invalid email is supplied', (done) => {
+    it(`should return an error message if invalid
+      email is supplied`, (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send({
@@ -104,7 +129,8 @@ describe('Users', () => {
           lastName: 'Ayogu',
           email: 'newhotmail.com',
           password: '12345678',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -113,7 +139,8 @@ describe('Users', () => {
           done();
         });
     });
-    it('should return a message when password is not supplied!!', (done) => {
+    it('should return an error message when password is not supplied!',
+      (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send({
@@ -121,7 +148,8 @@ describe('Users', () => {
           lastName: 'Ayogu',
           email: 'new@hotmail.com',
           password: '',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -131,7 +159,8 @@ describe('Users', () => {
           done();
         });
     });
-    it('should return an error message if password length is less that 8', (done) => {
+    it(`should return an error message if password length is less that 8
+      character`, (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send({
@@ -139,16 +168,20 @@ describe('Users', () => {
           lastName: 'Ayogu',
           email: 'new@hotmail.com',
           password: '1234567',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['password must be at least 8 characters long']);
+          expect(res.body.message).to.eql(
+            ['password must be at least 8 characters long']
+          );
           done();
         });
     });
-    it('should return a message if password does not contains `uppercase, lowercase, number, and spacial character`', (done) => {
+    it(`should return an error message if password did meet required
+      condition`, (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send({
@@ -156,12 +189,15 @@ describe('Users', () => {
           lastName: 'Ayogu',
           email: 'new@hotmail.com',
           password: 'Password1jjjkjk',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql('password must contain `uppercase, lowercase, number, and special character`');
+          expect(res.body.message).to.eql(
+            'password must contain uppercase, lowercase, number, and special character'
+          );
           done();
         });
     });
@@ -173,7 +209,8 @@ describe('Users', () => {
           lastName: 'Ayogu',
           email: 'new@hotmail.com',
           password: 'Password1.@',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(201);
@@ -182,7 +219,7 @@ describe('Users', () => {
           done();
         });
     });
-    it('should return a message `User already exists.` if user already exists.', (done) => {
+    it('should return an error message if user already exists.', (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send({
@@ -190,7 +227,8 @@ describe('Users', () => {
           lastName: 'Ayogu',
           email: 'new@hotmail.com',
           password: 'Password1.@',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(409);
@@ -200,7 +238,8 @@ describe('Users', () => {
         });
     });
   });
-  describe('POST: /api/v1/users/signin', () => {
+
+  describe('User Sign In', () => {
     it('should return an message if user is not registered', (done) => {
       chai.request(app)
         .post('/api/v1/users/signin')
@@ -212,7 +251,7 @@ describe('Users', () => {
           done();
         });
     });
-    it('should return a message when a user did not supply his/her email', (done) => {
+    it('should return an error message if email is not supplied', (done) => {
       chai.request(app)
         .post('/api/v1/users/signin')
         .send({ email: '', password: 'ikenna123' })
@@ -223,7 +262,7 @@ describe('Users', () => {
           done();
         });
     });
-    it('should return an error message if user did not supply his/her password', (done) => {
+    it('should return an error message if password is not supplied', (done) => {
       chai.request(app)
         .post('/api/v1/users/signin')
         .send({ email: 'okoro@hotmail.com', password: '' })
@@ -234,7 +273,8 @@ describe('Users', () => {
           done();
         });
     });
-    it('should return a message when user supplies a wrong password', (done) => {
+    it(`should return an error message if wrong credentials is supplied
+      password is supplied`, (done) => {
       chai.request(app)
         .post('/api/v1/users/signin')
         .send({ email: 'okoro@hotmail.com', password: 'wrong123456' })
@@ -257,17 +297,10 @@ describe('Users', () => {
         });
     });
   });
-  before((done) => {
-    chai.request(app)
-      .post('/api/v1/users/signin')
-      .send({ email: 'chibuezeayogu@hotmail.com', password: 'Password1.@' })
-      .end((err, res) => {
-        token = res.body.token;
-        done();
-      });
-  });
-  describe('GET: /api/v1/users/:userId', () => {
-    it('should return an error message if no authorization token was found', (done) => {
+
+  describe('Get User', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .get('/api/v1/users/1')
         .end((err, res) => {
@@ -311,8 +344,11 @@ describe('Users', () => {
         });
     });
   });
-  describe('PUT: /api/v1/users/:userId', () => {
-    it('should return a message if no authorization token was found', (done) => {
+
+  describe('Update User', () => {
+
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .put('/api/v1/users/1')
         .end((err, res) => {
@@ -345,7 +381,8 @@ describe('Users', () => {
           done();
         });
     });
-    it('should return a message if a user tries to change his email', (done) => {
+    it('should return an error message if a user tries to change his email',
+      (done) => {
       chai.request(app)
         .put('/api/v1/users/1')
         .set({ Authorization: token })
@@ -353,7 +390,8 @@ describe('Users', () => {
           firstName: 'Chibueze',
           lastName: 'Ayogu',
           email: 'new@hotmail.com',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509613064/ll3ej6sclaadc2wcyjdf.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(403);
@@ -362,7 +400,7 @@ describe('Users', () => {
           done();
         });
     });
-    it('should return a message and an updated details of a registered user', (done) => {
+    it('should return an updated details of a registered user', (done) => {
       chai.request(app)
         .put('/api/v1/users/1')
         .set({ Authorization: token })

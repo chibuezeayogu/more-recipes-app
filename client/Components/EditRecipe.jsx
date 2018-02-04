@@ -7,7 +7,7 @@ import { editRecipe, getRecipe } from '../action/actionCreators';
 import SmallPreloader from './SmallPreloader.jsx';
 import Footer from './Footer/Footer.jsx';
 import UserMenu from './Header/UserMenu.jsx';
-import { validateEditRecipeForm, validateImage } from '../util/validateInputs';
+import { validateEditRecipeForm } from '../util/validateInputs';
 import imageToFormData from '../util/ImageUpload';
 
 
@@ -27,19 +27,19 @@ class EditRecipe extends Component {
    *
    * @memberOf EditRecipe
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   constructor() {
     super();
     this.state = {
+      id: '',
       title: '',
       description: '',
       ingredients: '',
       procedures: '',
       imageUrl:'',
       image: {},
-      selectedImage: '',
       errors: {},
       disabled: false,
     };
@@ -54,17 +54,12 @@ class EditRecipe extends Component {
    *
    * @memberOf EditRecipe
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   componentWillMount() {
-    const token = localStorage.getItem('jwtToken');
-    if (!token) {
-      this.props.history.push('/signin');
-    } else {
-      const { id } = this.props.match.params;
-      this.props.getRecipe(id);
-    }
+    const { id } = this.props.match.params;
+    this.props.getRecipe(id);
   }
 
   /**
@@ -76,20 +71,23 @@ class EditRecipe extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   componentWillReceiveProps(nextProps) {
     const { isFetched, isUpdated, recipes } = nextProps.userRecipeReducer;
     const { id } = this.props.match.params;
     if (isFetched) {
       const { id } = this.props.match.params;
-     const index = recipes.findIndex(recipe => recipe.id === parseInt(id, 10));
-      this.setState({ isLoading: false,
+      const index = recipes.findIndex(recipe => recipe.id === parseInt(id, 10));
+      this.setState({
+        id: recipes[index].id,
         title: recipes[index].title,
         description: recipes[index].description,
         ingredients: recipes[index].ingredients,
         procedures: recipes[index].procedures,
-        imageUrl: recipes[index].imageUrl });
+        imageUrl: recipes[index].imageUrl,
+        isLoading: false 
+      });
     } else if (isUpdated) {
       this.props.history.goBack();
     }
@@ -102,9 +100,9 @@ class EditRecipe extends Component {
    *
    * @memberOf EditRecipe
    *
-   * @param {Event} event - event object
+   * @param {Object} event - event object
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   handleChange(event) {
     event.preventDefault();
@@ -119,21 +117,14 @@ class EditRecipe extends Component {
    *
    * @memberOf EditRecipe
    *
-   * @param {Event} event - event object
+   * @param {Object} event - event object
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   handleImageChange(event) {
     event.preventDefault();
     const file = event.target.files[0];
-    this.setState({ errors: {}, image: {}, selectedImage: '' });
-    this.setState({ image: file });
-  
-    const reader = new FileReader();
-    reader.onload = () => {
-        this.setState({ selectedImage: reader.result });
-    }
-    reader.readAsDataURL(file);
+    this.setState({ errors: {}, image: file });
   }
 
   /**
@@ -144,9 +135,9 @@ class EditRecipe extends Component {
    *
    * @memberOf EditRecipe
    *
-   * @param {Event} event - event object
+   * @param {Object} event - event object
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   handleOnsubmit(event) {
@@ -155,24 +146,22 @@ class EditRecipe extends Component {
     if (err.isError) {
       return this.setState({ errors: err.errors });
     }
-    // console.log(Object.keys(this.state.image), 'with');
-    // if(Object.keys(this.state.image)) {
-    //   const uploadData = imageToFormData(this.state.image);
-    //   delete axios.defaults.headers.common['Authorization'];
-    //   axios(uploadData)
-    //     .then((data) => {
-    //     this.setState({ imageUrl: data.data.secure_url });
-    //     console.log(this.state, 'with');
-    //     this.props.editRecipe(this.state);
-    //   }).catch((error) => { 
-    //     this.setState({ disabled: false });
-    //     Materialize.toast("Error! Please try again", 4000, 'red');
-    //   });
-    // } else {
-    //   console.log(this.state, 'without');
-    const { id } = this.props.match.params;
-      this.props.editRecipe(id, this.state);
-    // }
+    this.setState({ disabled: true });
+    
+    if (this.state.image.name) {
+      const uploadData = imageToFormData(this.state.image);
+      delete axios.defaults.headers.common['Authorization'];
+      axios(uploadData)
+        .then((data) => {
+        this.setState({ imageUrl: data.data.secure_url });
+        this.props.editRecipe(this.state);
+      }).catch((error) => { 
+        this.setState({ disabled: false });
+        Materialize.toast("Error! Please try again", 4000, 'red');
+      });
+    } else {
+      this.props.editRecipe(this.state);
+    }
   }
 
   /**
@@ -183,11 +172,11 @@ class EditRecipe extends Component {
    *
    * @memberOf SignUp
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   render() {
-    const { isFetched, recipes} = this.props.userRecipeReducer;
+    const { isFetched, recipes } = this.props.userRecipeReducer;
     
     if (this.state.isLoading) {
       return (
@@ -316,13 +305,6 @@ class EditRecipe extends Component {
                     {this.state.errors.imageError}
                   </span>
                   </div>
-                  <div 
-                    className="row s12 m4 l4 center-align" 
-                    style={{ width: '100%'}}>
-                    <img src={this.state.selectedImage||this.state.imageUrl} 
-                      className="responsive-img center z-depth-2" 
-                      style={{ maxHeight: 400, minHeight: 'auto', maxWidth: 400, minWidth: 'auto' }}/>
-                  </div> 
                 </div>
                 <div className="row">
                   <button
@@ -363,10 +345,6 @@ EditRecipe.propTypes = {
   userRecipeReducer: PropTypes.shape({
     isFetched: PropTypes.bool.isRequired
   }).isRequired
-};
-
-EditRecipe.contextTypes = {
-  router: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

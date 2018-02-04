@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 
 import axios from 'axios';
-import { put, takeEvery, all, call } from 'redux-saga/effects';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
 import setAuthorizationToken from '../util/setAuthToken';
 
@@ -58,9 +58,9 @@ function* fetchUserFavouriteRecipes(action) {
       `/api/v1/users/${action.userId}/favouriteRecipes?limit=6&offset=${action.offset}`);
     const { data } = response;
     Materialize.toast(response.data.message, 4000, 'red');
-    yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_SUCCESS, data });
+    yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPES_SUCCESS, data });
   } catch (error) {
-    yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_ERROR });
+    yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPES_ERROR });
   }
 }
 
@@ -78,9 +78,9 @@ function* fetchUserFavouritesRecipeIds(action) {
     const response = yield call(axios.get,
       `/api/v1/users/${action.userId}/favouriteRecipeIds`);
     const { data } = response;
-    yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPE_Ids_SUCCESS, data });
+    yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPE_Ids_SUCCESS, data });
   } catch (error) {
-    yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPE_Ids_ERROR });
+    yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPE_Ids_ERROR });
   }
 }
 
@@ -88,9 +88,9 @@ function* fetchUserFavouritesRecipeIds(action) {
  * watcher sagas: watches for dispatched action
  * watchAddOrRemoveFavourite: watches dispatch ADD_OR_REMOVE_FAVOURITE action
  * watchfetchUserFavouritesRecipes: watches dispatch
- * GET_USER_FAVOURITE_RECIPES action
+ * FETCH_USER_FAVOURITE_RECIPES action
  * watchFetchUserFavouritesRecipeIds: watches dispatch 
- * GET_USER_FAVOURITE_RECIPE_Ids
+ * FETCH_USER_FAVOURITE_RECIPE_Ids
  *
  */
 
@@ -107,20 +107,20 @@ export function* watchAddOrRemoveFavourite() {
 }
 
 /**
- * @description watching GET_USER_FAVOURITE_RECIPES action
+ * @description watching FETCH_USER_FAVOURITE_RECIPES action
  *
  * @method
  *
  * @returns {void}
  *
  */
-export function* watchfetchUserFavouritesRecipes() {
-  yield takeEvery(actionTypes.GET_USER_FAVOURITE_RECIPES,
+export function* watchFetchUserFavouritesRecipes() {
+  yield takeEvery(actionTypes.FETCH_USER_FAVOURITE_RECIPES,
     fetchUserFavouriteRecipes);
 }
 
 /**
- * @description watching GET_USER_FAVOURITE_RECIPES action
+ * @description watching FETCH_USER_FAVOURITE_RECIPES action
  *
  * @method
  *
@@ -128,6 +128,6 @@ export function* watchfetchUserFavouritesRecipes() {
  *
  */
 export function* watchFetchUserFavouritesRecipeIds() {
-  yield takeEvery(actionTypes.GET_USER_FAVOURITE_RECIPE_Ids,
+  yield takeEvery(actionTypes.FETCH_USER_FAVOURITE_RECIPE_Ids,
     fetchUserFavouritesRecipeIds);
 }

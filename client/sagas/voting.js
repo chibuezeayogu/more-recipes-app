@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 
 import axios from 'axios';
-import { put, takeEvery, all, call } from 'redux-saga/effects';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
 import headers from '../util/setAuthToken';
 
@@ -48,17 +48,17 @@ function* fetchUserFavouriteRecipes(action) {
     const response = yield call(axios.get,
       `/api/v1/users/${action.userId}/favouriteRecipes`);
     const { data } = response;
-    yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_SUCCESS, data });
+    yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPES_SUCCESS, data });
   } catch (error) {
-    yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_ERROR });
+    yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPES_ERROR });
   }
 }
 
 /**
  * watcher sagas: watches for dispatched action
  * watchAddORRemoveFavourite: watches dispatch ADD_OR_REMOVE_FAVOURITE action
- * watchGetUserFavouritesRecipes: watches dispatch
- * GET_USER_FAVOURITE_RECIPES action
+ * watchFETCHUserFavouritesRecipes: watches dispatch
+ * FETCH_USER_FAVOURITE_RECIPES action
  *
  */
 
@@ -75,9 +75,9 @@ function* fetchUserFavouriteRecipes(action) {
     const response = yield call(axios.get,
       `/api/v1/users/${action.userId}/favouriteRecipes`, headers());
     const { data } = response;
-    yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_SUCCESS, data });
+    yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPES_SUCCESS, data });
   } catch (error) {
-    yield put({ type: actionTypes.GET_USER_FAVOURITE_RECIPES_ERROR });
+    yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPES_ERROR });
   }
 }
 
@@ -85,7 +85,7 @@ function* fetchUserFavouriteRecipes(action) {
  * watcher sagas: watches for dispatched action
  * watchAddOrRemoveFavourite: watches dispatch ADD_OR_REMOVE_FAVOURITE action
  * watchfetchUserFavouritesRecipes: watches dispatch
- * GET_USER_FAVOURITE_RECIPES action
+ * FETCH_USER_FAVOURITE_RECIPES action
  *
  */
 
@@ -102,7 +102,7 @@ export function* watchAddOrRemoveFavourite() {
 }
 
 /**
- * @description watching GET_USER_FAVOURITE_RECIPES action
+ * @description watching FETCH_USER_FAVOURITE_RECIPES action
  *
  * @method
  *
@@ -110,5 +110,6 @@ export function* watchAddOrRemoveFavourite() {
  *
  */
 export function* watchfetchUserFavouritesRecipes() {
-  yield takeEvery(actionTypes.GET_USER_FAVOURITE_RECIPES, fetchUserFavouriteRecipes);
+  yield takeEvery(actionTypes.FETCH_USER_FAVOURITE_RECIPES,
+    fetchUserFavouriteRecipes);
 }
