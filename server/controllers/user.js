@@ -165,6 +165,7 @@ export default {
               id: user.id,
               firstName: user.firstName,
               lastName: user.lastName,
+              email: user.email,
               imageUrl: user.imageUrl,
               location: user.location,
               address: user.address,
