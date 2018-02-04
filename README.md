@@ -52,7 +52,7 @@ Click [here](https://more-recipes-api.herokuapp.com) to access the application. 
 - For example, if you cloned the project into the desktop directory, then run cd desktop which takes you into the desktop, then `cd Cohort-XXVI_More-RecipesApp` to enter the project directory.
 - Once in the project directory, install all project dependencies by running `npm install`.
 - Create `.env` file and copy content of `.env.sample` to it and provide the appropriate values specified
-- Run the command `npm run migrate` to migrate db model
+- Run the command `sequelize db:migrate` to migrate db model
 - Run the command `npm run start:dev` to start the application.
 - To run tests, run the command `npm test`.
 
