@@ -57,7 +57,6 @@ class SingleRecipe extends Component {
     const { id } = this.props.match.params;
     this.props.fetchRecipe(id);
     this.props.fetchRecipeComment(id);
-    this.props.fetchUserFavouritesIds(currentUser.id);
   }
 
   componentDidMount() {
@@ -112,8 +111,6 @@ class SingleRecipe extends Component {
   handleAddToFavourite() {
     const { id } = this.props.match.params;
     this.props.addOrRemoveFavourite(id);
-    const { currentUser } = this.props.userData;
-    this.props.fetchUserFavouritesIds(currentUser.id);
   }
 
   /**

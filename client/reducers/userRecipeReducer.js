@@ -27,8 +27,7 @@ export default (state = initialState, action) => {
       };
       return state;
     case actionTypes.FETCH_RECIPE_SUCCESS:
-      index = state.recipes
-      .findIndex(recipes => recipes.id == action.data.id);
+      index = findIndex(state.recipes,action.data.id);
         return Object.assign(
           {},
           state,
@@ -39,8 +38,7 @@ export default (state = initialState, action) => {
             isFetched: true,
           });
     case actionTypes.DELETE_RECIPE_SUCCESS:
-      index = state.recipes
-        .findIndex(recipe => recipe.id === action.id);
+      index = findIndex(state.recipes, action.id);
       return Object.assign(
         {},
         state,
@@ -51,9 +49,7 @@ export default (state = initialState, action) => {
           isFetched: false,
         });
     case actionTypes.EDIT_RECIPE_SUCCESS:
-    console.log('got here', action);
-      index = state.recipes
-        .findIndex(recipes => recipes.id === action.data.recipe.id);
+      index = findIndex(state.recipes, action.data.recipe.id);
       return Object.assign(
         {},
         state,

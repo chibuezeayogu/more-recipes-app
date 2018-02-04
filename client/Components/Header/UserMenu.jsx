@@ -42,13 +42,13 @@ export class UserMenu extends Component {
    *
    * @memberOf UserMenu
    *
-   * @param {Event} e - even object
+   * @param {Object} event - even object
    *
-   * @returns {void}
+   * @returns {undefiend}
    *
    */
-  logout(e) {
-    e.preventDefault();
+  logout(event) {
+    event.preventDefault();
     this.props.signOut();
     localStorage.removeItem('jwtToken');
     this.props.history.push('/signin');
@@ -74,7 +74,7 @@ export class UserMenu extends Component {
               <a href="#!" className="brand-logo">
                 <img
                   src={'https://res.cloudinary.com/chibuezeayogu/image/upload'+
-            '/v1516130489/yy3vdswodkvr3mj5lts1.jpg'}
+                    '/v1516130489/yy3vdswodkvr3mj5lts1.jpg'}
                   className="responsive-img image-radius"
                   alt=""
                   style={{ height: 25, marginRight: 10, marginLeft: 10 }}

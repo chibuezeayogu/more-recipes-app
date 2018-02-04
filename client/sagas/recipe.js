@@ -21,7 +21,7 @@ import imageToFormData from '../util/ImageUpload';
  *
  * @param {Object} action - action object
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* fetchRecipes(action) {
@@ -44,7 +44,7 @@ export function* fetchRecipes(action) {
  *
  * @param {Object} action - recipe id
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* fetchRecipe(action) {
@@ -67,7 +67,7 @@ function* fetchRecipe(action) {
  *
  * @param {Object} action - recipe data
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* addRecipe(action) {
@@ -97,7 +97,7 @@ function* addRecipe(action) {
  *
  * @param {Object} action - recipe id
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* upvoteRecipe(action) {
@@ -122,7 +122,7 @@ function* upvoteRecipe(action) {
  *
  * @param {Object} action - recipe id
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* downvoteRecipe(action) {
@@ -147,7 +147,7 @@ function* downvoteRecipe(action) {
  *
  * @param {Object} action - action object
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* fetchUserRecipes(action) {
@@ -170,7 +170,7 @@ function* fetchUserRecipes(action) {
  *
  * @param {Object} action - recipe id
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* deleteRecipe(action) {
@@ -195,7 +195,7 @@ function* deleteRecipe(action) {
  *
  * @param {Object} action - recipe id
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* searchRecipe(action) {
@@ -218,7 +218,7 @@ function* searchRecipe(action) {
  *
  * @param {Object} action - recipe id
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* editRecipe(action) {
@@ -234,7 +234,6 @@ function* editRecipe(action) {
         imageUrl
     });
     const { data } = response;
-    console.log(data, 'updated');
     yield put({ type: actionTypes.EDIT_RECIPE_SUCCESS, data });
   } catch (error) {
     yield put({ type: actionTypes.EDIT_RECIPE_ERROR });
@@ -249,7 +248,7 @@ function* editRecipe(action) {
  *
  * @param {Object} action - recipe id
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* fetchMostUpvotedRecipes() {
@@ -281,7 +280,7 @@ function* fetchMostUpvotedRecipes() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchFetchRecipes() {
@@ -293,7 +292,7 @@ export function* watchFetchRecipes() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchFetchRecipe() {
@@ -305,7 +304,7 @@ export function* watchFetchRecipe() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchAddRecipe() {
@@ -317,7 +316,7 @@ export function* watchAddRecipe() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchUpvoteRecipe() {
@@ -329,7 +328,7 @@ export function* watchUpvoteRecipe() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchDownvoteRecipe() {
@@ -341,7 +340,7 @@ export function* watchDownvoteRecipe() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchFetchUserRecipes() {
@@ -353,7 +352,7 @@ export function* watchFetchUserRecipes() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchSearchRecipe() {
@@ -366,7 +365,7 @@ export function* watchSearchRecipe() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchDeleteRecipe() {
@@ -378,7 +377,7 @@ export function* watchDeleteRecipe() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchFetchMostRecipe() {
@@ -390,7 +389,7 @@ export function* watchFetchMostRecipe() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchEditRecipe() {
@@ -402,7 +401,7 @@ export function* watchEditRecipe() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchFetchMostUpvotedRecipes() {

@@ -19,7 +19,7 @@ import setAuthorizationToken from '../util/setAuthToken';
  *
  * @param {Object} action - action object
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* signIn(action) {
@@ -47,7 +47,7 @@ export function* signIn(action) {
  *
  * @param {Object} action - action object
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* createUser(action) {
@@ -80,7 +80,7 @@ export function* createUser(action) {
  *
  * @param {Object} action - action object
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* editProfile(action) {
@@ -109,7 +109,7 @@ export function* editProfile(action) {
  *
  * @param {Object} action - action object
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* fetchUser(action) {
@@ -136,7 +136,7 @@ export function* fetchUser(action) {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchSignIn() {
@@ -148,7 +148,7 @@ export function* watchSignIn() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchSignUp() {
@@ -160,7 +160,7 @@ export function* watchSignUp() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchEditProfile() {
@@ -172,7 +172,7 @@ export function* watchEditProfile() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchFetchUser() {

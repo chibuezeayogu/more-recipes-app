@@ -44,6 +44,7 @@ export class Main extends Component {
    */
   componentDidMount() {
     $('.parallax').parallax();
+    $('.button-collapse').sideNav();
   }
 /**
    *
