@@ -289,7 +289,6 @@ export const validateUpdateProfileForm = (value) => {
     errors.addressError = 'password name must be at least 8 characters long';
   }
 
-  console.log(image, 'got here');
   switch (image.type) {
     case 'image/png':
     case 'image/jpeg':
