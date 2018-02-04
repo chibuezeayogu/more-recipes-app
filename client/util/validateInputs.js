@@ -289,15 +289,17 @@ export const validateUpdateProfileForm = (value) => {
     errors.addressError = 'password name must be at least 8 characters long';
   }
 
-  switch (image.type) {
-    case 'image/png':
-    case 'image/jpeg':
-    case 'image/gif':
-    case 'image/bmp':
-      break;
-    default:
-      errors.imageError = 'select a valid file type';
-}
+  if (image.name) {
+    switch (image.type) {
+      case 'image/png':
+      case 'image/jpeg':
+      case 'image/gif':
+      case 'image/bmp':
+        break;
+      default:
+        errors.imageError = 'select a valid file type';
+    }
+  }
 
   return { isError: !lodash.isEmpty(errors), errors };
 };
