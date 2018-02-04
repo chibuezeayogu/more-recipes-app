@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { editRecipe, getRecipe } from '../action/actionCreators';
+import { editRecipe, fetchRecipe } from '../action/actionCreators';
 import SmallPreloader from './SmallPreloader.jsx';
 import Footer from './Footer/Footer.jsx';
 import UserMenu from './Header/UserMenu.jsx';
@@ -59,7 +59,7 @@ class EditRecipe extends Component {
    */
   componentWillMount() {
     const { id } = this.props.match.params;
-    this.props.getRecipe(id);
+    this.props.fetchRecipe(id);
   }
 
   /**
@@ -338,7 +338,7 @@ class EditRecipe extends Component {
 
 EditRecipe.propTypes = {
   editRecipe: PropTypes.func.isRequired,
-  getRecipe: PropTypes.func.isRequired,
+  fetchRecipe: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired,
@@ -351,5 +351,5 @@ const mapStateToProps = state => ({
   userRecipeReducer: state.userRecipeReducer,
 });
 
-export default connect(mapStateToProps, { editRecipe, getRecipe })(EditRecipe);
+export default connect(mapStateToProps, { editRecipe, fetchRecipe })(EditRecipe);
 

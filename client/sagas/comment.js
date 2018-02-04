@@ -19,7 +19,7 @@ import headers from '../util/setAuthToken';
  *
  * @param {Object} action - action object
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* postComment(action) {
@@ -48,7 +48,7 @@ function* postComment(action) {
  *
  * @param {Object} action - action object
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* fetchRecipeComment(action) {
@@ -74,7 +74,7 @@ function* fetchRecipeComment(action) {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 
@@ -87,7 +87,7 @@ export function* watchPostComment() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchfetchRecipeComment() {

@@ -46,7 +46,7 @@ export default {
           .then((createdUser) => {
             const user = { id: createdUser.id, email: createdUser.email };
             const userData = { user };
-            const token = jwt.sign(userData, secret, { expiresIn: '1m' });
+            const token = jwt.sign(userData, secret, { expiresIn: '24h' });
             return res.status(201).send({
               message: 'Registered successfully',
               token

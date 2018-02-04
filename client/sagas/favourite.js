@@ -21,7 +21,7 @@ import setAuthorizationToken from '../util/setAuthToken';
  *
  * @param {Object} action - action object
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* addOrRemoveFavourite(action) {
@@ -48,7 +48,7 @@ function* addOrRemoveFavourite(action) {
  *
  * @param {Object} action - action object
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* fetchUserFavouriteRecipes(action) {
@@ -69,7 +69,7 @@ function* fetchUserFavouriteRecipes(action) {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 function* fetchUserFavouritesRecipeIds(action) {
@@ -99,7 +99,7 @@ function* fetchUserFavouritesRecipeIds(action) {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchAddOrRemoveFavourite() {
@@ -111,7 +111,7 @@ export function* watchAddOrRemoveFavourite() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchFetchUserFavouritesRecipes() {
@@ -124,7 +124,7 @@ export function* watchFetchUserFavouritesRecipes() {
  *
  * @method
  *
- * @returns {void}
+ * @returns {undefined}
  *
  */
 export function* watchFetchUserFavouritesRecipeIds() {
