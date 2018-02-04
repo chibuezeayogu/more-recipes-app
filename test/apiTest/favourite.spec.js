@@ -17,8 +17,10 @@ describe('Favourites', () => {
         done();
       });
   });
-  describe('GET: /api/v1/users/:userId/favouriteRecipes', () => {
-    it('should return an message `No token provided.` if no authorization token was found', (done) => {
+
+  describe('Get User Favourites Recipes', () => {
+    it('should return an error message if no authorization token was found', 
+      (done) => {
       chai.request(app)
         .get('/api/v1/users/1/favouriteRecipes')
         .end((err, res) => {
@@ -29,7 +31,8 @@ describe('Favourites', () => {
           done();
         });
     });
-    it('should return a message `Please input a valid userId.` if invalid user id is supplied', (done) => {
+    it('should return an error message if invalid user id is supplied',
+      (done) => {
       chai.request(app)
         .get('/api/v1/users/e/favouriteRecipes')
         .set({ Authorization: token })
@@ -40,7 +43,8 @@ describe('Favourites', () => {
           done();
         });
     });
-    it('should return a message `User is not authenticated` if user is not authenticated', (done) => {
+    it('should return an error message if user is not authenticated',
+      (done) => {
       chai.request(app)
         .get('/api/v1/users/5/favouriteRecipes')
         .set({ Authorization: token })
@@ -52,8 +56,10 @@ describe('Favourites', () => {
         });
     });
   });
-  describe('PUT: /api/v1/recipes/:id/addOrRemoveFavourite', () => {
-    it('should return a message `No token provided.`if no authorization token was found', (done) => {
+
+  describe('Add OR Remove Recipe from User Favourite', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .put('/api/v1/recipes/1/addOrRemoveFavourite')
         .end((err, res) => {
@@ -64,7 +70,8 @@ describe('Favourites', () => {
           done();
         });
     });
-    it('should return a message `Please input a valid id.` if invalid recipe id is supplied', (done) => {
+    it('should return an error message if invalid recipe id is supplied',
+      (done) => {
       chai.request(app)
         .put('/api/v1/recipes/s/addOrRemoveFavourite')
         .set({ Authorization: token })
@@ -75,7 +82,7 @@ describe('Favourites', () => {
           done();
         });
     });
-    it('should return a message `Recipe not found!` if recipe was not found', (done) => {
+    it('should return an error message if recipe was not found', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/10/addOrRemoveFavourite')
         .set({ Authorization: token })
@@ -86,7 +93,8 @@ describe('Favourites', () => {
           done();
         });
     });
-    it('should return a message `Added to your favourite` if a user adds a recipe to his or her favourite', (done) => {
+    it(`should return a message if a user adds a recipe to his or
+      her favourite`, (done) => {
       chai.request(app)
         .put('/api/v1/recipes/2/addOrRemoveFavourite')
         .set({ Authorization: token })
@@ -97,7 +105,8 @@ describe('Favourites', () => {
           done();
         });
     });
-    it('should return found recipe if user has added recipe to his/her favourite ', (done) => {
+    it(`should return found recipe if user has added recipe to
+      his/her favourite`, (done) => {
         chai.request(app)
           .get('/api/v1/users/1/favouriteRecipes')
           .set({ Authorization: token })
@@ -106,14 +115,17 @@ describe('Favourites', () => {
             done();
           });
       });
-    it('should return a message `Removed from your favourite` if a user removes a recipe from his favourite', (done) => {
+    it('should return a message if a user removes a recipe from his favourite',
+      (done) => {
       chai.request(app)
         .put('/api/v1/recipes/2/addOrRemoveFavourite')
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql('Removed from your list of favourites');
+          expect(res.body.message).to.eql(
+            'Removed from your list of favourites'
+          );
           done();
         });
     });

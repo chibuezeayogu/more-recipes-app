@@ -3,17 +3,18 @@ import { connect } from 'react-redux';
 import RecipeCard from './RecipeCard.jsx';
 import Preloader from './Preloder.jsx';
 
+
 class SearchResult extends Component {
   render() {
-    const { recipes } = this.props.searchResultReducer;
+    const { recipes } = this.props.searchReducer;
     if (!recipes) {
-        return (
-          <div 
-            className="row left align-recipe"
-            style={{ width: '100%' }}>
-            
-          </div>
-        );
+      return (
+        <div 
+          className="row left align-recipe"
+          style={{ width: '100%' }}>
+            <Preloader />
+        </div>
+      );
     }
     if (recipes && recipes.length === 0 ) {
       return (

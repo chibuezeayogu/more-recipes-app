@@ -1,21 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import image from '../../img/logo.jpg';
-
+import { withRouter, Link } from 'react-router-dom';
 
 /**
  *
- * @description menu component unathenticated users
+ * @description menu component for unathenticated users
  *
  * @constant
  *
+ * @returns {Undefined}
  */
-const Menu = () => (
+export const Menu = () => (
   <div>
     <nav>
       <div className="nav-wrapper black">
         <a className="brand-logo">
-          <img src={image} 
+          <img src={'https://res.cloudinary.com/chibuezeayogu/image/upload'+
+            '/v1516130489/yy3vdswodkvr3mj5lts1.jpg'}
             className="responsive-img image-radius" 
             alt="" style={{ height: 25, marginRight: 10, marginLeft: 10 }} />
             More Recipes</a>
@@ -80,4 +80,4 @@ const Menu = () => (
   </div>
 );
  
-export default Menu;
+export default withRouter(Menu);

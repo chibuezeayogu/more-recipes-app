@@ -29,8 +29,8 @@ export default {
     const { firstName, lastName, email, password, imageUrl } = req.body;
     User
       .find({ where: { email } })
-      .then((response) => {
-        if (response) {
+      .then((foundUser) => {
+        if (foundUser) {
           return res.status(409).send({
             message: 'User already exists.'
           });
@@ -43,9 +43,10 @@ export default {
             password,
             imageUrl
           })
-          .then((user) => {
+          .then((createdUser) => {
+            const user = { id: createdUser.id, email: createdUser.email };
             const userData = { user };
-            const token = jwt.sign(userData, secret);
+            const token = jwt.sign(userData, secret, { expiresIn: '1m' });
             return res.status(201).send({
               message: 'Registered successfully',
               token
@@ -71,14 +72,15 @@ export default {
     const { email, password } = req.body;
     User
       .find({ where: { email } })
-      .then((user) => {
-        if (!user) {
+      .then((foundUser) => {
+        if (!foundUser) {
           return res.status(404).send({ message: 'User is not registered!.' });
         }
 
-        if (bcrypt.compareSync(password, user.password)) {
+        if (bcrypt.compareSync(password, foundUser.password)) {
+          const user = {id: foundUser.id, email: foundUser.email };
           const userData = { user };
-          const token = jwt.sign(userData, secret);
+          const token = jwt.sign(userData, secret, { expiresIn: '24h' });
           return res.status(200).send({
             message: 'Logged in Successfully',
             token
@@ -138,7 +140,9 @@ export default {
       });
     }
 
-    const { firstName, lastName, password, imageUrl, location, address, phone } = req.body;
+    const {
+      firstName, lastName, password, imageUrl, location, address, phone
+    } = req.body;
 
     User
       .findById(req.decoded.user.id)

@@ -5,7 +5,7 @@ import React from 'react';
  *
  * @member
  *
- * @returns {void}
+ * @returns {Undefined}
  */
 const Preloader = () => (
   <div className="preloader-wrapper big active loader">

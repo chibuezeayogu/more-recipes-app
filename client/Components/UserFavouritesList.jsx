@@ -39,16 +39,11 @@ class UserFavouritesList extends Component {
    *
    */
   componentWillMount() {
-    const token = localStorage.getItem('jwtToken');
+    const { currentUser } = this.props.userData;
     const currentPage = this.props.location.search.substring(6);
-    const { user } = jwtDecode(token);
-    if (!token) {
-      this.props.history.push('/');
-    } else {
-      const { isTrue, offset } = onPageReload(currentPage);
-      if (isTrue) {
-        this.props.getUserFavourites(user.id, offset);
-      }
+    const { isTrue, offset } = onPageReload(currentPage);
+    if (isTrue) {
+      this.props.fetchUserFavourites(currentUser.id, offset);
     }
   }
 
@@ -64,8 +59,7 @@ class UserFavouritesList extends Component {
    * @returns {void}
    */
   componentWillReceiveProps(nextProps) {
-    const token = localStorage.getItem('jwtToken');
-    const { user } = jwtDecode(token);
+    const { currentUser } = nextProps.userData;
     const { isFetched, favourites, isDeleted, pagination } = nextProps.favouriteReducer;
     if (isFetched) {
       this.setState({ isLoading: false });
@@ -73,7 +67,7 @@ class UserFavouritesList extends Component {
       const { isTrue, offset } = onPageChange(favourites, isDeleted, pagination);
       if (isTrue) {
         this.setState({ isLoading: true });
-        this.props.getUserFavourites(user.id, offset);
+        this.props.fetchUserFavourites(currentUser.id, offset);
       }
     }
   }
@@ -90,11 +84,10 @@ class UserFavouritesList extends Component {
    * @returns {void}
    */
   onChange(page) {
-    const token = localStorage.getItem('jwtToken');
-    const { user } = jwtDecode(token);
+    const { currentUser } = this.props.userData;
     this.props.history.push(`/user/favourites?page=${page}`);
     const offset = 6 * (page - 1);
-    this.props.getUserFavourites(user.id, offset);
+    this.props.fetchUserFavourites(currentUser.id, offset);
   }
 
   /**
@@ -124,7 +117,7 @@ class UserFavouritesList extends Component {
     }
     return (
       <div className="body grey lighten-5">
-        <UserMenu />
+        <UserMenu {...this.props}/>
         <div className="main">
           <div className="container">
             <div className="row">
@@ -167,7 +160,7 @@ UserFavouritesList.propTypes = {
   location: PropTypes.shape({
     search: PropTypes.string
   }).isRequired,
-  getUserFavourites: PropTypes.func.isRequired,
+  fetchUserFavourites: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -176,6 +169,7 @@ const mapStateToProps = state => ({
   favouriteReducer: state.favouriteReducer
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(actionCreators, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserFavouritesList);

@@ -3,18 +3,18 @@ import {
   watchSignIn,
   watchSignUp,
   watchEditProfile,
-  watchGetUser } from './user';
+  watchFetchUser } from './user';
 import {
   watchPostComment,
-  watchDeleteComment,
   watchfetchRecipeComment
 } from './comment';
 import {
   watchAddOrRemoveFavourite,
-  watchfetchUserFavouritesRecipes,
+  watchFetchUserFavouritesRecipes,
   watchFetchUserFavouritesRecipeIds
 } from './favourite';
-import { watchFetchRecipes,
+import {
+  watchFetchRecipes,
   watchFetchRecipe,
   watchAddRecipe,
   watchDeleteRecipe,
@@ -22,7 +22,8 @@ import { watchFetchRecipes,
   watchDownvoteRecipe,
   watchFetchUserRecipes,
   watchSearchRecipe,
-  watchEditRecipe
+  watchEditRecipe,
+  watchFetchMostUpvotedRecipes
 } from './recipe';
 
 function* rootSaga() {
@@ -31,9 +32,8 @@ function* rootSaga() {
     watchSignUp(),
     watchEditRecipe(),
     watchPostComment(),
-    watchDeleteComment(),
     watchFetchRecipes(),
-    watchGetUser(),
+    watchFetchUser(),
     watchAddRecipe(),
     watchEditProfile(),
     watchDeleteRecipe(),
@@ -42,8 +42,9 @@ function* rootSaga() {
     watchFetchRecipe(),
     watchfetchRecipeComment(),
     watchAddOrRemoveFavourite(),
-    watchfetchUserFavouritesRecipes(),
+    watchFetchUserFavouritesRecipes(),
     watchFetchUserFavouritesRecipeIds(),
+    watchFetchMostUpvotedRecipes(),
     watchFetchUserRecipes(),
     watchSearchRecipe()
   ]);

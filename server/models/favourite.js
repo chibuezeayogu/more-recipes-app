@@ -2,11 +2,11 @@
 module.exports = (sequelize, DataTypes) => {
   const Favourite = sequelize.define('Favourite', {
     userId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     recipeId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   });

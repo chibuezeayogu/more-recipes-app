@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Home from './Home.jsx';
 import Menu from './Header/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
@@ -13,7 +14,7 @@ import Footer from './Footer/Footer.jsx';
  * @extends Component
  *
  */
-class Main extends Component {
+export class Main extends Component {
 
   /**
    * @description checks if a user is signed in
@@ -22,12 +23,11 @@ class Main extends Component {
    *
    * @memberOf Main
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   componentWillMount() {
-    const token = localStorage.getItem('jwtToken');
-    if (token) {
+    if (this.props.userData.isAuthenticated) {
       this.props.history.push('/recipes');
     }
   }
@@ -39,7 +39,7 @@ class Main extends Component {
    *
    * @memberOf Main
    *
-   * @returns {void}
+   * @returns {Unddfined}
    *
    */
   componentDidMount() {
@@ -53,7 +53,7 @@ class Main extends Component {
    *
    * @memberOf Mian
    *
-   * @returns {void}
+   * @returns {Unddfined}
  */
   render() {
     return (
@@ -71,5 +71,8 @@ Main.propTypes = {
     push: PropTypes.func.isRequired
   }).isRequired
 };
+const mapStateToProps = state => ({
+  userData: state.userData
+});
 
-export default Main;
+export default connect(mapStateToProps)(Main);

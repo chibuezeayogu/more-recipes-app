@@ -7,7 +7,7 @@ const expect = chai.expect;
 chai.use(http);
 let token;
 
-describe('Recipes', () => {
+describe('Recipe', () => {
   before((done) => {
     chai.request(app)
       .post('/api/v1/users/signin')
@@ -17,8 +17,10 @@ describe('Recipes', () => {
         done();
       });
   });
-  describe('POST: /api/v1/recipes', () => {
-    it('should return an error message if no authorization token was found', (done) => {
+
+  describe('Add Recipe', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .end((err, res) => {
@@ -35,141 +37,204 @@ describe('Recipes', () => {
         .set({ Authorization: token })
         .send({
           title: '',
-          description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
-          ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
-          procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
+          description: `Nigerian Fried Beans is so delicious that even those 
+            who do not like beans enjoy it!`,
+          ingredients: `350g brown or black-eyed beans, 2 Onions, 3 cooking 
+            spoons palm oil or more, 1 big stock cube, Salt & Habanero 
+            pepper (to taste) Water`,
+          procedures: `Pour 1 1/2 cups water, orange juice, lemon juice, rice 
+            vinegar, and soy sauce into a saucepan and set over medium-high 
+            heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped 
+            onion, and red pepper flakes. Bring to a boil.`,
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509851506/ubrx24qk7sgqhdz4q5pr.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['title is required', 'title must be at least 5 characters long']);
+          expect(res.body.message).to.eql(['title is required',
+            'title must be at least 5 characters long']);
           done();
         });
     });
-    it('should return an error message if title is supplied with leading space', (done) => {
+    it('should return an error message if title is supplied with leading space',
+      (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
           title: 'reci',
-          description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
-          ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
-          procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
+          description: `Nigerian Fried Beans is so delicious that even those 
+            who do not like beans enjoy it!`,
+          ingredients: `350g brown or black-eyed beans, 2 Onions, 3 cooking 
+            spoons palm oil or more, 1 big stock cube, Salt & Habanero 
+            pepper (to taste) Water`,
+          procedures: `Pour 1 1/2 cups water, orange juice, lemon juice, rice 
+            vinegar, and soy sauce into a saucepan and set over medium-high 
+            heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped 
+            onion, and red pepper flakes. Bring to a boil.`,
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509851506/ubrx24qk7sgqhdz4q5pr.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['title must be at least 5 characters long']);
+          expect(res.body.message).to.eql(
+            ['title must be at least 5 characters long']
+          );
           done();
         });
     });
-    it('should return an error message if description is not supplied', (done) => {
+    it('should return an error message if description is not supplied',
+      (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
           title: 'Nigerian Beans Recipes',
           description: '',
-          ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
-          procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
+          ingredients: `350g brown or black-eyed beans, 2 Onions, 3 cooking 
+            spoons palm oil or more, 1 big stock cube, Salt & Habanero 
+            pepper (to taste) Water`,
+          procedures: `Pour 1 1/2 cups water, orange juice, lemon juice, rice 
+            vinegar, and soy sauce into a saucepan and set over medium-high 
+            heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped 
+            onion, and red pepper flakes. Bring to a boil.`,
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509851506/ubrx24qk7sgqhdz4q5pr.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['description is required', 'description must be at least 5 characters long']);
+          expect(res.body.message).to.eql(['description is required',
+            'description must be at least 5 characters long']);
           done();
         });
     });
-    it('should return an error message if description is less than 5 characters', (done) => {
+    it(`should return an error message if description is less than
+        5 characters`, (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
           title: 'Nigerian Beans Recipes',
           description: 'Nice',
-          ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
-          procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
+          ingredients: `350g brown or black-eyed beans, 2 Onions, 3 cooking 
+            spoons palm oil or more, 1 big stock cube, Salt & Habanero 
+            pepper (to taste) Water`,
+          procedures: `Pour 1 1/2 cups water, orange juice, lemon juice, rice 
+            vinegar, and soy sauce into a saucepan and set over medium-high 
+            heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped 
+            onion, and red pepper flakes. Bring to a boil.`,
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509851506/ubrx24qk7sgqhdz4q5pr.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['description must be at least 5 characters long']);
+          expect(res.body.message).to.eql(
+            ['description must be at least 5 characters long']
+          );
           done();
         });
     });
-    it('should return an error message if ingredients is not suipplied', (done) => {
+    it('should return an error message if ingredients is not suipplied',
+      (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
           title: 'Nigerian Beans Recipes',
-          description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
+          description: `Nigerian Fried Beans is so delicious that even those 
+            who do not like beans enjoy it!`,
           ingredients: '',
-          procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
+          procedures: `Pour 1 1/2 cups water, orange juice, lemon juice, rice 
+            vinegar, and soy sauce into a saucepan and set over medium-high 
+            heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped 
+            onion, and red pepper flakes. Bring to a boil.`,
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509851506/ubrx24qk7sgqhdz4q5pr.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['ingredients is required', 'ingredients must be at least 5 characters long']);
+          expect(res.body.message).to.eql(['ingredients is required',
+            'ingredients must be at least 5 characters long']);
           done();
         });
     });
-    it('should return an error message if ingredients is less than 5 characters', (done) => {
+    it(`should return an error message if ingredients is less than
+      5 characters`, (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
           title: 'Nigerian Beans Recipes',
-          description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
-          ingredients: '350g',
-          procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
+          description: `Nigerian Fried Beans is so delicious that even those 
+            who do not like beans enjoy it!`,
+          ingredients: 'ingr',
+          procedures: `Pour 1 1/2 cups water, orange juice, lemon juice, rice 
+            vinegar, and soy sauce into a saucepan and set over medium-high 
+            heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped 
+            onion, and red pepper flakes. Bring to a boil.`,
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509851506/ubrx24qk7sgqhdz4q5pr.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['ingredients must be at least 5 characters long']);
+          expect(res.body.message).to.eql(
+            ['ingredients must be at least 5 characters long']
+        );
           done();
         });
     });
-    it('should return an error messsage if procedures is not supplied', (done) => {
+    it('should return an error messsage if procedures is not supplied',
+      (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
           title: 'Nigerian Beans Recipes',
-          description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
-          ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
+          description: `Nigerian Fried Beans is so delicious that even those 
+            who do not like beans enjoy it!`,
+          ingredients: `350g brown or black-eyed beans, 2 Onions, 3 cooking 
+            spoons palm oil or more, 1 big stock cube, Salt & Habanero 
+            pepper (to taste) Water`,
           procedures: '',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509851506/ubrx24qk7sgqhdz4q5pr.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['procedures is required', 'procedures must be at least 5 characters long']);
+          expect(res.body.message).to.eql(['procedures is required',
+            'procedures must be at least 5 characters long']);
           done();
         });
     });
-    it('should return an error messsage if procedures is less than 5 characters', (done) => {
+    it('should return an error messsage if procedures is less than 5 characters', 
+      (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
           title: 'Nigerian Beans Recipes',
-          description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
-          ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
-          procedures: 'Pour',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
+          description: `Nigerian Fried Beans is so delicious that even those 
+            who do not like beans enjoy it!`,
+          ingredients: `350g brown or black-eyed beans, 2 Onions, 3 cooking 
+            spoons palm oil or more, 1 big stock cube, Salt & Habanero 
+            pepper (to taste) Water`,
+          procedures: 'proc',
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509851506/ubrx24qk7sgqhdz4q5pr.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['procedures must be at least 5 characters long']);
+          expect(res.body.message).to.eql(
+            ['procedures must be at least 5 characters long']
+          );
           done();
         });
     });
@@ -179,28 +244,43 @@ describe('Recipes', () => {
         .set({ Authorization: token })
         .send({
           title: 'Nigerian Beans Recipes',
-          description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
-          ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
-          procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
+          description: `Nigerian Fried Beans is so delicious that even those 
+            who do not like beans enjoy it!`,
+          ingredients: `350g brown or black-eyed beans, 2 Onions, 3 cooking 
+            spoons palm oil or more, 1 big stock cube, Salt & Habanero 
+            pepper (to taste) Water`,
+          procedures: `Pour 1 1/2 cups water, orange juice, lemon juice, rice 
+            vinegar, and soy sauce into a saucepan and set over medium-high 
+            heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped 
+            onion, and red pepper flakes. Bring to a boil.`,
           imageUrl: ''
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['image url is required', 'image url is not valid']);
+          expect(res.body.message).to.eql(['image url is required',
+            'image url is not valid']);
           done();
         });
     });
-    it('should return an error messsage if imageUrl is supplied but not valid', (done) => {
+    it('should return an error messsage if imageUrl is supplied but not valid',
+      (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
           title: 'Nigerian Beans Recipes',
-          description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
-          ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
-          procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
-          imageUrl: '//res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
+          description: `Nigerian Fried Beans is so delicious that even those 
+            who do not like beans enjoy it!`,
+          ingredients: `350g brown or black-eyed beans, 2 Onions, 3 cooking 
+            spoons palm oil or more, 1 big stock cube, Salt & Habanero 
+            pepper (to taste) Water`,
+          procedures: `Pour 1 1/2 cups water, orange juice, lemon juice, rice 
+            vinegar, and soy sauce into a saucepan and set over medium-high 
+            heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped 
+            onion, and red pepper flakes. Bring to a boil.`,
+          imageUrl: `//res.cloudinary.com/chibuezeayogu/image/upload/
+            v1509851506/ubrx24qk7sgqhdz4q5pr.jpg `
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -209,16 +289,24 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should add a new recipe if title, description, ingredients, procedures, and imageUrl are all suppled and validated', (done) => {
+    it('should add a new recipe if all fields suppled and validated',
+      (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .set({ Authorization: token })
         .send({
           title: 'Nigerian Beans Recipes',
-          description: 'Nigerian Fried Beans is so delicious that even those who do not like beans enjoy it! The closest Nigerian meal is Ewa Agoyin',
-          ingredients: '350g brown or black-eyed beans, 2 Onions, 3 cooking spoons palm oil or more, 1 big stock cube, Salt & Habanero pepper (to taste) Water',
-          procedures: 'Pour 1 1/2 cups water, orange juice, lemon juice, rice vinegar, and soy sauce into a saucepan and set over medium-high heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped onion, and red pepper flakes. Bring to a boil. Remove from heat, and cool 10 to 15 minutes',
-          imageUrl: 'https://res.cloudinary.com/chibuezeayogu/image/upload/v1509851506/ubrx24qk7sgqhdz4q5pr.jpg'
+          description: `Nigerian Fried Beans is so delicious that even those 
+            who do not like beans enjoy it!`,
+          ingredients: `350g brown or black-eyed beans, 2 Onions, 3 cooking 
+            spoons palm oil or more, 1 big stock cube, Salt & Habanero 
+            pepper (to taste) Water`,
+          procedures: `Pour 1 1/2 cups water, orange juice, lemon juice, rice 
+            vinegar, and soy sauce into a saucepan and set over medium-high 
+            heat. Stir in the orange zest, brown sugar, ginger, garlic, chopped 
+            onion, and red pepper flakes. Bring to a boil.`,
+          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+          v1509851506/ubrx24qk7sgqhdz4q5pr.jpg`
         })
         .end((err, res) => {
           expect(res.status).to.equal(201);
@@ -228,8 +316,10 @@ describe('Recipes', () => {
         });
     });
   });
-  describe('GET: /recipes/:id', () => {
-    it('should return a message `No token provided.` if no authorization token was found', (done) => {
+
+  describe('GET Recipe', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .get('/api/v1/recipes/1')
         .end((err, res) => {
@@ -240,7 +330,8 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return a message `Please input a valid id.` if recipe id is not of type integer', (done) => {
+    it('should return an error message if recipe id is not of type integer',
+      (done) => {
       chai.request(app)
         .get('/api/v1/recipes/s')
         .set({ Authorization: token })
@@ -251,7 +342,7 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return a message `Recipe not found` if recipe is not found', (done) => {
+    it('should return an error message if recipe is not found', (done) => {
       chai.request(app)
         .get('/api/v1/recipes/100')
         .set({ Authorization: token })
@@ -262,7 +353,7 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return a `recipe` if recipe is found', (done) => {
+    it('should return `recipe` if recipe is found', (done) => {
       chai.request(app)
         .get('/api/v1/recipes/1')
         .set({ Authorization: token })
@@ -272,8 +363,10 @@ describe('Recipes', () => {
         });
     });
   });
-  describe('PUT: /recipes/:id', () => {
-    it('should return a message `No token provided.` if no authorization token was found', (done) => {
+
+  describe('Update Recipe', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .post('/api/v1/recipes')
         .end((err, res) => {
@@ -284,7 +377,8 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return a `Please input a valid id.` message if recipe id is not of type integer', (done) => {
+    it('should return an error message if recipe id is not of type integer',
+      (done) => {
       chai.request(app)
         .put('/api/v1/recipes/s')
         .set({ Authorization: token })
@@ -295,7 +389,7 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return a message `Updated Successfully` and `recipe` if a user updates a recipe he or she added', (done) => {
+    it('should return updated recipe if a user updates a recipe', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/1')
         .set({ Authorization: token })
@@ -307,20 +401,25 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return a `Operation not allowed. You can only update your recipe` message if a user tires to modify a recipe he/she didn\'t add', (done) => {
+    it(`should return an error message if a user tires to modify a recipe 
+      he/she didn\'t add`, (done) => {
       chai.request(app)
         .put('/api/v1/recipes/2')
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(401);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql('Operation not allowed. You can only update your recipe');
+          expect(res.body.message).to.eql(
+            'Operation not allowed. You can only update your recipe'
+          );
           done();
         });
     });
   });
-  describe('DELETE: /recipes/:id', () => {
-    it('should return a message `No token provided.` if no authorization token was found', (done) => {
+
+  describe('Delete Recipe', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .del('/api/v1/recipes/1')
         .end((err, res) => {
@@ -331,7 +430,8 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return a `Please input a valid id.` message if recipe id is not of type integer', (done) => {
+    it('should return an error message if recipe id is not of type integer',
+      (done) => {
       chai.request(app)
         .del('/api/v1/recipes/s')
         .set({ Authorization: token })
@@ -342,18 +442,21 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return a message `Operation not allowed. You can only delete your recipe` if a user tires to delete a recipe he or she didn\'t add', (done) => {
+    it(`should return an error message if a user tires to delete a recipe
+      he or she didn\'t add`, (done) => {
       chai.request(app)
         .del('/api/v1/recipes/2')
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(401);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql('Operation not allowed. You can only delete your recipe');
+          expect(res.body.message).to.eql(
+            'Operation not allowed. You can only delete your recipe'
+          );
           done();
         });
     });
-    it('should return a message `Delete Successfull` if a user deletes his or her recipe', (done) => {
+    it('should return a message if a user deletes his/her recipe', (done) => {
       chai.request(app)
         .del('/api/v1/recipes/1')
         .set({ Authorization: token })
@@ -365,8 +468,10 @@ describe('Recipes', () => {
         });
     });
   });
-  describe('GET: /api/v1/recipes', () => {
-    it('should return a message `No token provided.` if no authorization token was found', (done) => {
+
+  describe('Get All Recipes', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .get('/api/v1/recipes')
         .end((err, res) => {
@@ -387,7 +492,8 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return an error message if limit or offset is not of type integer', (done) => {
+    it(`should return an error message if limit or offset is not of
+      type integer`,(done) => {
       chai.request(app)
         .get('/api/v1/recipes?limit=1.3&offset=0')
         .set({ Authorization: token })
@@ -398,8 +504,10 @@ describe('Recipes', () => {
         });
     });
   });
-  describe('GET: /api/v1/recipes', () => {
-    it('should return a message `No token provided.` if no authorization token was found', (done) => {
+
+  describe('Search Recipes', () => {
+    it('should return an error message if no authorization token was found',
+      (done) => {
       chai.request(app)
         .get('/api/v1/recipes/search?q=water')
         .end((err, res) => {
@@ -410,7 +518,7 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return `pagenation` and `recipes` that match the searchterm', (done) => {
+    it('should return pagianted recipes that match the searchterm', (done) => {
       chai.request(app)
         .get('/api/v1/recipes/search?q=recipe')
         .set({ Authorization: token })
@@ -420,20 +528,23 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return a message `Search term did not match any recipe` if no match was found', (done) => {
+    it('should return an error message if no match was found', (done) => {
       chai.request(app)
         .get('/api/v1/recipes/search?q=monkey')
         .set({ Authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(404);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql('Search term did not match any recipe');
+          expect(res.body.message).to.eql(
+            `Search term did not match any recipe`);
           done();
         });
     });
   });
-  describe('GET: /api/v1/users/:userId/recipes', () => {
-    it('should return a message `No token provided.` if no authorization token was found', (done) => {
+
+  describe('Get User Recipes', () => {
+    it(`should return an error message if no authorization token was found`,
+      (done) => {
       chai.request(app)
         .get('/api/v1/users/1/recipes')
         .end((err, res) => {
@@ -444,7 +555,8 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return a message `Please input a valid userId.` if user id is not of type int', (done) => {
+    it(`should return an error message if user id is not of type integer`,
+      (done) => {
       chai.request(app)
         .get('/api/v1/users/s/recipes')
         .set({ Authorization: token })
@@ -455,7 +567,8 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return a message `User is not authenticated` if user is not authenticated ', (done) => {
+    it('should return an error message if user is not authenticated',
+      (done) => {
       chai.request(app)
         .get('/api/v1/users/6/recipes')
         .set({ Authorization: token })
@@ -466,7 +579,8 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return an error message if limit or offset is not of type integer', (done) => {
+    it(`should return an error message if limit or offset is not of type
+      integer`, (done) => {
       chai.request(app)
         .get('/api/v1/users/1/recipes?limit=1.3&offset=0')
         .set({ Authorization: token })
@@ -476,7 +590,7 @@ describe('Recipes', () => {
           done();
         });
     });
-    it('should return `pagenation` and `recipes` if a user have added recipes', (done) => {
+    it('should return recipes user has added recipes', (done) => {
       chai.request(app)
         .get('/api/v1/users/1/recipes')
         .set({ Authorization: token })

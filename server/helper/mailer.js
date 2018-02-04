@@ -7,11 +7,12 @@ dotenv.config();
 
 /**
  * @description nodemailer configuration
- * @function
  *
- * @param {object} mailOptions - content of mail to be sent
+ * @method
  *
- *@returns {string} error or success message
+ * @param {Object} mailOptions - content of mail to be sent
+ *
+ *@returns {String} error or success message
  */
 const mailer = (mailOptions) => {
   const transporter = nodemailer.createTransport({

@@ -204,17 +204,18 @@ export const validateAddRecipeForm  = (value) => {
       errors.proceduresError = 'procedures must be at least 5 characters long';
     }
 
-    // if (image) {
-    //   switch (image.type) {
-    //     case 'image/png':
-    //     case 'image/jpeg':
-    //     case 'image/gif':
-    //     case 'image/bmp':
-    //       break;
-    //     default:
-    //       errors.imageError = 'select a valid file type';
-    //   }
-    // }
+    
+    if (image.name) {
+      switch (image.type) {
+        case 'image/png':
+        case 'image/jpeg':
+        case 'image/gif':
+        case 'image/bmp':
+          break;
+        default:
+          errors.imageError = 'select a valid file type';
+      }
+    }
   
     return { isError: !lodash.isEmpty(errors), errors };
   };
@@ -246,3 +247,58 @@ export const validateAddRecipeForm  = (value) => {
     return { isError: !lodash.isEmpty(errors), errors };
   };
 
+  /**
+   * @description validateSignUp function
+   *
+   * @param {Object} value - object
+   *
+   * @returns {Object} return - return object
+   *
+   */
+export const validateUpdateProfileForm = (value) => {
+  const { firstName, lastName, address, location, phone, image } = value;
+  const errors = {};
+
+  if (firstName.trim().length === 0) {
+    errors.firstNameError = 'first name is required';
+  } else if (firstName.length < 3) {
+    errors.firstNameError = 'first name must be at least 3 characters long';
+  }
+
+  if (lastName.trim().length === 0) {
+    errors.lastNameError = 'last name is required';
+  } else if (lastName.length < 3) {
+    errors.lastNameError = 'last name must be at least 3 characters long';
+  }
+
+  if (location.trim().length === 0) {
+    errors.locationError = 'location is required';
+  } else if (location.length < 5) {
+    errors.locationError = 'location must be at least 5 characters long';
+  }
+
+  if (phone.trim().length === 0) {
+    errors.phoneError = 'phone number is required';
+  } else if (!Number(phone)) {
+    errors.phoneError = 'phone value must be numbers';
+  }
+
+  if (address.trim().length === 0) {
+    errors.addressError = 'password is required';
+  } else if (address.length < 5) {
+    errors.addressError = 'password name must be at least 8 characters long';
+  }
+
+  console.log(image, 'got here');
+  switch (image.type) {
+    case 'image/png':
+    case 'image/jpeg':
+    case 'image/gif':
+    case 'image/bmp':
+      break;
+    default:
+      errors.imageError = 'select a valid file type';
+}
+
+  return { isError: !lodash.isEmpty(errors), errors };
+};

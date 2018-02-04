@@ -131,9 +131,10 @@ export default {
                 })
                 .then(() => {
                   Recipe.findById(req.params.id).then((recipe) => {
-                    recipe.increment('downvotes').then(() => res.status(200).send({
-                      message: 'voting recorded',
-                      recipe
+                    recipe.increment('downvotes')
+                      .then(() => res.status(200).send({
+                        message: 'voting recorded',
+                        recipe
                     }))
                   })
                 })

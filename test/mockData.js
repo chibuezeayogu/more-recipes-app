@@ -1,21 +1,35 @@
-/**
- * @description
- *
- * @method
- *
- * @param {Object} recipe - recipe details
- *
- * @param {Object} reciever - reciever details
- *
- * @param {String} review - posted review
- *
- * @param {Object} reviewer - review details
- *
- * @param {String} appLink - link to the app
- *
- * @returns {Undefined}
- */
-const reviewNotifierTemplate = (recipe, reciever, review, reviewer, appLink) => (
+import dotenv from 'dotenv';
+import reviewNotifierTemplate from '../server/helper/emailNotificationTemplates/reviewNotifierTemplate';
+
+dotenv.config();
+
+export const appLink = process.env.APP_LINK;
+
+export const reciever ={
+  firstName: 'Samuel',
+};
+
+export const recipe = {
+  imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+  v1509851506/ubrx24qk7sgqhdz4q5pr.jpg`,
+  title: 'Test recipe',
+  id: 1
+};
+
+export const reviewer = {
+  firstName: 'Smallshark',
+  lastName: 'Kayode'
+};
+
+export const review = 'Nice revipe';
+
+export const user = {
+    email: 'chibuezeayogu@hotmail.com'
+  }
+
+
+
+export const formatedTemplate =
   `
   <h3>Hi, ${reciever.firstName}</h3>
   <div style="padding:10px; max-width:400px;margin:0 auto;">
@@ -52,6 +66,14 @@ const reviewNotifierTemplate = (recipe, reciever, review, reviewer, appLink) => 
     </div>
   </div>
   `
-);
+;
 
-export default reviewNotifierTemplate;
+
+export const mailOptions = {
+  from: `"More-Recipes" <${process.env.AUTHORIZED_EMAIL}>`,
+  to: user.email,
+  subject: `${recipe.title} has a new Review`,
+  html: reviewNotifierTemplate(recipe, reciever, review, reviewer, appLink)
+};
+
+export default mailOptions;

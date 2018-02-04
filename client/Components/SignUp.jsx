@@ -11,10 +11,6 @@ import Footer from './Footer/Footer.jsx';
 import SmallPreloader from './SmallPreloader.jsx';
 import imageToFormData from '../util/ImageUpload';
 
-
-const CLOUDINARY_URL = process.env.CLOUDINARY_URL;
-const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET;
-
 /**
  * SignUp component for user to create an account
  *
@@ -31,7 +27,7 @@ class SignUp extends Component {
    *
    * @memberOf SignUp
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   constructor() {
@@ -56,12 +52,11 @@ class SignUp extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   componentWillMount() {
-    const token = localStorage.getItem('jwtToken');
-    if (token) {
+    if (this.props.userData.isAuthenticated) {
       this.props.history.push('/recipes');
     }
   }
@@ -75,11 +70,13 @@ class SignUp extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.userData.isAuthenticated) {
       this.props.history.push('/recipes');
+    } else {
+      this.setState({ disabled: false });
     }
   }
 
@@ -90,14 +87,14 @@ class SignUp extends Component {
    *
    * @memberOf SignUp
    *
-   * @param {Event} e - e event
+   * @param {Event} event - event object
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
-  handleChange(e) {
-    e.preventDefault();
+  handleChange(event) {
+    event.preventDefault();
     this.setState({ errors: {} });
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   /**
@@ -107,14 +104,14 @@ class SignUp extends Component {
    *
    * @memberOf SignUp
    *
-   * @param {Event} e - e event
+   * @param {Event} event - event objectt
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
-  handleImageChange(e) {
-    e.preventDefault();
-    const file = e.target.files[0];
+  handleImageChange(event) {
+    event.preventDefault();
+    const file = event.target.files[0];
     this.setState({ errors: {}, image: {} });
     this.setState({ image: file });
   }
@@ -126,13 +123,13 @@ class SignUp extends Component {
    *
    * @memberOf SignUp
    *
-   * @param {Event} e - e event
+   * @param {Event} event - event object
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
-  handleOnsubmit(e) {
-    e.preventDefault();
+  handleOnsubmit(event) {
+    event.preventDefault();
     const err = validateSignUpForm(this.state);
     if (err.isError) {
       return this.setState({ errors: err.errors });
@@ -160,7 +157,7 @@ class SignUp extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {void}
+   * @returns {Undefined} 
    * 
    */
   render() {

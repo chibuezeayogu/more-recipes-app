@@ -14,7 +14,7 @@ import Footer from './Footer/Footer.jsx';
  * @extends Component
  *
  */
-class SignIn extends Component {
+export class SignIn extends Component {
   /**
    *
    * @description initialize state
@@ -47,8 +47,7 @@ class SignIn extends Component {
    *
    */
   componentWillMount() {
-    const Token = localStorage.getItem('jwtToken');
-    if (Token) {
+    if (this.props.userData.isAuthenticated) {
       this.props.history.push('/recipes');
     }
   }
@@ -62,7 +61,7 @@ class SignIn extends Component {
    *
    * @param {Object} nextProps
    *
-   * @returns {void}
+   * @returns {undifined}
    *
    */
   componentWillReceiveProps(nextProps) {
@@ -79,15 +78,15 @@ class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @param {Event} e
+   * @param {object} event
    *
-   * @returns {void}
+   * @returns {undifined}
    *
    */
-  handleChange(e) {
-    e.preventDefault();
+  handleChange(event) {
+    event.preventDefault();
     this.setState({ errors: {} });
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   /**
@@ -97,13 +96,13 @@ class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @param {Event} e
+   * @param {Object} event
    *
    * @returns {void}
    *
    */
-  handleOnsubmit(e) {
-    e.preventDefault();
+  handleOnsubmit(event) {
+    event.preventDefault();
     const err = validateSignInForm(this.state);
     if (err.isError) {
       return this.setState({ errors: err.errors });
@@ -120,7 +119,7 @@ class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {void}
+   * @returns {undifiend} 
    *
    */
   render() {
@@ -133,7 +132,7 @@ class SignIn extends Component {
             <hr />
             <form
               className="col l6 m8 s12 offset-l3 offset-m2"
-              onSubmit={e => this.handleOnsubmit(e)}
+              onSubmit={event => this.handleOnsubmit(event)}
             >
               <div className="row">
                 <div className="input-field col s12">

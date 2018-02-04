@@ -11,8 +11,6 @@ import UserMenu from './Header/UserMenu.jsx';
 import imageToFormData from '../util/ImageUpload';
 import { validateAddRecipeForm } from '../util/validateInputs';
 
-const CLOUDINARY_URL = process.env.CLOUDINARY_URL;
-const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET;
 
 /**
  * @description AddRecipe component for user to create a new recipe
@@ -30,7 +28,7 @@ class AddRecipe extends Component {
    *
    * @memberOf AddRecipe
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   constructor() {
@@ -56,25 +54,9 @@ class AddRecipe extends Component {
    *
    * @memberOf AddRecipe
    *
-   * @returns {void}
+   * @param {Object} nextProps - 
    *
-   */
-  componentWillMount() {
-    const token = localStorage.getItem('jwtToken');
-    if (!token) {
-      this.props.history.push('/signin');
-    }
-  }
-   /**
-   * @description routes to /recipes if user is authenticated
-   *
-   * @method
-   *
-   * @memberOf AddRecipe
-   *
-   * @param {Object} nextProps
-   *
-   * @returns {void}
+   * @returns {Undefined} - 
    *
    */
   componentWillReceiveProps(nextProps) {
@@ -90,9 +72,9 @@ class AddRecipe extends Component {
    *
    * @memberOf SignUp
    *
-   * @param {Event} event - event object
+   * @param {Object}} event - event object
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   handleChange(event) {
     event.preventDefault();
@@ -107,9 +89,9 @@ class AddRecipe extends Component {
    *
    * @memberOf AddRecipe
    *
-   * @param {Event} event - event object
+   * @param {Object} event - event object
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   handleImageChange(event) {
     event.preventDefault();
@@ -126,9 +108,9 @@ class AddRecipe extends Component {
    *
    * @memberOf AddRecipe
    *
-   * @param {Event} event 
+   * @param {Object}} event 
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   handleOnsubmit(event) {
@@ -159,13 +141,13 @@ class AddRecipe extends Component {
    *
    * @memberOf SignUp
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   render() {
     return (
       <div className="body grey lighten-5">
-        <UserMenu />
+        <UserMenu {...this.props}/>
         <div className="main">
           <div className="container">
             <div className="addrecipe-form ">

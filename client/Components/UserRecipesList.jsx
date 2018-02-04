@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Preloader from './Preloder.jsx';
-import jwtDecode from 'jwt-decode';
 import { bindActionCreators } from 'redux';
 import Pagination from 'rc-pagination';
 import { connect } from 'react-redux';
@@ -35,20 +34,15 @@ class UserRecipesList extends Component {
    *
    * @memberOf UserRecipesList
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   componentWillMount() {
-    const token = localStorage.getItem('jwtToken');
+    const { currentUser } = this.props.userData;
     const currentPage = this.props.location.search.substring(6);
-    const { user } = jwtDecode(token);
-    if (!token) {
-      this.props.history.push('/');
-    } else {
-      const { isTrue, offset } = onPageReload(currentPage);
-      if (isTrue) {
-        this.props.getUserRecipes(user.id, offset);
-      }
+    const { isTrue, offset } = onPageReload(currentPage);
+    if (isTrue) {
+      this.props.fetchUserRecipes(currentUser.id, offset);
     }
   }
 
@@ -61,11 +55,10 @@ class UserRecipesList extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   componentWillReceiveProps(nextProps) {
-    const token = localStorage.getItem('jwtToken');
-    const { user } = jwtDecode(token);
+    const { currentUser } = nextProps.userData;
     const { isFetched, recipes, isDeleted, pagination } = nextProps.userRecipeReducer;
     if (isFetched) {
       this.setState({ isLoading: false });
@@ -73,7 +66,7 @@ class UserRecipesList extends Component {
       const { isTrue, offset } = onPageChange(recipes, isDeleted, pagination);
       if (isTrue) {
         this.setState({ isLoading: true });
-        this.props.getUserRecipes(user.id, offset);
+        this.props.fetchUserRecipes(currentUser.id, offset);
       }
     }
   }
@@ -87,14 +80,14 @@ class UserRecipesList extends Component {
    *
    * @param {page} page - current page
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   onChange(page) {
     const token = localStorage.getItem('jwtToken');
     const { user } = jwtDecode(token);
     this.props.history.push(`/user/recipes?page=${page}`);
     const offset = 6 * (page - 1);
-    this.props.getUserRecipes(user.id, offset);
+    this.props.fetchUserRecipes(this.props.userData.currentuser.id, offset);
   }
 
   /**
@@ -105,7 +98,7 @@ class UserRecipesList extends Component {
    *
    * @memberOf UserRecipesList
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   render() {
@@ -124,7 +117,7 @@ class UserRecipesList extends Component {
     }
     return (
       <div className="body grey lighten-5">
-        <UserMenu />
+        <UserMenu {...this.props}/>
         <div className="main">
           <div className="container">
             <div className="row">
@@ -154,7 +147,7 @@ class UserRecipesList extends Component {
 }
 
 UserRecipesList.propTypes = {
-  getUserRecipes: PropTypes.func.isRequired,
+  fetchUserRecipes: PropTypes.func.isRequired,
   userRecipeReducer: PropTypes.shape({
     recipes: PropTypes.shape.isRequired,
     isFetched: PropTypes.bool.isRequired
@@ -166,6 +159,7 @@ const mapStateToProps = state => ({
   userData: state.userData,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(actionCreators, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserRecipesList);

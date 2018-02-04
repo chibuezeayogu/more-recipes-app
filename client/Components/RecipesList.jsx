@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Pagination from 'rc-pagination';
 import { connect } from 'react-redux';
-import { getAllRecipes } from '../action/actionCreators';
+import { fetchAllRecipes } from '../action/actionCreators';
 import RecipeCard from './RecipeCard.jsx';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
@@ -32,21 +32,16 @@ class RecipesList extends Component {
    *
    * @memberOf RecipesList
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   componentWillMount() {
-    const token = localStorage.getItem('jwtToken');
-    if (!token) {
-      this.props.history.push('/');
+    const currentPage = this.props.location.search.substring(6);
+    if (Number(currentPage) && Number(currentPage) > 0) {
+      const offset = 6 * (currentPage - 1);
+      this.props.fetchAllRecipes(offset);
     } else {
-      const currentPage = this.props.location.search.substring(6);
-      if (Number(currentPage) && Number(currentPage) > 0) {
-        const offset = 6 * (currentPage - 1);
-        this.props.getAllRecipes(offset);
-      } else {
-        this.props.getAllRecipes(0);
-      }
+      this.props.fetchAllRecipes(0);
     }
   }
 
@@ -59,7 +54,7 @@ class RecipesList extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.recipeReducer.isFetched) {
@@ -74,14 +69,14 @@ class RecipesList extends Component {
    *
    * @memberOf RecipesList
    *
-   * @param {page} page - current page
+   * @param {Integer} page - current page
    *
-   * @returns {void}
+   * @returns {Undefined}
    */
   onChange(page) {
     this.props.history.push(`/recipes?page=${page}`);
     const offset = 6 * (page - 1);
-    this.props.getAllRecipes(offset);
+    this.props.fetchAllRecipes(offset);
   }
 
   /**
@@ -92,7 +87,7 @@ class RecipesList extends Component {
    *
    * @memberOf RecipeList
    *
-   * @returns {void}
+   * @returns {Undefined}
    *
    */
   render() {
@@ -110,7 +105,7 @@ class RecipesList extends Component {
     }
     return (
       <div className="body grey lighten-5">
-        <UserMenu />
+        <UserMenu {...this.props}/>
         <div className="main">
           <div className="container">
             <div className="row">
@@ -153,7 +148,7 @@ RecipesList.propTypes = {
   location: PropTypes.shape({
     search: PropTypes.string
   }).isRequired,
-  getAllRecipes: PropTypes.func.isRequired,
+  fetchAllRecipes: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -162,4 +157,4 @@ const mapStateToProps = state => ({
   favouriteReducer: state.favouriteReducer
 });
 
-export default connect(mapStateToProps, { getAllRecipes })(RecipesList);
+export default connect(mapStateToProps, { fetchAllRecipes })(RecipesList);

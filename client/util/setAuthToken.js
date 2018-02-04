@@ -2,11 +2,11 @@ import axios from 'axios';
 
 export const setAuthorizationToken = () => {
   const token =  localStorage.getItem('jwtToken');
- if (token) {
+  if (token) {
      axios.defaults.headers.common['Authorization']= `${token}`; 
- } else {
+  } else {
      delete axios.defaults.headers.common['Authorization'];
- }
+  }
 };
 
 export default setAuthorizationToken;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import jwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
@@ -13,29 +12,36 @@ import swal from 'sweetalert'
  *
  * @param {Object} props - property object
  *
- *  @returns {void}
+ *  @returns {Undefined}
  */
 class UserFavouriteCard extends Component {
 
   handelFavourites(id, title) {
     swal({
-        title: "Are you sure?",
-        text: `You want to remove "${title}" from your favourite!`,
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          this.props.addOrRemoveFavourite(id);
-        }
-      });
+      title: "Are you sure?",
+      text: `You want to remove "${title}" from your favourite!`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        this.props.addOrRemoveFavourite(id);
+      }
+    });
   }
 
-
+/**
+ *
+ * @description renders JSX element
+ *
+ * @method
+ *
+ * @memberOf SingleRecipe
+ *
+ * @returns {Undefined}
+ */
   render() {
-    const token = localStorage.getItem('jwtToken');
-    const { user } = jwtDecode(token);
     const { favourite } = this.props;
     return (
       <div className="col s12 m6 l4">
@@ -85,12 +91,13 @@ class UserFavouriteCard extends Component {
             </a>
             <a 
               className="black-text" 
-                onClick={() => this.handelFavourites(favourite.id, favourite.title)}
+                onClick={() =>
+                  this.handelFavourites(favourite.id, favourite.title)}
                 style={{ cursor: 'pointer' }}
               >
               <i 
                 className="fa fa-heart red-heart" 
-                  aria-hidden="true" /> 
+                aria-hidden="true" /> 
             </a>
           </div>
         </div>
