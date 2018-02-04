@@ -186,17 +186,22 @@ class UserProfile extends Component {
     }
     this.setState({ disabled: true, onUpdate: true });
     
-    const uploadData = imageToFormData(this.state.image);
-    delete axios.defaults.headers.common['Authorization'];
-    axios(uploadData)
-      .then((data) => {
-      this.setState({ imageUrl: data.data.secure_url });
+    if (this.state.image.name) {
+     const uploadData = imageToFormData(this.state.image);
+     delete axios.defaults.headers.common['Authorization'];
+     axios(uploadData)
+       .then((data) => {
+       this.setState({ imageUrl: data.data.secure_url });
+       this.props.editProfile(this.state);
+       this.setState({ onUpdate: false });
+     }).catch((error) => { 
+       this.setState({ disabled: false, onUpdate: false });
+       Materialize.toast("Error! Please try again", 4000, 'red');
+     });
+    } esle {
       this.props.editProfile(this.state);
-      this.setState({ onUpdate: false });
-    }).catch((error) => { 
-      this.setState({ disabled: false, onUpdate: false });
-      Materialize.toast("Error! Please try again", 4000, 'red');
-    });
+      this.setState({ onUpdate: false});
+    }
   }
 
  /**
