@@ -55,7 +55,7 @@ export const validateSignUpForm = (value) => {
   const { isValid } = validator.checkPassword(password);
   if (!isValid) {
     errors.passwordError =
-      'password must contain `uppercase, lowercase, number, spacial character`';
+      'password must contain `uppercase, lowercase, number, special character`';
   }
 
   switch (image.type) {
