@@ -31,13 +31,6 @@ export default (state = initialState, action) => {
             isDeleted: true,
             isFetched: false,
         });
-    case actionTypes.FETCH_USER_FAVOURITE_RECIPE_Ids_SUCCESS:
-      return Object.assign(
-        {},
-        state,
-        {
-          favouritedIds: action.data,
-        });
     case actionTypes.FETCH_USER_FAVOURITE_RECIPES_ERROR:
     return Object.assign(
       {},

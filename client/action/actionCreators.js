@@ -207,21 +207,6 @@ export const createAccount = (state) => {
     id
   });
 
-   /**
-   * 
-   * @description dispatches action to fetch user favourite recipe ids
-   * 
-   * @method
-   *
-   * @param {Integer} userId - user id
-   * 
-   * @returns {void}
-   */
-  export const fetchUserFavouriteRecipeIds = userId => ({
-    type: actionTypes.FETCH_USER_FAVOURITE_RECIPE_Ids,
-    userId
-  });
-
   /**
    * 
    * @description dispatches action to fetch user favourite recipes
@@ -236,22 +221,6 @@ export const createAccount = (state) => {
     type: actionTypes.FETCH_USER_FAVOURITE_RECIPES,
     userId,
     offset
-  });
-
-
-  /**
-   * 
-   * @description dispatches action to fetch user favourite recipes Ids
-   *
-   * @method
-   * 
-   * @param {Integer} userId - user id
-   * 
-   * @returns {void}
-   */
-  export const fetchUserFavouritesIds = (userId) => ({
-    type: actionTypes.FETCH_USER_FAVOURITE_RECIPE_Ids,
-    userId
   });
 
   /**

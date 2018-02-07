@@ -19,7 +19,7 @@ import imageToFormData from '../util/ImageUpload';
  * @extends Component
  *
  */
-class SignUp extends Component {
+export class SignUp extends Component {
   /**
    * @description initialize state and binds functiom
    *

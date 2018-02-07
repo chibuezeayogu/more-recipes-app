@@ -53,7 +53,6 @@ class SingleRecipe extends Component {
    * @returns {Undefined}
    */
   componentWillMount() {
-    const { currentUser } = this.props.userData;
     const { id } = this.props.match.params;
     this.props.fetchRecipe(id);
     this.props.fetchRecipeComment(id);
@@ -77,8 +76,8 @@ class SingleRecipe extends Component {
    * @returns {Undefined}
    */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.recipeReducer.isFetched === true ||
-       nextProps.recipeReducer.isFetched === false ) {
+    const { isFetched } = nextProps.recipeReducer;
+    if (isFetched === true || isFetched === false ) {
       this.setState({ isLoading: false });
     }
   }
@@ -168,7 +167,7 @@ class SingleRecipe extends Component {
       return this.setState({ errors: err.errors });
     }
     this.props.postComment(id, currentUser.id, comment);
-    event.target.reset();
+    this.setState({ comment: '' });
   }
 
   /**
@@ -367,7 +366,7 @@ class SingleRecipe extends Component {
                   <h4>Comments</h4>
                   <form 
                     onSubmit={e => this.handleOnsubmit(e)} 
-                    ref={form => this.form = form}>
+                  >
                     <div className="row">
                       <div className="input-field col s12">
                         <textarea

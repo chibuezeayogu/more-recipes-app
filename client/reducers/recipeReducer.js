@@ -30,24 +30,24 @@ export default (state = initialState, action) => {
           isCreated: !lodash.isEmpty(action.data)
         });
     case actionTypes.UP_VOTE_RECIPE_SUCCESS:
-      index = findIndex(state.recipes, action.data.recipe.id);
+      index = findIndex(state.recipes, action.data.id);
       return Object.assign(
         {},
         state,
         {
           recipes: [...state.recipes.slice(0, index),
-            action.data.recipe,
+            action.data,
             ...state.recipes.slice(index + 1)],
         });
 
     case actionTypes.DOWN_VOTE_RECIPE_SUCCESS:
-      index = findIndex(state.recipes, action.data.recipe.id);
+      index = findIndex(state.recipes, action.data.id);
       return Object.assign(
         {},
         state,
         {
           recipes: [...state.recipes.slice(0, index),
-            action.data.recipe,
+            action.data,
             ...state.recipes.slice(index + 1)],
         });
     case actionTypes.FETCH_RECIPE_SUCCESS:

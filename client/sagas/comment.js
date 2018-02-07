@@ -3,7 +3,7 @@ import 'babel-polyfill';
 import axios from 'axios';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
-import headers from '../util/setAuthToken';
+import setAuthorizationToken from '../util/setAuthToken';
 
 /**
  * walker sagas will be called by watcher saga
@@ -22,16 +22,15 @@ import headers from '../util/setAuthToken';
  * @returns {undefined}
  *
  */
-function* postComment(action) {
+export function* postComment(action) {
   const { id, postedBy, comment } = action;
+  setAuthorizationToken();
   try {
     const response = yield call(axios.post, `/api/v1/recipes/${id}/reviews`,
       {
-        recipeId: id,
         postedBy,
         comment,
-      },
-      headers()
+      }
     );
     const { data } = response;
     yield put({ type: actionTypes.POST_COMMENT_SUCCESS, data });
@@ -51,10 +50,11 @@ function* postComment(action) {
  * @returns {undefined}
  *
  */
-function* fetchRecipeComment(action) {
+export function* fetchRecipeComment(action) {
+  setAuthorizationToken();
   try {
     const response = yield call(axios.get,
-      `/api/v1/recipes/${action.recipeId}/reviews`, headers());
+      `/api/v1/recipes/${action.recipeId}/reviews`);
     const { data } = response;
     yield put({ type: actionTypes.FETCH_COMMENTS_SUCCESS, data });
   } catch (error) {
