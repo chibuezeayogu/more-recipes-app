@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import InfiniteScroll from 'react-infinite-scroller';
 import { search, fetchRecipesWithMostUpvote } from '../action/actionCreators';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';

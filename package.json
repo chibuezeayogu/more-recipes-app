@@ -98,16 +98,16 @@
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.5.7",
     "rc-pagination": "^1.14.0",
-    "react": "^15.6.2",
-    "react-dom": "^15.6.1",
-    "react-infinite-scroller": "^1.1.3",
+    "react": "^15.6.0",
+    "react-dom": "^15.5.0",
     "react-materialize": "^1.0.17",
     "react-redux": "4.4.5",
     "react-router": "^3.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.4",
     "redux": "3.5.2",
-    "redux-saga": "^0.16.0",
+    "redux-saga": "^0.15.0",
+    "redux-saga-test-plan": "^3.3.1",
     "sass-loader": "^6.0.6",
     "sequelize": "^4.7.5",
     "sequelize-cli": "^2.8.0",
@@ -123,6 +123,7 @@
     "winston": "^2.4.0"
   },
   "devDependencies": {
+    "assert": "^1.4.1",
     "axios-mock-adapter": "^1.12.0",
     "cheerio": "0.22.0",
     "compression": "1.6.1",
@@ -146,6 +147,7 @@
     "react-test-renderer": "^15.6.2",
     "redux-immutable-state-invariant": "1.2.3",
     "redux-mock-store": "1.0.2",
-    "rimraf": "2.5.2"
+    "rimraf": "2.5.2",
+    "tape": "^4.8.0"
   }
 }

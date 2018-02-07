@@ -8,17 +8,20 @@ global.process.env.CLOUDINARY_UPLOAD_PRESET = 'obuxro65';
 
 global.shallow = shallow;
 global.Materialize = { toast: () => {} };
-// global.decode = decode;
+
 
 global.localStorage = {
   clear: jest.fn(),
-  set: jest.fn(data => data),
-  get: jest.fn(),
+  setItem: jest.fn(data => data),
+  getItem: jest.fn(data => data),
   removeItem: jest.fn(item => item)
 };
 
+global.jwt = {
+decode: jest.fn(),
+verify: jest.fn(),
+} 
 global.document.getElementById = () => ({ innerHTML: '' });
-
 global.$ = () => ({
   sideNav: jest.fn(),
   collapsible: jest.fn(),

@@ -29,8 +29,8 @@ export function* signIn(action) {
         email: action.email,
         password: action.password
       });
-    const { data } = response;
-    const { token } = data;
+
+    const { token } = response.data;
     const decode = jwt.decode(token);
     localStorage.setItem('jwtToken', token);
     yield put({ type: actionTypes.SIGN_IN_SUCCESS, user: decode.user });
@@ -51,19 +51,17 @@ export function* signIn(action) {
  *
  */
 export function* createUser(action) {
-  const { firstName, lastName, email, password, imageUrl } = action;
   try {
     const response = yield call(axios.post, '/api/v1/users/signup',
       {
-        firstName,
-        lastName,
-        email,
-        password,
-        imageUrl,
+        firstName: action.firstName,
+        lastName: action.lastName,
+        email: action.email,
+        password: action.password,
+        imageUrl: action.imageUrl,
       });
 
-    const { data } = response;
-    const { token } = data;
+    const { token } = response.data;
     const decode = jwt.decode(token);
     localStorage.setItem('jwtToken', token);
     yield put({ type: actionTypes.SIGN_UP_SUCCESS, user: decode.user });
@@ -74,7 +72,7 @@ export function* createUser(action) {
 }
 
 /**
- * @description createUser generator function
+ * @description editProfile generator function
  *
  * @method
  *
@@ -100,6 +98,7 @@ export function* editProfile(action) {
     yield put({ type: actionTypes.EDIT_PROFILE_SUCCESS, user: data.user });
   } catch (error) {
     Materialize.toast(error.response.data.message, 4000, 'red');
+    yield put({ type: actionTypes.EDIT_PROFILE_ERROR });
   }
 }
 
@@ -121,7 +120,8 @@ export function* fetchUser(action) {
     const { data } = response;
     yield put({ type: actionTypes.FETCH_USER_SUCCESS, user: data.user });
   } catch (error) {
-    Materialize.toast(error.response.data.message, 4000, 'red');
+    const { response: { data : { message } } } = error;
+    Materialize.toast(message, 4000, 'red');
   }
 }
 

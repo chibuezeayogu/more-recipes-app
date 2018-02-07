@@ -24,15 +24,15 @@ import setAuthorizationToken from '../util/setAuthToken';
  * @returns {undefined}
  *
  */
-function* addOrRemoveFavourite(action) {
+export function* addOrRemoveFavourite(action) {
   const { recipeId } = action;
   setAuthorizationToken();
   try {
     const response = yield call(axios.put,
       `/api/v1/recipes/${recipeId}/addOrRemoveFavourite`);
-    const { data } = response;
-    Materialize.toast(data.message, 4000, 'green');
-    if (response.status === 200) {
+    const { data : { message }, status } = response;
+    Materialize.toast(message, 4000, 'green');
+    if (status === 200) {
       yield put({ type: actionTypes.ADD_OR_REMOVE_FAVOURITE_SUCCESS, recipeId});
     }
   } catch (error) {
@@ -51,36 +51,15 @@ function* addOrRemoveFavourite(action) {
  * @returns {undefined}
  *
  */
-function* fetchUserFavouriteRecipes(action) {
+export function* fetchUserFavouriteRecipes(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get,
       `/api/v1/users/${action.userId}/favouriteRecipes?limit=6&offset=${action.offset}`);
     const { data } = response;
-    Materialize.toast(response.data.message, 4000, 'red');
     yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPES_SUCCESS, data });
   } catch (error) {
     yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPES_ERROR });
-  }
-}
-
-/**
- * @description watching ADD_OR_REMOVE_FAVOURITE action
- *
- * @method
- *
- * @returns {undefined}
- *
- */
-function* fetchUserFavouritesRecipeIds(action) {
-  setAuthorizationToken();
-  try {
-    const response = yield call(axios.get,
-      `/api/v1/users/${action.userId}/favouriteRecipeIds`);
-    const { data } = response;
-    yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPE_Ids_SUCCESS, data });
-  } catch (error) {
-    yield put({ type: actionTypes.FETCH_USER_FAVOURITE_RECIPE_Ids_ERROR });
   }
 }
 
@@ -119,15 +98,3 @@ export function* watchFetchUserFavouritesRecipes() {
     fetchUserFavouriteRecipes);
 }
 
-/**
- * @description watching FETCH_USER_FAVOURITE_RECIPES action
- *
- * @method
- *
- * @returns {undefined}
- *
- */
-export function* watchFetchUserFavouritesRecipeIds() {
-  yield takeEvery(actionTypes.FETCH_USER_FAVOURITE_RECIPE_Ids,
-    fetchUserFavouritesRecipeIds);
-}

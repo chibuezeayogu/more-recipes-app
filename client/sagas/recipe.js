@@ -47,7 +47,7 @@ export function* fetchRecipes(action) {
  * @returns {undefined}
  *
  */
-function* fetchRecipe(action) {
+export function* fetchRecipe(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get,
@@ -70,12 +70,12 @@ function* fetchRecipe(action) {
  * @returns {undefined}
  *
  */
-function* addRecipe(action) {
+export function* addRecipe(action) {
   const { title, description, ingredients, procedures, imageUrl } = action;
   setAuthorizationToken();
   try {
     const response = yield call(axios.post, 
-      '/api/v1/recipes/', { 
+      '/api/v1/recipes', { 
         title,
         description,
         ingredients,
@@ -100,15 +100,15 @@ function* addRecipe(action) {
  * @returns {undefined}
  *
  */
-function* upvoteRecipe(action) {
+export function* upvoteRecipe(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.put,
       `/api/v1/recipes/${action.recipeId}/upvote`);
-    const { data } = response;
-
-    Materialize.toast(data.message, 4000, 'green');
-    yield put({ type: actionTypes.UP_VOTE_RECIPE_SUCCESS, data });
+    const { data: { message, recipe } } = response;
+    
+    Materialize.toast(message, 4000, 'green');
+    yield put({ type: actionTypes.UP_VOTE_RECIPE_SUCCESS, data: recipe });
   } catch (error) {
       Materialize.toast(error.response.data.message, 4000, 'red');
   }
@@ -125,15 +125,15 @@ function* upvoteRecipe(action) {
  * @returns {undefined}
  *
  */
-function* downvoteRecipe(action) {
+export function* downvoteRecipe(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.put,
       `/api/v1/recipes/${action.recipeId}/downvote`);
-    const { data } = response;
+      const { data: { message, recipe } } = response;
 
-    Materialize.toast(data.message, 4000, 'green');
-    yield put({ type: actionTypes.DOWN_VOTE_RECIPE_SUCCESS, data });
+    Materialize.toast(message, 4000, 'green');
+    yield put({ type: actionTypes.DOWN_VOTE_RECIPE_SUCCESS, data: recipe });
   } catch (error) {
     Materialize.toast(error.response.data.message, 4000, 'red');
   }
@@ -150,7 +150,7 @@ function* downvoteRecipe(action) {
  * @returns {undefined}
  *
  */
-function* fetchUserRecipes(action) {
+export function* fetchUserRecipes(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get, 
@@ -173,7 +173,7 @@ function* fetchUserRecipes(action) {
  * @returns {undefined}
  *
  */
-function* deleteRecipe(action) {
+export function* deleteRecipe(action) {
   const { id } = action;
   setAuthorizationToken();
   try{
@@ -198,7 +198,7 @@ function* deleteRecipe(action) {
  * @returns {undefined}
  *
  */
-function* searchRecipe(action) {
+export function* searchRecipe(action) {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get,
@@ -221,7 +221,7 @@ function* searchRecipe(action) {
  * @returns {undefined}
  *
  */
-function* editRecipe(action) {
+export function* editRecipe(action) {
   const { id, title, description, ingredients, procedures, imageUrl } = action;
   setAuthorizationToken();
   try {
@@ -251,7 +251,7 @@ function* editRecipe(action) {
  * @returns {undefined}
  *
  */
-function* fetchMostUpvotedRecipes() {
+export function* fetchMostUpvotedRecipes() {
   setAuthorizationToken();
   try {
     const response = yield call(axios.get, 
@@ -370,18 +370,6 @@ export function* watchSearchRecipe() {
  */
 export function* watchDeleteRecipe() {
   yield takeEvery(actionTypes.DELETE_RECIPE, deleteRecipe);
-}
-
-/**
- * @description watching FETCH_MOST_FAVOURITED_RECIPE action
- *
- * @method
- *
- * @returns {undefined}
- *
- */
-export function* watchFetchMostRecipe() {
-  yield takeEvery(actionTypes.FETCH_MOST_FAVOURITED_RECIPE, fetchMostRecipe);
 }
 
 /**
