@@ -1,0 +1,611 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchResult /> should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="row left align-recipe"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <withRouter(RecipeCard)
+      recipe={
+        Object {
+          "addedBy": 1,
+          "createdAt": "2018-01-29T11:38:51.147Z",
+          "description": "adsfasfa",
+          "downvotes": 0,
+          "id": 3,
+          "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+          "ingredients": "asdfafafa",
+          "procedures": "adfadfadf",
+          "title": "New title",
+          "updatedAt": "2018-02-02T15:30:35.425Z",
+          "upvotes": 1,
+          "views": 0,
+        }
+      }
+      searchReducer={
+        Object {
+          "recipes": Array [
+            Object {
+              "addedBy": 1,
+              "createdAt": "2018-01-29T11:38:51.147Z",
+              "description": "adsfasfa",
+              "downvotes": 0,
+              "id": 3,
+              "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+              "ingredients": "asdfafafa",
+              "procedures": "adfadfadf",
+              "title": "New title",
+              "updatedAt": "2018-02-02T15:30:35.425Z",
+              "upvotes": 1,
+              "views": 0,
+            },
+            Object {
+              "addedBy": 1,
+              "createdAt": "2018-01-28T22:46:03.051Z",
+              "description": "asdfafd",
+              "downvotes": 0,
+              "id": 1,
+              "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+              "ingredients": "adfadfadf",
+              "procedures": "adfafadf",
+              "title": "CHANGED",
+              "updatedAt": "2018-02-06T19:28:36.149Z",
+              "upvotes": 1,
+              "views": 0,
+            },
+          ],
+        }
+      }
+    />
+    <withRouter(RecipeCard)
+      recipe={
+        Object {
+          "addedBy": 1,
+          "createdAt": "2018-01-28T22:46:03.051Z",
+          "description": "asdfafd",
+          "downvotes": 0,
+          "id": 1,
+          "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+          "ingredients": "adfadfadf",
+          "procedures": "adfafadf",
+          "title": "CHANGED",
+          "updatedAt": "2018-02-06T19:28:36.149Z",
+          "upvotes": 1,
+          "views": 0,
+        }
+      }
+      searchReducer={
+        Object {
+          "recipes": Array [
+            Object {
+              "addedBy": 1,
+              "createdAt": "2018-01-29T11:38:51.147Z",
+              "description": "adsfasfa",
+              "downvotes": 0,
+              "id": 3,
+              "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+              "ingredients": "asdfafafa",
+              "procedures": "adfadfadf",
+              "title": "New title",
+              "updatedAt": "2018-02-02T15:30:35.425Z",
+              "upvotes": 1,
+              "views": 0,
+            },
+            Object {
+              "addedBy": 1,
+              "createdAt": "2018-01-28T22:46:03.051Z",
+              "description": "asdfafd",
+              "downvotes": 0,
+              "id": 1,
+              "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+              "ingredients": "adfadfadf",
+              "procedures": "adfafadf",
+              "title": "CHANGED",
+              "updatedAt": "2018-02-06T19:28:36.149Z",
+              "upvotes": 1,
+              "views": 0,
+            },
+          ],
+        }
+      }
+    />
+  </div>,
+  "nodes": Array [
+    <div
+      className="row left align-recipe"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <withRouter(RecipeCard)
+        recipe={
+          Object {
+            "addedBy": 1,
+            "createdAt": "2018-01-29T11:38:51.147Z",
+            "description": "adsfasfa",
+            "downvotes": 0,
+            "id": 3,
+            "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+            "ingredients": "asdfafafa",
+            "procedures": "adfadfadf",
+            "title": "New title",
+            "updatedAt": "2018-02-02T15:30:35.425Z",
+            "upvotes": 1,
+            "views": 0,
+          }
+        }
+        searchReducer={
+          Object {
+            "recipes": Array [
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-29T11:38:51.147Z",
+                "description": "adsfasfa",
+                "downvotes": 0,
+                "id": 3,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "asdfafafa",
+                "procedures": "adfadfadf",
+                "title": "New title",
+                "updatedAt": "2018-02-02T15:30:35.425Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf",
+                "procedures": "adfafadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+            ],
+          }
+        }
+      />
+      <withRouter(RecipeCard)
+        recipe={
+          Object {
+            "addedBy": 1,
+            "createdAt": "2018-01-28T22:46:03.051Z",
+            "description": "asdfafd",
+            "downvotes": 0,
+            "id": 1,
+            "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+            "ingredients": "adfadfadf",
+            "procedures": "adfafadf",
+            "title": "CHANGED",
+            "updatedAt": "2018-02-06T19:28:36.149Z",
+            "upvotes": 1,
+            "views": 0,
+          }
+        }
+        searchReducer={
+          Object {
+            "recipes": Array [
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-29T11:38:51.147Z",
+                "description": "adsfasfa",
+                "downvotes": 0,
+                "id": 3,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "asdfafafa",
+                "procedures": "adfadfadf",
+                "title": "New title",
+                "updatedAt": "2018-02-02T15:30:35.425Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf",
+                "procedures": "adfafadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+            ],
+          }
+        }
+      />
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <SearchResult
+        searchReducer={
+          Object {
+            "recipes": Array [
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-29T11:38:51.147Z",
+                "description": "adsfasfa",
+                "downvotes": 0,
+                "id": 3,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "asdfafafa",
+                "procedures": "adfadfadf",
+                "title": "New title",
+                "updatedAt": "2018-02-02T15:30:35.425Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf",
+                "procedures": "adfafadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+            ],
+          }
+        }
+      />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": SearchResult {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "searchReducer": Object {
+            "recipes": Array [
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-29T11:38:51.147Z",
+                "description": "adsfasfa",
+                "downvotes": 0,
+                "id": 3,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "asdfafafa",
+                "procedures": "adfadfadf",
+                "title": "New title",
+                "updatedAt": "2018-02-02T15:30:35.425Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf",
+                "procedures": "adfafadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+            ],
+          },
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="row left align-recipe"
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <withRouter(RecipeCard)
+            recipe={
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-29T11:38:51.147Z",
+                "description": "adsfasfa",
+                "downvotes": 0,
+                "id": 3,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "asdfafafa",
+                "procedures": "adfadfadf",
+                "title": "New title",
+                "updatedAt": "2018-02-02T15:30:35.425Z",
+                "upvotes": 1,
+                "views": 0,
+              }
+            }
+            searchReducer={
+              Object {
+                "recipes": Array [
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-29T11:38:51.147Z",
+                    "description": "adsfasfa",
+                    "downvotes": 0,
+                    "id": 3,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "asdfafafa",
+                    "procedures": "adfadfadf",
+                    "title": "New title",
+                    "updatedAt": "2018-02-02T15:30:35.425Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-28T22:46:03.051Z",
+                    "description": "asdfafd",
+                    "downvotes": 0,
+                    "id": 1,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "adfadfadf",
+                    "procedures": "adfafadf",
+                    "title": "CHANGED",
+                    "updatedAt": "2018-02-06T19:28:36.149Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                ],
+              }
+            }
+          />
+          <withRouter(RecipeCard)
+            recipe={
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf",
+                "procedures": "adfafadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              }
+            }
+            searchReducer={
+              Object {
+                "recipes": Array [
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-29T11:38:51.147Z",
+                    "description": "adsfasfa",
+                    "downvotes": 0,
+                    "id": 3,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "asdfafafa",
+                    "procedures": "adfadfadf",
+                    "title": "New title",
+                    "updatedAt": "2018-02-02T15:30:35.425Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-28T22:46:03.051Z",
+                    "description": "asdfafd",
+                    "downvotes": 0,
+                    "id": 1,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "adfadfadf",
+                    "procedures": "adfafadf",
+                    "title": "CHANGED",
+                    "updatedAt": "2018-02-06T19:28:36.149Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                ],
+              }
+            }
+          />
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="row left align-recipe"
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <withRouter(RecipeCard)
+            recipe={
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-29T11:38:51.147Z",
+                "description": "adsfasfa",
+                "downvotes": 0,
+                "id": 3,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "asdfafafa",
+                "procedures": "adfadfadf",
+                "title": "New title",
+                "updatedAt": "2018-02-02T15:30:35.425Z",
+                "upvotes": 1,
+                "views": 0,
+              }
+            }
+            searchReducer={
+              Object {
+                "recipes": Array [
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-29T11:38:51.147Z",
+                    "description": "adsfasfa",
+                    "downvotes": 0,
+                    "id": 3,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "asdfafafa",
+                    "procedures": "adfadfadf",
+                    "title": "New title",
+                    "updatedAt": "2018-02-02T15:30:35.425Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-28T22:46:03.051Z",
+                    "description": "asdfafd",
+                    "downvotes": 0,
+                    "id": 1,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "adfadfadf",
+                    "procedures": "adfafadf",
+                    "title": "CHANGED",
+                    "updatedAt": "2018-02-06T19:28:36.149Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                ],
+              }
+            }
+          />
+          <withRouter(RecipeCard)
+            recipe={
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf",
+                "procedures": "adfafadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              }
+            }
+            searchReducer={
+              Object {
+                "recipes": Array [
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-29T11:38:51.147Z",
+                    "description": "adsfasfa",
+                    "downvotes": 0,
+                    "id": 3,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "asdfafafa",
+                    "procedures": "adfadfadf",
+                    "title": "New title",
+                    "updatedAt": "2018-02-02T15:30:35.425Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-28T22:46:03.051Z",
+                    "description": "asdfafd",
+                    "downvotes": 0,
+                    "id": 1,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "adfadfadf",
+                    "procedures": "adfafadf",
+                    "title": "CHANGED",
+                    "updatedAt": "2018-02-06T19:28:36.149Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                ],
+              }
+            }
+          />
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <SearchResult
+    searchReducer={
+      Object {
+        "recipes": Array [
+          Object {
+            "addedBy": 1,
+            "createdAt": "2018-01-29T11:38:51.147Z",
+            "description": "adsfasfa",
+            "downvotes": 0,
+            "id": 3,
+            "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+            "ingredients": "asdfafafa",
+            "procedures": "adfadfadf",
+            "title": "New title",
+            "updatedAt": "2018-02-02T15:30:35.425Z",
+            "upvotes": 1,
+            "views": 0,
+          },
+          Object {
+            "addedBy": 1,
+            "createdAt": "2018-01-28T22:46:03.051Z",
+            "description": "asdfafd",
+            "downvotes": 0,
+            "id": 1,
+            "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+            "ingredients": "adfadfadf",
+            "procedures": "adfafadf",
+            "title": "CHANGED",
+            "updatedAt": "2018-02-06T19:28:36.149Z",
+            "upvotes": 1,
+            "views": 0,
+          },
+        ],
+      }
+    }
+  />,
+}
+`;

@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <footer
+    className="page-footer black footer"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col l6 s12"
+        >
+          <h6
+            className="white-text"
+          >
+             © 2018 Copyright
+          </h6>
+        </div>
+        <div
+          className="col l4 offset-l2 s12"
+        >
+          <h6
+            className="white-text"
+          >
+            Andela Project by Ayogu Chibueze
+          </h6>
+        </div>
+      </div>
+    </div>
+  </footer>,
+  "nodes": Array [
+    <footer
+      className="page-footer black footer"
+    >
+      <div
+        className="container"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="col l6 s12"
+          >
+            <h6
+              className="white-text"
+            >
+               © 2018 Copyright
+            </h6>
+          </div>
+          <div
+            className="col l4 offset-l2 s12"
+          >
+            <h6
+              className="white-text"
+            >
+              Andela Project by Ayogu Chibueze
+            </h6>
+          </div>
+        </div>
+      </div>
+    </footer>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 2,
+      "_context": Object {},
+      "_currentElement": <Footer />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": StatelessComponent {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {},
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <footer
+          className="page-footer black footer"
+        >
+          <div
+            className="container"
+          >
+            <div
+              className="row"
+            >
+              <div
+                className="col l6 s12"
+              >
+                <h6
+                  className="white-text"
+                >
+                   © 2018 Copyright
+                </h6>
+              </div>
+              <div
+                className="col l4 offset-l2 s12"
+              >
+                <h6
+                  className="white-text"
+                >
+                  Andela Project by Ayogu Chibueze
+                </h6>
+              </div>
+            </div>
+          </div>
+        </footer>,
+        "_debugID": 2,
+        "_renderedOutput": <footer
+          className="page-footer black footer"
+        >
+          <div
+            className="container"
+          >
+            <div
+              className="row"
+            >
+              <div
+                className="col l6 s12"
+              >
+                <h6
+                  className="white-text"
+                >
+                   © 2018 Copyright
+                </h6>
+              </div>
+              <div
+                className="col l4 offset-l2 s12"
+              >
+                <h6
+                  className="white-text"
+                >
+                  Andela Project by Ayogu Chibueze
+                </h6>
+              </div>
+            </div>
+          </div>
+        </footer>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Footer />,
+}
+`;

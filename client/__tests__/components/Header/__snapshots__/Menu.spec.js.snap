@@ -1,0 +1,548 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Menu /> render the menu Component 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div>
+    <nav>
+      <div
+        className="nav-wrapper black"
+      >
+        <a
+          className="brand-logo"
+        >
+          <img
+            alt=""
+            className="responsive-img image-radius"
+            src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1516130489/yy3vdswodkvr3mj5lts1.jpg"
+            style={
+              Object {
+                "height": 25,
+                "marginLeft": 10,
+                "marginRight": 10,
+              }
+            }
+          />
+          More Recipes
+        </a>
+        <a
+          className="button-collapse"
+          data-activates="mobile"
+        >
+          <i
+            className="material-icons"
+          >
+            menu
+          </i>
+        </a>
+        <ul
+          className="right hide-on-med-and-down"
+        >
+          <li>
+            <Link
+              replace={false}
+              to="/"
+            >
+              <i
+                className="fa fa-home"
+              />
+               Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              replace={false}
+              to="/signin"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-sign-in"
+              />
+                Login
+            </Link>
+          </li>
+          <li>
+            <Link
+              replace={false}
+              to="/signup"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-user-plus"
+              />
+               Sign Up
+            </Link>
+          </li>
+        </ul>
+        <ul
+          className="side-nav"
+          id="mobile"
+        >
+          <li>
+            <Link
+              replace={false}
+              to="/"
+            >
+              <i
+                className="fa fa-home"
+              />
+               Home
+            </Link>
+          </li>
+          <div
+            className="divider"
+          />
+          <li>
+            <Link
+              replace={false}
+              to="/signin"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-sign-in"
+              />
+               Login
+            </Link>
+          </li>
+          <div
+            className="divider"
+          />
+          <li>
+            <Link
+              replace={false}
+              to="/signup"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-user-plus"
+              />
+               Sign Up
+            </Link>
+          </li>
+          <div
+            className="divider"
+          />
+        </ul>
+      </div>
+    </nav>
+  </div>,
+  "nodes": Array [
+    <div>
+      <nav>
+        <div
+          className="nav-wrapper black"
+        >
+          <a
+            className="brand-logo"
+          >
+            <img
+              alt=""
+              className="responsive-img image-radius"
+              src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1516130489/yy3vdswodkvr3mj5lts1.jpg"
+              style={
+                Object {
+                  "height": 25,
+                  "marginLeft": 10,
+                  "marginRight": 10,
+                }
+              }
+            />
+            More Recipes
+          </a>
+          <a
+            className="button-collapse"
+            data-activates="mobile"
+          >
+            <i
+              className="material-icons"
+            >
+              menu
+            </i>
+          </a>
+          <ul
+            className="right hide-on-med-and-down"
+          >
+            <li>
+              <Link
+                replace={false}
+                to="/"
+              >
+                <i
+                  className="fa fa-home"
+                />
+                 Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                replace={false}
+                to="/signin"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-sign-in"
+                />
+                  Login
+              </Link>
+            </li>
+            <li>
+              <Link
+                replace={false}
+                to="/signup"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-user-plus"
+                />
+                 Sign Up
+              </Link>
+            </li>
+          </ul>
+          <ul
+            className="side-nav"
+            id="mobile"
+          >
+            <li>
+              <Link
+                replace={false}
+                to="/"
+              >
+                <i
+                  className="fa fa-home"
+                />
+                 Home
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li>
+              <Link
+                replace={false}
+                to="/signin"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-sign-in"
+                />
+                 Login
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li>
+              <Link
+                replace={false}
+                to="/signup"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-user-plus"
+                />
+                 Sign Up
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+          </ul>
+        </div>
+      </nav>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <Menu />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": Menu {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {},
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div>
+          <nav>
+            <div
+              className="nav-wrapper black"
+            >
+              <a
+                className="brand-logo"
+              >
+                <img
+                  alt=""
+                  className="responsive-img image-radius"
+                  src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1516130489/yy3vdswodkvr3mj5lts1.jpg"
+                  style={
+                    Object {
+                      "height": 25,
+                      "marginLeft": 10,
+                      "marginRight": 10,
+                    }
+                  }
+                />
+                More Recipes
+              </a>
+              <a
+                className="button-collapse"
+                data-activates="mobile"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+              <ul
+                className="right hide-on-med-and-down"
+              >
+                <li>
+                  <Link
+                    replace={false}
+                    to="/"
+                  >
+                    <i
+                      className="fa fa-home"
+                    />
+                     Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    replace={false}
+                    to="/signin"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-sign-in"
+                    />
+                      Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    replace={false}
+                    to="/signup"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-user-plus"
+                    />
+                     Sign Up
+                  </Link>
+                </li>
+              </ul>
+              <ul
+                className="side-nav"
+                id="mobile"
+              >
+                <li>
+                  <Link
+                    replace={false}
+                    to="/"
+                  >
+                    <i
+                      className="fa fa-home"
+                    />
+                     Home
+                  </Link>
+                </li>
+                <div
+                  className="divider"
+                />
+                <li>
+                  <Link
+                    replace={false}
+                    to="/signin"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-sign-in"
+                    />
+                     Login
+                  </Link>
+                </li>
+                <div
+                  className="divider"
+                />
+                <li>
+                  <Link
+                    replace={false}
+                    to="/signup"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-user-plus"
+                    />
+                     Sign Up
+                  </Link>
+                </li>
+                <div
+                  className="divider"
+                />
+              </ul>
+            </div>
+          </nav>
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div>
+          <nav>
+            <div
+              className="nav-wrapper black"
+            >
+              <a
+                className="brand-logo"
+              >
+                <img
+                  alt=""
+                  className="responsive-img image-radius"
+                  src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1516130489/yy3vdswodkvr3mj5lts1.jpg"
+                  style={
+                    Object {
+                      "height": 25,
+                      "marginLeft": 10,
+                      "marginRight": 10,
+                    }
+                  }
+                />
+                More Recipes
+              </a>
+              <a
+                className="button-collapse"
+                data-activates="mobile"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+              <ul
+                className="right hide-on-med-and-down"
+              >
+                <li>
+                  <Link
+                    replace={false}
+                    to="/"
+                  >
+                    <i
+                      className="fa fa-home"
+                    />
+                     Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    replace={false}
+                    to="/signin"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-sign-in"
+                    />
+                      Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    replace={false}
+                    to="/signup"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-user-plus"
+                    />
+                     Sign Up
+                  </Link>
+                </li>
+              </ul>
+              <ul
+                className="side-nav"
+                id="mobile"
+              >
+                <li>
+                  <Link
+                    replace={false}
+                    to="/"
+                  >
+                    <i
+                      className="fa fa-home"
+                    />
+                     Home
+                  </Link>
+                </li>
+                <div
+                  className="divider"
+                />
+                <li>
+                  <Link
+                    replace={false}
+                    to="/signin"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-sign-in"
+                    />
+                     Login
+                  </Link>
+                </li>
+                <div
+                  className="divider"
+                />
+                <li>
+                  <Link
+                    replace={false}
+                    to="/signup"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-user-plus"
+                    />
+                     Sign Up
+                  </Link>
+                </li>
+                <div
+                  className="divider"
+                />
+              </ul>
+            </div>
+          </nav>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Menu />,
+}
+`;

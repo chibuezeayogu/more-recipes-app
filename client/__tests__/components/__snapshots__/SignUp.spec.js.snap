@@ -1,0 +1,850 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignUp /> should render without crashing 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="body"
+  >
+    <withRouter(Menu) />
+    <div
+      className="main"
+    >
+      <div
+        className="signup-form z-depth-1"
+      >
+        <div
+          className="col l6 m8 s12 offset-l6 offset-m4"
+        >
+          <h4
+            className="center"
+          >
+            Create Account
+          </h4>
+          <hr />
+          <form
+            className="col l6 m8 s12 offset-l3 offset-m2"
+            onSubmit={[Function]}
+          >
+            <div
+              className="row"
+            >
+              <div
+                className="input-field col s12"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-user-circle prefix"
+                />
+                <input
+                  id="firstName"
+                  name="firstName"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                />
+                <label
+                  className="active"
+                  htmlFor="firstName"
+                >
+                  First Name
+                </label>
+              </div>
+              <span
+                className="right red-text error-font error-margin"
+              />
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="input-field col s12"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-user-circle prefix"
+                />
+                <input
+                  id="lastName"
+                  name="lastName"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                />
+                <label
+                  className="active"
+                  htmlFor="lastName"
+                >
+                  Last Name
+                </label>
+              </div>
+              <span
+                className="right red-text error-font error-margin"
+              />
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="input-field col s12"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-envelope prefix"
+                />
+                <input
+                  id="email"
+                  name="email"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                />
+                <label
+                  className="active"
+                  htmlFor="email"
+                >
+                  Email
+                </label>
+              </div>
+              <span
+                className="right red-text error-font error-margin"
+              />
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="input-field col s12"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-key prefix"
+                />
+                <input
+                  autoComplete="off"
+                  id="password"
+                  name="password"
+                  onChange={[Function]}
+                  type="password"
+                  value=""
+                />
+                <label
+                  htmlFor="password"
+                >
+                  Password
+                </label>
+              </div>
+              <span
+                className="right red-text error-font error-margin"
+              />
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="input-field col s12"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-picture-o prefix"
+                />
+                <input
+                  id="image"
+                  name="profileImage"
+                  onChange={[Function]}
+                  type="file"
+                />
+              </div>
+              <span
+                className="right red-text error-font error-margin"
+              />
+            </div>
+            <div
+              className="row right"
+            >
+              <button
+                className="btn right green"
+                name="action"
+                type="submit"
+              >
+                 Sign Up
+              </button>
+            </div>
+            <div
+              className="row center"
+            >
+              <div>
+                
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <Footer />
+  </div>,
+  "nodes": Array [
+    <div
+      className="body"
+    >
+      <withRouter(Menu) />
+      <div
+        className="main"
+      >
+        <div
+          className="signup-form z-depth-1"
+        >
+          <div
+            className="col l6 m8 s12 offset-l6 offset-m4"
+          >
+            <h4
+              className="center"
+            >
+              Create Account
+            </h4>
+            <hr />
+            <form
+              className="col l6 m8 s12 offset-l3 offset-m2"
+              onSubmit={[Function]}
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="input-field col s12"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-user-circle prefix"
+                  />
+                  <input
+                    id="firstName"
+                    name="firstName"
+                    onChange={[Function]}
+                    type="text"
+                    value=""
+                  />
+                  <label
+                    className="active"
+                    htmlFor="firstName"
+                  >
+                    First Name
+                  </label>
+                </div>
+                <span
+                  className="right red-text error-font error-margin"
+                />
+              </div>
+              <div
+                className="row"
+              >
+                <div
+                  className="input-field col s12"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-user-circle prefix"
+                  />
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    onChange={[Function]}
+                    type="text"
+                    value=""
+                  />
+                  <label
+                    className="active"
+                    htmlFor="lastName"
+                  >
+                    Last Name
+                  </label>
+                </div>
+                <span
+                  className="right red-text error-font error-margin"
+                />
+              </div>
+              <div
+                className="row"
+              >
+                <div
+                  className="input-field col s12"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-envelope prefix"
+                  />
+                  <input
+                    id="email"
+                    name="email"
+                    onChange={[Function]}
+                    type="text"
+                    value=""
+                  />
+                  <label
+                    className="active"
+                    htmlFor="email"
+                  >
+                    Email
+                  </label>
+                </div>
+                <span
+                  className="right red-text error-font error-margin"
+                />
+              </div>
+              <div
+                className="row"
+              >
+                <div
+                  className="input-field col s12"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-key prefix"
+                  />
+                  <input
+                    autoComplete="off"
+                    id="password"
+                    name="password"
+                    onChange={[Function]}
+                    type="password"
+                    value=""
+                  />
+                  <label
+                    htmlFor="password"
+                  >
+                    Password
+                  </label>
+                </div>
+                <span
+                  className="right red-text error-font error-margin"
+                />
+              </div>
+              <div
+                className="row"
+              >
+                <div
+                  className="input-field col s12"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-picture-o prefix"
+                  />
+                  <input
+                    id="image"
+                    name="profileImage"
+                    onChange={[Function]}
+                    type="file"
+                  />
+                </div>
+                <span
+                  className="right red-text error-font error-margin"
+                />
+              </div>
+              <div
+                className="row right"
+              >
+                <button
+                  className="btn right green"
+                  name="action"
+                  type="submit"
+                >
+                   Sign Up
+                </button>
+              </div>
+              <div
+                className="row center"
+              >
+                <div>
+                  
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <SignUp
+        createAccount={[MockFunction]}
+        history={
+          Object {
+            "push": [MockFunction] {
+              "calls": Array [
+                Array [
+                  "/recipes",
+                ],
+              ],
+            },
+          }
+        }
+        userData={
+          Object {
+            "currentUser": Object {
+              "email": "chibuezeayogu@hotmail.com",
+              "id": 1,
+            },
+            "isAuthenticated": true,
+          }
+        }
+      />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": SignUp {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "handleChange": [Function],
+        "handleImageChange": [Function],
+        "handleOnsubmit": [Function],
+        "props": Object {
+          "createAccount": [MockFunction],
+          "history": Object {
+            "push": [MockFunction] {
+              "calls": Array [
+                Array [
+                  "/recipes",
+                ],
+              ],
+            },
+          },
+          "userData": Object {
+            "currentUser": Object {
+              "email": "chibuezeayogu@hotmail.com",
+              "id": 1,
+            },
+            "isAuthenticated": true,
+          },
+        },
+        "refs": Object {},
+        "state": Object {
+          "disabled": false,
+          "email": "",
+          "errors": Object {},
+          "firstName": "",
+          "image": Object {},
+          "imageUrl": "",
+          "lastName": "",
+          "password": "",
+        },
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="body"
+        >
+          <withRouter(Menu) />
+          <div
+            className="main"
+          >
+            <div
+              className="signup-form z-depth-1"
+            >
+              <div
+                className="col l6 m8 s12 offset-l6 offset-m4"
+              >
+                <h4
+                  className="center"
+                >
+                  Create Account
+                </h4>
+                <hr />
+                <form
+                  className="col l6 m8 s12 offset-l3 offset-m2"
+                  onSubmit={[Function]}
+                >
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-user-circle prefix"
+                      />
+                      <input
+                        id="firstName"
+                        name="firstName"
+                        onChange={[Function]}
+                        type="text"
+                        value=""
+                      />
+                      <label
+                        className="active"
+                        htmlFor="firstName"
+                      >
+                        First Name
+                      </label>
+                    </div>
+                    <span
+                      className="right red-text error-font error-margin"
+                    />
+                  </div>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-user-circle prefix"
+                      />
+                      <input
+                        id="lastName"
+                        name="lastName"
+                        onChange={[Function]}
+                        type="text"
+                        value=""
+                      />
+                      <label
+                        className="active"
+                        htmlFor="lastName"
+                      >
+                        Last Name
+                      </label>
+                    </div>
+                    <span
+                      className="right red-text error-font error-margin"
+                    />
+                  </div>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-envelope prefix"
+                      />
+                      <input
+                        id="email"
+                        name="email"
+                        onChange={[Function]}
+                        type="text"
+                        value=""
+                      />
+                      <label
+                        className="active"
+                        htmlFor="email"
+                      >
+                        Email
+                      </label>
+                    </div>
+                    <span
+                      className="right red-text error-font error-margin"
+                    />
+                  </div>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-key prefix"
+                      />
+                      <input
+                        autoComplete="off"
+                        id="password"
+                        name="password"
+                        onChange={[Function]}
+                        type="password"
+                        value=""
+                      />
+                      <label
+                        htmlFor="password"
+                      >
+                        Password
+                      </label>
+                    </div>
+                    <span
+                      className="right red-text error-font error-margin"
+                    />
+                  </div>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-picture-o prefix"
+                      />
+                      <input
+                        id="image"
+                        name="profileImage"
+                        onChange={[Function]}
+                        type="file"
+                      />
+                    </div>
+                    <span
+                      className="right red-text error-font error-margin"
+                    />
+                  </div>
+                  <div
+                    className="row right"
+                  >
+                    <button
+                      className="btn right green"
+                      name="action"
+                      type="submit"
+                    >
+                       Sign Up
+                    </button>
+                  </div>
+                  <div
+                    className="row center"
+                  >
+                    <div>
+                      
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <Footer />
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="body"
+        >
+          <withRouter(Menu) />
+          <div
+            className="main"
+          >
+            <div
+              className="signup-form z-depth-1"
+            >
+              <div
+                className="col l6 m8 s12 offset-l6 offset-m4"
+              >
+                <h4
+                  className="center"
+                >
+                  Create Account
+                </h4>
+                <hr />
+                <form
+                  className="col l6 m8 s12 offset-l3 offset-m2"
+                  onSubmit={[Function]}
+                >
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-user-circle prefix"
+                      />
+                      <input
+                        id="firstName"
+                        name="firstName"
+                        onChange={[Function]}
+                        type="text"
+                        value=""
+                      />
+                      <label
+                        className="active"
+                        htmlFor="firstName"
+                      >
+                        First Name
+                      </label>
+                    </div>
+                    <span
+                      className="right red-text error-font error-margin"
+                    />
+                  </div>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-user-circle prefix"
+                      />
+                      <input
+                        id="lastName"
+                        name="lastName"
+                        onChange={[Function]}
+                        type="text"
+                        value=""
+                      />
+                      <label
+                        className="active"
+                        htmlFor="lastName"
+                      >
+                        Last Name
+                      </label>
+                    </div>
+                    <span
+                      className="right red-text error-font error-margin"
+                    />
+                  </div>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-envelope prefix"
+                      />
+                      <input
+                        id="email"
+                        name="email"
+                        onChange={[Function]}
+                        type="text"
+                        value=""
+                      />
+                      <label
+                        className="active"
+                        htmlFor="email"
+                      >
+                        Email
+                      </label>
+                    </div>
+                    <span
+                      className="right red-text error-font error-margin"
+                    />
+                  </div>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-key prefix"
+                      />
+                      <input
+                        autoComplete="off"
+                        id="password"
+                        name="password"
+                        onChange={[Function]}
+                        type="password"
+                        value=""
+                      />
+                      <label
+                        htmlFor="password"
+                      >
+                        Password
+                      </label>
+                    </div>
+                    <span
+                      className="right red-text error-font error-margin"
+                    />
+                  </div>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-picture-o prefix"
+                      />
+                      <input
+                        id="image"
+                        name="profileImage"
+                        onChange={[Function]}
+                        type="file"
+                      />
+                    </div>
+                    <span
+                      className="right red-text error-font error-margin"
+                    />
+                  </div>
+                  <div
+                    className="row right"
+                  >
+                    <button
+                      className="btn right green"
+                      name="action"
+                      type="submit"
+                    >
+                       Sign Up
+                    </button>
+                  </div>
+                  <div
+                    className="row center"
+                  >
+                    <div>
+                      
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <Footer />
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <SignUp
+    createAccount={[MockFunction]}
+    history={
+      Object {
+        "push": [MockFunction] {
+          "calls": Array [
+            Array [
+              "/recipes",
+            ],
+          ],
+        },
+      }
+    }
+    userData={
+      Object {
+        "currentUser": Object {
+          "email": "chibuezeayogu@hotmail.com",
+          "id": 1,
+        },
+        "isAuthenticated": true,
+      }
+    }
+  />,
+}
+`;
