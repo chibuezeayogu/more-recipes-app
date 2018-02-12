@@ -5,7 +5,6 @@ const initialState = {
   favourites: [],
   isFetched: false,
   pagination: {},
-  favouritedIds: [],
   isDeleted: false
 };
 
@@ -28,16 +27,16 @@ export default (state = initialState, action) => {
         {
           favourites: [...state.favourites.slice(0, index),
             ...state.favourites.slice(index + 1)],
-            isDeleted: true,
-            isFetched: false,
+          isDeleted: true,
+          isFetched: false,
         });
     case actionTypes.FETCH_USER_FAVOURITE_RECIPES_ERROR:
-    return Object.assign(
-      {},
-      state,
-      {
-        isFetched: true
-      });
+      return Object.assign(
+        {},
+        state,
+        {
+          isFetched: true
+        });
     default:
       return state;
   }

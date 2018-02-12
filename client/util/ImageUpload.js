@@ -13,8 +13,7 @@ const imageToFormData = (image) => {
     url: CLOUDINARY_URL,
     method: 'POST',
     data: formData,
-  }
-
+  };
 };
 
 export default imageToFormData;

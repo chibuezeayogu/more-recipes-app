@@ -6,16 +6,9 @@ import verifyToken from './verifyToken';
 
 export default (ComposedComponent) => {
   class Authenticate extends Component {
-
     componentWillMount() {
-      if(!this.props.userData.isAuthenticated) {
+      if (!this.props.userData.isAuthenticated) {
         Materialize.toast('You need to login to access this page', 4000, 'red');
-        this.props.history.push('/signin');
-      }
-    }
-
-    componentWillUpdate(nextProps) {
-      if(!nextProps.userData.isAuthenticated) {
         this.props.history.push('/signin');
       }
     }
@@ -30,7 +23,7 @@ export default (ComposedComponent) => {
   Authenticate.propTypes = {
     userData: PropTypes.shape({
       isAuthenticated: PropTypes.bool.isRequired
-  }).isRequired
+    }).isRequired
   };
 
   const mapStateToProps = state => ({
@@ -38,6 +31,4 @@ export default (ComposedComponent) => {
   });
 
   return connect(mapStateToProps)(Authenticate);
-}
-
-
+};

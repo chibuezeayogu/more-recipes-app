@@ -21,7 +21,6 @@ export default (state = initialState, action) => {
       };
       return state;
     case actionTypes.ADD_RECIPE_SUCCESS:
-      index = findIndex(state.recipes, action.data.id);
       return Object.assign(
         {},
         state,
@@ -67,15 +66,6 @@ export default (state = initialState, action) => {
         state,
         {
           isFetched: false
-        });
-    case actionTypes.DELETE_COMMENT_SUCCESS:
-      index = findIndex(state.recipes, action.recipeId);
-      return Object.assign(
-        {},
-        state,
-        {
-          recipes: [...state.recipes.slice(0, index),
-            ...state.recipes.slice(index + 1)],
         });
     case actionTypes.FETCH_ALL_RECIPES_ERROR:
       state = {

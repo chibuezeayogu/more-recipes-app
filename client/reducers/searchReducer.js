@@ -7,16 +7,16 @@ const initialState = {
   pagination: {}
 };
 
-export default (state = {}, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SEARCH_RECIPE_SUCCESS:
-    state = {
-      recipes: action.data.recipes,
-      isFetched: true,
-      display: 'Search result',
-      pagination: action.data.pagination
-    };
-    return state;
+      state = {
+        recipes: action.data.recipes,
+        isFetched: true,
+        display: 'Search result',
+        pagination: action.data.pagination
+      };
+      return state;
     case actionTypes.SEARCH_RECIPE_ERROR:
       state = {
         recipes: [],

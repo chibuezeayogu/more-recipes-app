@@ -82,8 +82,10 @@ export function* createUser(action) {
  *
  */
 export function* editProfile(action) {
-  const { id, firstName, lastName, location, phone, address, imageUrl } =  action;
-  setAuthorizationToken()
+  const {
+    id, firstName, lastName, location, phone, address, imageUrl
+  } = action;
+  setAuthorizationToken();
   try {
     const response = yield call(axios.put, `/api/v1/users/${id}`,
       {
@@ -94,7 +96,7 @@ export function* editProfile(action) {
         address,
         imageUrl
       });
-      const { data } = response;
+    const { data } = response;
     yield put({ type: actionTypes.EDIT_PROFILE_SUCCESS, user: data.user });
   } catch (error) {
     Materialize.toast(error.response.data.message, 4000, 'red');
@@ -113,14 +115,14 @@ export function* editProfile(action) {
  *
  */
 export function* fetchUser(action) {
-  const { id } =  action;
+  const { id } = action;
   setAuthorizationToken();
   try {
     const response = yield call(axios.get, `/api/v1/users/${id}`)
     const { data } = response;
     yield put({ type: actionTypes.FETCH_USER_SUCCESS, user: data.user });
   } catch (error) {
-    const { response: { data : { message } } } = error;
+    const { response: { data: { message } } } = error;
     Materialize.toast(message, 4000, 'red');
   }
 }
@@ -179,5 +181,3 @@ export function* watchEditProfile() {
 export function* watchFetchUser() {
   yield takeEvery(actionTypes.FETCH_USER, fetchUser);
 }
-
-

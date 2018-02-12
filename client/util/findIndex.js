@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @param {Any} reducer - recipe reduer
  *
  * @param {Integer} id - recipe id
