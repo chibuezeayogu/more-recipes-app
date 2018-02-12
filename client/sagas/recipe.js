@@ -5,6 +5,7 @@ import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
 import setAuthorizationToken from '../util/setAuthToken';
 import imageToFormData from '../util/ImageUpload';
+import fileUpload from '../util/fileUpload';
 
 /**
  * walker sagas will be called by watcher saga
@@ -55,7 +56,7 @@ export function* fetchRecipe(action) {
     const { data } = response;
     yield put({ type: actionTypes.FETCH_RECIPE_SUCCESS, data });
   } catch (error) {
-      yield put({ type: actionTypes.FETCH_RECIPE_ERROR });
+    yield put({ type: actionTypes.FETCH_RECIPE_ERROR });
   }
 }
 
@@ -71,21 +72,25 @@ export function* fetchRecipe(action) {
  *
  */
 export function* addRecipe(action) {
-  const { title, description, ingredients, procedures, imageUrl } = action;
+  const {
+    title, description, ingredients, procedures, imageUrl
+  } = action;
+
   setAuthorizationToken();
   try {
-    const response = yield call(axios.post, 
-      '/api/v1/recipes', { 
+    const response = yield call(axios.post,
+      '/api/v1/recipes', {
         title,
         description,
         ingredients,
         procedures,
         imageUrl
-    });
+      });
     const { data } = response;
     yield put({ type: actionTypes.ADD_RECIPE_SUCCESS, data });
   } catch (error) {
-      Materialize.toast(error.response.data.message, 4000, 'red');
+    yield put({ type: actionTypes.ADD_RECIPE_ERROR });
+    Materialize.toast(error.response.data.message, 4000, 'red');
   }
 }
 
@@ -106,11 +111,11 @@ export function* upvoteRecipe(action) {
     const response = yield call(axios.put,
       `/api/v1/recipes/${action.recipeId}/upvote`);
     const { data: { message, recipe } } = response;
-    
+
     Materialize.toast(message, 4000, 'green');
     yield put({ type: actionTypes.UP_VOTE_RECIPE_SUCCESS, data: recipe });
   } catch (error) {
-      Materialize.toast(error.response.data.message, 4000, 'red');
+    Materialize.toast(error.response.data.message, 4000, 'red');
   }
 }
 
@@ -130,7 +135,7 @@ export function* downvoteRecipe(action) {
   try {
     const response = yield call(axios.put,
       `/api/v1/recipes/${action.recipeId}/downvote`);
-      const { data: { message, recipe } } = response;
+    const { data: { message, recipe } } = response;
 
     Materialize.toast(message, 4000, 'green');
     yield put({ type: actionTypes.DOWN_VOTE_RECIPE_SUCCESS, data: recipe });
@@ -158,7 +163,7 @@ export function* fetchUserRecipes(action) {
     const { data } = response;
     yield put({ type: actionTypes.FETCH_USER_RECIPES_SUCCESS, data });
   } catch (error) {
-   yield put({ type: actionTypes.FETCH_USER_RECIPES_ERROR });
+    yield put({ type: actionTypes.FETCH_USER_RECIPES_ERROR });
   }
 }
 
@@ -176,15 +181,13 @@ export function* fetchUserRecipes(action) {
 export function* deleteRecipe(action) {
   const { id } = action;
   setAuthorizationToken();
-  try{
+  try {
     const response = yield call(axios.delete, `/api/v1/recipes/${id}`);
 
     yield put({ type: actionTypes.DELETE_RECIPE_SUCCESS, id });
-
-  } catch(error) {
+  } catch (error) {
     yield put({ type: actionTypes.DELETE_RECIPE_ERROR });
   }
-
 }
 
 /**
@@ -222,17 +225,19 @@ export function* searchRecipe(action) {
  *
  */
 export function* editRecipe(action) {
-  const { id, title, description, ingredients, procedures, imageUrl } = action;
+  const {
+    id, title, description, ingredients, procedures, imageUrl
+  } = action;
   setAuthorizationToken();
   try {
     const response = yield call(axios.put,
-      `/api/v1/recipes/${id}`, { 
+      `/api/v1/recipes/${id}`, {
         title,
         description,
         ingredients,
         procedures,
         imageUrl
-    });
+      });
     const { data } = response;
     yield put({ type: actionTypes.EDIT_RECIPE_SUCCESS, data });
   } catch (error) {
@@ -254,12 +259,12 @@ export function* editRecipe(action) {
 export function* fetchMostUpvotedRecipes() {
   setAuthorizationToken();
   try {
-    const response = yield call(axios.get, 
+    const response = yield call(axios.get,
       '/api/v1/recipes/mostupvote');
     const { data } = response;
     yield put({ type: actionTypes.FETCH_MOST_UPVOTED_RECIPES_SUCCESS, data });
   } catch (error) {
-   yield put({ type: actionTypes.FETCH_MOST_UPVOTED_RECIPES_ERROR });
+    yield put({ type: actionTypes.FETCH_MOST_UPVOTED_RECIPES_ERROR });
   }
 }
 

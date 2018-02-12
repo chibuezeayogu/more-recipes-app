@@ -19,15 +19,13 @@ describe('SIGN_UP action', () => {
       type: actionTypes.SIGN_UP,
       user
     };
-    const createUser = actions.createAccount(user);
 
     expect(createdUser).toEqual(createdUser);
-  })
+  });
 });
 
 describe('SIGN_IN action', () => {
   it('it should dispatch SIGN_IN action', () => {
-   
     const email = 'chibuezeayogu@hotmail.com';
     const password = 'Abc12345.@';
     const expectedResult = {
@@ -38,7 +36,7 @@ describe('SIGN_IN action', () => {
     const login = actions.login(email, password);
 
     expect(login).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('DELETE_RECIPE action', () => {
@@ -50,7 +48,7 @@ describe('DELETE_RECIPE action', () => {
     const deleteRecipe = actions.delRecipe(id);
 
     expect(deleteRecipe).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('POST_COMMENT action', () => {
@@ -67,7 +65,7 @@ describe('POST_COMMENT action', () => {
     const postComment = actions.postComment(id, postedBy, comment);
 
     expect(postComment).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('FETCH_ALL_RECIPES action', () => {
@@ -80,7 +78,7 @@ describe('FETCH_ALL_RECIPES action', () => {
     const fetchAllRecipes = actions.fetchAllRecipes(offset);
 
     expect(fetchAllRecipes).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('FETCH_RECIPE action', () => {
@@ -93,7 +91,7 @@ describe('FETCH_RECIPE action', () => {
     const fetchRecipe = actions.fetchRecipe(id);
 
     expect(fetchRecipe).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('FETCH_USER_FAVOURITE_RECIPES action', () => {
@@ -108,7 +106,7 @@ describe('FETCH_USER_FAVOURITE_RECIPES action', () => {
     const fetchUserFavourites = actions.fetchUserFavourites(userId, offset);
 
     expect(fetchUserFavourites).toEqual(expectedResult);
-  })
+  });
 });
 
 
@@ -124,7 +122,7 @@ describe('FETCH_USER_RECIPES action', () => {
     const fetchUserRecipes = actions.fetchUserRecipes(userId, offset);
 
     expect(fetchUserRecipes).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('SET_CURRENT_USER action', () => {
@@ -137,7 +135,7 @@ describe('SET_CURRENT_USER action', () => {
     const setCurrentUser = actions.setCurrentUser(user);
 
     expect(setCurrentUser).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('FETCH_USER action', () => {
@@ -150,7 +148,7 @@ describe('FETCH_USER action', () => {
     const fetchUser = actions.fetchUser(id);
 
     expect(fetchUser).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('FETCH_MOST_UPVOTED_RECIPES action', () => {
@@ -161,7 +159,7 @@ describe('FETCH_MOST_UPVOTED_RECIPES action', () => {
     const fetchRecipesWithMostUpvote = actions.fetchRecipesWithMostUpvote();
 
     expect(fetchRecipesWithMostUpvote).toEqual(expectedResult);
-  })
+  });
 });
 
 
@@ -191,24 +189,22 @@ describe('EDIT_PROFILE action', () => {
     const editProfile = actions.editProfile(user);
 
     expect(editProfile).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('LOGOUT action', () => {
   it('should dispatch LOGOUT action', () => {
-
     const expectedResult = {
       type: actionTypes.LOGOUT
     };
     const signOut = actions.signOut();
 
     expect(signOut).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('ADD_OR_REMOVE_FAVOURITE action', () => {
   it('should dispatch ADD_OR_REMOVE_FAVOURITE action', () => {
-
     const expectedResult = {
       type: actionTypes.ADD_OR_REMOVE_FAVOURITE,
       recipeId: 1
@@ -216,12 +212,11 @@ describe('ADD_OR_REMOVE_FAVOURITE action', () => {
     const addOrRemoveFavourite = actions.addOrRemoveFavourite(1);
 
     expect(addOrRemoveFavourite).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('SEARCH_RECIPE action', () => {
   it('should dispatch SEARCH_RECIPE action', () => {
-
     const expectedResult = {
       type: actionTypes.SEARCH_RECIPE,
       searchTerm: 'Elendil-Cfh'
@@ -229,12 +224,11 @@ describe('SEARCH_RECIPE action', () => {
     const search = actions.search('Elendil-Cfh');
 
     expect(search).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('UP_VOTE_RECIPE action', () => {
   it('should dispatch UP_VOTE_RECIPE action', () => {
-
     const expectedResult = {
       type: actionTypes.UP_VOTE_RECIPE,
       recipeId: 1
@@ -242,12 +236,11 @@ describe('UP_VOTE_RECIPE action', () => {
     const upVoteRecipe = actions.upVoteRecipe(1);
 
     expect(upVoteRecipe).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('DOWN_VOTE_RECIPE action', () => {
   it('should dispatch DOWN_VOTE_RECIPE action', () => {
-
     const expectedResult = {
       type: actionTypes.DOWN_VOTE_RECIPE,
       recipeId: 1
@@ -255,12 +248,11 @@ describe('DOWN_VOTE_RECIPE action', () => {
     const upVoteRecipe = actions.downVoteRecipe(1);
 
     expect(upVoteRecipe).toEqual(expectedResult);
-  })
+  });
 });
 
 describe('FETCH_COMMENTS action', () => {
   it('should dispatch FETCH_COMMENTS action', () => {
-
     const expectedResult = {
       type: actionTypes.FETCH_COMMENTS,
       recipeId: 1
@@ -268,6 +260,6 @@ describe('FETCH_COMMENTS action', () => {
     const fetchRecipeComment = actions.fetchRecipeComment(1);
 
     expect(fetchRecipeComment).toEqual(expectedResult);
-  })
+  });
 });
 

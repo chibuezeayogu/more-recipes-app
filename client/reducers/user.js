@@ -17,23 +17,13 @@ const userData = (state = initialState, action) => {
           isAuthenticated: !isEmpty(action.user),
         };
       return state;
-    case actionTypes.SIGN_IN_ERROR:
-      state = {
-        message: action.message
-      };
-      return state;
-    case actionTypes.SIGN_UP_ERROR:
-      state = {
-        message: action.message
-      };
-      return state;
     case actionTypes.FETCH_USER_SUCCESS:
-    return Object.assign(
-      {},
-      state,
-      {
-        currentUser:  action.user ,
-      });
+      return Object.assign(
+        {},
+        state,
+        {
+          currentUser: action.user,
+        });
     case actionTypes.EDIT_PROFILE_SUCCESS:
       return Object.assign(
         {},

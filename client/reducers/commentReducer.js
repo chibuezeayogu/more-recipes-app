@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
         {
           reviews: action.data
         };
-        return state;
+      return state;
     case actionTypes.POST_COMMENT_SUCCESS:
       return Object.assign(
         {},
