@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Preloder /> should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="preloader-wrapper big active loader"
+  >
+    <div
+      className="spinner-layer spinner-blue-only"
+    >
+      <div
+        className="circle-clipper left"
+      >
+        <div
+          className="circle"
+        />
+      </div>
+      <div
+        className="gap-patch"
+      >
+        <div
+          className="circle"
+        />
+      </div>
+      <div
+        className="circle-clipper right"
+      >
+        <div
+          className="circle"
+        />
+      </div>
+    </div>
+  </div>,
+  "nodes": Array [
+    <div
+      className="preloader-wrapper big active loader"
+    >
+      <div
+        className="spinner-layer spinner-blue-only"
+      >
+        <div
+          className="circle-clipper left"
+        >
+          <div
+            className="circle"
+          />
+        </div>
+        <div
+          className="gap-patch"
+        >
+          <div
+            className="circle"
+          />
+        </div>
+        <div
+          className="circle-clipper right"
+        >
+          <div
+            className="circle"
+          />
+        </div>
+      </div>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 2,
+      "_context": Object {},
+      "_currentElement": <Preloader />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": StatelessComponent {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {},
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="preloader-wrapper big active loader"
+        >
+          <div
+            className="spinner-layer spinner-blue-only"
+          >
+            <div
+              className="circle-clipper left"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+            <div
+              className="gap-patch"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+            <div
+              className="circle-clipper right"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+          </div>
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="preloader-wrapper big active loader"
+        >
+          <div
+            className="spinner-layer spinner-blue-only"
+          >
+            <div
+              className="circle-clipper left"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+            <div
+              className="gap-patch"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+            <div
+              className="circle-clipper right"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+          </div>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Preloader />,
+}
+`;
+
+exports[`Preloder should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="preloader-wrapper big active loader"
+  >
+    <div
+      className="spinner-layer spinner-blue-only"
+    >
+      <div
+        className="circle-clipper left"
+      >
+        <div
+          className="circle"
+        />
+      </div>
+      <div
+        className="gap-patch"
+      >
+        <div
+          className="circle"
+        />
+      </div>
+      <div
+        className="circle-clipper right"
+      >
+        <div
+          className="circle"
+        />
+      </div>
+    </div>
+  </div>,
+  "nodes": Array [
+    <div
+      className="preloader-wrapper big active loader"
+    >
+      <div
+        className="spinner-layer spinner-blue-only"
+      >
+        <div
+          className="circle-clipper left"
+        >
+          <div
+            className="circle"
+          />
+        </div>
+        <div
+          className="gap-patch"
+        >
+          <div
+            className="circle"
+          />
+        </div>
+        <div
+          className="circle-clipper right"
+        >
+          <div
+            className="circle"
+          />
+        </div>
+      </div>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 2,
+      "_context": Object {},
+      "_currentElement": <Preloader />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": StatelessComponent {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {},
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="preloader-wrapper big active loader"
+        >
+          <div
+            className="spinner-layer spinner-blue-only"
+          >
+            <div
+              className="circle-clipper left"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+            <div
+              className="gap-patch"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+            <div
+              className="circle-clipper right"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+          </div>
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="preloader-wrapper big active loader"
+        >
+          <div
+            className="spinner-layer spinner-blue-only"
+          >
+            <div
+              className="circle-clipper left"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+            <div
+              className="gap-patch"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+            <div
+              className="circle-clipper right"
+            >
+              <div
+                className="circle"
+              />
+            </div>
+          </div>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Preloader />,
+}
+`;

@@ -1,0 +1,492 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserRecipeCard /> should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="col s12 m6 l4"
+  >
+    <div
+      className="card hoverable"
+    >
+      <Link
+        replace={false}
+        to="/recipes/undefined"
+      >
+        <img
+          alt=""
+          className="responsive-img img-height"
+          src={undefined}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        />
+      </Link>
+      <div
+        className="card-content black-text grey lighten-5"
+      >
+        <span
+          className="card-title text-title truncate"
+        />
+        <p
+          className="text-description truncate"
+        />
+        <hr />
+        <p
+          className="text-description truncate"
+        >
+          Posted 
+          Invalid date
+        </p>
+      </div>
+      <div
+        className="card-action black-text grey lighten-4 center"
+      >
+        <a
+          className="black-text"
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-thumbs-o-up"
+          >
+             
+          </i>
+        </a>
+        <a
+          className="black-text"
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-thumbs-o-down"
+          >
+             
+          </i>
+        </a>
+        <a
+          className="black-text"
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-pencil-square-o black-text"
+          />
+        </a>
+        <a
+          className="black-text"
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-trash"
+          />
+        </a>
+      </div>
+    </div>
+  </div>,
+  "nodes": Array [
+    <div
+      className="col s12 m6 l4"
+    >
+      <div
+        className="card hoverable"
+      >
+        <Link
+          replace={false}
+          to="/recipes/undefined"
+        >
+          <img
+            alt=""
+            className="responsive-img img-height"
+            src={undefined}
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          />
+        </Link>
+        <div
+          className="card-content black-text grey lighten-5"
+        >
+          <span
+            className="card-title text-title truncate"
+          />
+          <p
+            className="text-description truncate"
+          />
+          <hr />
+          <p
+            className="text-description truncate"
+          >
+            Posted 
+            Invalid date
+          </p>
+        </div>
+        <div
+          className="card-action black-text grey lighten-4 center"
+        >
+          <a
+            className="black-text"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-thumbs-o-up"
+            >
+               
+            </i>
+          </a>
+          <a
+            className="black-text"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-thumbs-o-down"
+            >
+               
+            </i>
+          </a>
+          <a
+            className="black-text"
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-pencil-square-o black-text"
+            />
+          </a>
+          <a
+            className="black-text"
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-trash"
+            />
+          </a>
+        </div>
+      </div>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <UserRecipeCard
+        history={
+          Object {
+            "push": [MockFunction],
+          }
+        }
+        recipe={
+          Array [
+            Object {
+              "addedBy": 1,
+              "createdAt": "2018-01-28T22:46:03.051Z",
+              "description": "asdfafd",
+              "downvotes": 0,
+              "id": 1,
+              "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+              "ingredients": "adfadfadf; adfadfadf",
+              "procedures": "adfafadf; adfadfadf",
+              "title": "CHANGED",
+              "updatedAt": "2018-02-06T19:28:36.149Z",
+              "upvotes": 1,
+              "views": 0,
+            },
+          ]
+        }
+      />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": UserRecipeCard {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "history": Object {
+            "push": [MockFunction],
+          },
+          "recipe": Array [
+            Object {
+              "addedBy": 1,
+              "createdAt": "2018-01-28T22:46:03.051Z",
+              "description": "asdfafd",
+              "downvotes": 0,
+              "id": 1,
+              "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+              "ingredients": "adfadfadf; adfadfadf",
+              "procedures": "adfafadf; adfadfadf",
+              "title": "CHANGED",
+              "updatedAt": "2018-02-06T19:28:36.149Z",
+              "upvotes": 1,
+              "views": 0,
+            },
+          ],
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="col s12 m6 l4"
+        >
+          <div
+            className="card hoverable"
+          >
+            <Link
+              replace={false}
+              to="/recipes/undefined"
+            >
+              <img
+                alt=""
+                className="responsive-img img-height"
+                src={undefined}
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              />
+            </Link>
+            <div
+              className="card-content black-text grey lighten-5"
+            >
+              <span
+                className="card-title text-title truncate"
+              />
+              <p
+                className="text-description truncate"
+              />
+              <hr />
+              <p
+                className="text-description truncate"
+              >
+                Posted 
+                Invalid date
+              </p>
+            </div>
+            <div
+              className="card-action black-text grey lighten-4 center"
+            >
+              <a
+                className="black-text"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-thumbs-o-up"
+                >
+                   
+                </i>
+              </a>
+              <a
+                className="black-text"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-thumbs-o-down"
+                >
+                   
+                </i>
+              </a>
+              <a
+                className="black-text"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-pencil-square-o black-text"
+                />
+              </a>
+              <a
+                className="black-text"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-trash"
+                />
+              </a>
+            </div>
+          </div>
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="col s12 m6 l4"
+        >
+          <div
+            className="card hoverable"
+          >
+            <Link
+              replace={false}
+              to="/recipes/undefined"
+            >
+              <img
+                alt=""
+                className="responsive-img img-height"
+                src={undefined}
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              />
+            </Link>
+            <div
+              className="card-content black-text grey lighten-5"
+            >
+              <span
+                className="card-title text-title truncate"
+              />
+              <p
+                className="text-description truncate"
+              />
+              <hr />
+              <p
+                className="text-description truncate"
+              >
+                Posted 
+                Invalid date
+              </p>
+            </div>
+            <div
+              className="card-action black-text grey lighten-4 center"
+            >
+              <a
+                className="black-text"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-thumbs-o-up"
+                >
+                   
+                </i>
+              </a>
+              <a
+                className="black-text"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-thumbs-o-down"
+                >
+                   
+                </i>
+              </a>
+              <a
+                className="black-text"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-pencil-square-o black-text"
+                />
+              </a>
+              <a
+                className="black-text"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-trash"
+                />
+              </a>
+            </div>
+          </div>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <UserRecipeCard
+    history={
+      Object {
+        "push": [MockFunction],
+      }
+    }
+    recipe={
+      Array [
+        Object {
+          "addedBy": 1,
+          "createdAt": "2018-01-28T22:46:03.051Z",
+          "description": "asdfafd",
+          "downvotes": 0,
+          "id": 1,
+          "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+          "ingredients": "adfadfadf; adfadfadf",
+          "procedures": "adfafadf; adfadfadf",
+          "title": "CHANGED",
+          "updatedAt": "2018-02-06T19:28:36.149Z",
+          "upvotes": 1,
+          "views": 0,
+        },
+      ]
+    }
+  />,
+}
+`;

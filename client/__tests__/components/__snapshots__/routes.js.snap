@@ -1,0 +1,300 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Routes should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/signin"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/signup"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/search"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/recipes/:id"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/recipes"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/addrecipe"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/user/favourites"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/user/recipes/:id/edit"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/user/recipes"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/user/profile"
+    />
+    <Route
+      component={[Function]}
+      path="*"
+    />
+  </Switch>,
+  "nodes": Array [
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/signin"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/signup"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/search"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/recipes/:id"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/recipes"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/addrecipe"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/user/favourites"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/user/recipes/:id/edit"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/user/recipes"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/user/profile"
+      />
+      <Route
+        component={[Function]}
+        path="*"
+      />
+    </Switch>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 2,
+      "_context": Object {},
+      "_currentElement": <Routes />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": StatelessComponent {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {},
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <Switch>
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/signin"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/signup"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/search"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/recipes/:id"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/recipes"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/addrecipe"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/user/favourites"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/user/recipes/:id/edit"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/user/recipes"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/user/profile"
+          />
+          <Route
+            component={[Function]}
+            path="*"
+          />
+        </Switch>,
+        "_debugID": 2,
+        "_renderedOutput": <Switch>
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/signin"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/signup"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/search"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/recipes/:id"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/recipes"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/addrecipe"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/user/favourites"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/user/recipes/:id/edit"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/user/recipes"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/user/profile"
+          />
+          <Route
+            component={[Function]}
+            path="*"
+          />
+        </Switch>,
+      },
+      "_renderedNodeType": 1,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Routes />,
+}
+`;

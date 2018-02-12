@@ -1,0 +1,798 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SingleRecipe /> should render without crashing 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="body grey lighten-5"
+  >
+    <withRouter(Connect(UserMenu))
+      addOrRemoveFavourite={[MockFunction]}
+      comment=""
+      commentReducer={
+        Object {
+          "reviews": Array [
+            Object {
+              "User": Object {
+                "firstName": "Chibueze",
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                "lastName": "Nelson Ayogu",
+              },
+              "comment": "dfasdfaasdfadsf",
+              "createdAt": "2018-02-02T18:59:23.176Z",
+              "id": 22,
+              "recipeId": 1,
+              "updatedAt": "2018-02-02T18:59:23.176Z",
+              "userId": 1,
+              "view": false,
+            },
+            Object {
+              "User": Object {
+                "firstName": "Chibueze",
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                "lastName": "Nelson Ayogu",
+              },
+              "comment": "dfasdfa",
+              "createdAt": "2018-02-02T18:59:18.411Z",
+              "id": 21,
+              "recipeId": 1,
+              "updatedAt": "2018-02-02T18:59:18.411Z",
+              "userId": 1,
+              "view": false,
+            },
+          ],
+        }
+      }
+      downVoteRecipe={[MockFunction]}
+      errors={Object {}}
+      fetchRecipe={
+        [MockFunction] {
+          "calls": Array [
+            Array [
+              1,
+            ],
+          ],
+        }
+      }
+      fetchRecipeComment={
+        [MockFunction] {
+          "calls": Array [
+            Array [
+              1,
+            ],
+          ],
+        }
+      }
+      isLoading={false}
+      match={
+        Object {
+          "params": Object {
+            "id": 1,
+          },
+        }
+      }
+      postComment={[MockFunction]}
+      recipeReducer={
+        Object {
+          "isFetched": true,
+          "recipes": Array [
+            Object {
+              "addedBy": 1,
+              "createdAt": "2018-01-28T22:46:03.051Z",
+              "description": "asdfafd",
+              "downvotes": 0,
+              "id": 1,
+              "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+              "ingredients": "adfadfadf; adfadfadf",
+              "procedures": "adfafadf; adfadfadf",
+              "title": "CHANGED",
+              "updatedAt": "2018-02-06T19:28:36.149Z",
+              "upvotes": 1,
+              "views": 0,
+            },
+          ],
+        }
+      }
+      upVoteRecipe={[MockFunction]}
+      userData={
+        Object {
+          "currentUser": Object {
+            "email": "chibuezeayogu@hotmail.com",
+            "id": 1,
+          },
+        }
+      }
+    />
+    <div
+      className="main"
+    >
+      <div
+        className="container"
+      >
+        <Preloader />
+      </div>
+    </div>
+    <Footer />
+  </div>,
+  "nodes": Array [
+    <div
+      className="body grey lighten-5"
+    >
+      <withRouter(Connect(UserMenu))
+        addOrRemoveFavourite={[MockFunction]}
+        comment=""
+        commentReducer={
+          Object {
+            "reviews": Array [
+              Object {
+                "User": Object {
+                  "firstName": "Chibueze",
+                  "id": 1,
+                  "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                  "lastName": "Nelson Ayogu",
+                },
+                "comment": "dfasdfaasdfadsf",
+                "createdAt": "2018-02-02T18:59:23.176Z",
+                "id": 22,
+                "recipeId": 1,
+                "updatedAt": "2018-02-02T18:59:23.176Z",
+                "userId": 1,
+                "view": false,
+              },
+              Object {
+                "User": Object {
+                  "firstName": "Chibueze",
+                  "id": 1,
+                  "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                  "lastName": "Nelson Ayogu",
+                },
+                "comment": "dfasdfa",
+                "createdAt": "2018-02-02T18:59:18.411Z",
+                "id": 21,
+                "recipeId": 1,
+                "updatedAt": "2018-02-02T18:59:18.411Z",
+                "userId": 1,
+                "view": false,
+              },
+            ],
+          }
+        }
+        downVoteRecipe={[MockFunction]}
+        errors={Object {}}
+        fetchRecipe={
+          [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+            ],
+          }
+        }
+        fetchRecipeComment={
+          [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+            ],
+          }
+        }
+        isLoading={false}
+        match={
+          Object {
+            "params": Object {
+              "id": 1,
+            },
+          }
+        }
+        postComment={[MockFunction]}
+        recipeReducer={
+          Object {
+            "isFetched": true,
+            "recipes": Array [
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf; adfadfadf",
+                "procedures": "adfafadf; adfadfadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+            ],
+          }
+        }
+        upVoteRecipe={[MockFunction]}
+        userData={
+          Object {
+            "currentUser": Object {
+              "email": "chibuezeayogu@hotmail.com",
+              "id": 1,
+            },
+          }
+        }
+      />
+      <div
+        className="main"
+      >
+        <div
+          className="container"
+        >
+          <Preloader />
+        </div>
+      </div>
+      <Footer />
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <SingleRecipe
+        addOrRemoveFavourite={[MockFunction]}
+        comment=""
+        commentReducer={
+          Object {
+            "reviews": Array [
+              Object {
+                "User": Object {
+                  "firstName": "Chibueze",
+                  "id": 1,
+                  "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                  "lastName": "Nelson Ayogu",
+                },
+                "comment": "dfasdfaasdfadsf",
+                "createdAt": "2018-02-02T18:59:23.176Z",
+                "id": 22,
+                "recipeId": 1,
+                "updatedAt": "2018-02-02T18:59:23.176Z",
+                "userId": 1,
+                "view": false,
+              },
+              Object {
+                "User": Object {
+                  "firstName": "Chibueze",
+                  "id": 1,
+                  "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                  "lastName": "Nelson Ayogu",
+                },
+                "comment": "dfasdfa",
+                "createdAt": "2018-02-02T18:59:18.411Z",
+                "id": 21,
+                "recipeId": 1,
+                "updatedAt": "2018-02-02T18:59:18.411Z",
+                "userId": 1,
+                "view": false,
+              },
+            ],
+          }
+        }
+        downVoteRecipe={[MockFunction]}
+        errors={Object {}}
+        fetchRecipe={
+          [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+            ],
+          }
+        }
+        fetchRecipeComment={
+          [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+            ],
+          }
+        }
+        isLoading={false}
+        match={
+          Object {
+            "params": Object {
+              "id": 1,
+            },
+          }
+        }
+        postComment={[MockFunction]}
+        recipeReducer={
+          Object {
+            "isFetched": true,
+            "recipes": Array [
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf; adfadfadf",
+                "procedures": "adfafadf; adfadfadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+            ],
+          }
+        }
+        upVoteRecipe={[MockFunction]}
+        userData={
+          Object {
+            "currentUser": Object {
+              "email": "chibuezeayogu@hotmail.com",
+              "id": 1,
+            },
+          }
+        }
+      />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": SingleRecipe {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "handleChange": [Function],
+        "handleDownvote": [Function],
+        "handleOnsubmit": [Function],
+        "props": Object {
+          "addOrRemoveFavourite": [MockFunction],
+          "comment": "",
+          "commentReducer": Object {
+            "reviews": Array [
+              Object {
+                "User": Object {
+                  "firstName": "Chibueze",
+                  "id": 1,
+                  "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                  "lastName": "Nelson Ayogu",
+                },
+                "comment": "dfasdfaasdfadsf",
+                "createdAt": "2018-02-02T18:59:23.176Z",
+                "id": 22,
+                "recipeId": 1,
+                "updatedAt": "2018-02-02T18:59:23.176Z",
+                "userId": 1,
+                "view": false,
+              },
+              Object {
+                "User": Object {
+                  "firstName": "Chibueze",
+                  "id": 1,
+                  "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                  "lastName": "Nelson Ayogu",
+                },
+                "comment": "dfasdfa",
+                "createdAt": "2018-02-02T18:59:18.411Z",
+                "id": 21,
+                "recipeId": 1,
+                "updatedAt": "2018-02-02T18:59:18.411Z",
+                "userId": 1,
+                "view": false,
+              },
+            ],
+          },
+          "downVoteRecipe": [MockFunction],
+          "errors": Object {},
+          "fetchRecipe": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+            ],
+          },
+          "fetchRecipeComment": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+            ],
+          },
+          "isLoading": false,
+          "match": Object {
+            "params": Object {
+              "id": 1,
+            },
+          },
+          "postComment": [MockFunction],
+          "recipeReducer": Object {
+            "isFetched": true,
+            "recipes": Array [
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf; adfadfadf",
+                "procedures": "adfafadf; adfadfadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+            ],
+          },
+          "upVoteRecipe": [MockFunction],
+          "userData": Object {
+            "currentUser": Object {
+              "email": "chibuezeayogu@hotmail.com",
+              "id": 1,
+            },
+          },
+        },
+        "refs": Object {},
+        "renderComment": [Function],
+        "state": Object {
+          "comment": "",
+          "errors": Object {},
+          "isLoading": true,
+        },
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="body grey lighten-5"
+        >
+          <withRouter(Connect(UserMenu))
+            addOrRemoveFavourite={[MockFunction]}
+            comment=""
+            commentReducer={
+              Object {
+                "reviews": Array [
+                  Object {
+                    "User": Object {
+                      "firstName": "Chibueze",
+                      "id": 1,
+                      "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                      "lastName": "Nelson Ayogu",
+                    },
+                    "comment": "dfasdfaasdfadsf",
+                    "createdAt": "2018-02-02T18:59:23.176Z",
+                    "id": 22,
+                    "recipeId": 1,
+                    "updatedAt": "2018-02-02T18:59:23.176Z",
+                    "userId": 1,
+                    "view": false,
+                  },
+                  Object {
+                    "User": Object {
+                      "firstName": "Chibueze",
+                      "id": 1,
+                      "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                      "lastName": "Nelson Ayogu",
+                    },
+                    "comment": "dfasdfa",
+                    "createdAt": "2018-02-02T18:59:18.411Z",
+                    "id": 21,
+                    "recipeId": 1,
+                    "updatedAt": "2018-02-02T18:59:18.411Z",
+                    "userId": 1,
+                    "view": false,
+                  },
+                ],
+              }
+            }
+            downVoteRecipe={[MockFunction]}
+            errors={Object {}}
+            fetchRecipe={
+              [MockFunction] {
+                "calls": Array [
+                  Array [
+                    1,
+                  ],
+                ],
+              }
+            }
+            fetchRecipeComment={
+              [MockFunction] {
+                "calls": Array [
+                  Array [
+                    1,
+                  ],
+                ],
+              }
+            }
+            isLoading={false}
+            match={
+              Object {
+                "params": Object {
+                  "id": 1,
+                },
+              }
+            }
+            postComment={[MockFunction]}
+            recipeReducer={
+              Object {
+                "isFetched": true,
+                "recipes": Array [
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-28T22:46:03.051Z",
+                    "description": "asdfafd",
+                    "downvotes": 0,
+                    "id": 1,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "adfadfadf; adfadfadf",
+                    "procedures": "adfafadf; adfadfadf",
+                    "title": "CHANGED",
+                    "updatedAt": "2018-02-06T19:28:36.149Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                ],
+              }
+            }
+            upVoteRecipe={[MockFunction]}
+            userData={
+              Object {
+                "currentUser": Object {
+                  "email": "chibuezeayogu@hotmail.com",
+                  "id": 1,
+                },
+              }
+            }
+          />
+          <div
+            className="main"
+          >
+            <div
+              className="container"
+            >
+              <Preloader />
+            </div>
+          </div>
+          <Footer />
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="body grey lighten-5"
+        >
+          <withRouter(Connect(UserMenu))
+            addOrRemoveFavourite={[MockFunction]}
+            comment=""
+            commentReducer={
+              Object {
+                "reviews": Array [
+                  Object {
+                    "User": Object {
+                      "firstName": "Chibueze",
+                      "id": 1,
+                      "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                      "lastName": "Nelson Ayogu",
+                    },
+                    "comment": "dfasdfaasdfadsf",
+                    "createdAt": "2018-02-02T18:59:23.176Z",
+                    "id": 22,
+                    "recipeId": 1,
+                    "updatedAt": "2018-02-02T18:59:23.176Z",
+                    "userId": 1,
+                    "view": false,
+                  },
+                  Object {
+                    "User": Object {
+                      "firstName": "Chibueze",
+                      "id": 1,
+                      "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+                      "lastName": "Nelson Ayogu",
+                    },
+                    "comment": "dfasdfa",
+                    "createdAt": "2018-02-02T18:59:18.411Z",
+                    "id": 21,
+                    "recipeId": 1,
+                    "updatedAt": "2018-02-02T18:59:18.411Z",
+                    "userId": 1,
+                    "view": false,
+                  },
+                ],
+              }
+            }
+            downVoteRecipe={[MockFunction]}
+            errors={Object {}}
+            fetchRecipe={
+              [MockFunction] {
+                "calls": Array [
+                  Array [
+                    1,
+                  ],
+                ],
+              }
+            }
+            fetchRecipeComment={
+              [MockFunction] {
+                "calls": Array [
+                  Array [
+                    1,
+                  ],
+                ],
+              }
+            }
+            isLoading={false}
+            match={
+              Object {
+                "params": Object {
+                  "id": 1,
+                },
+              }
+            }
+            postComment={[MockFunction]}
+            recipeReducer={
+              Object {
+                "isFetched": true,
+                "recipes": Array [
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-28T22:46:03.051Z",
+                    "description": "asdfafd",
+                    "downvotes": 0,
+                    "id": 1,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "adfadfadf; adfadfadf",
+                    "procedures": "adfafadf; adfadfadf",
+                    "title": "CHANGED",
+                    "updatedAt": "2018-02-06T19:28:36.149Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                ],
+              }
+            }
+            upVoteRecipe={[MockFunction]}
+            userData={
+              Object {
+                "currentUser": Object {
+                  "email": "chibuezeayogu@hotmail.com",
+                  "id": 1,
+                },
+              }
+            }
+          />
+          <div
+            className="main"
+          >
+            <div
+              className="container"
+            >
+              <Preloader />
+            </div>
+          </div>
+          <Footer />
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <SingleRecipe
+    addOrRemoveFavourite={[MockFunction]}
+    comment=""
+    commentReducer={
+      Object {
+        "reviews": Array [
+          Object {
+            "User": Object {
+              "firstName": "Chibueze",
+              "id": 1,
+              "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+              "lastName": "Nelson Ayogu",
+            },
+            "comment": "dfasdfaasdfadsf",
+            "createdAt": "2018-02-02T18:59:23.176Z",
+            "id": 22,
+            "recipeId": 1,
+            "updatedAt": "2018-02-02T18:59:23.176Z",
+            "userId": 1,
+            "view": false,
+          },
+          Object {
+            "User": Object {
+              "firstName": "Chibueze",
+              "id": 1,
+              "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517772638/oqbysjf7xgfv2dko409s.jpg",
+              "lastName": "Nelson Ayogu",
+            },
+            "comment": "dfasdfa",
+            "createdAt": "2018-02-02T18:59:18.411Z",
+            "id": 21,
+            "recipeId": 1,
+            "updatedAt": "2018-02-02T18:59:18.411Z",
+            "userId": 1,
+            "view": false,
+          },
+        ],
+      }
+    }
+    downVoteRecipe={[MockFunction]}
+    errors={Object {}}
+    fetchRecipe={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            1,
+          ],
+        ],
+      }
+    }
+    fetchRecipeComment={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            1,
+          ],
+        ],
+      }
+    }
+    isLoading={false}
+    match={
+      Object {
+        "params": Object {
+          "id": 1,
+        },
+      }
+    }
+    postComment={[MockFunction]}
+    recipeReducer={
+      Object {
+        "isFetched": true,
+        "recipes": Array [
+          Object {
+            "addedBy": 1,
+            "createdAt": "2018-01-28T22:46:03.051Z",
+            "description": "asdfafd",
+            "downvotes": 0,
+            "id": 1,
+            "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+            "ingredients": "adfadfadf; adfadfadf",
+            "procedures": "adfafadf; adfadfadf",
+            "title": "CHANGED",
+            "updatedAt": "2018-02-06T19:28:36.149Z",
+            "upvotes": 1,
+            "views": 0,
+          },
+        ],
+      }
+    }
+    upVoteRecipe={[MockFunction]}
+    userData={
+      Object {
+        "currentUser": Object {
+          "email": "chibuezeayogu@hotmail.com",
+          "id": 1,
+        },
+      }
+    }
+  />,
+}
+`;

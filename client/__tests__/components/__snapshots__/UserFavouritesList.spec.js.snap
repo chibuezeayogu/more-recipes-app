@@ -1,0 +1,813 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserFavouritesList /> should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="body grey lighten-5"
+  >
+    <withRouter(Connect(UserMenu))
+      favouriteReducer={
+        Object {
+          "favourites": Array [
+            Object {
+              "addedBy": 1,
+              "createdAt": "2018-01-29T11:38:51.147Z",
+              "description": "adsfasfa",
+              "downvotes": 0,
+              "id": 3,
+              "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+              "ingredients": "asdfafafa",
+              "procedures": "adfadfadf",
+              "title": "New title",
+              "updatedAt": "2018-02-02T15:30:35.425Z",
+              "upvotes": 1,
+              "views": 0,
+            },
+            Object {
+              "addedBy": 1,
+              "createdAt": "2018-01-28T22:46:03.051Z",
+              "description": "asdfafd",
+              "downvotes": 0,
+              "id": 1,
+              "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+              "ingredients": "adfadfadf",
+              "procedures": "adfafadf",
+              "title": "CHANGED",
+              "updatedAt": "2018-02-06T19:28:36.149Z",
+              "upvotes": 1,
+              "views": 0,
+            },
+          ],
+          "isDeleted": false,
+          "isFetched": false,
+          "pagination": Object {
+            "currentPage": 1,
+            "pageCount": 1,
+            "pageSize": 2,
+            "totalCount": 2,
+          },
+        }
+      }
+      fetchUserFavourites={
+        [MockFunction] {
+          "calls": Array [
+            Array [
+              undefined,
+              0,
+            ],
+          ],
+        }
+      }
+      history={
+        Object {
+          "push": [MockFunction],
+        }
+      }
+      location={
+        Object {
+          "search": "?page=1",
+        }
+      }
+      userData={
+        Object {
+          "currentUser": Object {},
+        }
+      }
+    />
+    <div
+      className="main"
+    >
+      <div
+        className="container"
+      >
+        <div
+          className="row"
+        >
+          <h4
+            className="center"
+          >
+            Favourite Recipes
+          </h4>
+          <hr />
+        </div>
+        <div
+          className="row left align-recipe"
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <Preloader />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row s12 m6 l3"
+    >
+      <Pagination
+        className=""
+        current={1}
+        defaultCurrent={1}
+        defaultPageSize={10}
+        hideOnSinglePage={false}
+        itemRender={[Function]}
+        locale={
+          Object {
+            "items_per_page": "条/页",
+            "jump_to": "跳至",
+            "jump_to_confirm": "确定",
+            "next_3": "向后 3 页",
+            "next_5": "向后 5 页",
+            "next_page": "下一页",
+            "page": "页",
+            "prev_3": "向前 3 页",
+            "prev_5": "向前 5 页",
+            "prev_page": "上一页",
+          }
+        }
+        onChange={[Function]}
+        onShowSizeChange={[Function]}
+        pageSize={2}
+        prefixCls="rc-pagination"
+        selectComponentClass={null}
+        selectPrefixCls="rc-select"
+        showLessItems={false}
+        showQuickJumper={false}
+        showSizeChanger={false}
+        showTitle={true}
+        style={Object {}}
+        total={2}
+      />
+    </div>
+    <Footer />
+  </div>,
+  "nodes": Array [
+    <div
+      className="body grey lighten-5"
+    >
+      <withRouter(Connect(UserMenu))
+        favouriteReducer={
+          Object {
+            "favourites": Array [
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-29T11:38:51.147Z",
+                "description": "adsfasfa",
+                "downvotes": 0,
+                "id": 3,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "asdfafafa",
+                "procedures": "adfadfadf",
+                "title": "New title",
+                "updatedAt": "2018-02-02T15:30:35.425Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf",
+                "procedures": "adfafadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+            ],
+            "isDeleted": false,
+            "isFetched": false,
+            "pagination": Object {
+              "currentPage": 1,
+              "pageCount": 1,
+              "pageSize": 2,
+              "totalCount": 2,
+            },
+          }
+        }
+        fetchUserFavourites={
+          [MockFunction] {
+            "calls": Array [
+              Array [
+                undefined,
+                0,
+              ],
+            ],
+          }
+        }
+        history={
+          Object {
+            "push": [MockFunction],
+          }
+        }
+        location={
+          Object {
+            "search": "?page=1",
+          }
+        }
+        userData={
+          Object {
+            "currentUser": Object {},
+          }
+        }
+      />
+      <div
+        className="main"
+      >
+        <div
+          className="container"
+        >
+          <div
+            className="row"
+          >
+            <h4
+              className="center"
+            >
+              Favourite Recipes
+            </h4>
+            <hr />
+          </div>
+          <div
+            className="row left align-recipe"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            <Preloader />
+          </div>
+        </div>
+      </div>
+      <div
+        className="row s12 m6 l3"
+      >
+        <Pagination
+          className=""
+          current={1}
+          defaultCurrent={1}
+          defaultPageSize={10}
+          hideOnSinglePage={false}
+          itemRender={[Function]}
+          locale={
+            Object {
+              "items_per_page": "条/页",
+              "jump_to": "跳至",
+              "jump_to_confirm": "确定",
+              "next_3": "向后 3 页",
+              "next_5": "向后 5 页",
+              "next_page": "下一页",
+              "page": "页",
+              "prev_3": "向前 3 页",
+              "prev_5": "向前 5 页",
+              "prev_page": "上一页",
+            }
+          }
+          onChange={[Function]}
+          onShowSizeChange={[Function]}
+          pageSize={2}
+          prefixCls="rc-pagination"
+          selectComponentClass={null}
+          selectPrefixCls="rc-select"
+          showLessItems={false}
+          showQuickJumper={false}
+          showSizeChanger={false}
+          showTitle={true}
+          style={Object {}}
+          total={2}
+        />
+      </div>
+      <Footer />
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <UserFavouritesList
+        favouriteReducer={
+          Object {
+            "favourites": Array [
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-29T11:38:51.147Z",
+                "description": "adsfasfa",
+                "downvotes": 0,
+                "id": 3,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "asdfafafa",
+                "procedures": "adfadfadf",
+                "title": "New title",
+                "updatedAt": "2018-02-02T15:30:35.425Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf",
+                "procedures": "adfafadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+            ],
+            "isDeleted": false,
+            "isFetched": false,
+            "pagination": Object {
+              "currentPage": 1,
+              "pageCount": 1,
+              "pageSize": 2,
+              "totalCount": 2,
+            },
+          }
+        }
+        fetchUserFavourites={
+          [MockFunction] {
+            "calls": Array [
+              Array [
+                undefined,
+                0,
+              ],
+            ],
+          }
+        }
+        history={
+          Object {
+            "push": [MockFunction],
+          }
+        }
+        location={
+          Object {
+            "search": "?page=1",
+          }
+        }
+        userData={
+          Object {
+            "currentUser": Object {},
+          }
+        }
+      />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": UserFavouritesList {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "onChange": [Function],
+        "props": Object {
+          "favouriteReducer": Object {
+            "favourites": Array [
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-29T11:38:51.147Z",
+                "description": "adsfasfa",
+                "downvotes": 0,
+                "id": 3,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "asdfafafa",
+                "procedures": "adfadfadf",
+                "title": "New title",
+                "updatedAt": "2018-02-02T15:30:35.425Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+              Object {
+                "addedBy": 1,
+                "createdAt": "2018-01-28T22:46:03.051Z",
+                "description": "asdfafd",
+                "downvotes": 0,
+                "id": 1,
+                "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                "ingredients": "adfadfadf",
+                "procedures": "adfafadf",
+                "title": "CHANGED",
+                "updatedAt": "2018-02-06T19:28:36.149Z",
+                "upvotes": 1,
+                "views": 0,
+              },
+            ],
+            "isDeleted": false,
+            "isFetched": false,
+            "pagination": Object {
+              "currentPage": 1,
+              "pageCount": 1,
+              "pageSize": 2,
+              "totalCount": 2,
+            },
+          },
+          "fetchUserFavourites": [MockFunction] {
+            "calls": Array [
+              Array [
+                undefined,
+                0,
+              ],
+            ],
+          },
+          "history": Object {
+            "push": [MockFunction],
+          },
+          "location": Object {
+            "search": "?page=1",
+          },
+          "userData": Object {
+            "currentUser": Object {},
+          },
+        },
+        "refs": Object {},
+        "state": Object {
+          "isLoading": true,
+        },
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="body grey lighten-5"
+        >
+          <withRouter(Connect(UserMenu))
+            favouriteReducer={
+              Object {
+                "favourites": Array [
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-29T11:38:51.147Z",
+                    "description": "adsfasfa",
+                    "downvotes": 0,
+                    "id": 3,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "asdfafafa",
+                    "procedures": "adfadfadf",
+                    "title": "New title",
+                    "updatedAt": "2018-02-02T15:30:35.425Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-28T22:46:03.051Z",
+                    "description": "asdfafd",
+                    "downvotes": 0,
+                    "id": 1,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "adfadfadf",
+                    "procedures": "adfafadf",
+                    "title": "CHANGED",
+                    "updatedAt": "2018-02-06T19:28:36.149Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                ],
+                "isDeleted": false,
+                "isFetched": false,
+                "pagination": Object {
+                  "currentPage": 1,
+                  "pageCount": 1,
+                  "pageSize": 2,
+                  "totalCount": 2,
+                },
+              }
+            }
+            fetchUserFavourites={
+              [MockFunction] {
+                "calls": Array [
+                  Array [
+                    undefined,
+                    0,
+                  ],
+                ],
+              }
+            }
+            history={
+              Object {
+                "push": [MockFunction],
+              }
+            }
+            location={
+              Object {
+                "search": "?page=1",
+              }
+            }
+            userData={
+              Object {
+                "currentUser": Object {},
+              }
+            }
+          />
+          <div
+            className="main"
+          >
+            <div
+              className="container"
+            >
+              <div
+                className="row"
+              >
+                <h4
+                  className="center"
+                >
+                  Favourite Recipes
+                </h4>
+                <hr />
+              </div>
+              <div
+                className="row left align-recipe"
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <Preloader />
+              </div>
+            </div>
+          </div>
+          <div
+            className="row s12 m6 l3"
+          >
+            <Pagination
+              className=""
+              current={1}
+              defaultCurrent={1}
+              defaultPageSize={10}
+              hideOnSinglePage={false}
+              itemRender={[Function]}
+              locale={
+                Object {
+                  "items_per_page": "条/页",
+                  "jump_to": "跳至",
+                  "jump_to_confirm": "确定",
+                  "next_3": "向后 3 页",
+                  "next_5": "向后 5 页",
+                  "next_page": "下一页",
+                  "page": "页",
+                  "prev_3": "向前 3 页",
+                  "prev_5": "向前 5 页",
+                  "prev_page": "上一页",
+                }
+              }
+              onChange={[Function]}
+              onShowSizeChange={[Function]}
+              pageSize={2}
+              prefixCls="rc-pagination"
+              selectComponentClass={null}
+              selectPrefixCls="rc-select"
+              showLessItems={false}
+              showQuickJumper={false}
+              showSizeChanger={false}
+              showTitle={true}
+              style={Object {}}
+              total={2}
+            />
+          </div>
+          <Footer />
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="body grey lighten-5"
+        >
+          <withRouter(Connect(UserMenu))
+            favouriteReducer={
+              Object {
+                "favourites": Array [
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-29T11:38:51.147Z",
+                    "description": "adsfasfa",
+                    "downvotes": 0,
+                    "id": 3,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "asdfafafa",
+                    "procedures": "adfadfadf",
+                    "title": "New title",
+                    "updatedAt": "2018-02-02T15:30:35.425Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                  Object {
+                    "addedBy": 1,
+                    "createdAt": "2018-01-28T22:46:03.051Z",
+                    "description": "asdfafd",
+                    "downvotes": 0,
+                    "id": 1,
+                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+                    "ingredients": "adfadfadf",
+                    "procedures": "adfafadf",
+                    "title": "CHANGED",
+                    "updatedAt": "2018-02-06T19:28:36.149Z",
+                    "upvotes": 1,
+                    "views": 0,
+                  },
+                ],
+                "isDeleted": false,
+                "isFetched": false,
+                "pagination": Object {
+                  "currentPage": 1,
+                  "pageCount": 1,
+                  "pageSize": 2,
+                  "totalCount": 2,
+                },
+              }
+            }
+            fetchUserFavourites={
+              [MockFunction] {
+                "calls": Array [
+                  Array [
+                    undefined,
+                    0,
+                  ],
+                ],
+              }
+            }
+            history={
+              Object {
+                "push": [MockFunction],
+              }
+            }
+            location={
+              Object {
+                "search": "?page=1",
+              }
+            }
+            userData={
+              Object {
+                "currentUser": Object {},
+              }
+            }
+          />
+          <div
+            className="main"
+          >
+            <div
+              className="container"
+            >
+              <div
+                className="row"
+              >
+                <h4
+                  className="center"
+                >
+                  Favourite Recipes
+                </h4>
+                <hr />
+              </div>
+              <div
+                className="row left align-recipe"
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <Preloader />
+              </div>
+            </div>
+          </div>
+          <div
+            className="row s12 m6 l3"
+          >
+            <Pagination
+              className=""
+              current={1}
+              defaultCurrent={1}
+              defaultPageSize={10}
+              hideOnSinglePage={false}
+              itemRender={[Function]}
+              locale={
+                Object {
+                  "items_per_page": "条/页",
+                  "jump_to": "跳至",
+                  "jump_to_confirm": "确定",
+                  "next_3": "向后 3 页",
+                  "next_5": "向后 5 页",
+                  "next_page": "下一页",
+                  "page": "页",
+                  "prev_3": "向前 3 页",
+                  "prev_5": "向前 5 页",
+                  "prev_page": "上一页",
+                }
+              }
+              onChange={[Function]}
+              onShowSizeChange={[Function]}
+              pageSize={2}
+              prefixCls="rc-pagination"
+              selectComponentClass={null}
+              selectPrefixCls="rc-select"
+              showLessItems={false}
+              showQuickJumper={false}
+              showSizeChanger={false}
+              showTitle={true}
+              style={Object {}}
+              total={2}
+            />
+          </div>
+          <Footer />
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <UserFavouritesList
+    favouriteReducer={
+      Object {
+        "favourites": Array [
+          Object {
+            "addedBy": 1,
+            "createdAt": "2018-01-29T11:38:51.147Z",
+            "description": "adsfasfa",
+            "downvotes": 0,
+            "id": 3,
+            "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+            "ingredients": "asdfafafa",
+            "procedures": "adfadfadf",
+            "title": "New title",
+            "updatedAt": "2018-02-02T15:30:35.425Z",
+            "upvotes": 1,
+            "views": 0,
+          },
+          Object {
+            "addedBy": 1,
+            "createdAt": "2018-01-28T22:46:03.051Z",
+            "description": "asdfafd",
+            "downvotes": 0,
+            "id": 1,
+            "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
+            "ingredients": "adfadfadf",
+            "procedures": "adfafadf",
+            "title": "CHANGED",
+            "updatedAt": "2018-02-06T19:28:36.149Z",
+            "upvotes": 1,
+            "views": 0,
+          },
+        ],
+        "isDeleted": false,
+        "isFetched": false,
+        "pagination": Object {
+          "currentPage": 1,
+          "pageCount": 1,
+          "pageSize": 2,
+          "totalCount": 2,
+        },
+      }
+    }
+    fetchUserFavourites={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            undefined,
+            0,
+          ],
+        ],
+      }
+    }
+    history={
+      Object {
+        "push": [MockFunction],
+      }
+    }
+    location={
+      Object {
+        "search": "?page=1",
+      }
+    }
+    userData={
+      Object {
+        "currentUser": Object {},
+      }
+    }
+  />,
+}
+`;

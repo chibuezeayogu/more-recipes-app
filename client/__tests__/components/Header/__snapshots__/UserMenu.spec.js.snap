@@ -1,0 +1,1214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserMenu Component render the user menu without crashing 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div>
+    <div>
+      <nav>
+        <div
+          className="nav-wrapper black"
+        >
+          <a
+            className="brand-logo"
+            href="#!"
+          >
+            <img
+              alt=""
+              className="responsive-img image-radius"
+              src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1516130489/yy3vdswodkvr3mj5lts1.jpg"
+              style={
+                Object {
+                  "height": 25,
+                  "marginLeft": 10,
+                  "marginRight": 10,
+                }
+              }
+            />
+            More Recipes
+          </a>
+          <a
+            className="button-collapse"
+            data-activates="mobile-demo"
+            href="#!"
+          >
+            <i
+              className="material-icons"
+            >
+              menu
+            </i>
+          </a>
+          <ul
+            className="right hide-on-med-and-down"
+          >
+            <li>
+              <Link
+                replace={false}
+                to="/recipes"
+              >
+                <i
+                  className="fa fa-home"
+                />
+                 Recipes
+              </Link>
+            </li>
+            <li>
+              <Link
+                replace={false}
+                to="/addrecipe"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-plus"
+                />
+                 Add Recipe
+              </Link>
+            </li>
+            <li>
+              <Link
+                replace={false}
+                to="/search"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-search"
+                />
+                 Search
+              </Link>
+            </li>
+            <li>
+              <a
+                className="dropdown-button"
+                data-activates="dropdown"
+                data-beloworigin="true"
+                href="#!"
+              >
+                 
+                chibuezeayogu@hotmail.com
+                <i
+                  className="material-icons right"
+                >
+                  arrow_drop_down
+                </i>
+              </a>
+            </li>
+          </ul>
+          <ul
+            className="side-nav"
+            id="mobile-demo"
+          >
+            <li>
+              <Link
+                replace={false}
+                to="/recipes"
+              >
+                <i
+                  className="fa fa-home"
+                />
+                 Recipes
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li>
+              <Link
+                replace={false}
+                to="/addrecipe"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-plus"
+                />
+                 Add Recipe
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li>
+              <Link
+                replace={false}
+                to="/search"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-search"
+                />
+                 Search
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li>
+              <Link
+                replace={false}
+                to="/user/profile"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-user"
+                />
+                 Profile
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li>
+              <Link
+                replace={false}
+                to="/user/recipes"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-cutlery"
+                />
+                 My Recipes
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li>
+              <Link
+                replace={false}
+                to="/user/favourites"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-heart"
+                />
+                 My Favourites
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li>
+              <Link
+                onClick={[Function]}
+                replace={false}
+                to="/"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-sign-out"
+                />
+                 Logout
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <ul
+      className="dropdown-content black-text"
+      id="dropdown"
+    >
+      <div
+        className="divider"
+      />
+      <li
+        className="black-text"
+      >
+        <Link
+          className="black-text"
+          replace={false}
+          to="/user/profile"
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-user black-text"
+          />
+           My Profile
+        </Link>
+      </li>
+      <div
+        className="divider"
+      />
+      <li
+        className="black-text"
+      >
+        <Link
+          className="black-text"
+          replace={false}
+          to="/user/recipes"
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-cutlery black-text"
+          />
+           My Recipes
+        </Link>
+      </li>
+      <div
+        className="divider"
+      />
+      <li
+        className="black-text"
+      >
+        <Link
+          className="black-text"
+          replace={false}
+          to="/user/favourites"
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-heart black-text"
+          />
+           My Favourites
+        </Link>
+      </li>
+      <div
+        className="divider"
+      />
+      <li
+        className="black-text"
+      >
+        <Link
+          className="black-text"
+          onClick={[Function]}
+          replace={false}
+          to="/"
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-sign-out black-text"
+          />
+           Logout
+        </Link>
+      </li>
+    </ul>
+  </div>,
+  "nodes": Array [
+    <div>
+      <div>
+        <nav>
+          <div
+            className="nav-wrapper black"
+          >
+            <a
+              className="brand-logo"
+              href="#!"
+            >
+              <img
+                alt=""
+                className="responsive-img image-radius"
+                src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1516130489/yy3vdswodkvr3mj5lts1.jpg"
+                style={
+                  Object {
+                    "height": 25,
+                    "marginLeft": 10,
+                    "marginRight": 10,
+                  }
+                }
+              />
+              More Recipes
+            </a>
+            <a
+              className="button-collapse"
+              data-activates="mobile-demo"
+              href="#!"
+            >
+              <i
+                className="material-icons"
+              >
+                menu
+              </i>
+            </a>
+            <ul
+              className="right hide-on-med-and-down"
+            >
+              <li>
+                <Link
+                  replace={false}
+                  to="/recipes"
+                >
+                  <i
+                    className="fa fa-home"
+                  />
+                   Recipes
+                </Link>
+              </li>
+              <li>
+                <Link
+                  replace={false}
+                  to="/addrecipe"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-plus"
+                  />
+                   Add Recipe
+                </Link>
+              </li>
+              <li>
+                <Link
+                  replace={false}
+                  to="/search"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-search"
+                  />
+                   Search
+                </Link>
+              </li>
+              <li>
+                <a
+                  className="dropdown-button"
+                  data-activates="dropdown"
+                  data-beloworigin="true"
+                  href="#!"
+                >
+                   
+                  chibuezeayogu@hotmail.com
+                  <i
+                    className="material-icons right"
+                  >
+                    arrow_drop_down
+                  </i>
+                </a>
+              </li>
+            </ul>
+            <ul
+              className="side-nav"
+              id="mobile-demo"
+            >
+              <li>
+                <Link
+                  replace={false}
+                  to="/recipes"
+                >
+                  <i
+                    className="fa fa-home"
+                  />
+                   Recipes
+                </Link>
+              </li>
+              <div
+                className="divider"
+              />
+              <li>
+                <Link
+                  replace={false}
+                  to="/addrecipe"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-plus"
+                  />
+                   Add Recipe
+                </Link>
+              </li>
+              <div
+                className="divider"
+              />
+              <li>
+                <Link
+                  replace={false}
+                  to="/search"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-search"
+                  />
+                   Search
+                </Link>
+              </li>
+              <div
+                className="divider"
+              />
+              <li>
+                <Link
+                  replace={false}
+                  to="/user/profile"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-user"
+                  />
+                   Profile
+                </Link>
+              </li>
+              <div
+                className="divider"
+              />
+              <li>
+                <Link
+                  replace={false}
+                  to="/user/recipes"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-cutlery"
+                  />
+                   My Recipes
+                </Link>
+              </li>
+              <div
+                className="divider"
+              />
+              <li>
+                <Link
+                  replace={false}
+                  to="/user/favourites"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-heart"
+                  />
+                   My Favourites
+                </Link>
+              </li>
+              <div
+                className="divider"
+              />
+              <li>
+                <Link
+                  onClick={[Function]}
+                  replace={false}
+                  to="/"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-sign-out"
+                  />
+                   Logout
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <ul
+        className="dropdown-content black-text"
+        id="dropdown"
+      >
+        <div
+          className="divider"
+        />
+        <li
+          className="black-text"
+        >
+          <Link
+            className="black-text"
+            replace={false}
+            to="/user/profile"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-user black-text"
+            />
+             My Profile
+          </Link>
+        </li>
+        <div
+          className="divider"
+        />
+        <li
+          className="black-text"
+        >
+          <Link
+            className="black-text"
+            replace={false}
+            to="/user/recipes"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-cutlery black-text"
+            />
+             My Recipes
+          </Link>
+        </li>
+        <div
+          className="divider"
+        />
+        <li
+          className="black-text"
+        >
+          <Link
+            className="black-text"
+            replace={false}
+            to="/user/favourites"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-heart black-text"
+            />
+             My Favourites
+          </Link>
+        </li>
+        <div
+          className="divider"
+        />
+        <li
+          className="black-text"
+        >
+          <Link
+            className="black-text"
+            onClick={[Function]}
+            replace={false}
+            to="/"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-sign-out black-text"
+            />
+             Logout
+          </Link>
+        </li>
+      </ul>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <UserMenu
+        history={
+          Object {
+            "push": [MockFunction],
+          }
+        }
+        signOut={[MockFunction]}
+        userData={
+          Object {
+            "currentUser": Object {
+              "email": "chibuezeayogu@hotmail.com",
+              "id": 1,
+            },
+          }
+        }
+      />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": UserMenu {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "logout": [Function],
+        "props": Object {
+          "history": Object {
+            "push": [MockFunction],
+          },
+          "signOut": [MockFunction],
+          "userData": Object {
+            "currentUser": Object {
+              "email": "chibuezeayogu@hotmail.com",
+              "id": 1,
+            },
+          },
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div>
+          <div>
+            <nav>
+              <div
+                className="nav-wrapper black"
+              >
+                <a
+                  className="brand-logo"
+                  href="#!"
+                >
+                  <img
+                    alt=""
+                    className="responsive-img image-radius"
+                    src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1516130489/yy3vdswodkvr3mj5lts1.jpg"
+                    style={
+                      Object {
+                        "height": 25,
+                        "marginLeft": 10,
+                        "marginRight": 10,
+                      }
+                    }
+                  />
+                  More Recipes
+                </a>
+                <a
+                  className="button-collapse"
+                  data-activates="mobile-demo"
+                  href="#!"
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    menu
+                  </i>
+                </a>
+                <ul
+                  className="right hide-on-med-and-down"
+                >
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/recipes"
+                    >
+                      <i
+                        className="fa fa-home"
+                      />
+                       Recipes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/addrecipe"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-plus"
+                      />
+                       Add Recipe
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/search"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-search"
+                      />
+                       Search
+                    </Link>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-button"
+                      data-activates="dropdown"
+                      data-beloworigin="true"
+                      href="#!"
+                    >
+                       
+                      chibuezeayogu@hotmail.com
+                      <i
+                        className="material-icons right"
+                      >
+                        arrow_drop_down
+                      </i>
+                    </a>
+                  </li>
+                </ul>
+                <ul
+                  className="side-nav"
+                  id="mobile-demo"
+                >
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/recipes"
+                    >
+                      <i
+                        className="fa fa-home"
+                      />
+                       Recipes
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/addrecipe"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-plus"
+                      />
+                       Add Recipe
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/search"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-search"
+                      />
+                       Search
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/user/profile"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-user"
+                      />
+                       Profile
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/user/recipes"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-cutlery"
+                      />
+                       My Recipes
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/user/favourites"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-heart"
+                      />
+                       My Favourites
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      onClick={[Function]}
+                      replace={false}
+                      to="/"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-sign-out"
+                      />
+                       Logout
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <ul
+            className="dropdown-content black-text"
+            id="dropdown"
+          >
+            <div
+              className="divider"
+            />
+            <li
+              className="black-text"
+            >
+              <Link
+                className="black-text"
+                replace={false}
+                to="/user/profile"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-user black-text"
+                />
+                 My Profile
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li
+              className="black-text"
+            >
+              <Link
+                className="black-text"
+                replace={false}
+                to="/user/recipes"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-cutlery black-text"
+                />
+                 My Recipes
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li
+              className="black-text"
+            >
+              <Link
+                className="black-text"
+                replace={false}
+                to="/user/favourites"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-heart black-text"
+                />
+                 My Favourites
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li
+              className="black-text"
+            >
+              <Link
+                className="black-text"
+                onClick={[Function]}
+                replace={false}
+                to="/"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-sign-out black-text"
+                />
+                 Logout
+              </Link>
+            </li>
+          </ul>
+        </div>,
+        "_debugID": 2,
+        "_renderedOutput": <div>
+          <div>
+            <nav>
+              <div
+                className="nav-wrapper black"
+              >
+                <a
+                  className="brand-logo"
+                  href="#!"
+                >
+                  <img
+                    alt=""
+                    className="responsive-img image-radius"
+                    src="https://res.cloudinary.com/chibuezeayogu/image/upload/v1516130489/yy3vdswodkvr3mj5lts1.jpg"
+                    style={
+                      Object {
+                        "height": 25,
+                        "marginLeft": 10,
+                        "marginRight": 10,
+                      }
+                    }
+                  />
+                  More Recipes
+                </a>
+                <a
+                  className="button-collapse"
+                  data-activates="mobile-demo"
+                  href="#!"
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    menu
+                  </i>
+                </a>
+                <ul
+                  className="right hide-on-med-and-down"
+                >
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/recipes"
+                    >
+                      <i
+                        className="fa fa-home"
+                      />
+                       Recipes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/addrecipe"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-plus"
+                      />
+                       Add Recipe
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/search"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-search"
+                      />
+                       Search
+                    </Link>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-button"
+                      data-activates="dropdown"
+                      data-beloworigin="true"
+                      href="#!"
+                    >
+                       
+                      chibuezeayogu@hotmail.com
+                      <i
+                        className="material-icons right"
+                      >
+                        arrow_drop_down
+                      </i>
+                    </a>
+                  </li>
+                </ul>
+                <ul
+                  className="side-nav"
+                  id="mobile-demo"
+                >
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/recipes"
+                    >
+                      <i
+                        className="fa fa-home"
+                      />
+                       Recipes
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/addrecipe"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-plus"
+                      />
+                       Add Recipe
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/search"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-search"
+                      />
+                       Search
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/user/profile"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-user"
+                      />
+                       Profile
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/user/recipes"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-cutlery"
+                      />
+                       My Recipes
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      replace={false}
+                      to="/user/favourites"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-heart"
+                      />
+                       My Favourites
+                    </Link>
+                  </li>
+                  <div
+                    className="divider"
+                  />
+                  <li>
+                    <Link
+                      onClick={[Function]}
+                      replace={false}
+                      to="/"
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="fa fa-sign-out"
+                      />
+                       Logout
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <ul
+            className="dropdown-content black-text"
+            id="dropdown"
+          >
+            <div
+              className="divider"
+            />
+            <li
+              className="black-text"
+            >
+              <Link
+                className="black-text"
+                replace={false}
+                to="/user/profile"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-user black-text"
+                />
+                 My Profile
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li
+              className="black-text"
+            >
+              <Link
+                className="black-text"
+                replace={false}
+                to="/user/recipes"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-cutlery black-text"
+                />
+                 My Recipes
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li
+              className="black-text"
+            >
+              <Link
+                className="black-text"
+                replace={false}
+                to="/user/favourites"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-heart black-text"
+                />
+                 My Favourites
+              </Link>
+            </li>
+            <div
+              className="divider"
+            />
+            <li
+              className="black-text"
+            >
+              <Link
+                className="black-text"
+                onClick={[Function]}
+                replace={false}
+                to="/"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-sign-out black-text"
+                />
+                 Logout
+              </Link>
+            </li>
+          </ul>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <UserMenu
+    history={
+      Object {
+        "push": [MockFunction],
+      }
+    }
+    signOut={[MockFunction]}
+    userData={
+      Object {
+        "currentUser": Object {
+          "email": "chibuezeayogu@hotmail.com",
+          "id": 1,
+        },
+      }
+    }
+  />,
+}
+`;
