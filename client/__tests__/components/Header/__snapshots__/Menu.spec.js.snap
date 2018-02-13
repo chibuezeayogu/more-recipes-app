@@ -40,6 +40,7 @@ ShallowWrapper {
         >
           <li>
             <Link
+              id="homeLink"
               replace={false}
               to="/"
             >
@@ -51,6 +52,7 @@ ShallowWrapper {
           </li>
           <li>
             <Link
+              id="loginLink"
               replace={false}
               to="/signin"
             >
@@ -63,6 +65,7 @@ ShallowWrapper {
           </li>
           <li>
             <Link
+              id="signupLink"
               replace={false}
               to="/signup"
             >
@@ -80,6 +83,7 @@ ShallowWrapper {
         >
           <li>
             <Link
+              id="loginLink"
               replace={false}
               to="/"
             >
@@ -94,6 +98,7 @@ ShallowWrapper {
           />
           <li>
             <Link
+              id="loginLink"
               replace={false}
               to="/signin"
             >
@@ -109,6 +114,7 @@ ShallowWrapper {
           />
           <li>
             <Link
+              id="signupLink"
               replace={false}
               to="/signup"
             >
@@ -164,6 +170,7 @@ ShallowWrapper {
           >
             <li>
               <Link
+                id="homeLink"
                 replace={false}
                 to="/"
               >
@@ -175,6 +182,7 @@ ShallowWrapper {
             </li>
             <li>
               <Link
+                id="loginLink"
                 replace={false}
                 to="/signin"
               >
@@ -187,6 +195,7 @@ ShallowWrapper {
             </li>
             <li>
               <Link
+                id="signupLink"
                 replace={false}
                 to="/signup"
               >
@@ -204,6 +213,7 @@ ShallowWrapper {
           >
             <li>
               <Link
+                id="loginLink"
                 replace={false}
                 to="/"
               >
@@ -218,6 +228,7 @@ ShallowWrapper {
             />
             <li>
               <Link
+                id="loginLink"
                 replace={false}
                 to="/signin"
               >
@@ -233,6 +244,7 @@ ShallowWrapper {
             />
             <li>
               <Link
+                id="signupLink"
                 replace={false}
                 to="/signup"
               >
@@ -322,6 +334,7 @@ ShallowWrapper {
               >
                 <li>
                   <Link
+                    id="homeLink"
                     replace={false}
                     to="/"
                   >
@@ -333,6 +346,7 @@ ShallowWrapper {
                 </li>
                 <li>
                   <Link
+                    id="loginLink"
                     replace={false}
                     to="/signin"
                   >
@@ -345,6 +359,7 @@ ShallowWrapper {
                 </li>
                 <li>
                   <Link
+                    id="signupLink"
                     replace={false}
                     to="/signup"
                   >
@@ -362,6 +377,7 @@ ShallowWrapper {
               >
                 <li>
                   <Link
+                    id="loginLink"
                     replace={false}
                     to="/"
                   >
@@ -376,6 +392,7 @@ ShallowWrapper {
                 />
                 <li>
                   <Link
+                    id="loginLink"
                     replace={false}
                     to="/signin"
                   >
@@ -391,6 +408,7 @@ ShallowWrapper {
                 />
                 <li>
                   <Link
+                    id="signupLink"
                     replace={false}
                     to="/signup"
                   >
@@ -446,6 +464,7 @@ ShallowWrapper {
               >
                 <li>
                   <Link
+                    id="homeLink"
                     replace={false}
                     to="/"
                   >
@@ -457,6 +476,7 @@ ShallowWrapper {
                 </li>
                 <li>
                   <Link
+                    id="loginLink"
                     replace={false}
                     to="/signin"
                   >
@@ -469,6 +489,7 @@ ShallowWrapper {
                 </li>
                 <li>
                   <Link
+                    id="signupLink"
                     replace={false}
                     to="/signup"
                   >
@@ -486,6 +507,7 @@ ShallowWrapper {
               >
                 <li>
                   <Link
+                    id="loginLink"
                     replace={false}
                     to="/"
                   >
@@ -500,6 +522,7 @@ ShallowWrapper {
                 />
                 <li>
                   <Link
+                    id="loginLink"
                     replace={false}
                     to="/signin"
                   >
@@ -515,6 +538,7 @@ ShallowWrapper {
                 />
                 <li>
                   <Link
+                    id="signupLink"
                     replace={false}
                     to="/signup"
                   >

@@ -10,6 +10,7 @@ const mockStore = configureStore({});
 global.shallow = shallow;
 global.Materialize = { toast: () => {} };
 global.mockStore = mockStore;
+global.swal = jest.fn(() => Promise.resolve({ true: true }));
 
 global.$ = () => ({
   collapsible: jest.fn(),

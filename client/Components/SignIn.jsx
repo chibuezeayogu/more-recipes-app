@@ -23,7 +23,7 @@ export class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {void}
+   * @returns {undefined} - no return value
    *
    */
   constructor() {
@@ -43,7 +43,7 @@ export class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {void}
+   * @returns {undefined} - no return value
    *
    */
   componentWillMount() {
@@ -61,7 +61,7 @@ export class SignIn extends Component {
    *
    * @param {Object} nextProps
    *
-   * @returns {undifined}
+   * @returns {undifined} - no return value
    *
    */
   componentWillReceiveProps(nextProps) {
@@ -80,7 +80,7 @@ export class SignIn extends Component {
    *
    * @param {object} event
    *
-   * @returns {undifined}
+   * @returns {undifined} - no return value
    *
    */
   handleChange(event) {
@@ -98,7 +98,7 @@ export class SignIn extends Component {
    *
    * @param {Object} event
    *
-   * @returns {void}
+   * @returns {undefined} - no return value
    *
    */
   handleOnsubmit(event) {
@@ -111,7 +111,7 @@ export class SignIn extends Component {
     this.props.login(email, password);
   }
 
-   /**
+  /**
    *
    * @description renders JSX element
    *
@@ -119,7 +119,7 @@ export class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {undifiend} 
+   * @returns {undifiend} - renders JSX element
    *
    */
   render() {

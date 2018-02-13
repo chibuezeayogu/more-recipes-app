@@ -1,45 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import moment from 'moment';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
 
 /**
  *
  * @description displays each recipe
  *
- * @method
+ * @class
  *
- * @param {Object} props - property object
- *
- *  @returns {Undefined}
+ * @extends Component
  */
-class UserFavouriteCard extends Component {
-
+export class UserFavouriteCard extends Component {
   handelFavourites(id, title) {
     swal({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: `You want to remove "${title}" from your favourite!`,
-      icon: "warning",
+      icon: 'warning',
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        this.props.addOrRemoveFavourite(id);
-      }
-    });
+      .then((willDelete) => {
+        if (willDelete) {
+          this.props.addOrRemoveFavourite(id);
+        }
+      });
   }
 
-/**
+  /**
  *
  * @description renders JSX element
  *
  * @method
  *
- * @memberOf SingleRecipe
+ * @memberOf UserFavouriteCard
  *
- * @returns {Undefined}
+ * @returns {undefined}
  */
   render() {
     const { favourite } = this.props;
@@ -54,8 +51,9 @@ class UserFavouriteCard extends Component {
               style={{ width: '100%' }}
             />
           </Link>
-          <div 
-            className="card-content black-text grey lighten-5">
+          <div
+            className="card-content black-text grey lighten-5"
+          >
             <span className="card-title text-title truncate">
               {favourite.title}
             </span>
@@ -67,43 +65,53 @@ class UserFavouriteCard extends Component {
             Posted { moment(new Date(favourite.createdAt)).fromNow()}
             </p>
           </div>
-          <div 
+          <div
             className="card-action black-text center grey lighten-4"
-            style={{ margin: 1 }}>
-            <a className="black-text">
-              <i 
-                className="fa fa-thumbs-o-up" 
-                  aria-hidden="true"> {favourite.upvotes}
-              </i>     
-            </a>
-            <a 
-              className="black-text">
-              <i 
-                className="fa fa-thumbs-o-down" 
-                  aria-hidden="true"> {favourite.downvotes}
-              </i>  
-            </a>
-            <a className="black-text">
-              <i 
-                className="fa fa-eye" 
-                  aria-hidden="true"> {favourite.views}
+            style={{ margin: 1 }}
+          >
+            <a
+              className="black-text"
+            >
+              <i
+                className="fa fa-thumbs-o-up"
+                aria-hidden="true"
+              > {favourite.upvotes}
               </i>
             </a>
-            <a 
-              className="black-text" 
-                onClick={() =>
-                  this.handelFavourites(favourite.id, favourite.title)}
-                style={{ cursor: 'pointer' }}
-              >
-              <i 
-                className="fa fa-heart red-heart" 
-                aria-hidden="true" /> 
+            <a
+              className="black-text"
+            >
+              <i
+                className="fa fa-thumbs-o-down"
+                aria-hidden="true"
+              > {favourite.downvotes}
+              </i>
+            </a>
+            <a
+              className="black-text"
+            >
+              <i
+                className="fa fa-eye"
+                aria-hidden="true"
+              > {favourite.views}
+              </i>
+            </a>
+            <a
+              className="black-text"
+              onClick={() =>
+                this.handelFavourites(favourite.id, favourite.title)}
+              style={{ cursor: 'pointer' }}
+            >
+              <i
+                className="fa fa-heart red-heart"
+                aria-hidden="true"
+              />
             </a>
           </div>
         </div>
       </div>
     );
-  };
+  }
 }
 
 UserFavouriteCard.propTypes = {
@@ -118,4 +126,4 @@ UserFavouriteCard.propTypes = {
   }).isRequired
 };
 
-export default UserFavouriteCard;
+export default withRouter(UserFavouriteCard);

@@ -17,32 +17,32 @@ describe('Vote:', () => {
         done();
       });
   });
-  
+
   describe('Upvote Recipe', () => {
     it('should return an error message if no authorization token was found',
       (done) => {
-      chai.request(app)
-        .put('/api/v1/recipes/1/upvote')
-        .end((err, res) => {
-          expect(res.status).to.equal(401);
-          expect(res.body).to.have.keys(['status', 'message']);
-          expect(res.body.status).to.eql('Failed');
-          expect(res.body.message).to.eql('No token provided.');
-          done();
-        });
-    });
+        chai.request(app)
+          .put('/api/v1/recipes/1/upvote')
+          .end((err, res) => {
+            expect(res.status).to.equal(401);
+            expect(res.body).to.have.keys(['status', 'message']);
+            expect(res.body.status).to.eql('Failed');
+            expect(res.body.message).to.eql('No token provided.');
+            done();
+          });
+      });
     it('should return an error message if recipe id is not of type integer',
       (done) => {
-      chai.request(app)
-        .put('/api/v1/recipes/s/upvote')
-        .set({ Authorization: token })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['Please input a valid id.']);
-          done();
-        });
-    });
+        chai.request(app)
+          .put('/api/v1/recipes/s/upvote')
+          .set({ Authorization: token })
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body).to.have.keys(['message']);
+            expect(res.body.message).to.eql(['Please input a valid id.']);
+            done();
+          });
+      });
     it('should return an error message if recipe is not found', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/20/upvote')
@@ -105,16 +105,16 @@ describe('Vote:', () => {
   describe('Most Upvoted Recipe', () => {
     it('should return an error message if no authorization token was found',
       (done) => {
-      chai.request(app)
-        .get('/api/v1/recipes/mostupvote')
-        .end((err, res) => {
-          expect(res.status).to.equal(401);
-          expect(res.body).to.have.keys(['status', 'message']);
-          expect(res.body.status).to.eql('Failed');
-          expect(res.body.message).to.eql('No token provided.');
-          done();
-        });
-    });
+        chai.request(app)
+          .get('/api/v1/recipes/mostupvote')
+          .end((err, res) => {
+            expect(res.status).to.equal(401);
+            expect(res.body).to.have.keys(['status', 'message']);
+            expect(res.body.status).to.eql('Failed');
+            expect(res.body.message).to.eql('No token provided.');
+            done();
+          });
+      });
     it('should return recipes with the most upvotes', (done) => {
       chai.request(app)
         .get('/api/v1/recipes/mostupvote')
@@ -130,28 +130,28 @@ describe('Vote:', () => {
   describe('PUT: Downvote Recipe', () => {
     it('should return an error message if no authorization token was found',
       (done) => {
-      chai.request(app)
-        .put('/api/v1/recipes/3/downvote')
-        .end((err, res) => {
-          expect(res.status).to.equal(401);
-          expect(res.body).to.have.keys(['status', 'message']);
-          expect(res.body.status).to.eql('Failed');
-          expect(res.body.message).to.eql('No token provided.');
-          done();
-        });
-    });
+        chai.request(app)
+          .put('/api/v1/recipes/3/downvote')
+          .end((err, res) => {
+            expect(res.status).to.equal(401);
+            expect(res.body).to.have.keys(['status', 'message']);
+            expect(res.body.status).to.eql('Failed');
+            expect(res.body.message).to.eql('No token provided.');
+            done();
+          });
+      });
     it('should return an error message if recipe id is not of type integer',
       (done) => {
-      chai.request(app)
-        .put('/api/v1/recipes/s/downvote')
-        .set({ Authorization: token })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['Please input a valid id.']);
-          done();
-        });
-    });
+        chai.request(app)
+          .put('/api/v1/recipes/s/downvote')
+          .set({ Authorization: token })
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body).to.have.keys(['message']);
+            expect(res.body.message).to.eql(['Please input a valid id.']);
+            done();
+          });
+      });
     it('should return an error message if recipe is not found', (done) => {
       chai.request(app)
         .put('/api/v1/recipes/10/downvote')

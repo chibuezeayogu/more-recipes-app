@@ -7,11 +7,11 @@ import {
   reviewer,
   appLink,
   formatedTemplate
-} from '../mockData';
+} from '../MockData/mockData';
 
 const expect = chai.expect;
 
-describe('Format Review Template' , () => {
+describe('Format Review Template', () => {
   it('should add information to review template', () => {
     expect(reviewNotifierTemplate(recipe, reciever, review, reviewer, appLink))
       .to.eql(formatedTemplate);

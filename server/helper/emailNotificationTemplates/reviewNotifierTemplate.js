@@ -13,7 +13,7 @@
  *
  * @param {String} appLink - link to the app
  *
- * @returns {Undefined}
+ * @returns {undefined}
  */
 const reviewNotifierTemplate = (recipe, reciever, review, reviewer, appLink) => (
   `

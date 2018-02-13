@@ -7,12 +7,12 @@ import {
   reviewer,
   appLink,
   formatedTemplate
-} from '../mockData';
+} from '../MockData/mockData';
 
 const { User, Recipe } = models;
 const expect = chai.expect;
 
-describe('Notifier' , () => {
+describe('Notifier', () => {
   it('should get recipe, user and pass as argument to nodemailer', () => {
     expect(reviewNotifier(Recipe, User, recipe.id, review, reviewer, appLink))
       .to.eql();

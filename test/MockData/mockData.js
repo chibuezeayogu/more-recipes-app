@@ -1,11 +1,11 @@
 import dotenv from 'dotenv';
-import reviewNotifierTemplate from '../server/helper/emailNotificationTemplates/reviewNotifierTemplate';
+import reviewNotifierTemplate from '../../server/helper/emailNotificationTemplates/reviewNotifierTemplate';
 
 dotenv.config();
 
 export const appLink = process.env.APP_LINK;
 
-export const reciever ={
+export const reciever = {
   firstName: 'Samuel',
 };
 
@@ -24,10 +24,8 @@ export const reviewer = {
 export const review = 'Nice revipe';
 
 export const user = {
-    email: 'chibuezeayogu@hotmail.com'
-  }
-
-
+  email: 'chibuezeayogu@hotmail.com'
+};
 
 export const formatedTemplate =
   `
@@ -65,9 +63,7 @@ export const formatedTemplate =
       More Recipes. All rights reserved.</small>
     </div>
   </div>
-  `
-;
-
+  `;
 
 export const mailOptions = {
   from: `"More-Recipes" <${process.env.AUTHORIZED_EMAIL}>`,
@@ -77,3 +73,4 @@ export const mailOptions = {
 };
 
 export default mailOptions;
+

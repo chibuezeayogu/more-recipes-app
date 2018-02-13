@@ -73,7 +73,6 @@ export default {
    *
    */
   getUserFavourites(req, res) {
-
     /**
      * query limit: get query limit if supplie else use default
      * query offset: get query offset if supplie else use default
@@ -104,7 +103,7 @@ export default {
           });
         }
         console.log(favourites.count, 'favourite pagination');
-         /**
+        /**
          * pass query limit, query offset, recipedata.count to pagenate helper
          * and return totalCount, currentPage, pageCount, and pageSize
          * to pagination
@@ -117,40 +116,10 @@ export default {
           {
             pagination,
             favourites: favourites.rows,
-        });
+          });
       })
       .catch(error => res.status(400).send({ message: error.message }));
   },
 
-/**
-   * 
-   * @description get user favourite recipe Ids
-   *
-   * @param {Object} req - Request object
-   *
-   * @param {Object} res - Response object
-   *
-   * @returns {Object} json - payload
-   *
-   */
-  getUserFavouriteIds(req, res) {
-    Favourite
-      .findAll({
-        where: {
-          userId: req.decoded.user.id
-        },
-        attributes: ['recipeId']
-      })
-      .then((recipe) => {
-        if (recipe.length === 0) {
-          return res.status(404).send({
-            message: 'You have not added any recipe to your favourite'
-          });
-        }
-        const recipeIds = recipe.map(recipe => recipe.recipeId);
-        return res.status(200).send(recipeIds);
-      })
-      .catch(error => res.status(400).send({ message: error.message }));
-  },
 };
 

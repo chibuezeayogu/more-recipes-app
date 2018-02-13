@@ -13,14 +13,20 @@
     "test:db:migrate": "cross-env NODE_ENV=test sequelize db:migrate:undo:all && cross-env NODE_ENV=test sequelize db:migrate",
     "test:db:seed": "cross-env NODE_ENV=test sequelize db:seed:all",
     "start:test:db": "npm run test:db:migrate && npm run test:db:seed",
-    "test": "npm run start:test:db && cross-env NODE_ENV=test nyc mocha ./test/**/*.js --timeout 20000",
+    "test:server": "npm run start:test:db && cross-env NODE_ENV=test nyc mocha ./test/**/*.js --timeout 20000",
     "test-b": "SET NODE_ENV=test && nyc --reporter=html mocha --compilers js:babel-core/register ./test/apiTest/user.spec.js --timeout 20000",
     "migrate-test": "cross-env NODE_ENV=test sequelize db:migrate",
     "heroku-postbuild": "npm run build:client && npm run build:server",
-    "test:client": "jest /client --coverage --collectCoverageFrom=client/**/**/*.{js,jsx}"
+
+    "test:client": "jest /client --coverage --collectCoverageFrom=client/**/**/*.{js,jsx} && codecov",
+    "coveralls": "nyc npm run test:server && nyc report --reporter=lcov --reporter=text-lcov | coveralls",
+
+    "test:coverage": "npm run test:client && npm run test:server",
+
+    "test:e2e": "npm rum test:db:migrate && nightwatch"
   },
   "author": "Chibueze Ayogu",
-  "license": "MIT",
+  "license": "ISC",
   "babel": {
     "presets": [
       "es2015"
@@ -40,6 +46,9 @@
     "verbose": true,
     "roots": [
       "./client"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/client/Style"
     ],
     "setupTestFrameworkScriptFile": "./client/__tests__/testSetup.js",
     "testPathIgnorePatterns": [
@@ -140,14 +149,17 @@
     "expect": "^22.1.0",
     "jest": "^22.1.4",
     "jsdom": "8.5.0",
+    "nightwatch": "^0.9.19",
     "nock": "8.0.0",
     "npm-run-all": "1.8.0",
     "open": "0.0.5",
     "react-addons-test-utils": "^15.4.0",
     "react-test-renderer": "^15.6.2",
     "redux-immutable-state-invariant": "1.2.3",
-    "redux-mock-store": "1.0.2",
+    "redux-mock-store": "^1.0.2",
     "rimraf": "2.5.2",
+    "selenium-standalone": "^6.12.0",
+    "sinon": "^4.2.2",
     "tape": "^4.8.0"
   }
 }

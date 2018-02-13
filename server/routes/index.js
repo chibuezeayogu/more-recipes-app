@@ -60,15 +60,11 @@ const routes = (router) => {
     .put(verifyToken, validateParams, votingController.upvote);
 
   router.route('/users/:userId/recipes/votedRecipeIds')
-    .get(verifyToken,checkAndValidateUserParams, votingController.getUserVoting);
+    .get(verifyToken, checkAndValidateUserParams, votingController.getUserVoting);
 
   router.route('/users/:userId/favouriteRecipes')
     .get(verifyToken, checkAndValidateUserParams,
-        favouriteController.getUserFavourites);
-
-  router.route('/users/:userId/favouriteRecipeIds')
-    .get(verifyToken, checkAndValidateUserParams,
-        favouriteController.getUserFavouriteIds);
+      favouriteController.getUserFavourites);
 
   router.route('/recipes/:id/reviews')
     .post(verifyToken, validateParams, validateCommentField, 
