@@ -27,7 +27,7 @@ export class SignUp extends Component {
    *
    * @memberOf SignUp
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   constructor() {
@@ -43,6 +43,8 @@ export class SignUp extends Component {
       disabled: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleOnsubmit = this.handleOnsubmit.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
   }
 
   /**
@@ -52,7 +54,7 @@ export class SignUp extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   componentWillMount() {
@@ -70,7 +72,7 @@ export class SignUp extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.userData.isAuthenticated) {
@@ -89,7 +91,7 @@ export class SignUp extends Component {
    *
    * @param {Event} event - event object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   handleChange(event) {
     event.preventDefault();
@@ -106,7 +108,7 @@ export class SignUp extends Component {
    *
    * @param {Event} event - event objectt
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   handleImageChange(event) {
@@ -125,7 +127,7 @@ export class SignUp extends Component {
    *
    * @param {Event} event - event object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   handleOnsubmit(event) {
@@ -137,19 +139,19 @@ export class SignUp extends Component {
 
     this.setState({ disabled: true });
     const uploadData = imageToFormData(this.state.image);
-    delete axios.defaults.headers.common['Authorization'];
+    delete axios.defaults.headers.common.Authorization;
 
     axios(uploadData)
       .then((data) => {
-      this.setState({ imageUrl: data.data.secure_url });
-      this.props.createAccount(this.state);
-    }).catch((error) => { 
-      this.setState({ disabled: false });
-      Materialize.toast("Error! Please try again", 4000, 'red');
-    });
+        this.setState({ imageUrl: data.data.secure_url });
+        this.props.createAccount(this.state);
+      }).catch(() => {
+        this.setState({ disabled: false });
+        Materialize.toast('Error! Please try again', 4000, 'red');
+      });
   }
 
-   /**
+  /**
    *
    * @description renders JSX element
    *
@@ -157,8 +159,8 @@ export class SignUp extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {Undefined} 
-   * 
+   * @returns {undefined} - renders JSX element
+   *
    */
   render() {
     return (
@@ -171,7 +173,7 @@ export class SignUp extends Component {
               <hr />
               <form
                 className="col l6 m8 s12 offset-l3 offset-m2"
-                onSubmit={event => this.handleOnsubmit(event)}
+                onSubmit={this.handleOnsubmit}
               >
                 <div className="row">
                   <div className="input-field col s12">
@@ -246,9 +248,10 @@ export class SignUp extends Component {
                   <div className="input-field col s12">
                     <i className="fa fa-picture-o prefix" aria-hidden="true" />
                     <input
+                      id="image"
                       type="file"
                       name="profileImage"
-                      onChange={e => this.handleImageChange(e)}
+                      onChange={this.handleImageChange}
                     />
                   </div>
                   <span className="right red-text error-font error-margin">

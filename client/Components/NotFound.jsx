@@ -10,20 +10,18 @@ import Footer from './Footer/Footer.jsx';
 *
 * @method
 *
-* @returns {Undifined}
+* @returns {undifined} - JSX element
 */
-const NotFound = () => {
-    return (
-      <div className="body">
-        <UserMenu />
-        <div className="main">
-          <div className="container">
-            <h1 className="center" style={{ marginTop: 200 }}>Page Not Found</h1>
-          </div>
-        </div>
-      <Footer />
+const NotFound = () => (
+  <div className="body">
+    <UserMenu />
+    <div className="main">
+      <div className="container">
+        <h1 className="center" style={{ marginTop: 200 }}>Page Not Found</h1>
+      </div>
     </div>
-  );
-}
+    <Footer />
+  </div>
+);
 
 export default NotFound;

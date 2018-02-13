@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Home from './Home.jsx';
 import Menu from './Header/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
+import { withRouter } from 'react-router-dom';
 
 /**
  *
@@ -15,7 +16,6 @@ import Footer from './Footer/Footer.jsx';
  *
  */
 export class Main extends Component {
-
   /**
    * @description checks if a user is signed in
    *
@@ -23,7 +23,7 @@ export class Main extends Component {
    *
    * @memberOf Main
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   componentWillMount() {
@@ -39,14 +39,18 @@ export class Main extends Component {
    *
    * @memberOf Main
    *
-   * @returns {Unddfined}
+   * @returns {undefined}
    *
    */
   componentDidMount() {
     $('.parallax').parallax();
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav({
+      closeOnClick: true,
+      draggable: false,
+    });
   }
-/**
+
+  /**
    *
    * @description renders JSX element
    *
@@ -54,7 +58,7 @@ export class Main extends Component {
    *
    * @memberOf Mian
    *
-   * @returns {Unddfined}
+   * @returns {undefined}
  */
   render() {
     return (
@@ -70,10 +74,13 @@ export class Main extends Component {
 Main.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
+  }).isRequired,
+  userData: PropTypes.shape({
+    isAuthenticated: PropTypes.bool.isRequired,
   }).isRequired
 };
 const mapStateToProps = state => ({
   userData: state.userData
 });
 
-export default connect(mapStateToProps)(Main);
+export default withRouter(connect(mapStateToProps)(Main));

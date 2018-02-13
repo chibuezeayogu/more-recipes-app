@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import jwtDecode from 'jwt-decode';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../../action/actionCreators';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
 
 /**
  * menu component athenticated users
@@ -14,6 +12,11 @@ import { withRouter } from 'react-router-dom';
  *
  */
 export class UserMenu extends Component {
+  constructor() {
+    super();
+    this.logout = this.logout.bind(this);
+  }
+
   /**
    * @description initializes dropdown and button collapse
    *
@@ -21,7 +24,7 @@ export class UserMenu extends Component {
    *
    * @memberOf UserMenu
    *
-   * @returns {void}
+   * @returns {undefined}
    *
    */
   componentDidMount() {
@@ -32,7 +35,10 @@ export class UserMenu extends Component {
       belowOrigin: true,
       alignment: 'right',
     });
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav({
+      closeOnClick: true,
+      draggable: false,
+    });
   }
 
   /**
@@ -44,11 +50,10 @@ export class UserMenu extends Component {
    *
    * @param {Object} event - even object
    *
-   * @returns {undefiend}
+   * @returns {undefiend} - no return value
    *
    */
-  logout(event) {
-    event.preventDefault();
+  logout() {
     this.props.signOut();
     localStorage.removeItem('jwtToken');
     this.props.history.push('/signin');
@@ -62,7 +67,7 @@ export class UserMenu extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {void}
+   * @returns {undefined}
    *
    */
   render() {
@@ -73,7 +78,7 @@ export class UserMenu extends Component {
             <div className="nav-wrapper black">
               <a href="#!" className="brand-logo">
                 <img
-                  src={'https://res.cloudinary.com/chibuezeayogu/image/upload'+
+                  src={'https://res.cloudinary.com/chibuezeayogu/image/upload' +
                     '/v1516130489/yy3vdswodkvr3mj5lts1.jpg'}
                   className="responsive-img image-radius"
                   alt=""
@@ -89,17 +94,23 @@ export class UserMenu extends Component {
               </a>
               <ul className="right hide-on-med-and-down">
                 <li >
-                  <Link to="/recipes">
+                  <Link
+                    to="/recipes"
+                  >
                     <i className="fa fa-home" /> Recipes
                   </Link>
                 </li>
                 <li>
-                  <Link to="/addrecipe">
+                  <Link
+                    to="/addrecipe"
+                  >
                     <i className="fa fa-plus" aria-hidden="true" /> Add Recipe
                   </Link>
                 </li>
                 <li>
-                  <Link to="/search">
+                  <Link
+                    to="/search"
+                  >
                     <i className="fa fa-search" aria-hidden="true" /> Search
                   </Link>
                 </li>
@@ -119,43 +130,64 @@ export class UserMenu extends Component {
                 id="mobile-demo"
               >
                 <li>
-                  <Link to="/recipes">
+                  <Link
+                    to="/recipes"
+                  >
                     <i className="fa fa-home" /> Recipes
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/addrecipe">
+                  <Link
+                    to="/addrecipe"
+                  >
                     <i className="fa fa-plus" aria-hidden="true" /> Add Recipe
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/search">
+                  <Link
+                    to="/search"
+                  >
                     <i className="fa fa-search" aria-hidden="true" /> Search
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/user/profile">
+                  <Link
+                    to="/user/profile"
+                  >
                     <i className="fa fa-user" aria-hidden="true" /> Profile
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/user/recipes">
-                    <i className="fa fa-cutlery" aria-hidden="true" /> My Recipes
+                  <Link
+                    to="/user/recipes"
+                  >
+                    <i
+                      className="fa fa-cutlery"
+                      aria-hidden="true"
+                    /> My Recipes
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/user/favourites">
-                    <i className="fa fa-heart" aria-hidden="true" /> My Favourites
+                  <Link
+                    to="/user/favourites"
+                  >
+                    <i
+                      className="fa fa-heart"
+                      aria-hidden="true"
+                    /> My Favourites
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/" onClick={e => this.logout(e)}>
+                  <Link
+                    to="/"
+                    onClick={this.logout}
+                  >
                     <i className="fa fa-sign-out" aria-hidden="true" /> Logout
                   </Link>
                 </li>
@@ -167,31 +199,51 @@ export class UserMenu extends Component {
         <ul id="dropdown" className="dropdown-content black-text">
           <div className="divider" />
           <li className="black-text">
-            <Link to="/user/profile" className="black-text">
-              <i 
-                className="fa fa-user black-text" 
-                aria-hidden="true" /> My Profile
+            <Link
+              to="/user/profile"
+              className="black-text"
+            >
+              <i
+                className="fa fa-user black-text"
+                aria-hidden="true"
+              /> My Profile
             </Link>
           </li>
           <div className="divider" />
           <li className="black-text">
-            <Link to="/user/recipes" className="black-text">
-              <i className="fa fa-cutlery black-text" 
-                aria-hidden="true" /> My Recipes
+            <Link
+              to="/user/recipes"
+              className="black-text"
+            >
+              <i
+                className="fa fa-cutlery black-text"
+                aria-hidden="true"
+              /> My Recipes
             </Link>
           </li>
           <div className="divider" />
           <li className="black-text">
-            <Link to="/user/favourites" className="black-text">
-              <i className="fa fa-heart black-text" 
-                aria-hidden="true" /> My Favourites
+            <Link
+              to="/user/favourites"
+              className="black-text"
+            >
+              <i
+                className="fa fa-heart black-text"
+                aria-hidden="true"
+              /> My Favourites
             </Link>
           </li>
           <div className="divider" />
           <li className="black-text">
-            <Link to="/" onClick={e => this.logout(e)} className="black-text">
-              <i className="fa fa-sign-out black-text"
-                aria-hidden="true" /> Logout
+            <Link
+              to="/"
+              onClick={this.logout}
+              className="black-text"
+            >
+              <i
+                className="fa fa-sign-out black-text"
+                aria-hidden="true"
+              /> Logout
             </Link>
           </li>
         </ul>
@@ -203,6 +255,14 @@ export class UserMenu extends Component {
 
 UserMenu.propTypes = {
   signOut: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  userData: PropTypes.shape({
+    currentUser: PropTypes.shape({
+      email: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired
 };
 
 const mapStateToProps = state => ({

@@ -9,7 +9,7 @@ import {
   reviewer,
   appLink,
   user
-} from '../mockData';
+} from '../MockData/mockData';
 
 dotenv.config();
 const expect = chai.expect;
@@ -21,7 +21,7 @@ const mailOptions = {
   html: reviewNotifierTemplate(recipe, reciever, review, reviewer, appLink)
 };
 
-describe('Mailer' , () => {
+describe('Mailer', () => {
   it('should send mail to user', () => {
     expect(mailer(mailOptions)).to.eql();
   });

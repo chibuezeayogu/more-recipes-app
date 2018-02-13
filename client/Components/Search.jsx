@@ -6,13 +6,13 @@ import Footer from './Footer/Footer.jsx';
 import SearchResult from './SearchResult.jsx';
 import Pagination from 'rc-pagination';
 import Preloader from './Preloder.jsx';
-import 'rc-pagination/assets/index.css';
 
-class Search extends Component {
+export class Search extends Component {
   constructor() {
     super();
-    this.onChange = this.onChange.bind(this);
-    this.state = ({ isLoading: false });
+    this.state = ({
+      isLoading: false,
+    });
     this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -28,15 +28,13 @@ class Search extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.searchReducer.isFetched) {
       this.setState({ isLoading: false });
     }
   }
-
-
 
   handleSearch(event) {
     event.preventDefault();
@@ -45,27 +43,11 @@ class Search extends Component {
       this.props.search(serchTerm);
       this.state = ({ isLoading: true });
     } else {
-      this.props.history.push(`/search`);
       this.props.fetchRecipesWithMostUpvote();
     }
   }
 
   /**
-   * @description handels page change
-   *
-   * @method
-   *
-   * @memberOf Search
-   *
-   * @param {Integer} page - current page
-   *
-   * @returns {Undefined}
-   */
-  onChange(page) {
-
-  }
-
- /**
    *
    * @description renders JSX element
    *
@@ -73,7 +55,7 @@ class Search extends Component {
    *
    * @memberOf Search
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   render() {
@@ -88,11 +70,12 @@ class Search extends Component {
               <hr />
             </div>
             <div className="row">
-              <form className="col s12"
-                onChange={this.handleSearch}>
+              <form
+                className="col s12"
+              >
                 <div className="row">
                   <div className="input-field col s12">
-                    <input id="search" type="text" />
+                    <input name="searchTerm" id="search" type="text" onChange={this.handleSearch} />
                     <label htmlFor="search">Enter Search term</label>
                   </div>
                 </div>

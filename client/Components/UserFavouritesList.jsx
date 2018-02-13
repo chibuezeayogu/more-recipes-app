@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import jwtDecode from 'jwt-decode';
 import Pagination from 'rc-pagination';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -10,7 +9,6 @@ import { onPageChange, onPageReload } from '../util/pageFunctions';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 import Preloader from './Preloder.jsx';
-import 'rc-pagination/assets/index.css';
 
 /**
  *
@@ -21,7 +19,7 @@ import 'rc-pagination/assets/index.css';
  * @extends Component
  *
  */
-class UserFavouritesList extends Component {
+export class UserFavouritesList extends Component {
   constructor() {
     super();
     this.onChange = this.onChange.bind(this);
@@ -35,7 +33,7 @@ class UserFavouritesList extends Component {
    *
    * @memberOf UserFavouritesList
    *
-   * @returns {void}
+   * @returns {undefined} - no return value
    *
    */
   componentWillMount() {
@@ -47,7 +45,7 @@ class UserFavouritesList extends Component {
     }
   }
 
-   /**
+  /**
    * @description checks if next recipes is fetched and disables is loading
    *
    * @method
@@ -56,11 +54,16 @@ class UserFavouritesList extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {void}
+   * @returns {undefined} - no return value
    */
   componentWillReceiveProps(nextProps) {
     const { currentUser } = nextProps.userData;
-    const { isFetched, favourites, isDeleted, pagination } = nextProps.favouriteReducer;
+    const {
+      isFetched,
+      favourites,
+      isDeleted,
+      pagination
+    } = nextProps.favouriteReducer;
     if (isFetched) {
       this.setState({ isLoading: false });
     } else {
@@ -81,7 +84,7 @@ class UserFavouritesList extends Component {
    *
    * @param {page} page - current page
    *
-   * @returns {void}
+   * @returns {undefined} - no return value
    */
   onChange(page) {
     const { currentUser } = this.props.userData;
@@ -117,7 +120,7 @@ class UserFavouritesList extends Component {
     }
     return (
       <div className="body grey lighten-5">
-        <UserMenu {...this.props}/>
+        <UserMenu {...this.props} />
         <div className="main">
           <div className="container">
             <div className="row">
@@ -130,7 +133,7 @@ class UserFavouritesList extends Component {
           </div>
         </div>
         <div className="row s12 m6 l3">
-        { favourites.length > 0 ?
+          { favourites.length > 0 ?
             <Pagination
               onChange={this.onChange}
               current={pagination.currentPage}
@@ -147,7 +150,7 @@ class UserFavouritesList extends Component {
 }
 
 UserFavouritesList.propTypes = {
-  recipeReducer: PropTypes.shape({
+  favouriteReducer: PropTypes.shape({
     pagination: PropTypes.shape({
       currentPage: PropTypes.number,
       pageSize: PropTypes.number,
@@ -164,7 +167,6 @@ UserFavouritesList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  recipeReducer: state.recipeReducer,
   userData: state.userData,
   favouriteReducer: state.favouriteReducer
 });
