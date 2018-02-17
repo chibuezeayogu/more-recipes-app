@@ -107,9 +107,11 @@ describe('HandleOnSubmit function', () => {
     expect(wrapper.instance().state.errors.lastNameError)
       .toBe('last name must be at least 3 characters long');
     expect(wrapper.instance().state.errors.emailError)
-      .toBe('email is not valide');
+      .toBe('email is not valid');
     expect(wrapper.instance().state.errors.passwordError)
-      .toBe('password must contain `uppercase, lowercase, number, special character`');
+      .toBe(
+        'password must contain `uppercase, lowercase, number, special character`'
+      );
   });
 
   it('should sumbit form if all conditions are meet', () => {

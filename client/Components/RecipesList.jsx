@@ -32,7 +32,7 @@ class RecipesList extends Component {
    *
    * @memberOf RecipesList
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   componentWillMount() {
@@ -45,7 +45,7 @@ class RecipesList extends Component {
     }
   }
 
-   /**
+  /**
    * @description checks if next recipes is fetched and disables is loading
    *
    * @method
@@ -54,7 +54,7 @@ class RecipesList extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.recipeReducer.isFetched) {
@@ -71,7 +71,7 @@ class RecipesList extends Component {
    *
    * @param {Integer} page - current page
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   onChange(page) {
     this.props.history.push(`/recipes?page=${page}`);
@@ -87,14 +87,14 @@ class RecipesList extends Component {
    *
    * @memberOf RecipeList
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   render() {
     const { recipes, pagination } = this.props.recipeReducer;
-    let allRecipes, renderPagination;
+    let allRecipes;
     if (recipes && recipes.length === 0) {
-        allRecipes = <h4 className="center-align">This page has no recipe</h4>;
+      allRecipes = <h4 className="center-align">This page has no recipe</h4>;
     } else if (recipes.length > 0) {
       allRecipes = recipes.map(recipe => (<RecipeCard
         {...this.props}
@@ -105,7 +105,7 @@ class RecipesList extends Component {
     }
     return (
       <div className="body grey lighten-5">
-        <UserMenu {...this.props}/>
+        <UserMenu {...this.props} />
         <div className="main">
           <div className="container">
             <div className="row">
@@ -118,7 +118,7 @@ class RecipesList extends Component {
           </div>
         </div>
         <div className="row s12 m6 l3">
-        { recipes.length > 0 ?
+          { recipes.length > 0 ?
             <Pagination
               onChange={this.onChange}
               current={pagination.currentPage}
@@ -141,6 +141,8 @@ RecipesList.propTypes = {
       pageSize: PropTypes.number,
       totalCount: PropTypes.number
     }),
+    recipes: PropTypes.shape.isRequired,
+    isFetched: PropTypes.bool.isRequired
   }).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired

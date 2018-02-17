@@ -26,7 +26,7 @@ const props = {
   fetchUserRecipes: jest.fn(),
 };
 
-describe('<RecipesList />', () => {
+describe('<UserRecipesList />', () => {
   it('should render correctly', () => {
     const wrapper = shallow(<UserRecipesList {...props} />);
     expect(wrapper).toMatchSnapshot();

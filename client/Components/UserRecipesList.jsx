@@ -8,7 +8,7 @@ import UserRecipeCard from './UserRecipeCard.jsx';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 import * as actionCreators from '../action/actionCreators';
-import { onPageChange, onPageReload } from '../util/pageFunctions'
+import { onPageChange, onPageReload } from '../util/pageFunctions';
 import 'rc-pagination/assets/index.css';
 
 /**
@@ -34,7 +34,7 @@ class UserRecipesList extends Component {
    *
    * @memberOf UserRecipesList
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   componentWillMount() {
@@ -46,7 +46,7 @@ class UserRecipesList extends Component {
     }
   }
 
-   /**
+  /**
    * @description checks if next recipes is fetched and disables isLoading
    *
    * @method
@@ -55,11 +55,13 @@ class UserRecipesList extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   componentWillReceiveProps(nextProps) {
     const { currentUser } = nextProps.userData;
-    const { isFetched, recipes, isDeleted, pagination } = nextProps.userRecipeReducer;
+    const {
+      isFetched, recipes, isDeleted, pagination
+    } = nextProps.userRecipeReducer;
     if (isFetched) {
       this.setState({ isLoading: false });
     } else {
@@ -80,11 +82,9 @@ class UserRecipesList extends Component {
    *
    * @param {page} page - current page
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   onChange(page) {
-    const token = localStorage.getItem('jwtToken');
-    const { user } = jwtDecode(token);
     this.props.history.push(`/user/recipes?page=${page}`);
     const offset = 6 * (page - 1);
     this.props.fetchUserRecipes(this.props.userData.currentuser.id, offset);
@@ -98,16 +98,16 @@ class UserRecipesList extends Component {
    *
    * @memberOf UserRecipesList
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   render() {
     const { recipes, pagination } = this.props.userRecipeReducer;
     let userRecipes;
     if (recipes && recipes.length === 0 && !this.state.isLoading) {
-      userRecipes = <h4 className="center-align">
+      userRecipes = (<h4 className="center-align">
       You have not added any recipe
-      </h4>;
+                     </h4>);
     } else if (recipes.length > 0) {
       userRecipes = recipes.map(recipe => (<UserRecipeCard
         {...this.props}
@@ -117,7 +117,7 @@ class UserRecipesList extends Component {
     }
     return (
       <div className="body grey lighten-5">
-        <UserMenu {...this.props}/>
+        <UserMenu {...this.props} />
         <div className="main">
           <div className="container">
             <div className="row">
@@ -130,7 +130,7 @@ class UserRecipesList extends Component {
           </div>
         </div>
         <div className="row s12 m6 l3">
-        { recipes.length > 0 ?
+          { recipes.length > 0 ?
             <Pagination
               onChange={this.onChange}
               current={pagination.currentPage}
@@ -151,7 +151,19 @@ UserRecipesList.propTypes = {
   userRecipeReducer: PropTypes.shape({
     recipes: PropTypes.shape.isRequired,
     isFetched: PropTypes.bool.isRequired
-  }).isRequired
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string
+  }).isRequired,
+  userData: PropTypes.shape({
+    isAuthenticated: PropTypes.bool.isRequired,
+    currentUser: PropTypes.shape({
+      id: PropTypes.number.isRequired
+    }).isRequired
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

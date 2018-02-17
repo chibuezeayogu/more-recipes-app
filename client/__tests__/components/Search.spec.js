@@ -52,10 +52,3 @@ describe('<Search />', () => {
   });
 });
 
-// describe('<Search />', () => {
-//   it('should call handleChange function', () => {
-//     const wrapper = shallow(<Search {...props} />);
-//     wrapper.find('#searchterm').simulate('change', event);
-//     expect(wrapper.instance().props.search).toHaveBeenCalled();
-//   });
-// });

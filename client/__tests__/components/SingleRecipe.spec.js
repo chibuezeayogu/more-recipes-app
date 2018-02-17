@@ -61,7 +61,7 @@ describe('<SingleRecipe />', () => {
 });
 
 describe('<SingleRecipe />', () => {
-  it('should call handleUpvote', () => {
+  it('should call handleUpvote function', () => {
     const wrapper = shallow(<SingleRecipe {...props} {...state} />);
     const handleUpvoteSpy = jest.spyOn(wrapper.instance(), 'handleUpvote');
     wrapper.instance().handleUpvote();
@@ -71,7 +71,7 @@ describe('<SingleRecipe />', () => {
 });
 
 describe('<SingleRecipe />', () => {
-  it('should call handleUpvote', () => {
+  it('should call handleDownvote function', () => {
     const wrapper = shallow(<SingleRecipe {...props} {...state} />);
     const handleDownvoteSpy = jest.spyOn(wrapper.instance(), 'handleDownvote');
     wrapper.instance().handleDownvote();
@@ -81,7 +81,7 @@ describe('<SingleRecipe />', () => {
 });
 
 describe('<SingleRecipe />', () => {
-  it('should call handleUpvote', () => {
+  it('should call handleAddToFavourite function', () => {
     const wrapper = shallow(<SingleRecipe {...props} {...state} />);
     const handleAddToFavouriteSpy = jest
       .spyOn(wrapper.instance(), 'handleAddToFavourite');

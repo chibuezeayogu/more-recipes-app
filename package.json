@@ -10,14 +10,16 @@
     "dev:client": "webpack --config webpack.config.dev.js --watch",
     "dev:server": "nodemon --watch server --exec babel-node -- server/app.js",
     "start:dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
-    "test:db:migrate": "cross-env NODE_ENV=test sequelize db:migrate:undo:all && cross-env NODE_ENV=test sequelize db:migrate",
-    "test:db:seed": "cross-env NODE_ENV=test sequelize db:seed:all",
+    "test:db:migrate": "NODE_ENV=test sequelize db:migrate:undo:all && NODE_ENV=test sequelize db:migrate",
+    "test:db:seed": "NODE_ENV=test sequelize db:seed:all",
     "start:test:db": "npm run test:db:migrate && npm run test:db:seed",
-    "test": "npm run start:test:db && cross-env NODE_ENV=test nyc mocha ./test/**/*.js --timeout 20000",
+    "test:server": "npm run start:test:db && NODE_ENV=test nyc mocha ./test/**/*.js --timeout 20000",
     "test-b": "SET NODE_ENV=test && nyc --reporter=html mocha --compilers js:babel-core/register ./test/apiTest/user.spec.js --timeout 20000",
-    "migrate-test": "cross-env NODE_ENV=test sequelize db:migrate",
+    "migrate-test": "NODE_ENV=test sequelize db:migrate",
     "heroku-postbuild": "npm run build:client && npm run build:server",
-    "test:client": "jest /client --coverage --collectCoverageFrom=client/**/**/*.{js,jsx}"
+    "test:client": "jest /client --coverage --collectCoverageFrom=client/**/**/*.{js,jsx}",
+    "start:e2e:server": "NODE_ENV=test concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "test:e2e": "NODE_ENV=test npm rum test:db:migrate && nightwatch"
   },
   "author": "Chibueze Ayogu",
   "license": "MIT",
@@ -85,7 +87,6 @@
     "http-server": "^0.10.0",
     "jquery": "2.2.3",
     "jsonwebtoken": "^8.1.1",
-    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
     "mocha": "^3.5.0",
     "moment": "^2.20.1",
@@ -114,7 +115,6 @@
     "standard": "^10.0.3",
     "style-loader": "0.13.1",
     "sweetalert": "^2.1.0",
-    "toastr": "2.1.2",
     "url-loader": "^0.5.7",
     "validate-password": "^1.0.4",
     "webpack": "^3.10.0",
@@ -147,7 +147,6 @@
     "react-test-renderer": "^15.6.2",
     "redux-immutable-state-invariant": "1.2.3",
     "redux-mock-store": "1.0.2",
-    "rimraf": "2.5.2",
-    "tape": "^4.8.0"
+    "rimraf": "2.5.2"
   }
 }

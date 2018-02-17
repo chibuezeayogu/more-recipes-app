@@ -87,7 +87,7 @@ export default {
           });
         }
         return res.status(409).send({
-          message: 'Invalide username or password',
+          message: 'Invalid username or password',
         });
       })
       .catch(error => res.status(400).send({ message: error.message }));

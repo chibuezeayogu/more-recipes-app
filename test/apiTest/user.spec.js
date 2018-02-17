@@ -18,26 +18,26 @@ describe('User:', () => {
       });
   });
   describe('User Sign Up', () => {
-    it(`should return an error message if first name is not
-      supplied`, (done) => {
-      chai.request(app)
-        .post('/api/v1/users/signup')
-        .send({
-          firstName: '',
-          lastName: 'Ayogu',
-          email: 'new@hotmail.com',
-          password: '12345678',
-          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+    it('should return an error message if first name is not supplied',
+      (done) => {
+        chai.request(app)
+          .post('/api/v1/users/signup')
+          .send({
+            firstName: '',
+            lastName: 'Ayogu',
+            email: 'new@hotmail.com',
+            password: '12345678',
+            imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
             v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['first name is required',
-            'first name must be at least 3 characters long']);
-          done();
-        });
-    });
+          })
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body).to.have.keys(['message']);
+            expect(res.body.message).to.eql(['first name is required',
+              'first name must be at least 3 characters long']);
+            done();
+          });
+      });
     it(`should return an  error message if first name lenght is less than
       3 character`, (done) => {
       chai.request(app)
@@ -61,24 +61,24 @@ describe('User:', () => {
     });
     it('should return an error message if last name is not supplied',
       (done) => {
-      chai.request(app)
-        .post('/api/v1/users/signup')
-        .send({
-          firstName: 'chibueze',
-          lastName: '',
-          email: 'new@hotmail.com',
-          password: '12345678',
-          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+        chai.request(app)
+          .post('/api/v1/users/signup')
+          .send({
+            firstName: 'chibueze',
+            lastName: '',
+            email: 'new@hotmail.com',
+            password: '12345678',
+            imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
             v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['last name is required',
-            'last name must be at least 3 character long']);
-          done();
-        });
-    });
+          })
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body).to.have.keys(['message']);
+            expect(res.body.message).to.eql(['last name is required',
+              'last name must be at least 3 character long']);
+            done();
+          });
+      });
     it(`should return an error message if last name is less than
       3 character`, (done) => {
       chai.request(app)
@@ -141,24 +141,24 @@ describe('User:', () => {
     });
     it('should return an error message when password is not supplied!',
       (done) => {
-      chai.request(app)
-        .post('/api/v1/users/signup')
-        .send({
-          firstName: 'chibueze',
-          lastName: 'Ayogu',
-          email: 'new@hotmail.com',
-          password: '',
-          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+        chai.request(app)
+          .post('/api/v1/users/signup')
+          .send({
+            firstName: 'chibueze',
+            lastName: 'Ayogu',
+            email: 'new@hotmail.com',
+            password: '',
+            imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
             v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql(['password is required',
-            'password must be at least 8 characters long']);
-          done();
-        });
-    });
+          })
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body).to.have.keys(['message']);
+            expect(res.body.message).to.eql(['password is required',
+              'password must be at least 8 characters long']);
+            done();
+          });
+      });
     it(`should return an error message if password length is less that 8
       character`, (done) => {
       chai.request(app)
@@ -281,7 +281,7 @@ describe('User:', () => {
         .end((err, res) => {
           expect(res.status).to.equal(409);
           expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql('Invalide username or password');
+          expect(res.body.message).to.eql('Invalid username or password');
           done();
         });
     });
@@ -301,16 +301,16 @@ describe('User:', () => {
   describe('Get User', () => {
     it('should return an error message if no authorization token was found',
       (done) => {
-      chai.request(app)
-        .get('/api/v1/users/1')
-        .end((err, res) => {
-          expect(res.status).to.equal(401);
-          expect(res.body).to.have.keys(['status', 'message']);
-          expect(res.body.status).to.eql('Failed');
-          expect(res.body.message).to.eql('No token provided.');
-          done();
-        });
-    });
+        chai.request(app)
+          .get('/api/v1/users/1')
+          .end((err, res) => {
+            expect(res.status).to.equal(401);
+            expect(res.body).to.have.keys(['status', 'message']);
+            expect(res.body.status).to.eql('Failed');
+            expect(res.body.message).to.eql('No token provided.');
+            done();
+          });
+      });
     it('should return a message if user id is not of type int', (done) => {
       chai.request(app)
         .get('/api/v1/users/e')
@@ -346,19 +346,18 @@ describe('User:', () => {
   });
 
   describe('Update User', () => {
-
     it('should return an error message if no authorization token was found',
       (done) => {
-      chai.request(app)
-        .put('/api/v1/users/1')
-        .end((err, res) => {
-          expect(res.status).to.equal(401);
-          expect(res.body).to.have.keys(['status', 'message']);
-          expect(res.body.status).to.eql('Failed');
-          expect(res.body.message).to.eql('No token provided.');
-          done();
-        });
-    });
+        chai.request(app)
+          .put('/api/v1/users/1')
+          .end((err, res) => {
+            expect(res.status).to.equal(401);
+            expect(res.body).to.have.keys(['status', 'message']);
+            expect(res.body.status).to.eql('Failed');
+            expect(res.body.message).to.eql('No token provided.');
+            done();
+          });
+      });
     it('should return a message if user id is not of type int', (done) => {
       chai.request(app)
         .put('/api/v1/users/e')
@@ -383,23 +382,23 @@ describe('User:', () => {
     });
     it('should return an error message if a user tries to change his email',
       (done) => {
-      chai.request(app)
-        .put('/api/v1/users/1')
-        .set({ Authorization: token })
-        .send({
-          firstName: 'Chibueze',
-          lastName: 'Ayogu',
-          email: 'new@hotmail.com',
-          imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
+        chai.request(app)
+          .put('/api/v1/users/1')
+          .set({ Authorization: token })
+          .send({
+            firstName: 'Chibueze',
+            lastName: 'Ayogu',
+            email: 'new@hotmail.com',
+            imageUrl: `https://res.cloudinary.com/chibuezeayogu/image/upload/
             v1509613064/ll3ej6sclaadc2wcyjdf.jpg`
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(403);
-          expect(res.body).to.have.keys(['message']);
-          expect(res.body.message).to.eql('email cannot be changed');
-          done();
-        });
-    });
+          })
+          .end((err, res) => {
+            expect(res.status).to.equal(403);
+            expect(res.body).to.have.keys(['message']);
+            expect(res.body.message).to.eql('email cannot be changed');
+            done();
+          });
+      });
     it('should return an updated details of a registered user', (done) => {
       chai.request(app)
         .put('/api/v1/users/1')

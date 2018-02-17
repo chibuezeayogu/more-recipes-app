@@ -25,10 +25,6 @@ describe('User Reducer', () => {
     const action = {
       type: actionTypes.FETCH_USER_RECIPES_ERROR,
     };
-    const initialState = {
-      recipes: [],
-      isFetched: false,
-    };
 
     expect(userRecipeReducer(initialState, action).isFetched)
       .toEqual(false);

@@ -43,7 +43,7 @@ export const validateSignUpForm = (value) => {
   if (email.trim().length === 0) {
     errors.emailError = 'email is required';
   } else if (!filter.test(email)) {
-    errors.emailError = 'email is not valide';
+    errors.emailError = 'email is not valid';
   }
 
   if (password.trim().length === 0) {

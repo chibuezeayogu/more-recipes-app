@@ -23,7 +23,7 @@ export class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {void}
+   * @returns {undefined}
    *
    */
   constructor() {
@@ -43,7 +43,7 @@ export class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {void}
+   * @returns {undefined}
    *
    */
   componentWillMount() {
@@ -61,7 +61,7 @@ export class SignIn extends Component {
    *
    * @param {Object} nextProps
    *
-   * @returns {undifined}
+   * @returns {undefined}
    *
    */
   componentWillReceiveProps(nextProps) {
@@ -80,7 +80,7 @@ export class SignIn extends Component {
    *
    * @param {object} event
    *
-   * @returns {undifined}
+   * @returns {undefined}
    *
    */
   handleChange(event) {
@@ -98,7 +98,7 @@ export class SignIn extends Component {
    *
    * @param {Object} event
    *
-   * @returns {void}
+   * @returns {undefined}
    *
    */
   handleOnsubmit(event) {
@@ -111,7 +111,7 @@ export class SignIn extends Component {
     this.props.login(email, password);
   }
 
-   /**
+  /**
    *
    * @description renders JSX element
    *
@@ -119,7 +119,7 @@ export class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {undifiend} 
+   * @returns {undefined}
    *
    */
   render() {
@@ -170,6 +170,7 @@ export class SignIn extends Component {
               <div className="row">
                 <button
                   className="btn right green form-margin"
+                  id="login"
                   type="submit"
                   name="action"
                 >Login

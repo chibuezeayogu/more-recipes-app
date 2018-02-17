@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 const Comments = (props) => {
   const { review } = props;
@@ -11,17 +12,23 @@ const Comments = (props) => {
         className="circle responsive-img"
       />
       <span className="text-title bold">{review.User.firstName}</span>
-   
-      <p 
-        className="" 
-        style={{ wordWrap: 'break-word' }}>
+
+      <p
+        className=""
+        style={{ wordWrap: 'break-word' }}
+      >
         {review.comment}
       </p>
       <div className="secondary-content">
-      { moment(new Date(review.createdAt)).fromNow()}
+        { moment(new Date(review.createdAt)).fromNow()}
       </div>
     </li>
   );
 };
+
+Comments.propTypes = {
+  review: PropTypes.func.isRequired
+};
+
 
 export default Comments;

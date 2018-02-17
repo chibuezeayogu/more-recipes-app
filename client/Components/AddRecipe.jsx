@@ -8,7 +8,7 @@ import { createRecipe } from '../action/actionCreators';
 import SmallPreloader from './SmallPreloader.jsx';
 import Footer from './Footer/Footer.jsx';
 import UserMenu from './Header/UserMenu.jsx';
-import imageToFormData from '../util/ImageUpload';
+import imageToFormData from '../util/imageUpload';
 import { validateAddRecipeForm } from '../util/validateInputs';
 
 
@@ -21,14 +21,14 @@ import { validateAddRecipeForm } from '../util/validateInputs';
  *
  */
 class AddRecipe extends Component {
-   /**
+  /**
    * @description initialize state and binds functiom
    *
    * @constructor
    *
    * @memberOf AddRecipe
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   constructor() {
@@ -47,16 +47,16 @@ class AddRecipe extends Component {
     this.handleOnsubmit = this.handleOnsubmit.bind(this);
   }
 
-   /**
+  /**
    * @description routes to /recipes if user is authenticated
    *
    * @method
    *
    * @memberOf AddRecipe
    *
-   * @param {Object} nextProps - 
+   * @param {Object} nextProps - nextprops Object
    *
-   * @returns {Undefined} - 
+   * @returns {undefined}
    *
    */
   componentWillReceiveProps(nextProps) {
@@ -65,16 +65,16 @@ class AddRecipe extends Component {
     }
   }
 
-/**
+  /**
    * @description Set the state of user input
    *
    * @method
    *
    * @memberOf SignUp
    *
-   * @param {Object}} event - event object
+   * @param {Object} event - event object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   handleChange(event) {
     event.preventDefault();
@@ -91,7 +91,7 @@ class AddRecipe extends Component {
    *
    * @param {Object} event - event object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   handleImageChange(event) {
     event.preventDefault();
@@ -108,9 +108,9 @@ class AddRecipe extends Component {
    *
    * @memberOf AddRecipe
    *
-   * @param {Object}} event 
+   * @param {Object} event - event object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   handleOnsubmit(event) {
@@ -121,16 +121,16 @@ class AddRecipe extends Component {
     }
     this.setState({ disabled: true });
     const uploadData = imageToFormData(this.state.image);
-    delete axios.defaults.headers.common['Authorization'];
+    delete axios.defaults.headers.common.Authorization;
 
     axios(uploadData)
       .then((data) => {
-      this.setState({ imageUrl: data.data.secure_url });
-      this.props.createRecipe(this.state);
-    }).catch((error) => { 
-      this.setState({ disabled: false });
-      Materialize.toast("Error! Please try again", 4000, 'red');
-    });
+        this.setState({ imageUrl: data.data.secure_url });
+        this.props.createRecipe(this.state);
+      }).catch(() => {
+        this.setState({ disabled: false });
+        Materialize.toast('Error! Please try again', 4000, 'red');
+      });
   }
 
   /**
@@ -141,16 +141,16 @@ class AddRecipe extends Component {
    *
    * @memberOf SignUp
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   render() {
     return (
       <div className="body grey lighten-5">
-        <UserMenu {...this.props}/>
+        <UserMenu {...this.props} />
         <div className="main">
           <div className="container">
-            <div className="addrecipe-form ">
+            <div className="addrecipe-form">
               <div className="col l6 m8 s12 offset-l6 offset-m4">
                 <h4 className="center">Add Recipe</h4>
                 <hr />
@@ -220,34 +220,40 @@ class AddRecipe extends Component {
                   </span>
                 </div>
                 <div className="row">
-                  <div 
-                    className="file-field input-field" 
-                    style={{ marginLeft: 10, marginRight: 10 }}>
+                  <div
+                    className="file-field input-field"
+                    style={{ marginLeft: 10, marginRight: 10 }}
+                  >
                     <div className="btn green">
-                      <span> 
+                      <span>
                         <i className="material-icons">insert_photo
                         </i>
                       </span>
-                      <input 
-                        type="file" 
-                        multiple 
-                        onChange={event => this.handleImageChange(event)} />
+                      <input
+                        type="file"
+                        id="fileSelect"
+                        multiple
+                        onChange={event => this.handleImageChange(event)}
+                      />
                     </div>
                     <div className="file-path-wrapper">
-                      <input 
-                        className="file-path validate" 
-                        type="text" 
-                        placeholder="Upload recipe image" />
+                      <input
+                        id="file"
+                        className="file-path validate"
+                        type="text"
+                        placeholder="Upload recipe image"
+                      />
                     </div>
                     <span className="right red-text error-margin">
-                    {this.state.errors.imageError}
-                  </span>
+                      {this.state.errors.imageError}
+                    </span>
                   </div>
                 </div>
                 <div className="row">
                   <button
                     className="btn right green"
                     type="submit"
+                    id="post"
                     name="action"
                     disabled={this.state.disabled}
                     style={{ marginRight: 10 }}

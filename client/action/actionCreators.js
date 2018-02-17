@@ -18,7 +18,9 @@ import actionTypes from './actionTypes';
  *
  */
 export const createRecipe = (state) => {
-  const { title, description, ingredients, procedures, imageUrl } = state;
+  const {
+    title, description, ingredients, procedures, imageUrl
+  } = state;
   return {
     type: actionTypes.ADD_RECIPE,
     title,
@@ -27,7 +29,7 @@ export const createRecipe = (state) => {
     procedures,
     imageUrl
   };
-}
+};
 
 /**
  *
@@ -102,7 +104,7 @@ export const fetchRecipeComment = recipeId => ({
 });
 
 /**
- * 
+ *
  * @description dispatches action to post review for recipe
  *
  * @method
@@ -158,8 +160,10 @@ export const login = (email, password) => ({
  *
  */
 export const createAccount = (state) => {
-  const { firstName, lastName, email, password, imageUrl } = state;
-   return {
+  const {
+    firstName, lastName, email, password, imageUrl
+  } = state;
+  return {
     type: actionTypes.SIGN_UP,
     firstName,
     lastName,
@@ -167,94 +171,94 @@ export const createAccount = (state) => {
     password,
     imageUrl
   };
-}
+};
 
-  /**
-   * 
+/**
+   *
    * @description dispatches an action to fetch all recipes in the db
-   * 
+   *
    * @param {Integer} offset - query offset
-   * 
+   *
    * @returns {void}
    */
-  export const fetchAllRecipes = offset => ({
-    type: actionTypes.FETCH_ALL_RECIPES,
-    offset
-  });
+export const fetchAllRecipes = offset => ({
+  type: actionTypes.FETCH_ALL_RECIPES,
+  offset
+});
 
-   /**
-   * 
+/**
+   *
    * @description dispatches user logout action
-   * 
+   *
    * @method
-   * 
+   *
    * @returns {void}
    */
-  export const signOut = () => ({
-    type: actionTypes.LOGOUT
-  });
+export const signOut = () => ({
+  type: actionTypes.LOGOUT
+});
 
   /**
-   * 
+   *
    * @description dispatches fetch recipe action
-   * 
+   *
    * @method
-   * 
+   *
    * @returns {void}
    */
-  export const fetchRecipe = id => ({
-    type: actionTypes.FETCH_RECIPE,
-    id
-  });
+export const fetchRecipe = id => ({
+  type: actionTypes.FETCH_RECIPE,
+  id
+});
 
   /**
-   * 
+   *
    * @description dispatches action to fetch user favourite recipes
    *
    * @method
-   * 
+   *
    * @param {Integer} userId - user id
-   * 
+   *
    * @returns {void}
    */
-  export const fetchUserFavourites = (userId, offset) => ({
-    type: actionTypes.FETCH_USER_FAVOURITE_RECIPES,
-    userId,
-    offset
-  });
+export const fetchUserFavourites = (userId, offset) => ({
+  type: actionTypes.FETCH_USER_FAVOURITE_RECIPES,
+  userId,
+  offset
+});
 
   /**
-   * 
+   *
    * @description dispatches action to fetch user recipes
    *
    * @method
-   * 
+   *
    * @param {Integer} userId - user id
-   * 
+   *
    * @param {Integer} offset - query offset
-   * 
+   *
    * @returns {void}
    */
-  export const fetchUserRecipes = (userId, offset) => ({
-    type: actionTypes.FETCH_USER_RECIPES,
-    userId,
-    offset
-  });
+export const fetchUserRecipes = (userId, offset) => ({
+  type: actionTypes.FETCH_USER_RECIPES,
+  userId,
+  offset
+});
 
 /**
-   * 
+   *
    * @description dispatches action to search for recipes
    *
    * @method
-   * 
+   *
    * @param {Integer} searchTerm - searched word
-   * 
+   *
    * @returns {void}
    */
-  export const search = searchTerm => ({
-    type: actionTypes.SEARCH_RECIPE,
-    searchTerm
-  });
+export const search = searchTerm => ({
+  type: actionTypes.SEARCH_RECIPE,
+  searchTerm
+});
 
 
 // export const mostUpvotedRecipe = () => ({
@@ -279,7 +283,9 @@ export const createAccount = (state) => {
  *
  */
 export const editRecipe = (state) => {
-  const { id, title, description, ingredients, procedures, imageUrl } = state;
+  const {
+    id, title, description, ingredients, procedures, imageUrl
+  } = state;
   return {
     type: actionTypes.EDIT_RECIPE,
     id,
@@ -309,8 +315,10 @@ export const editRecipe = (state) => {
  *
  */
 export const editProfile = (state) => {
-  const { id, firstName, lastName, location, phone, address, imageUrl } = state;
-   return {
+  const {
+    id, firstName, lastName, location, phone, address, imageUrl
+  } = state;
+  return {
     type: actionTypes.EDIT_PROFILE,
     id,
     firstName,
@@ -320,7 +328,7 @@ export const editProfile = (state) => {
     address,
     imageUrl
   };
-}
+};
 
 /**
  *
@@ -331,10 +339,10 @@ export const editProfile = (state) => {
  * @returns {Object} payload
  *
  */
-export const fetchUser = (id) => ({
+export const fetchUser = id => ({
   type: actionTypes.FETCH_USER,
   id
-})
+});
 
 
 /**
@@ -346,10 +354,10 @@ export const fetchUser = (id) => ({
  * @returns {Object} payload
  *
  */
-export const setCurrentUser = (user) => ({
+export const setCurrentUser = user => ({
   type: actionTypes.SET_CURRENT_USER,
   user
-})
+});
 
 /**
  *
@@ -360,4 +368,4 @@ export const setCurrentUser = (user) => ({
  */
 export const fetchRecipesWithMostUpvote = () => ({
   type: actionTypes.FETCH_MOST_UPVOTED_RECIPES,
-})
+});

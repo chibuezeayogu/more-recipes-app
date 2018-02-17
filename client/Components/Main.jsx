@@ -15,7 +15,6 @@ import Footer from './Footer/Footer.jsx';
  *
  */
 export class Main extends Component {
-
   /**
    * @description checks if a user is signed in
    *
@@ -23,7 +22,7 @@ export class Main extends Component {
    *
    * @memberOf Main
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   componentWillMount() {
@@ -39,14 +38,14 @@ export class Main extends Component {
    *
    * @memberOf Main
    *
-   * @returns {Unddfined}
+   * @returns {undefined}
    *
    */
   componentDidMount() {
     $('.parallax').parallax();
     $('.button-collapse').sideNav();
   }
-/**
+  /**
    *
    * @description renders JSX element
    *
@@ -54,7 +53,7 @@ export class Main extends Component {
    *
    * @memberOf Mian
    *
-   * @returns {Unddfined}
+   * @returns {undefined}
  */
   render() {
     return (

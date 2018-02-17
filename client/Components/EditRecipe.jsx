@@ -8,7 +8,7 @@ import SmallPreloader from './SmallPreloader.jsx';
 import Footer from './Footer/Footer.jsx';
 import UserMenu from './Header/UserMenu.jsx';
 import { validateEditRecipeForm } from '../util/validateInputs';
-import imageToFormData from '../util/ImageUpload';
+import imageToFormData from '../util/imageUpload';
 
 
 /**
@@ -20,14 +20,14 @@ import imageToFormData from '../util/ImageUpload';
  *
  */
 class EditRecipe extends Component {
-   /**
+  /**
    * @description initialize state and binds functiom
    *
    * @constructor
    *
    * @memberOf EditRecipe
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   constructor() {
@@ -38,7 +38,7 @@ class EditRecipe extends Component {
       description: '',
       ingredients: '',
       procedures: '',
-      imageUrl:'',
+      imageUrl: '',
       image: {},
       errors: {},
       disabled: false,
@@ -47,14 +47,14 @@ class EditRecipe extends Component {
     this.handleOnsubmit = this.handleOnsubmit.bind(this);
   }
 
-   /**
+  /**
    * @description routes to /recipes if user is authenticated
    *
    * @method
    *
    * @memberOf EditRecipe
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   componentWillMount() {
@@ -71,7 +71,7 @@ class EditRecipe extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   componentWillReceiveProps(nextProps) {
     const { isFetched, isUpdated, recipes } = nextProps.userRecipeReducer;
@@ -86,7 +86,7 @@ class EditRecipe extends Component {
         ingredients: recipes[index].ingredients,
         procedures: recipes[index].procedures,
         imageUrl: recipes[index].imageUrl,
-        isLoading: false 
+        isLoading: false
       });
     } else if (isUpdated) {
       this.props.history.goBack();
@@ -102,7 +102,7 @@ class EditRecipe extends Component {
    *
    * @param {Object} event - event object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   handleChange(event) {
     event.preventDefault();
@@ -119,7 +119,7 @@ class EditRecipe extends Component {
    *
    * @param {Object} event - event object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
   handleImageChange(event) {
     event.preventDefault();
@@ -137,7 +137,7 @@ class EditRecipe extends Component {
    *
    * @param {Object} event - event object
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   handleOnsubmit(event) {
@@ -147,18 +147,18 @@ class EditRecipe extends Component {
       return this.setState({ errors: err.errors });
     }
     this.setState({ disabled: true });
-    
+
     if (this.state.image.name) {
       const uploadData = imageToFormData(this.state.image);
-      delete axios.defaults.headers.common['Authorization'];
+      delete axios.defaults.headers.common.Authorization;
       axios(uploadData)
         .then((data) => {
-        this.setState({ imageUrl: data.data.secure_url });
-        this.props.editRecipe(this.state);
-      }).catch((error) => { 
-        this.setState({ disabled: false });
-        Materialize.toast("Error! Please try again", 4000, 'red');
-      });
+          this.setState({ imageUrl: data.data.secure_url });
+          this.props.editRecipe(this.state);
+        }).catch(() => {
+          this.setState({ disabled: false });
+          Materialize.toast('Error! Please try again', 4000, 'red');
+        });
     } else {
       this.props.editRecipe(this.state);
     }
@@ -172,39 +172,40 @@ class EditRecipe extends Component {
    *
    * @memberOf SignUp
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    *
    */
   render() {
     const { isFetched, recipes } = this.props.userRecipeReducer;
-    
+
     if (this.state.isLoading) {
       return (
         <div className="body grey lighten-5">
-            <UserMenu {...this.props} />
-            <div className="main">
-              <div className="container">
-                <Preloader />
-              </div>
+          <UserMenu {...this.props} />
+          <div className="main">
+            <div className="container">
+              <SmallPreloader />
             </div>
-          <Footer />
           </div>
-        )
-      }
-      
-    if(isFetched === false && !recipes) {
+          <Footer />
+        </div>
+      );
+    }
+
+    if (isFetched === false && !recipes) {
       return (
         <div className="body grey lighten-5">
           <UserMenu {...this.props} />
           <div className="main">
             <div className="container">
               <h4 className="center-align" style={{ marginTop: 200 }}>
-                No recipe found</h4>
+                No recipe found
+              </h4>
             </div>
           </div>
-        <Footer />
+          <Footer />
         </div>
-      )
+      );
     }
 
     return (
@@ -281,29 +282,33 @@ class EditRecipe extends Component {
                   </span>
                 </div>
                 <div className="row">
-                  <div className="file-field input-field"
-                    style={{ marginLeft: 10, marginRight: 10 }}>
+                  <div
+                    className="file-field input-field"
+                    style={{ marginLeft: 10, marginRight: 10 }}
+                  >
                     <div className="btn green">
-                      <span> 
-                        <i 
+                      <span>
+                        <i
                           className="material-icons"
                         >insert_photo
                         </i>
                       </span>
-                      <input 
-                        type="file" 
-                        multiple 
-                        onChange={event => this.handleImageChange(event)} />
+                      <input
+                        type="file"
+                        multiple
+                        onChange={event => this.handleImageChange(event)}
+                      />
                     </div>
                     <div className="file-path-wrapper">
-                      <input 
-                        className="file-path validate" 
+                      <input
+                        className="file-path validate"
                         type="text"
-                        placeholder="Upload recipe image" />
+                        placeholder="Upload recipe image"
+                      />
                     </div>
                     <span className="right red-text error-margin">
-                    {this.state.errors.imageError}
-                  </span>
+                      {this.state.errors.imageError}
+                    </span>
                   </div>
                 </div>
                 <div className="row">
@@ -344,12 +349,14 @@ EditRecipe.propTypes = {
   }).isRequired,
   userRecipeReducer: PropTypes.shape({
     isFetched: PropTypes.bool.isRequired
-  }).isRequired
+  }).isRequired,
+  recipes: PropTypes.shape({}).isRequired
 };
 
 const mapStateToProps = state => ({
   userRecipeReducer: state.userRecipeReducer,
 });
 
-export default connect(mapStateToProps, { editRecipe, fetchRecipe })(EditRecipe);
+export default connect(mapStateToProps,
+  { editRecipe, fetchRecipe })(EditRecipe);
 

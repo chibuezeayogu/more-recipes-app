@@ -78,7 +78,7 @@ describe('handleOnSubmit', () => {
     expect(wrapper.instance().state.errors.imageError)
       .toBe('select a valid file type');
   });
-
+  
   it('should return error for input did not meet the required length', () => {
     const wrapper = shallow(<AddRecipe {...props} {...state} />);
     wrapper.setState({

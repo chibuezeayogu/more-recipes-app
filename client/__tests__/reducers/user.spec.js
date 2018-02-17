@@ -18,19 +18,20 @@ describe('User Reducer', () => {
 });
 
 describe('User Reducer', () => {
-  it('should handle SIGN_IN_SUCCESS, SIGN_UP_SUCCESS OR SET_CURRENT_USER',
-    () => {
-      const action = {
-        type: actionTypes.SIGN_IN_SUCCESS
+  it(`should handle SIGN_IN_SUCCESS, SIGN_UP_SUCCESS OR SET_CURRENT_USER
+    action type`,
+  () => {
+    const action = {
+      type: actionTypes.SIGN_IN_SUCCESS
           || actionTypes.SIGN_UP_SUCCESS
           || actionTypes.SET_CURRENT_USER,
-        user: { id: 1, email: 'chibuezeayogu@hotmial.com' }
-      };
+      user: { id: 1, email: 'chibuezeayogu@hotmial.com' }
+    };
 
-      expect(user(initialState, action).isAuthenticated).toEqual(true);
-      expect(user(initialState, action).currentUser)
-        .toEqual({ id: 1, email: 'chibuezeayogu@hotmial.com' });
-    });
+    expect(user(initialState, action).isAuthenticated).toEqual(true);
+    expect(user(initialState, action).currentUser)
+      .toEqual({ id: 1, email: 'chibuezeayogu@hotmial.com' });
+  });
 });
 
 describe('User Reducer', () => {
@@ -56,7 +57,7 @@ describe('User Reducer', () => {
 });
 
 describe('User Reducer', () => {
-  it('should handle LOGOUT', () => {
+  it('should handle LOGOUT action type', () => {
     const action = {
       type: actionTypes.LOGOUT,
     };

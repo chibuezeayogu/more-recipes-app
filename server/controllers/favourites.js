@@ -73,7 +73,6 @@ export default {
    *
    */
   getUserFavourites(req, res) {
-
     /**
      * query limit: get query limit if supplie else use default
      * query offset: get query offset if supplie else use default
@@ -103,27 +102,25 @@ export default {
             message: 'You have not added any recipe to your favourite'
           });
         }
-        console.log(favourites.count, 'favourite pagination');
-         /**
+
+        /**
          * pass query limit, query offset, recipedata.count to pagenate helper
          * and return totalCount, currentPage, pageCount, and pageSize
          * to pagination
          */
         const pagination = paginate(query.limit, query.offset, favourites.count);
 
-        console.log(paginate, 'favourite pagination');
-
         return res.status(200).send(
           {
             pagination,
             favourites: favourites.rows,
-        });
+          });
       })
       .catch(error => res.status(400).send({ message: error.message }));
   },
 
-/**
-   * 
+  /**
+   *
    * @description get user favourite recipe Ids
    *
    * @param {Object} req - Request object

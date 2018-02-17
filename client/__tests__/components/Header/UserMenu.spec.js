@@ -11,7 +11,7 @@ const props = {
   },
 };
 
-describe('UserMenu Component', () => {
+describe('<UserMenu />', () => {
   it('render the user menu without crashing', () => {
     const wrapper = shallow(<UserMenu {...props} />);
     wrapper.instance().componentDidMount();

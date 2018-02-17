@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 import { signOut } from '../../action/actionCreators';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
 
 /**
  * menu component athenticated users
@@ -21,7 +19,7 @@ export class UserMenu extends Component {
    *
    * @memberOf UserMenu
    *
-   * @returns {void}
+   * @returns {undefined}
    *
    */
   componentDidMount() {
@@ -32,7 +30,10 @@ export class UserMenu extends Component {
       belowOrigin: true,
       alignment: 'right',
     });
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav({
+      closeOnClick: true,
+      draggable: false,
+    });
   }
 
   /**
@@ -44,7 +45,7 @@ export class UserMenu extends Component {
    *
    * @param {Object} event - even object
    *
-   * @returns {undefiend}
+   * @returns {undefined}
    *
    */
   logout(event) {
@@ -73,7 +74,7 @@ export class UserMenu extends Component {
             <div className="nav-wrapper black">
               <a href="#!" className="brand-logo">
                 <img
-                  src={'https://res.cloudinary.com/chibuezeayogu/image/upload'+
+                  src={'https://res.cloudinary.com/chibuezeayogu/image/upload' +
                     '/v1516130489/yy3vdswodkvr3mj5lts1.jpg'}
                   className="responsive-img image-radius"
                   alt=""
@@ -109,11 +110,14 @@ export class UserMenu extends Component {
                     className="dropdown-button"
                     data-activates="dropdown"
                     data-beloworigin="true"
+                    id="displayEmail"
                   > {this.props.userData.currentUser.email}
                     <i className="material-icons right">arrow_drop_down</i>
                   </a>
                 </li>
               </ul>
+
+
               <ul
                 className="side-nav"
                 id="mobile-demo"
@@ -166,32 +170,39 @@ export class UserMenu extends Component {
 
         <ul id="dropdown" className="dropdown-content black-text">
           <div className="divider" />
-          <li className="black-text">
+          <li className="black-text" id="profile">
             <Link to="/user/profile" className="black-text">
-              <i 
-                className="fa fa-user black-text" 
-                aria-hidden="true" /> My Profile
+              <i
+                className="fa fa-user black-text"
+                aria-hidden="true"
+              /> My Profile
             </Link>
           </li>
           <div className="divider" />
-          <li className="black-text">
+          <li className="black-text" id="myRecipes">
             <Link to="/user/recipes" className="black-text">
-              <i className="fa fa-cutlery black-text" 
-                aria-hidden="true" /> My Recipes
+              <i
+                className="fa fa-cutlery black-text"
+                aria-hidden="true"
+              /> My Recipes
             </Link>
           </li>
           <div className="divider" />
-          <li className="black-text">
+          <li className="black-text" id="myfavourite">
             <Link to="/user/favourites" className="black-text">
-              <i className="fa fa-heart black-text" 
-                aria-hidden="true" /> My Favourites
+              <i
+                className="fa fa-heart black-text"
+                aria-hidden="true"
+              /> My Favourites
             </Link>
           </li>
           <div className="divider" />
-          <li className="black-text">
+          <li className="black-text" id="logout">
             <Link to="/" onClick={e => this.logout(e)} className="black-text">
-              <i className="fa fa-sign-out black-text"
-                aria-hidden="true" /> Logout
+              <i
+                className="fa fa-sign-out black-text"
+                aria-hidden="true"
+              /> Logout
             </Link>
           </li>
         </ul>
@@ -203,6 +214,15 @@ export class UserMenu extends Component {
 
 UserMenu.propTypes = {
   signOut: PropTypes.func.isRequired,
+  userData: PropTypes.shape({
+    currentUser: PropTypes.shape({
+      email: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired
+    }).isRequired,
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

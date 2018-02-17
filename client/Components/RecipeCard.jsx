@@ -1,5 +1,4 @@
 import React from 'react';
-import jwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
@@ -12,7 +11,7 @@ import moment from 'moment';
  *
  * @param {Object} props - property object
  *
- *  @returns {Undefined}
+ *  @returns {undefined}
  */
 const RecipeCard = (props) => {
   const { recipe } = props;
@@ -27,7 +26,7 @@ const RecipeCard = (props) => {
             style={{ width: '100%' }}
           />
         </Link>
-        <div 
+        <div
           className="card-content black-text grey lighten-5">
           <span className="card-title text-title truncate">
             {recipe.title}
@@ -41,7 +40,8 @@ const RecipeCard = (props) => {
           </p>
         </div>
         <div className="card-action black-text center grey lighten-4"
-          style={{ margin: 5 }}>
+          style={{ margin: 5 }}
+        >
           <a className="black-text">
               <i className="fa fa-thumbs-up" 
               aria-hidden="true"> {recipe.upvotes}
@@ -49,7 +49,7 @@ const RecipeCard = (props) => {
           </a>
           <a className="black-text">
             <i className="fa fa-thumbs-o-down" aria-hidden="true"> {recipe.downvotes}
-            </i>  
+            </i>
           </a>
           <a className="black-text">
             <i className="fa fa-eye" aria-hidden="true"> {recipe.views}

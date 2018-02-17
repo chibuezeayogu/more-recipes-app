@@ -6,7 +6,7 @@ import userSingUp from '../__mock__/actionMockData';
 const id = 1;
 
 describe('SIGN_UP action', () => {
-  it('it should dispatch SIGN_UP action', () => {
+  it('should dispatch SIGN_UP action', () => {
     const user = {
       firstName: 'Chibueze',
       lastName: 'Ayogu',
@@ -25,7 +25,7 @@ describe('SIGN_UP action', () => {
 });
 
 describe('SIGN_IN action', () => {
-  it('it should dispatch SIGN_IN action', () => {
+  it('should dispatch SIGN_IN action', () => {
     const email = 'chibuezeayogu@hotmail.com';
     const password = 'Abc12345.@';
     const expectedResult = {
@@ -40,7 +40,7 @@ describe('SIGN_IN action', () => {
 });
 
 describe('DELETE_RECIPE action', () => {
-  it('it should dispatch DELETE_RECIPE action', () => {
+  it('should dispatch DELETE_RECIPE action', () => {
     const expectedResult = {
       type: actionTypes.DELETE_RECIPE,
       id
@@ -52,7 +52,7 @@ describe('DELETE_RECIPE action', () => {
 });
 
 describe('POST_COMMENT action', () => {
-  it('it should dispatch POST_COMMENT action', () => {
+  it('should dispatch POST_COMMENT action', () => {
     const comment = 'nice recipe';
     const id = 2;
     const postedBy = 1;
@@ -69,7 +69,7 @@ describe('POST_COMMENT action', () => {
 });
 
 describe('FETCH_ALL_RECIPES action', () => {
-  it('it should dispatch FETCH_ALL_RECIPES action', () => {
+  it('should dispatch FETCH_ALL_RECIPES action', () => {
     const offset = 0;
     const expectedResult = {
       type: actionTypes.FETCH_ALL_RECIPES,
@@ -82,7 +82,7 @@ describe('FETCH_ALL_RECIPES action', () => {
 });
 
 describe('FETCH_RECIPE action', () => {
-  it('it should dispatch FETCH_RECIPE action', () => {
+  it('should dispatch FETCH_RECIPE action', () => {
     const id = 0;
     const expectedResult = {
       type: actionTypes.FETCH_RECIPE,
@@ -95,7 +95,7 @@ describe('FETCH_RECIPE action', () => {
 });
 
 describe('FETCH_USER_FAVOURITE_RECIPES action', () => {
-  it('it should dispatch FETCH_USER_FAVOURITE_RECIPES action', () => {
+  it('should dispatch FETCH_USER_FAVOURITE_RECIPES action', () => {
     const userId = 1;
     const offset = 0;
     const expectedResult = {
@@ -111,7 +111,7 @@ describe('FETCH_USER_FAVOURITE_RECIPES action', () => {
 
 
 describe('FETCH_USER_RECIPES action', () => {
-  it('it should dispatch FETCH_USER_RECIPES action', () => {
+  it('should dispatch FETCH_USER_RECIPES action', () => {
     const userId = 1;
     const offset = 0;
     const expectedResult = {
@@ -126,7 +126,7 @@ describe('FETCH_USER_RECIPES action', () => {
 });
 
 describe('SET_CURRENT_USER action', () => {
-  it('it should dispatch SET_CURRENT_USER action', () => {
+  it('should dispatch SET_CURRENT_USER action', () => {
     const user = { id: 3, email: 'chibuezeayogu@hotmail.com' };
     const expectedResult = {
       type: actionTypes.SET_CURRENT_USER,
@@ -139,7 +139,7 @@ describe('SET_CURRENT_USER action', () => {
 });
 
 describe('FETCH_USER action', () => {
-  it('it should dispatch FETCH_USER action', () => {
+  it('should dispatch FETCH_USER action', () => {
     const id = 3;
     const expectedResult = {
       type: actionTypes.FETCH_USER,
@@ -152,7 +152,7 @@ describe('FETCH_USER action', () => {
 });
 
 describe('FETCH_MOST_UPVOTED_RECIPES action', () => {
-  it('it should dispatch FETCH_MOST_UPVOTED_RECIPES action', () => {
+  it('should dispatch FETCH_MOST_UPVOTED_RECIPES action', () => {
     const expectedResult = {
       type: actionTypes.FETCH_MOST_UPVOTED_RECIPES,
     };

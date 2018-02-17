@@ -10,8 +10,7 @@ import {
 } from '../../sagas/comment';
 
 describe('Watch Post Comment Saga Function', () => {
-  it(`should call fetchUserFavouriteRecipes if
-    FETCH_USER_FAVOURITE_RECIPES action is dispatched`, () => {
+  it('should call postComment if POST_COMMENT action is dispatched', () => {
     const gen = watchPostComment();
 
     assert.deepEqual(gen.next().value,
@@ -33,8 +32,8 @@ describe('Watch Fetch Recipe Comment Saga Function', () => {
     });
 });
 
-describe('Fetch User Favourite Recipes Saga Function', () => {
-  it(`should make API call to up vote a recipe and dispatch response data
+describe('Fetch Recipe Comment Saga Function', () => {
+  it(`should make API call to recipe comment and dispatch response data
     to reducer`, () => {
     const action = {
       recipeId: 1,
