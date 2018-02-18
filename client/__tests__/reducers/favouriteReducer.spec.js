@@ -42,7 +42,6 @@ describe('Favourite Reducer', () => {
 
 describe('Favourite Reducer', () => {
   it('should handle ADD_OR_REMOVE_FAVOURITE_SUCCESS action type', () => {
-
     const initialState = {
       favourites: mockData.favourites.favourites,
       isDeleted: true,
@@ -65,7 +64,7 @@ describe('Favourite Reducer', () => {
   });
 });
 describe('Favourite Reducer', () => {
-  it('should handle ETCH_USER_FAVOURITE_RECIPES_ERROR', () => {
+  it('should handle FETCH_USER_FAVOURITE_RECIPES_ERROR action type', () => {
     const initialState = {
       isFetched: true,
     };

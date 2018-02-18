@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<RecipesList /> should render correctly 1`] = `
+exports[`<UserRecipesList /> should render correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   "node": <div

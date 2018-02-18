@@ -33,7 +33,7 @@ export class UserFavouritesList extends Component {
    *
    * @memberOf UserFavouritesList
    *
-   * @returns {undefined} - no return value
+   * @returns {undefined}
    *
    */
   componentWillMount() {
@@ -54,15 +54,12 @@ export class UserFavouritesList extends Component {
    *
    * @param {Object} nextProps - nextProps object
    *
-   * @returns {undefined} - no return value
+   * @returns {undefined}
    */
   componentWillReceiveProps(nextProps) {
     const { currentUser } = nextProps.userData;
     const {
-      isFetched,
-      favourites,
-      isDeleted,
-      pagination
+      isFetched, favourites, isDeleted, pagination
     } = nextProps.favouriteReducer;
     if (isFetched) {
       this.setState({ isLoading: false });
@@ -84,7 +81,7 @@ export class UserFavouritesList extends Component {
    *
    * @param {page} page - current page
    *
-   * @returns {undefined} - no return value
+   * @returns {undefined}
    */
   onChange(page) {
     const { currentUser } = this.props.userData;
@@ -101,16 +98,17 @@ export class UserFavouritesList extends Component {
    *
    * @memberOf UserFavouritesList
    *
-   * @returns {void}
+   * @returns {undefiend} renders JSX element
    *
    */
   render() {
     const { favourites, pagination } = this.props.favouriteReducer;
     let favouriteRecipes;
     if (favourites && favourites.length === 0 && !this.state.isLoading) {
-      favouriteRecipes = <h4 className="center-align">
+      favouriteRecipes = (<h4 className="center-align">
       You have no recipe in your favourite
-      </h4>;
+      </h4>
+      );
     } else if (favourites.length > 0) {
       favouriteRecipes = favourites.map(favourite => (<UserFavouriteCard
         {...this.props}
@@ -154,8 +152,9 @@ UserFavouritesList.propTypes = {
     pagination: PropTypes.shape({
       currentPage: PropTypes.number,
       pageSize: PropTypes.number,
-      totalCount: PropTypes.number
+      totalCount: PropTypes.number,
     }),
+    favourites: PropTypes.shape.isRequired,
   }).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
@@ -164,6 +163,10 @@ UserFavouritesList.propTypes = {
     search: PropTypes.string
   }).isRequired,
   fetchUserFavourites: PropTypes.func.isRequired,
+  userData: PropTypes.shape({
+    isAuthenticated: PropTypes.bool.isRequired,
+    currentUser: PropTypes.shape.isRequired
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

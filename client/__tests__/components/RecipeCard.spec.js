@@ -8,7 +8,7 @@ const props = {
   recipe: mockData.recipe
 };
 
-describe('<UserRecipeCard />', () => {
+describe('<RecipeCardd />', () => {
   it('should render correctly', () => {
     const wrapper = shallow(<RecipeCard {...props} />);
     expect(wrapper).toMatchSnapshot();

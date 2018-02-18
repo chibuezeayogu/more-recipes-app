@@ -1,7 +1,6 @@
 import React from 'react';
 import expect from 'expect';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
 import mochData from '../__mock__/actionMockData';
 import { UserProfile } from '../../Components/UserProfile';
 
@@ -81,7 +80,7 @@ describe('handleCancel function', () => {
 describe('handleImageChange function', () => {
   it('should set image state to user selected image', () => {
     const wrapper = shallow(<UserProfile {...props} {...state} />);
-    wrapper.find('#image').simulate('change', event);
+    wrapper.find('#fileSelect').simulate('change', event);
     expect(wrapper.instance().state.image).toEqual({});
   });
 });

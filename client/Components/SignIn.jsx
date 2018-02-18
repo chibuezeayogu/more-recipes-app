@@ -23,7 +23,7 @@ export class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {undefined} - no return value
+   * @returns {undefined}
    *
    */
   constructor() {
@@ -43,7 +43,7 @@ export class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {undefined} - no return value
+   * @returns {undefined}
    *
    */
   componentWillMount() {
@@ -61,7 +61,7 @@ export class SignIn extends Component {
    *
    * @param {Object} nextProps
    *
-   * @returns {undifined} - no return value
+   * @returns {undefined}
    *
    */
   componentWillReceiveProps(nextProps) {
@@ -80,7 +80,7 @@ export class SignIn extends Component {
    *
    * @param {object} event
    *
-   * @returns {undifined} - no return value
+   * @returns {undefined}
    *
    */
   handleChange(event) {
@@ -98,7 +98,7 @@ export class SignIn extends Component {
    *
    * @param {Object} event
    *
-   * @returns {undefined} - no return value
+   * @returns {undefined}
    *
    */
   handleOnsubmit(event) {
@@ -170,6 +170,7 @@ export class SignIn extends Component {
               <div className="row">
                 <button
                   className="btn right green form-margin"
+                  id="login"
                   type="submit"
                   name="action"
                 >Login

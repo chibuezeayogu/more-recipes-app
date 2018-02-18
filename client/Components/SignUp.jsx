@@ -9,7 +9,7 @@ import { validateSignUpForm } from '../util/validateInputs';
 import Menu from './Header/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
 import SmallPreloader from './SmallPreloader.jsx';
-import imageToFormData from '../util/ImageUpload';
+import imageToFormData from '../util/imageUpload';
 
 /**
  * SignUp component for user to create an account
@@ -248,7 +248,7 @@ export class SignUp extends Component {
                   <div className="input-field col s12">
                     <i className="fa fa-picture-o prefix" aria-hidden="true" />
                     <input
-                      id="image"
+                      id="fileSelect"
                       type="file"
                       name="profileImage"
                       onChange={this.handleImageChange}
@@ -263,7 +263,7 @@ export class SignUp extends Component {
                     className="btn right green"
                     type="submit"
                     name="action"
-                  > Sign Up
+                  >Sign Up
                   </button>
                 </div>
                 <div className="row center">

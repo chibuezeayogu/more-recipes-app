@@ -188,7 +188,7 @@ export const signOut = () => ({
    *
    * @method
    *
-   * @param {Integer} id - recipe id
+   * @param {Integer} id
    *
    * @returns {void}
    */
@@ -205,7 +205,7 @@ export const fetchRecipe = id => ({
    *
    * @param {Integer} userId - user id
    *
-   * @param {offset} offset - query offset
+   * @param {Integer} offset
    *
    * @returns {void}
    */
@@ -234,15 +234,15 @@ export const fetchUserRecipes = (userId, offset) => ({
 });
 
 /**
- *
- * @description dispatches action to search for recipes
- *
- * @method
- *
- * @param {Integer} searchTerm - searched word
- *
- * @returns {void}
- */
+   *
+   * @description dispatches action to search for recipes
+   *
+   * @method
+   *
+   * @param {Integer} searchTerm - searched word
+   *
+   * @returns {void}
+   */
 export const search = searchTerm => ({
   type: actionTypes.SEARCH_RECIPE,
   searchTerm

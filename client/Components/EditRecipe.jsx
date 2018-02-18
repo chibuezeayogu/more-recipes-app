@@ -9,7 +9,7 @@ import Footer from './Footer/Footer.jsx';
 import UserMenu from './Header/UserMenu.jsx';
 import { validateEditRecipeForm } from '../util/validateInputs';
 import findIndex from '../util/findIndex';
-import imageToFormData from '../util/ImageUpload';
+import imageToFormData from '../util/imageUpload';
 
 
 /**
@@ -184,7 +184,7 @@ export class EditRecipe extends Component {
           <UserMenu {...this.props} />
           <div className="main">
             <div className="container">
-              <Preloader />
+              <SmallPreloader />
             </div>
           </div>
           <Footer />

@@ -49,7 +49,6 @@ export class Main extends Component {
       draggable: false,
     });
   }
-
   /**
    *
    * @description renders JSX element

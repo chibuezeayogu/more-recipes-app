@@ -70,7 +70,7 @@ describe('<SignIn />', () => {
   });
 
   describe('handleOnsubmit()', () => {
-    it('should handleObSubmit when user submits form', () => {
+    it('should submit form if login details are provided', () => {
       const wrapper = shallow(<SignIn {...props} {...state} />);
       const login = jest.spyOn(wrapper.instance().props, 'login');
       wrapper.instance().setState({ ...state });

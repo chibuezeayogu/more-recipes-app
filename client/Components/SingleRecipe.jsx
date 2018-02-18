@@ -199,7 +199,7 @@ export class SingleRecipe extends Component {
    *
    * @memberOf SingleRecipe
    *
-   * @returns {Undefined} - no return value
+   * @returns {undefined}
    */
   render() {
     const { id } = this.props.match.params;
@@ -257,8 +257,8 @@ export class SingleRecipe extends Component {
                     />
                     <div className="card-action center grey lighten-5">
                       <a
-                        className="black-text"
                         id="upvote"
+                        className="black-text"
                         onClick={() => this.handleUpvote(id)}
                         style={{ cursor: 'pointer' }}
                       >
@@ -268,9 +268,9 @@ export class SingleRecipe extends Component {
                         /> {recipes[index].upvotes}
                       </a>
                       <a
-                        className="black-text"
                         id="downvote"
-                        onClick={this.handleDownvote}
+                        className="black-text"
+                        onClick={() => this.handleDownvote(id)}
                         style={{ cursor: 'pointer' }}
                       >
                         <i
@@ -278,12 +278,9 @@ export class SingleRecipe extends Component {
                           aria-hidden="true"
                         > {recipes[index].downvotes}
                         </i>
-                        </a>
+                      </a>
                       <a
-                        className="black-text tooltipped"
-                        data-position="bottom"
-                        data-delay="50"
-                        data-tooltip="views"
+                        className="black-text"
                       >
                         <i
                           className="fa fa-eye"
@@ -291,8 +288,8 @@ export class SingleRecipe extends Component {
                         /> {recipes[index].views}
                       </a>
                       <a
+                        id="addFavourite"
                         className="black-text"
-                        id="favourite"
                         style={{ cursor: 'pointer' }}
                         onClick={() => this.handleAddToFavourite(id)}
                       >
@@ -325,32 +322,32 @@ export class SingleRecipe extends Component {
                   <h4>Ingredients</h4>
                   <ul className="collection">
                     {recipes[index].ingredients.split(';')
-                      .map((ingredient, i) =>
-                      (
-                        <li
-                          className="collection-item"
-                          style={{ wordWrap: 'break-word' }}
-                          key={i}
-                        >
-                          {ingredient}
-                        </li>))
-                      }
+                        .map((ingredient, i) =>
+                        (
+                          <li
+                            className="collection-item"
+                            style={{ wordWrap: 'break-word' }}
+                            key={i}
+                          >
+                            {ingredient}
+                          </li>))
+                        }
                   </ul>
                 </div>
                 <div className="col s12 m6">
                   <h4>Procedures</h4>
                   <ul className="collection">
                     {recipes[index].procedures.split(';')
-                      .map((procedure, i) =>
-                      (
-                        <li
-                          className="collection-item"
-                          style={{ wordWrap: 'break-word' }}
-                          key={i}
-                        >
-                          {procedure}
-                        </li>))
-                      }
+                        .map((procedure, i) =>
+                        (
+                          <li
+                            className="collection-item"
+                            style={{ wordWrap: 'break-word' }}
+                            key={i}
+                          >
+                            {procedure}
+                          </li>))
+                        }
                   </ul>
                 </div>
               </div>
@@ -379,6 +376,7 @@ export class SingleRecipe extends Component {
 
                   <div className="row s12 m6">
                     <button
+                      id="commentButton"
                       className="btn waves-effect waves-light green right"
                       type="submit"
                       name="action"
@@ -435,16 +433,6 @@ SingleRecipe.propTypes = {
         imageUrl: PropTypes.string.isRequired,
       }).isRequired,
     })).isRequired,
-  }).isRequired,
-  userData: PropTypes.shape({
-    currentUser: PropTypes.shape({
-      id: PropTypes.number.isRequired
-    }).isRequired,
-  }).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.number.isRequired
-    }).isRequired
   }).isRequired
 };
 

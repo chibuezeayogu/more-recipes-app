@@ -50,7 +50,7 @@ describe('HandleChange', () => {
 describe('HandleImageChange', () => {
   it('should call set image state to user selected image', () => {
     const wrapper = shallow(<AddRecipe {...props} {...state} />);
-    wrapper.find('#image').simulate('change', event);
+    wrapper.find('#fileSelect').simulate('change', event);
     expect(wrapper.instance().state.image).toEqual({});
   });
 });

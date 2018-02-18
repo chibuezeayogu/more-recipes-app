@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { editProfile, fetchUser } from '../action/actionCreators';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 import SmallPreloader from './SmallPreloader.jsx';
 import { validateUpdateProfileForm } from '../util/validateInputs';
-import imageToFormData from '../util/ImageUpload';
+import imageToFormData from '../util/imageUpload';
 
 
 /**
- * @description
+ * @description edit user profile
  *
  * @class
  *
@@ -36,7 +36,7 @@ export class UserProfile extends Component {
       firstName: '',
       lastName: '',
       phone: '',
-      imageUrl:'',
+      imageUrl: '',
       image: {},
       location: '',
       address: '',
@@ -61,7 +61,7 @@ export class UserProfile extends Component {
    *
    * @param {Object} nextProps
    *
-   * @returns {undefiend}
+   * @returns {undefined}
    *
    */
 
@@ -90,7 +90,7 @@ export class UserProfile extends Component {
       firstName: currentUser.firstName || '',
       lastName: currentUser.lastName || '',
       phone: currentUser.phone || '',
-      location: currentUser.location|| '',
+      location: currentUser.location || '',
       address: currentUser.address || '',
       isLoading: false,
     });
@@ -123,7 +123,7 @@ export class UserProfile extends Component {
    *
    * @memberOf UserProfile
    *
-   * @param {Object} event
+   * @param {Object} event - object
    *
    * @returns {undefined}
    *
@@ -140,7 +140,7 @@ export class UserProfile extends Component {
    *
    * @memberOf UserProfile
    *
-   * @param {Object} event
+   * @param {Object} event - event object
    *
    * @returns {undefined}
    *
@@ -157,7 +157,7 @@ export class UserProfile extends Component {
    *
    * @memberOf UserProfile
    *
-   * @param {Object} event
+   * @param {Object} event - event object
    *
    * @returns {undefined}
    *
@@ -174,10 +174,9 @@ export class UserProfile extends Component {
    *
    * @memberOf UserProfile
    *
-   * @param {Object} event
+   * @param {Object} event - even Object
    *
    * @returns {undefined}
-   *
    */
   handleOnsubmit(event) {
     event.preventDefault();
@@ -222,7 +221,7 @@ export class UserProfile extends Component {
         <div className="main">
           <div className="container">
             <div className="row white" style={{ height: 100 }}>
-              <h4 className="center">Profile </h4>
+              <h4 className="center">Profile</h4>
               <hr />
             </div>
             <form onSubmit={this.handleOnsubmit}>
@@ -255,6 +254,7 @@ export class UserProfile extends Component {
                   <div className="profile-input-display">
                     <div className="profile-label">LAST NAME</div>
                     <input
+                      id="lastName"
                       type="text"
                       name="lastName"
                       className="profile-input"
@@ -274,6 +274,7 @@ export class UserProfile extends Component {
                     >PHONE
                     </div>
                     <input
+                      id="phone"
                       type="text"
                       name="phone"
                       className="profile-input"
@@ -288,6 +289,7 @@ export class UserProfile extends Component {
                   <div className="profile-input-display">
                     <div className="profile-label">LOCATION</div>
                     <input
+                      id="location"
                       type="text"
                       name="location"
                       className="profile-input"
@@ -299,11 +301,10 @@ export class UserProfile extends Component {
                       {this.state.errors.locationError}
                     </span>
                   </div>
-                  <div
-                    className="profile-input-display"
-                  >
+                  <div className="profile-input-display">
                     <div className="profile-label">ADDRESS</div>
                     <input
+                      id="address"
                       type="text"
                       name="address"
                       className="profile-input"
@@ -318,10 +319,10 @@ export class UserProfile extends Component {
                   <div
                     className="file-field input-field"
                     style={
-                      this.state.disabled
-                      ? { display: 'none' }
-                      : { display: 'block' }
-                    }
+                  this.state.disabled
+                  ? { display: 'none' }
+                  : { display: 'block' }
+                }
                   >
                     <div className="btn green">
                       <span>
@@ -331,7 +332,7 @@ export class UserProfile extends Component {
                         </i>
                       </span>
                       <input
-                        id="image"
+                        id="fileSelect"
                         type="file"
                         multiple
                         onChange={this.handleImageChange}
@@ -352,25 +353,24 @@ export class UserProfile extends Component {
                   </div>
                   <div>
                     <button
+                      className="btn green"
                       id="edit"
-                      className="btn modal-trigger green"
                       onClick={this.handleEdit}
                       style={{ marginRight: 5 }}
                     >Edit
                     </button>
                     <button
-                      id="update"
                       className="btn green"
+                      id="update"
                       disabled={this.state.disabled}
                       style={{ marginRight: 5 }}
                     >Update
                     </button>
                     <button
-                      id="cancel"
                       className="btn red lighten-1"
+                      id="cancel"
                       onClick={this.handleCancel}
-                    >
-                      Cancel
+                    >Cancel
                     </button>
                   </div>
                   <hr />
@@ -378,9 +378,9 @@ export class UserProfile extends Component {
                     <div>
                       {this.state.onUpdate ?
                         <SmallPreloader />
-                      :
-                      ''
-                      }
+                :
+                ''
+                }
                     </div>
                   </div>
                 </div>
@@ -394,9 +394,20 @@ export class UserProfile extends Component {
   }
 }
 
+UserProfile.protoType = {
+  editProfile: PropTypes.func.isRequired,
+  fetchUser: PropTypes.func.isRequired,
+  userData: PropTypes.shape({
+    isAuthenticated: PropTypes.bool.isRequired,
+    currentUser: PropTypes.shape({
+      imageUrl: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired
+    }).isRequired
+  }).isRequired,
+};
+
 const mapStateToProps = state => ({
   userData: state.userData
 });
 
-export default connect(mapStateToProps,
-  { editProfile, fetchUser })(UserProfile);
+export default connect(mapStateToProps, { editProfile, fetchUser })(UserProfile);

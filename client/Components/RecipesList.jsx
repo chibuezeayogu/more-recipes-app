@@ -141,8 +141,8 @@ RecipesList.propTypes = {
       pageSize: PropTypes.number,
       totalCount: PropTypes.number
     }),
-    recipes: PropTypes.shape({}).isRequired,
-    isFetched: PropTypes.bool.isRequired,
+    recipes: PropTypes.shape.isRequired,
+    isFetched: PropTypes.bool.isRequired
   }).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired

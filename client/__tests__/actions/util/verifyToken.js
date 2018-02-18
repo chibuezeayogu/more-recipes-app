@@ -3,7 +3,7 @@ import expect from 'expect';
 import store from '../../../store';
 
 describe('VerifyToken', () => {
-  it('UUUUUUUU', () => {
+  it('should verify token, set current user or logout user ', () => {
     expect(verifyToken(store)).toEqual();
   });
 });

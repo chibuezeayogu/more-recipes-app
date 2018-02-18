@@ -17,7 +17,6 @@ export class Menu extends Component {
     });
   }
 
-
   render() {
     return (
       <div>

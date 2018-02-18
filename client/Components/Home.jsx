@@ -26,7 +26,7 @@ const Home = () => (
       </div>
       <div className="parallax" >
         <img
-          src={'https://res.cloudinary.com/chibuezeayogu/image/upload/' +
+          src={'https://res.cloudinary.com/chibuezeayogu/image/upload/'+
           'v1514924945/recipe1_agzmiy.jpg'}
           alt=""
           className="responsive-img"
@@ -43,7 +43,7 @@ const Home = () => (
               </h5>
               <p className="light">
                 <img
-                  src={'https://res.cloudinary.com/chibuezeayogu/image/' +
+                  src={'https://res.cloudinary.com/chibuezeayogu/image/'+
                   'upload/v1515501870/tdjhjgqnpb6hppffgvf1.jpg'}
                   alt=""
                   className="responsive-img circle"
@@ -58,7 +58,7 @@ const Home = () => (
               </h5>
               <p className="light">
                 <img
-                  src={'https://res.cloudinary.com/chibuezeayogu/image/' +
+                  src={'https://res.cloudinary.com/chibuezeayogu/image/'+
                   'upload/v1516351138/chipotle_m8kfnh.jpg'}
                   alt=""
                   className="responsive-img circle"
@@ -73,7 +73,7 @@ const Home = () => (
               </h5>
               <p className="light">
                 <img
-                  src={'https://res.cloudinary.com/chibuezeayogu/image/' +
+                  src={'https://res.cloudinary.com/chibuezeayogu/image/'+
                   'upload/v1516351164/one_pot_yx9qfs.jpg'}
                   alt=""
                   className="responsive-img circle"
@@ -92,17 +92,17 @@ const Home = () => (
               className="header col s12 light white-text overlay-bg"
               style={{ minHeight: 150, paddingTop: 20 }}
             >
-              Three kinds of leafy greens combine with mushrooms, garlic,
-              leeks,mustard, and spices to form the base for a baked-egg dish
-              that's a bit like an omelette turned inside out. It's an ideal
-              recipe...
+                Three kinds of leafy greens combine with mushrooms, garlic,
+                leeks,mustard, and spices to form the base for a baked-egg dish
+                that's a bit like an omelette turned inside out. It's an ideal
+                recipe...
             </h4>
           </div>
         </div>
       </div>
       <div className="parallax">
         <img
-          src={'https://res.cloudinary.com/chibuezeayogu/image/' +
+          src={'https://res.cloudinary.com/chibuezeayogu/image/'+
           'upload/v1514927987/recipe4_re5xt9.jpg'}
           alt="Unsplashed background img 2"
         />

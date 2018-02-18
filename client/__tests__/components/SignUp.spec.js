@@ -2,9 +2,6 @@ import React from 'react';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import { SignUp } from '../../Components/SignUp';
-import axios from 'axios';
-import imageToFormData from '../../util/ImageUpload';
-
 
 const props = {
   userData: {
@@ -56,7 +53,7 @@ describe('<SignUp />', () => {
 describe('<SignUp />', () => {
   it('should call handleImageChange function', () => {
     const wrapper = shallow(<SignUp {...props} {...state} />);
-    wrapper.find('#image').simulate('change', event);
+    wrapper.find('#fileSelect').simulate('change', event);
     expect(wrapper.instance().state.image).toEqual({});
   });
 });
@@ -107,9 +104,11 @@ describe('HandleOnSubmit function', () => {
     expect(wrapper.instance().state.errors.lastNameError)
       .toBe('last name must be at least 3 characters long');
     expect(wrapper.instance().state.errors.emailError)
-      .toBe('email is not valide');
+      .toBe('email is not valid');
     expect(wrapper.instance().state.errors.passwordError)
-      .toBe('password must contain `uppercase, lowercase, number, special character`');
+      .toBe(
+        'password must contain `uppercase, lowercase, number, special character`'
+      );
   });
 
   it('should sumbit form if all conditions are meet', () => {

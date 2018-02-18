@@ -48,13 +48,13 @@ export default {
                   recipeId: req.params.id,
                   userId: req.decoded.user.id
                 })
-                .then(response => res.status(201).send({
+                .then(() => res.status(201).send({
                   message: 'Added to your list of favourite'
                 }));
             } else {
               favourite
                 .destroy()
-                .then(response => res.status(200).send({
+                .then(() => res.status(200).send({
                   message: 'Removed from your list of favourites'
                 }));
             }
@@ -102,15 +102,12 @@ export default {
             message: 'You have not added any recipe to your favourite'
           });
         }
-        console.log(favourites.count, 'favourite pagination');
         /**
          * pass query limit, query offset, recipedata.count to pagenate helper
          * and return totalCount, currentPage, pageCount, and pageSize
          * to pagination
          */
         const pagination = paginate(query.limit, query.offset, favourites.count);
-
-        console.log(paginate, 'favourite pagination');
 
         return res.status(200).send(
           {
@@ -119,7 +116,7 @@ export default {
           });
       })
       .catch(error => res.status(400).send({ message: error.message }));
-  },
+  }
 
 };
 

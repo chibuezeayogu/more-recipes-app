@@ -4,8 +4,6 @@ import axios from 'axios';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import actionTypes from '../action/actionTypes';
 import setAuthorizationToken from '../util/setAuthToken';
-import imageToFormData from '../util/ImageUpload';
-import fileUpload from '../util/fileUpload';
 
 /**
  * walker sagas will be called by watcher saga

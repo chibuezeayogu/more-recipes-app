@@ -99,7 +99,7 @@ export class UserFavouriteCard extends Component {
             <a
               className="black-text"
               onClick={() =>
-                this.handelFavourites(favourite.id, favourite.title)}
+                  this.handelFavourites(favourite.id, favourite.title)}
               style={{ cursor: 'pointer' }}
             >
               <i
@@ -123,7 +123,8 @@ UserFavouriteCard.propTypes = {
     description: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  addOrRemoveFavourite: PropTypes.func.isRequired
 };
 
 export default withRouter(UserFavouriteCard);

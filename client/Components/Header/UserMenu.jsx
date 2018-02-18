@@ -42,7 +42,7 @@ export class UserMenu extends Component {
   }
 
   /**
-   * @description routes to /if user is logs' out
+   * @description routes to /signin if user is logs' out
    *
    * @method
    *
@@ -50,13 +50,12 @@ export class UserMenu extends Component {
    *
    * @param {Object} event - even object
    *
-   * @returns {undefiend} - no return value
+   * @returns {undefined}
    *
    */
   logout() {
     this.props.signOut();
     localStorage.removeItem('jwtToken');
-    this.props.history.push('/signin');
   }
 
   /**
@@ -120,11 +119,14 @@ export class UserMenu extends Component {
                     className="dropdown-button"
                     data-activates="dropdown"
                     data-beloworigin="true"
+                    id="displayEmail"
                   > {this.props.userData.currentUser.email}
                     <i className="material-icons right">arrow_drop_down</i>
                   </a>
                 </li>
               </ul>
+
+
               <ul
                 className="side-nav"
                 id="mobile-demo"
@@ -185,7 +187,7 @@ export class UserMenu extends Component {
                 <div className="divider" />
                 <li>
                   <Link
-                    to="/"
+                    to="/signin"
                     onClick={this.logout}
                   >
                     <i className="fa fa-sign-out" aria-hidden="true" /> Logout
@@ -198,11 +200,8 @@ export class UserMenu extends Component {
 
         <ul id="dropdown" className="dropdown-content black-text">
           <div className="divider" />
-          <li className="black-text">
-            <Link
-              to="/user/profile"
-              className="black-text"
-            >
+          <li className="black-text" id="profile">
+            <Link to="/user/profile" className="black-text">
               <i
                 className="fa fa-user black-text"
                 aria-hidden="true"
@@ -210,11 +209,8 @@ export class UserMenu extends Component {
             </Link>
           </li>
           <div className="divider" />
-          <li className="black-text">
-            <Link
-              to="/user/recipes"
-              className="black-text"
-            >
+          <li className="black-text" id="myRecipes">
+            <Link to="/user/recipes" className="black-text">
               <i
                 className="fa fa-cutlery black-text"
                 aria-hidden="true"
@@ -222,11 +218,8 @@ export class UserMenu extends Component {
             </Link>
           </li>
           <div className="divider" />
-          <li className="black-text">
-            <Link
-              to="/user/favourites"
-              className="black-text"
-            >
+          <li className="black-text" id="myFavourite">
+            <Link to="/user/favourites" className="black-text">
               <i
                 className="fa fa-heart black-text"
                 aria-hidden="true"
@@ -234,12 +227,8 @@ export class UserMenu extends Component {
             </Link>
           </li>
           <div className="divider" />
-          <li className="black-text">
-            <Link
-              to="/"
-              onClick={this.logout}
-              className="black-text"
-            >
+          <li className="black-text" id="logout">
+            <Link to="/signin" onClick={this.logout} className="black-text">
               <i
                 className="fa fa-sign-out black-text"
                 aria-hidden="true"
@@ -255,13 +244,11 @@ export class UserMenu extends Component {
 
 UserMenu.propTypes = {
   signOut: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired,
   userData: PropTypes.shape({
     currentUser: PropTypes.shape({
-      email: PropTypes.string.isRequired
-    }).isRequired
+      email: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired
+    }).isRequired,
   }).isRequired
 };
 

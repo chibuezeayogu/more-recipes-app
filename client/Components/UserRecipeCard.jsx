@@ -10,8 +10,6 @@ import swal from 'sweetalert';
  *
  * @method
  *
- * @param {Object} props - property object
- *
  *  @returns {undefined}
  */
 export class UserRecipeCard extends Component {
@@ -85,18 +83,17 @@ export class UserRecipeCard extends Component {
             </a>
             <a
               className="black-text"
-              onClick={() => this.handelEditRecipe(this.props.recipe.id)}
+              onClick={() => this.handelEditRecipe(recipe.id)}
               style={{ cursor: 'pointer' }}
             >
               <i
-                  className="fa fa-pencil-square-o black-text"
-                  aria-hidden="true"
-                />
+                className="fa fa-pencil-square-o black-text"
+                aria-hidden="true"
+              />
             </a>
-
             <a
               className="black-text"
-              onClick={() => this.handelDeleteRecipe(this.props.recipe.id, this.props.recipe.title)}
+              onClick={() => this.handelDeleteRecipe(recipe.id, recipe.title)}
               style={{ cursor: 'pointer' }}
             >
               <i
@@ -120,7 +117,11 @@ UserRecipeCard.propTypes = {
     description: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  delRecipe: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
 };
 
 export default UserRecipeCard;

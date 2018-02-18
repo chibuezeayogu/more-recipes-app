@@ -9,7 +9,6 @@ import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 import * as actionCreators from '../action/actionCreators';
 import { onPageChange, onPageReload } from '../util/pageFunctions';
-// import '../../node_modules/rc-pagination/assets/index.css';
 
 /**
  *
@@ -34,7 +33,7 @@ export class UserRecipesList extends Component {
    *
    * @memberOf UserRecipesList
    *
-   * @returns {Undefined} - no return value
+   * @returns {undefined}
    *
    */
   componentWillMount() {
@@ -60,10 +59,7 @@ export class UserRecipesList extends Component {
   componentWillReceiveProps(nextProps) {
     const { currentUser } = nextProps.userData;
     const {
-      isFetched,
-      recipes,
-      isDeleted,
-      pagination
+      isFetched, recipes, isDeleted, pagination
     } = nextProps.userRecipeReducer;
     if (isFetched) {
       this.setState({ isLoading: false });
@@ -108,9 +104,9 @@ export class UserRecipesList extends Component {
     const { recipes, pagination } = this.props.userRecipeReducer;
     let userRecipes;
     if (recipes && recipes.length === 0 && !this.state.isLoading) {
-      userRecipes = <h4 className="center-align">
+      userRecipes = (<h4 className="center-align">
       You have not added any recipe
-      </h4>;
+                     </h4>);
     } else if (recipes.length > 0) {
       userRecipes = recipes.map(recipe => (<UserRecipeCard
         {...this.props}
@@ -157,6 +153,15 @@ UserRecipesList.propTypes = {
   }).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
+  }).isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string
+  }).isRequired,
+  userData: PropTypes.shape({
+    isAuthenticated: PropTypes.bool.isRequired,
+    currentUser: PropTypes.shape({
+      id: PropTypes.number.isRequired
+    }).isRequired
   }).isRequired,
 };
 

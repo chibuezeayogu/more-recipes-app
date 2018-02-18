@@ -44,7 +44,7 @@ ShallowWrapper {
           <h4
             className="center"
           >
-            Profile 
+            Profile
           </h4>
           <hr />
         </div>
@@ -98,6 +98,7 @@ ShallowWrapper {
                 <input
                   className="profile-input"
                   disabled={true}
+                  id="lastName"
                   name="lastName"
                   onChange={[Function]}
                   type="text"
@@ -118,6 +119,7 @@ ShallowWrapper {
                 <input
                   className="profile-input"
                   disabled={true}
+                  id="phone"
                   name="phone"
                   onChange={[Function]}
                   type="text"
@@ -138,6 +140,7 @@ ShallowWrapper {
                 <input
                   className="profile-input"
                   disabled={true}
+                  id="location"
                   name="location"
                   onChange={[Function]}
                   type="text"
@@ -158,6 +161,7 @@ ShallowWrapper {
                 <input
                   className="profile-input"
                   disabled={true}
+                  id="address"
                   name="address"
                   onChange={[Function]}
                   type="text"
@@ -186,7 +190,7 @@ ShallowWrapper {
                     </i>
                   </span>
                   <input
-                    id="image"
+                    id="fileSelect"
                     multiple={true}
                     onChange={[Function]}
                     type="file"
@@ -207,7 +211,7 @@ ShallowWrapper {
               </div>
               <div>
                 <button
-                  className="btn modal-trigger green"
+                  className="btn green"
                   id="edit"
                   onClick={[Function]}
                   style={
@@ -295,7 +299,7 @@ ShallowWrapper {
             <h4
               className="center"
             >
-              Profile 
+              Profile
             </h4>
             <hr />
           </div>
@@ -349,6 +353,7 @@ ShallowWrapper {
                   <input
                     className="profile-input"
                     disabled={true}
+                    id="lastName"
                     name="lastName"
                     onChange={[Function]}
                     type="text"
@@ -369,6 +374,7 @@ ShallowWrapper {
                   <input
                     className="profile-input"
                     disabled={true}
+                    id="phone"
                     name="phone"
                     onChange={[Function]}
                     type="text"
@@ -389,6 +395,7 @@ ShallowWrapper {
                   <input
                     className="profile-input"
                     disabled={true}
+                    id="location"
                     name="location"
                     onChange={[Function]}
                     type="text"
@@ -409,6 +416,7 @@ ShallowWrapper {
                   <input
                     className="profile-input"
                     disabled={true}
+                    id="address"
                     name="address"
                     onChange={[Function]}
                     type="text"
@@ -437,7 +445,7 @@ ShallowWrapper {
                       </i>
                     </span>
                     <input
-                      id="image"
+                      id="fileSelect"
                       multiple={true}
                       onChange={[Function]}
                       type="file"
@@ -458,7 +466,7 @@ ShallowWrapper {
                 </div>
                 <div>
                   <button
-                    className="btn modal-trigger green"
+                    className="btn green"
                     id="edit"
                     onClick={[Function]}
                     style={
@@ -633,7 +641,7 @@ ShallowWrapper {
                 <h4
                   className="center"
                 >
-                  Profile 
+                  Profile
                 </h4>
                 <hr />
               </div>
@@ -687,6 +695,7 @@ ShallowWrapper {
                       <input
                         className="profile-input"
                         disabled={true}
+                        id="lastName"
                         name="lastName"
                         onChange={[Function]}
                         type="text"
@@ -707,6 +716,7 @@ ShallowWrapper {
                       <input
                         className="profile-input"
                         disabled={true}
+                        id="phone"
                         name="phone"
                         onChange={[Function]}
                         type="text"
@@ -727,6 +737,7 @@ ShallowWrapper {
                       <input
                         className="profile-input"
                         disabled={true}
+                        id="location"
                         name="location"
                         onChange={[Function]}
                         type="text"
@@ -747,6 +758,7 @@ ShallowWrapper {
                       <input
                         className="profile-input"
                         disabled={true}
+                        id="address"
                         name="address"
                         onChange={[Function]}
                         type="text"
@@ -775,7 +787,7 @@ ShallowWrapper {
                           </i>
                         </span>
                         <input
-                          id="image"
+                          id="fileSelect"
                           multiple={true}
                           onChange={[Function]}
                           type="file"
@@ -796,7 +808,7 @@ ShallowWrapper {
                     </div>
                     <div>
                       <button
-                        className="btn modal-trigger green"
+                        className="btn green"
                         id="edit"
                         onClick={[Function]}
                         style={
@@ -884,7 +896,7 @@ ShallowWrapper {
                 <h4
                   className="center"
                 >
-                  Profile 
+                  Profile
                 </h4>
                 <hr />
               </div>
@@ -938,6 +950,7 @@ ShallowWrapper {
                       <input
                         className="profile-input"
                         disabled={true}
+                        id="lastName"
                         name="lastName"
                         onChange={[Function]}
                         type="text"
@@ -958,6 +971,7 @@ ShallowWrapper {
                       <input
                         className="profile-input"
                         disabled={true}
+                        id="phone"
                         name="phone"
                         onChange={[Function]}
                         type="text"
@@ -978,6 +992,7 @@ ShallowWrapper {
                       <input
                         className="profile-input"
                         disabled={true}
+                        id="location"
                         name="location"
                         onChange={[Function]}
                         type="text"
@@ -998,6 +1013,7 @@ ShallowWrapper {
                       <input
                         className="profile-input"
                         disabled={true}
+                        id="address"
                         name="address"
                         onChange={[Function]}
                         type="text"
@@ -1026,7 +1042,7 @@ ShallowWrapper {
                           </i>
                         </span>
                         <input
-                          id="image"
+                          id="fileSelect"
                           multiple={true}
                           onChange={[Function]}
                           type="file"
@@ -1047,7 +1063,7 @@ ShallowWrapper {
                     </div>
                     <div>
                       <button
-                        className="btn modal-trigger green"
+                        className="btn green"
                         id="edit"
                         onClick={[Function]}
                         style={

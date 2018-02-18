@@ -205,7 +205,7 @@ describe('User:', () => {
           .end((err, res) => {
             expect(res.status).to.equal(409);
             expect(res.body).to.have.keys(['message']);
-            expect(res.body.message).to.eql('Invalide username or password');
+            expect(res.body.message).to.eql('Invalid username or password');
             done();
           });
       });

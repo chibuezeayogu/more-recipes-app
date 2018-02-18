@@ -11,7 +11,7 @@ const initialState = {
 };
 
 describe('Recipe Reducer', () => {
-  it('should handle initialState', () => {
+  it('should return initial state if no action type match', () => {
     const action = {
       type: 'NONE',
     };

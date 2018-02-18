@@ -8,7 +8,7 @@ import { createRecipe } from '../action/actionCreators';
 import SmallPreloader from './SmallPreloader.jsx';
 import Footer from './Footer/Footer.jsx';
 import UserMenu from './Header/UserMenu.jsx';
-import imageToFormData from '../util/ImageUpload';
+import imageToFormData from '../util/imageUpload';
 import { validateAddRecipeForm } from '../util/validateInputs';
 
 
@@ -55,7 +55,7 @@ export class AddRecipe extends Component {
    *
    * @memberOf AddRecipe
    *
-   * @param {Object} nextProps
+   * @param {Object} nextProps - nextprops Object
    *
    * @returns {undefined}
    *
@@ -151,7 +151,7 @@ export class AddRecipe extends Component {
         <UserMenu {...this.props} />
         <div className="main">
           <div className="container">
-            <div className="addrecipe-form ">
+            <div className="addrecipe-form">
               <div className="col l6 m8 s12 offset-l6 offset-m4">
                 <h4 className="center">Add Recipe</h4>
                 <hr />
@@ -231,14 +231,15 @@ export class AddRecipe extends Component {
                         </i>
                       </span>
                       <input
-                        id="image"
                         type="file"
+                        id="fileSelect"
                         multiple
-                        onChange={this.handleImageChange}
+                        onChange={event => this.handleImageChange(event)}
                       />
                     </div>
                     <div className="file-path-wrapper">
                       <input
+                        id="file"
                         className="file-path validate"
                         type="text"
                         placeholder="Upload recipe image"
@@ -253,6 +254,7 @@ export class AddRecipe extends Component {
                   <button
                     className="btn right green"
                     type="submit"
+                    id="post"
                     name="action"
                     disabled={this.state.disabled}
                     style={{ marginRight: 10 }}

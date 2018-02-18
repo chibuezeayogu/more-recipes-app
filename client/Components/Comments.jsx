@@ -32,4 +32,9 @@ Comments.propTypes = {
   }).isRequired
 };
 
+Comments.propTypes = {
+  review: PropTypes.func.isRequired
+};
+
+
 export default Comments;

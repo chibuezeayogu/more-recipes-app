@@ -18,40 +18,43 @@ describe('Comment Reducer', () => {
 });
 
 describe('Comment Reducer', () => {
-  it('should return FETCH_COMMENTS_SUCCESS', () => {
-    const action = {
-      type: actionTypes.FETCH_COMMENTS_SUCCESS,
-      data: mockData.comment
-    };
-    expect(commentReducer(initialState, action).reviews)
-      .toEqual(mockData.comment);
-  });
+  it('should return an uptated state for FETCH_COMMENTS_SUCCESS action type',
+    () => {
+      const action = {
+        type: actionTypes.FETCH_COMMENTS_SUCCESS,
+        data: mockData.comment
+      };
+      expect(commentReducer(initialState, action).reviews)
+        .toEqual(mockData.comment);
+    });
 });
 
 describe('Comment Reducer', () => {
-  it('should return POST_COMMENT_SUCCESS', () => {
-    const initialState = {
-      reviews: [mockData.comment]
-    };
+  it('should return an updated state for POST_COMMENT_SUCCESS action type',
+    () => {
+      const initialState = {
+        reviews: [mockData.comment]
+      };
 
-    const action = {
-      type: actionTypes.POST_COMMENT_SUCCESS,
-      data: {
-        review: mockData.postedComment
-      }
-    };
-    const expected = {
-      reviews: [mockData.postedComment, mockData.comment]
-    };
-    expect(commentReducer(initialState, action)).toEqual(expected);
-  });
+      const action = {
+        type: actionTypes.POST_COMMENT_SUCCESS,
+        data: {
+          review: mockData.postedComment
+        }
+      };
+      const expected = {
+        reviews: [mockData.postedComment, mockData.comment]
+      };
+      expect(commentReducer(initialState, action)).toEqual(expected);
+    });
 });
 describe('Comment Reducer', () => {
-  it('should return POST_COMMENT_ERROR', () => {
-    const action = {
-      type: actionTypes.POST_COMMENT_ERROR
-    };
+  it('should return an updated state for POST_COMMENT_ERROR action type',
+    () => {
+      const action = {
+        type: actionTypes.POST_COMMENT_ERROR
+      };
 
-    expect(commentReducer(initialState, action)).toEqual(initialState);
-  });
+      expect(commentReducer(initialState, action)).toEqual(initialState);
+    });
 });

@@ -11,7 +11,7 @@ const props = {
   },
 };
 
-describe('UserMenu Component', () => {
+describe('<UserMenu />', () => {
   it('render the user menu without crashing', () => {
     const wrapper = shallow(<UserMenu {...props} />);
     wrapper.instance().componentDidMount();
@@ -26,6 +26,5 @@ describe('<UserMenu />', () => {
     wrapper.instance().logout();
     expect(logoutSpy).toHaveBeenCalled();
     expect(wrapper.instance().props.signOut).toHaveBeenCalled();
-    expect(wrapper.instance().props.history.push).toHaveBeenCalled();
   });
 });

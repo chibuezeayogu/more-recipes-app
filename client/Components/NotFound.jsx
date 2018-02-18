@@ -3,14 +3,18 @@ import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 
 /**
-* The page the user gets when an invalid route is entered
-* in the address bar.
 *
-* @description
+*
+* @description The page the user gets when an invalid route is entered
+* in the address bar
 *
 * @method
 *
+<<<<<<< HEAD
+* @returns {undefined}
+=======
 * @returns {undifined} - JSX element
+>>>>>>> 47623c2f13ba408788178a5a546969e3b059aeec
 */
 const NotFound = () => (
   <div className="body">
