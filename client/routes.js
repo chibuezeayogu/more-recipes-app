@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { render } from 'react-dom';
 import { Route, Switch } from 'react-router-dom';
 
 import SignIn from './Components/SignIn.jsx';
@@ -18,13 +17,13 @@ import Search from './Components/Search.jsx';
 import requireAuth from './util/requireAuth';
 
 
-export default (
+const Routes = () => (
   <Switch>
     <Route exact path="/" component={Main} />
     <Route exact path="/signin" component={SignIn} />
     <Route exact path="/signup" component={SignUp} />
     <Route exact path="/search" component={requireAuth(Search)} />
-    <Route exact path="/recipes/:id" component={requireAuth(SingleRecipe)}  />
+    <Route exact path="/recipes/:id" component={requireAuth(SingleRecipe)} />
     <Route exact path="/recipes" component={requireAuth(RecipesList)} />
     <Route exact path="/addrecipe" component={requireAuth(AddRecipe)} />
     <Route exact path="/user/favourites" component={requireAuth(UserFavouritesList)} />
@@ -34,3 +33,5 @@ export default (
     <Route path="*" component={requireAuth(NotFound)} />
   </Switch>
 );
+
+export default Routes;

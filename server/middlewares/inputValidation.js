@@ -65,7 +65,7 @@ export const validateAddRecipeFileds = (req, res, next) => {
 
   req.checkBody('title', 'title is required').notEmpty();
   req.checkBody('title', 'title must be at least 5 characters long')
-    .isLength({ min: 5 });;
+    .isLength({ min: 5 });
   req.checkBody('description', 'description is required').notEmpty();
   req.checkBody('description', 'description must be at least 5 characters long')
     .isLength({ min: 5 });
@@ -118,7 +118,7 @@ export const validateUserSignUpFields = (req, res, next) => {
   req.checkBody('email', 'email is not valid').isEmail();
   req.checkBody('password', 'password is required').notEmpty();
   req.checkBody('password', 'password must be at least 8 characters long')
-    .isLength({ min: 8 });;
+    .isLength({ min: 8 });
   req.checkBody('imageUrl', 'image url is required').notEmpty();
   req.checkBody('imageUrl', 'image url is not valid')
     .matches(/https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
@@ -215,7 +215,7 @@ export const checkAndValidateUserParams = (req, res, next) => {
   }
 
   if (parseInt(req.params.userId, 10) !== req.decoded.user.id) {
-    return res.status(401).send({ message: 'User is not authenticated' });
+    return res.status(401).send({ message: 'User is not Authorized!.' });
   }
   next();
 };

@@ -40,12 +40,12 @@ export class Menu extends Component {
             </a>
             <ul className="right hide-on-med-and-down">
               <li>
-                <Link to="/">
+                <Link to="/" id="homeLink">
                   <i className="fa fa-home" /> Home
                 </Link>
               </li>
               <li>
-                <Link to="/signin">
+                <Link to="/signin" id="loginLink">
                   <i
                     className="fa fa-sign-in"
                     aria-hidden="true"
@@ -53,7 +53,7 @@ export class Menu extends Component {
                 </Link>
               </li>
               <li>
-                <Link to="/signup">
+                <Link to="/signup" id="signupLink">
                   <i
                     className="fa fa-user-plus"
                     aria-hidden="true"
@@ -66,13 +66,13 @@ export class Menu extends Component {
               id="mobile"
             >
               <li>
-                <Link to="/">
+                <Link to="/" id="loginLink">
                   <i className="fa fa-home" /> Home
                 </Link>
               </li>
               <div className="divider" />
               <li>
-                <Link to="/signin">
+                <Link to="/signin" id="loginLink">
                   <i
                     className="fa fa-sign-in"
                     aria-hidden="true"
@@ -81,7 +81,7 @@ export class Menu extends Component {
               </li>
               <div className="divider" />
               <li>
-                <Link to="/signup">
+                <Link to="/signup" id="signupLink">
                   <i
                     className="fa fa-user-plus"
                     aria-hidden="true"

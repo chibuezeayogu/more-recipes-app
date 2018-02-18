@@ -7,7 +7,7 @@ import RecipeCard from './RecipeCard.jsx';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 import Preloader from './Preloder.jsx';
-import 'rc-pagination/assets/index.css';
+// import '../../node_modules/rc-pagination/assets/index.css';
 
 /**
  *
@@ -18,7 +18,7 @@ import 'rc-pagination/assets/index.css';
  * @extends Component
  *
  */
-class RecipesList extends Component {
+export class RecipesList extends Component {
   constructor() {
     super();
     this.onChange = this.onChange.bind(this);

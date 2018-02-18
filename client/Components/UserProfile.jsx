@@ -18,7 +18,7 @@ import imageToFormData from '../util/imageUpload';
  * @extends Component
  *
  */
-class UserProfile extends Component {
+export class UserProfile extends Component {
   /**
    * @description initialize state and binds functiom
    *
@@ -185,7 +185,6 @@ class UserProfile extends Component {
       return this.setState({ errors: err.errors });
     }
     this.setState({ disabled: true, onUpdate: true });
-
     if (this.state.image.name) {
       const uploadData = imageToFormData(this.state.image);
       delete axios.defaults.headers.common.Authorization;
@@ -225,7 +224,7 @@ class UserProfile extends Component {
               <h4 className="center">Profile</h4>
               <hr />
             </div>
-            <form onSubmit={event => this.handleOnsubmit(event)}>
+            <form onSubmit={this.handleOnsubmit}>
               <div
                 className="row profile-details-page"
               >
@@ -267,8 +266,13 @@ class UserProfile extends Component {
                       {this.state.errors.lastNameError}
                     </span>
                   </div>
-                  <div className="profile-input-display">
-                    <div className="profile-label">PHONE</div>
+                  <div
+                    className="profile-input-display"
+                  >
+                    <div
+                      className="profile-label"
+                    >PHONE
+                    </div>
                     <input
                       id="phone"
                       type="text"
@@ -328,12 +332,15 @@ class UserProfile extends Component {
                         </i>
                       </span>
                       <input
+                        id="fileSelect"
                         type="file"
                         multiple
                         onChange={this.handleImageChange}
                       />
                     </div>
-                    <div className="file-path-wrapper">
+                    <div
+                      className="file-path-wrapper"
+                    >
                       <input
                         className="file-path validate"
                         type="text"

@@ -10,9 +10,9 @@ import swal from 'sweetalert';
  *
  * @method
  *
- * @extends Component
+ *  @returns {undefined}
  */
-class UserRecipeCard extends Component {
+export class UserRecipeCard extends Component {
   handelEditRecipe(id) {
     this.props.history.push(`/user/recipes/${id}/edit`);
   }
@@ -38,9 +38,11 @@ class UserRecipeCard extends Component {
     return (
       <div className="col s12 m6 l4">
         <div className="card hoverable">
-          <Link to={`/recipes/${recipe.id}`}>
+          <Link
+            to={`/recipes/${recipe.id}`}
+          >
             <img
-              src={recipe.imageUrl}
+              src={this.props.recipe.imageUrl}
               alt=""
               className="responsive-img img-height"
               style={{ width: '100%' }}

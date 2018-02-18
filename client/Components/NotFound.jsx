@@ -10,7 +10,11 @@ import Footer from './Footer/Footer.jsx';
 *
 * @method
 *
+<<<<<<< HEAD
 * @returns {undefined}
+=======
+* @returns {undifined} - JSX element
+>>>>>>> 47623c2f13ba408788178a5a546969e3b059aeec
 */
 const NotFound = () => (
   <div className="body">

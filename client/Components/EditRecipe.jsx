@@ -8,6 +8,7 @@ import SmallPreloader from './SmallPreloader.jsx';
 import Footer from './Footer/Footer.jsx';
 import UserMenu from './Header/UserMenu.jsx';
 import { validateEditRecipeForm } from '../util/validateInputs';
+import findIndex from '../util/findIndex';
 import imageToFormData from '../util/imageUpload';
 
 
@@ -19,7 +20,7 @@ import imageToFormData from '../util/imageUpload';
  * @extends Component
  *
  */
-class EditRecipe extends Component {
+export class EditRecipe extends Component {
   /**
    * @description initialize state and binds functiom
    *
@@ -77,8 +78,7 @@ class EditRecipe extends Component {
     const { isFetched, isUpdated, recipes } = nextProps.userRecipeReducer;
     const { id } = this.props.match.params;
     if (isFetched) {
-      const { id } = this.props.match.params;
-      const index = recipes.findIndex(recipe => recipe.id === parseInt(id, 10));
+      const index = findIndex(recipes, id);
       this.setState({
         id: recipes[index].id,
         title: recipes[index].title,
@@ -191,7 +191,6 @@ class EditRecipe extends Component {
         </div>
       );
     }
-
     if (isFetched === false && !recipes) {
       return (
         <div className="body grey lighten-5">
@@ -294,6 +293,7 @@ class EditRecipe extends Component {
                         </i>
                       </span>
                       <input
+                        id="image"
                         type="file"
                         multiple
                         onChange={event => this.handleImageChange(event)}
@@ -350,7 +350,11 @@ EditRecipe.propTypes = {
   userRecipeReducer: PropTypes.shape({
     isFetched: PropTypes.bool.isRequired
   }).isRequired,
-  recipes: PropTypes.shape({}).isRequired
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number.isRequired
+    }).isRequired
+  }).isRequired
 };
 
 const mapStateToProps = state => ({

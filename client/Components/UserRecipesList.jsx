@@ -9,7 +9,6 @@ import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 import * as actionCreators from '../action/actionCreators';
 import { onPageChange, onPageReload } from '../util/pageFunctions';
-import 'rc-pagination/assets/index.css';
 
 /**
  *
@@ -20,7 +19,7 @@ import 'rc-pagination/assets/index.css';
  * @extends Component
  *
  */
-class UserRecipesList extends Component {
+export class UserRecipesList extends Component {
   constructor() {
     super();
     this.onChange = this.onChange.bind(this);
@@ -87,7 +86,7 @@ class UserRecipesList extends Component {
   onChange(page) {
     this.props.history.push(`/user/recipes?page=${page}`);
     const offset = 6 * (page - 1);
-    this.props.fetchUserRecipes(this.props.userData.currentuser.id, offset);
+    this.props.fetchUserRecipes(this.props.userData.currentUser.id, offset);
   }
 
   /**
@@ -137,7 +136,7 @@ class UserRecipesList extends Component {
               pageSize={pagination.pageSize}
               total={pagination.totalCount}
             />
-          : ''
+            : ''
           }
         </div>
         <Footer />

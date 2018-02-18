@@ -9,7 +9,6 @@ import { onPageChange, onPageReload } from '../util/pageFunctions';
 import UserMenu from './Header/UserMenu.jsx';
 import Footer from './Footer/Footer.jsx';
 import Preloader from './Preloder.jsx';
-import 'rc-pagination/assets/index.css';
 
 /**
  *
@@ -20,7 +19,7 @@ import 'rc-pagination/assets/index.css';
  * @extends Component
  *
  */
-class UserFavouritesList extends Component {
+export class UserFavouritesList extends Component {
   constructor() {
     super();
     this.onChange = this.onChange.bind(this);
@@ -171,7 +170,6 @@ UserFavouritesList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  recipeReducer: state.recipeReducer,
   userData: state.userData,
   favouriteReducer: state.favouriteReducer
 });

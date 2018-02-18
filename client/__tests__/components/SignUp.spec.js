@@ -2,9 +2,6 @@ import React from 'react';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import { SignUp } from '../../Components/SignUp';
-import axios from 'axios';
-import imageToFormData from '../../util/ImageUpload';
-
 
 const props = {
   userData: {
@@ -56,7 +53,7 @@ describe('<SignUp />', () => {
 describe('<SignUp />', () => {
   it('should call handleImageChange function', () => {
     const wrapper = shallow(<SignUp {...props} {...state} />);
-    wrapper.find('#image').simulate('change', event);
+    wrapper.find('#fileSelect').simulate('change', event);
     expect(wrapper.instance().state.image).toEqual({});
   });
 });

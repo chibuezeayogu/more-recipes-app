@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RecipeCard from './RecipeCard.jsx';
-import Preloader from './Preloder.jsx';
+import SmallPreloader from './SmallPreloader.jsx';
 
 
 class SearchResult extends Component {
@@ -13,7 +13,7 @@ class SearchResult extends Component {
           className="row left align-recipe"
           style={{ width: '100%' }}
         >
-          <Preloader />
+          <SmallPreloader />
         </div>
       );
     }
@@ -46,8 +46,9 @@ class SearchResult extends Component {
 
 SearchResult.propTypes = {
   searchReducer: PropTypes.shape({
-    recipes: PropTypes.shape.isRequired,
-  }).isRequired,
+    recipes: PropTypes.shape.isRequired
+  }).isRequired
 };
+
 
 export default SearchResult;

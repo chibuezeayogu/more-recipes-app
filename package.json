@@ -22,7 +22,7 @@
     "test:e2e": "NODE_ENV=test npm rum test:db:migrate && nightwatch"
   },
   "author": "Chibueze Ayogu",
-  "license": "MIT",
+  "license": "ISC",
   "babel": {
     "presets": [
       "es2015"
@@ -42,6 +42,9 @@
     "verbose": true,
     "roots": [
       "./client"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/client/Style"
     ],
     "setupTestFrameworkScriptFile": "./client/__tests__/testSetup.js",
     "testPathIgnorePatterns": [
@@ -140,6 +143,7 @@
     "expect": "^22.1.0",
     "jest": "^22.1.4",
     "jsdom": "8.5.0",
+    "nightwatch": "^0.9.19",
     "nock": "8.0.0",
     "npm-run-all": "1.8.0",
     "open": "0.0.5",
@@ -147,6 +151,8 @@
     "react-test-renderer": "^15.6.2",
     "redux-immutable-state-invariant": "1.2.3",
     "redux-mock-store": "1.0.2",
-    "rimraf": "2.5.2"
+    "rimraf": "2.5.2",
+    "selenium-standalone": "^6.12.0",
+    "sinon": "^4.2.2"
   }
 }

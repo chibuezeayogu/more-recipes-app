@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
 import { signOut } from '../../action/actionCreators';
 
 /**
@@ -12,6 +12,11 @@ import { signOut } from '../../action/actionCreators';
  *
  */
 export class UserMenu extends Component {
+  constructor() {
+    super();
+    this.logout = this.logout.bind(this);
+  }
+
   /**
    * @description initializes dropdown and button collapse
    *
@@ -37,7 +42,7 @@ export class UserMenu extends Component {
   }
 
   /**
-   * @description routes to /if user is logs' out
+   * @description routes to /signin if user is logs' out
    *
    * @method
    *
@@ -48,11 +53,9 @@ export class UserMenu extends Component {
    * @returns {undefined}
    *
    */
-  logout(event) {
-    event.preventDefault();
+  logout() {
     this.props.signOut();
     localStorage.removeItem('jwtToken');
-    this.props.history.push('/signin');
   }
 
   /**
@@ -63,7 +66,7 @@ export class UserMenu extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {void}
+   * @returns {undefined}
    *
    */
   render() {
@@ -90,17 +93,23 @@ export class UserMenu extends Component {
               </a>
               <ul className="right hide-on-med-and-down">
                 <li >
-                  <Link to="/recipes">
+                  <Link
+                    to="/recipes"
+                  >
                     <i className="fa fa-home" /> Recipes
                   </Link>
                 </li>
                 <li>
-                  <Link to="/addrecipe">
+                  <Link
+                    to="/addrecipe"
+                  >
                     <i className="fa fa-plus" aria-hidden="true" /> Add Recipe
                   </Link>
                 </li>
                 <li>
-                  <Link to="/search">
+                  <Link
+                    to="/search"
+                  >
                     <i className="fa fa-search" aria-hidden="true" /> Search
                   </Link>
                 </li>
@@ -123,43 +132,64 @@ export class UserMenu extends Component {
                 id="mobile-demo"
               >
                 <li>
-                  <Link to="/recipes">
+                  <Link
+                    to="/recipes"
+                  >
                     <i className="fa fa-home" /> Recipes
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/addrecipe">
+                  <Link
+                    to="/addrecipe"
+                  >
                     <i className="fa fa-plus" aria-hidden="true" /> Add Recipe
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/search">
+                  <Link
+                    to="/search"
+                  >
                     <i className="fa fa-search" aria-hidden="true" /> Search
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/user/profile">
+                  <Link
+                    to="/user/profile"
+                  >
                     <i className="fa fa-user" aria-hidden="true" /> Profile
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/user/recipes">
-                    <i className="fa fa-cutlery" aria-hidden="true" /> My Recipes
+                  <Link
+                    to="/user/recipes"
+                  >
+                    <i
+                      className="fa fa-cutlery"
+                      aria-hidden="true"
+                    /> My Recipes
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/user/favourites">
-                    <i className="fa fa-heart" aria-hidden="true" /> My Favourites
+                  <Link
+                    to="/user/favourites"
+                  >
+                    <i
+                      className="fa fa-heart"
+                      aria-hidden="true"
+                    /> My Favourites
                   </Link>
                 </li>
                 <div className="divider" />
                 <li>
-                  <Link to="/" onClick={e => this.logout(e)}>
+                  <Link
+                    to="/signin"
+                    onClick={this.logout}
+                  >
                     <i className="fa fa-sign-out" aria-hidden="true" /> Logout
                   </Link>
                 </li>
@@ -188,7 +218,7 @@ export class UserMenu extends Component {
             </Link>
           </li>
           <div className="divider" />
-          <li className="black-text" id="myfavourite">
+          <li className="black-text" id="myFavourite">
             <Link to="/user/favourites" className="black-text">
               <i
                 className="fa fa-heart black-text"
@@ -198,7 +228,7 @@ export class UserMenu extends Component {
           </li>
           <div className="divider" />
           <li className="black-text" id="logout">
-            <Link to="/" onClick={e => this.logout(e)} className="black-text">
+            <Link to="/signin" onClick={this.logout} className="black-text">
               <i
                 className="fa fa-sign-out black-text"
                 aria-hidden="true"
@@ -219,10 +249,7 @@ UserMenu.propTypes = {
       email: PropTypes.string.isRequired,
       id: PropTypes.number.isRequired
     }).isRequired,
-  }).isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired,
+  }).isRequired
 };
 
 const mapStateToProps = state => ({

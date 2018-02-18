@@ -20,7 +20,7 @@ import { validateAddRecipeForm } from '../util/validateInputs';
  * @extends Component
  *
  */
-class AddRecipe extends Component {
+export class AddRecipe extends Component {
   /**
    * @description initialize state and binds functiom
    *
@@ -45,6 +45,7 @@ class AddRecipe extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleOnsubmit = this.handleOnsubmit.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
   }
 
   /**

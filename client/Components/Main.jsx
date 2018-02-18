@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Home from './Home.jsx';
 import Menu from './Header/Menu.jsx';
 import Footer from './Footer/Footer.jsx';
+import { withRouter } from 'react-router-dom';
 
 /**
  *
@@ -43,7 +44,10 @@ export class Main extends Component {
    */
   componentDidMount() {
     $('.parallax').parallax();
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav({
+      closeOnClick: true,
+      draggable: false,
+    });
   }
   /**
    *
@@ -69,10 +73,13 @@ export class Main extends Component {
 Main.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
+  }).isRequired,
+  userData: PropTypes.shape({
+    isAuthenticated: PropTypes.bool.isRequired,
   }).isRequired
 };
 const mapStateToProps = state => ({
   userData: state.userData
 });
 
-export default connect(mapStateToProps)(Main);
+export default withRouter(connect(mapStateToProps)(Main));

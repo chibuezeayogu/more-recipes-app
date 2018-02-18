@@ -43,6 +43,8 @@ export class SignUp extends Component {
       disabled: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleOnsubmit = this.handleOnsubmit.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
   }
 
   /**
@@ -157,7 +159,7 @@ export class SignUp extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {undefined}
+   * @returns {undefined} - renders JSX element
    *
    */
   render() {
@@ -171,7 +173,7 @@ export class SignUp extends Component {
               <hr />
               <form
                 className="col l6 m8 s12 offset-l3 offset-m2"
-                onSubmit={event => this.handleOnsubmit(event)}
+                onSubmit={this.handleOnsubmit}
               >
                 <div className="row">
                   <div className="input-field col s12">
@@ -246,10 +248,10 @@ export class SignUp extends Component {
                   <div className="input-field col s12">
                     <i className="fa fa-picture-o prefix" aria-hidden="true" />
                     <input
-                      id="file"
+                      id="fileSelect"
                       type="file"
                       name="profileImage"
-                      onChange={e => this.handleImageChange(e)}
+                      onChange={this.handleImageChange}
                     />
                   </div>
                   <span className="right red-text error-font error-margin">

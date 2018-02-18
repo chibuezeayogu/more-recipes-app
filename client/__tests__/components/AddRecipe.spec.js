@@ -50,7 +50,7 @@ describe('HandleChange', () => {
 describe('HandleImageChange', () => {
   it('should call set image state to user selected image', () => {
     const wrapper = shallow(<AddRecipe {...props} {...state} />);
-    wrapper.find('#image').simulate('change', event);
+    wrapper.find('#fileSelect').simulate('change', event);
     expect(wrapper.instance().state.image).toEqual({});
   });
 });
@@ -78,7 +78,7 @@ describe('handleOnSubmit', () => {
     expect(wrapper.instance().state.errors.imageError)
       .toBe('select a valid file type');
   });
-  
+
   it('should return error for input did not meet the required length', () => {
     const wrapper = shallow(<AddRecipe {...props} {...state} />);
     wrapper.setState({

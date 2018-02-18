@@ -2,9 +2,9 @@ import React from 'react';
 
 /**
  *
- * @description conastant function for landing page content
+ * @description function component for rendering landing page content
  *
- * @constant
+ * @extends Component
  *
  * @returns {undefined}
  *

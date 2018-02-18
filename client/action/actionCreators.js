@@ -4,15 +4,7 @@ import actionTypes from './actionTypes';
  *
  * @method
  *
- * @param {String} title - recipe title
- *
- * @param {String} description - recipe description
- *
- * @param {String} ingredients - recipe ingredients
- *
- * @param {String} procedures - recipe procedures
- *
- * @param {String} imageURL - recipe imageUrl
+ * @param {String} state - recipe details
  *
  * @returns {Object} payload
  *
@@ -35,7 +27,7 @@ export const createRecipe = (state) => {
  *
  * @method
  *
- * @param {Integer} recipeId - recipe id
+ * @param {Integer} id - recipe id
  *
  * @returns {Object} payload
  *
@@ -146,15 +138,7 @@ export const login = (email, password) => ({
  *
  * @method
  *
- * @param {String} firstName - user first name
- *
- * @param {String} lastName - user last name
- *
- * @param {String} email - user email
- *
- * @param {String} password - user password
- *
- * @param {String} imageUrl - user imageUrl
+ * @param {Object} state - user details
  *
  * @returns {Object} payload
  *
@@ -204,6 +188,8 @@ export const signOut = () => ({
    *
    * @method
    *
+   * @param {Integer} id
+   *
    * @returns {void}
    */
 export const fetchRecipe = id => ({
@@ -218,6 +204,8 @@ export const fetchRecipe = id => ({
    * @method
    *
    * @param {Integer} userId - user id
+   *
+   * @param {Integer} offset
    *
    * @returns {void}
    */
@@ -260,24 +248,11 @@ export const search = searchTerm => ({
   searchTerm
 });
 
-
-// export const mostUpvotedRecipe = () => ({
-//   type: actionTypes.GET_MOST_FAVOURITED_RECIPE
-// })
-
 /**
  *
  * @method
  *
- * @param {String} title - recipe title
- *
- * @param {String} description - recipe description
- *
- * @param {String} ingredients - recipe ingredients
- *
- * @param {String} procedures - recipe procedures
- *
- * @param {String} imageURL - recipe imageUrl
+ * @param {String} state - recipe details
  *
  * @returns {Object} payload
  *
@@ -301,15 +276,7 @@ export const editRecipe = (state) => {
  *
  * @method
  *
- * @param {String} firstName - user first name
- *
- * @param {String} lastName - user last name
- *
- * @param {String} email - user email
- *
- * @param {String} password - user password
- *
- * @param {String} imageUrl - user imageUrl
+ * @param {String} state - user details
  *
  * @returns {Object} payload
  *
@@ -349,7 +316,7 @@ export const fetchUser = id => ({
  *
  * @method
  *
- * @param {id} id - user id
+ * @param {id} user - user id
  *
  * @returns {Object} payload
  *

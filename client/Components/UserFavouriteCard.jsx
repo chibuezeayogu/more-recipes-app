@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import moment from 'moment';
 import swal from 'sweetalert';
 
@@ -8,13 +8,11 @@ import swal from 'sweetalert';
  *
  * @description displays each recipe
  *
- * @method
+ * @class
  *
- * @param {Object} props - property object
- *
- *  @returns {undefined}
+ * @extends Component
  */
-class UserFavouriteCard extends Component {
+export class UserFavouriteCard extends Component {
   handelFavourites(id, title) {
     swal({
       title: 'Are you sure?',
@@ -36,7 +34,7 @@ class UserFavouriteCard extends Component {
  *
  * @method
  *
- * @memberOf SingleRecipe
+ * @memberOf UserFavouriteCard
  *
  * @returns {undefined}
  */
@@ -71,7 +69,9 @@ class UserFavouriteCard extends Component {
             className="card-action black-text center grey lighten-4"
             style={{ margin: 1 }}
           >
-            <a className="black-text">
+            <a
+              className="black-text"
+            >
               <i
                 className="fa fa-thumbs-o-up"
                 aria-hidden="true"
@@ -87,7 +87,9 @@ class UserFavouriteCard extends Component {
               > {favourite.downvotes}
               </i>
             </a>
-            <a className="black-text">
+            <a
+              className="black-text"
+            >
               <i
                 className="fa fa-eye"
                 aria-hidden="true"
@@ -125,4 +127,4 @@ UserFavouriteCard.propTypes = {
   addOrRemoveFavourite: PropTypes.func.isRequired
 };
 
-export default UserFavouriteCard;
+export default withRouter(UserFavouriteCard);

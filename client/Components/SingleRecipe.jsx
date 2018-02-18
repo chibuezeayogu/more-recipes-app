@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../action/actionCreators';
@@ -17,7 +18,7 @@ import findIndex from '../util/findIndex';
  *
  * @extends Component
  */
-class SingleRecipe extends Component {
+export class SingleRecipe extends Component {
   /**
    *
    * @description set instail state and binds actions
@@ -38,6 +39,8 @@ class SingleRecipe extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.renderComment = this.renderComment.bind(this);
+    this.handleDownvote = this.handleDownvote.bind(this);
+    this.handleOnsubmit = this.handleOnsubmit.bind(this);
   }
 
   /**
@@ -172,11 +175,11 @@ class SingleRecipe extends Component {
    *
    * @memberOf SingleRecipe
    *
-   * @returns {Undefined}
+   * @returns {undefined}
    */
 
   renderComment() {
-    const { commentReducer, ...rest } = this.props;
+    const { commentReducer } = this.props;
     const { reviews } = commentReducer;
     return (
       reviews.map((review, i) => (<Comments
@@ -351,7 +354,7 @@ class SingleRecipe extends Component {
               <div className="row s12 m6">
                 <h4>Comments</h4>
                 <form
-                  onSubmit={e => this.handleOnsubmit(e)}
+                  onSubmit={this.handleOnsubmit}
                 >
                   <div className="row">
                     <div className="input-field col s12">
@@ -373,8 +376,8 @@ class SingleRecipe extends Component {
 
                   <div className="row s12 m6">
                     <button
-                      className="btn waves-effect waves-light green right"
                       id="commentButton"
+                      className="btn waves-effect waves-light green right"
                       type="submit"
                       name="action"
                       style={{ marginRight: 10 }}
@@ -396,8 +399,13 @@ class SingleRecipe extends Component {
   }
 }
 
+
 SingleRecipe.propTypes = {
   fetchRecipe: PropTypes.func.isRequired,
+  postComment: PropTypes.func.isRequired,
+  upVoteRecipe: PropTypes.func.isRequired,
+  addOrRemoveFavourite: PropTypes.func.isRequired,
+  downVoteRecipe: PropTypes.func.isRequired,
   fetchRecipeComment: PropTypes.func.isRequired,
   recipeReducer: PropTypes.shape({
     recipes: PropTypes.arrayOf(PropTypes.shape({
@@ -425,11 +433,7 @@ SingleRecipe.propTypes = {
         imageUrl: PropTypes.string.isRequired,
       }).isRequired,
     })).isRequired,
-  }).isRequired,
-  addOrRemoveFavourite: PropTypes.func.isRequired,
-  postComment: PropTypes.func.isRequired,
-  downVoteRecipe: PropTypes.func.isRequired,
-  upVoteRecipe: PropTypes.func.isRequired,
+  }).isRequired
 };
 
 const mapStateToProps = state => ({
@@ -441,4 +445,5 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(actionCreators, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleRecipe);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SingleRecipe));

@@ -26,6 +26,5 @@ describe('<UserMenu />', () => {
     wrapper.instance().logout();
     expect(logoutSpy).toHaveBeenCalled();
     expect(wrapper.instance().props.signOut).toHaveBeenCalled();
-    expect(wrapper.instance().props.history.push).toHaveBeenCalled();
   });
 });

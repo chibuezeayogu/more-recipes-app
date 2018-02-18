@@ -119,7 +119,7 @@ export class SignIn extends Component {
    *
    * @memberOf SignIn
    *
-   * @returns {undefined}
+   * @returns {undifiend} - renders JSX element
    *
    */
   render() {

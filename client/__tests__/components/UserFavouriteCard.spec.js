@@ -1,11 +1,8 @@
 import React from 'react';
 import expect from 'expect';
-import swal from 'sweetalert';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { UserFavouriteCard } from '../../Components/UserFavouriteCard';
 import mockData from '../__mock__/actionMockData';
-
-global.swal = () => {};
 
 const props = {
   favourite: mockData.recipe,

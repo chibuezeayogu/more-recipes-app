@@ -7,9 +7,8 @@ import Footer from './Footer/Footer.jsx';
 import SearchResult from './SearchResult.jsx';
 import Pagination from 'rc-pagination';
 import Preloader from './Preloder.jsx';
-import 'rc-pagination/assets/index.css';
 
-class Search extends Component {
+export class Search extends Component {
   constructor() {
     super();
     this.state = ({ isLoading: false });
@@ -17,6 +16,7 @@ class Search extends Component {
   }
 
   componentWillMount() {
+    this.state = ({ isLoading: true });
     this.props.fetchRecipesWithMostUpvote();
   }
   /**
@@ -43,7 +43,6 @@ class Search extends Component {
       this.props.search(serchTerm);
       this.state = ({ isLoading: true });
     } else {
-      this.props.history.push('/search');
       this.props.fetchRecipesWithMostUpvote();
     }
   }
@@ -77,7 +76,7 @@ class Search extends Component {
               >
                 <div className="row">
                   <div className="input-field col s12">
-                    <input id="search" type="text" />
+                    <input name="searchTerm" id="search" type="text" onChange={this.handleSearch} />
                     <label htmlFor="search">Enter Search term</label>
                   </div>
                 </div>

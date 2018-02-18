@@ -78,6 +78,7 @@ ShallowWrapper {
         >
           <form
             className="col s12"
+            onChange={[Function]}
           >
             <div
               className="row"
@@ -105,57 +106,7 @@ ShallowWrapper {
         >
           Top Recipes
         </h4>
-        <SearchResult
-          fetchRecipesWithMostUpvote={
-            [MockFunction] {
-              "calls": Array [
-                Array [],
-              ],
-            }
-          }
-          search={[MockFunction]}
-          searchReducer={
-            Object {
-              "display": "Top Recipes",
-              "pagination": Object {
-                "currentPage": 1,
-                "pageCount": 1,
-                "pageSize": 2,
-                "totalCount": 2,
-              },
-              "recipes": Array [
-                Object {
-                  "addedBy": 1,
-                  "createdAt": "2018-01-29T11:38:51.147Z",
-                  "description": "adsfasfa",
-                  "downvotes": 0,
-                  "id": 3,
-                  "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
-                  "ingredients": "asdfafafa",
-                  "procedures": "adfadfadf",
-                  "title": "New title",
-                  "updatedAt": "2018-02-02T15:30:35.425Z",
-                  "upvotes": 1,
-                  "views": 0,
-                },
-                Object {
-                  "addedBy": 1,
-                  "createdAt": "2018-01-28T22:46:03.051Z",
-                  "description": "asdfafd",
-                  "downvotes": 0,
-                  "id": 1,
-                  "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
-                  "ingredients": "adfadfadf",
-                  "procedures": "adfafadf",
-                  "title": "CHANGED",
-                  "updatedAt": "2018-02-06T19:28:36.149Z",
-                  "upvotes": 1,
-                  "views": 0,
-                },
-              ],
-            }
-          }
-        />
+        <Preloader />
       </div>
     </div>
     <div
@@ -274,6 +225,7 @@ ShallowWrapper {
           >
             <form
               className="col s12"
+              onChange={[Function]}
             >
               <div
                 className="row"
@@ -301,57 +253,7 @@ ShallowWrapper {
           >
             Top Recipes
           </h4>
-          <SearchResult
-            fetchRecipesWithMostUpvote={
-              [MockFunction] {
-                "calls": Array [
-                  Array [],
-                ],
-              }
-            }
-            search={[MockFunction]}
-            searchReducer={
-              Object {
-                "display": "Top Recipes",
-                "pagination": Object {
-                  "currentPage": 1,
-                  "pageCount": 1,
-                  "pageSize": 2,
-                  "totalCount": 2,
-                },
-                "recipes": Array [
-                  Object {
-                    "addedBy": 1,
-                    "createdAt": "2018-01-29T11:38:51.147Z",
-                    "description": "adsfasfa",
-                    "downvotes": 0,
-                    "id": 3,
-                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
-                    "ingredients": "asdfafafa",
-                    "procedures": "adfadfadf",
-                    "title": "New title",
-                    "updatedAt": "2018-02-02T15:30:35.425Z",
-                    "upvotes": 1,
-                    "views": 0,
-                  },
-                  Object {
-                    "addedBy": 1,
-                    "createdAt": "2018-01-28T22:46:03.051Z",
-                    "description": "asdfafd",
-                    "downvotes": 0,
-                    "id": 1,
-                    "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
-                    "ingredients": "adfadfadf",
-                    "procedures": "adfafadf",
-                    "title": "CHANGED",
-                    "updatedAt": "2018-02-06T19:28:36.149Z",
-                    "upvotes": 1,
-                    "views": 0,
-                  },
-                ],
-              }
-            }
-          />
+          <Preloader />
         </div>
       </div>
       <div
@@ -508,7 +410,7 @@ ShallowWrapper {
         },
         "refs": Object {},
         "state": Object {
-          "isLoading": false,
+          "isLoading": true,
         },
         "updater": Object {
           "enqueueCallback": [Function],
@@ -603,6 +505,7 @@ ShallowWrapper {
               >
                 <form
                   className="col s12"
+                  onChange={[Function]}
                 >
                   <div
                     className="row"
@@ -630,57 +533,7 @@ ShallowWrapper {
               >
                 Top Recipes
               </h4>
-              <SearchResult
-                fetchRecipesWithMostUpvote={
-                  [MockFunction] {
-                    "calls": Array [
-                      Array [],
-                    ],
-                  }
-                }
-                search={[MockFunction]}
-                searchReducer={
-                  Object {
-                    "display": "Top Recipes",
-                    "pagination": Object {
-                      "currentPage": 1,
-                      "pageCount": 1,
-                      "pageSize": 2,
-                      "totalCount": 2,
-                    },
-                    "recipes": Array [
-                      Object {
-                        "addedBy": 1,
-                        "createdAt": "2018-01-29T11:38:51.147Z",
-                        "description": "adsfasfa",
-                        "downvotes": 0,
-                        "id": 3,
-                        "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
-                        "ingredients": "asdfafafa",
-                        "procedures": "adfadfadf",
-                        "title": "New title",
-                        "updatedAt": "2018-02-02T15:30:35.425Z",
-                        "upvotes": 1,
-                        "views": 0,
-                      },
-                      Object {
-                        "addedBy": 1,
-                        "createdAt": "2018-01-28T22:46:03.051Z",
-                        "description": "asdfafd",
-                        "downvotes": 0,
-                        "id": 1,
-                        "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
-                        "ingredients": "adfadfadf",
-                        "procedures": "adfafadf",
-                        "title": "CHANGED",
-                        "updatedAt": "2018-02-06T19:28:36.149Z",
-                        "upvotes": 1,
-                        "views": 0,
-                      },
-                    ],
-                  }
-                }
-              />
+              <Preloader />
             </div>
           </div>
           <div
@@ -799,6 +652,7 @@ ShallowWrapper {
               >
                 <form
                   className="col s12"
+                  onChange={[Function]}
                 >
                   <div
                     className="row"
@@ -826,57 +680,7 @@ ShallowWrapper {
               >
                 Top Recipes
               </h4>
-              <SearchResult
-                fetchRecipesWithMostUpvote={
-                  [MockFunction] {
-                    "calls": Array [
-                      Array [],
-                    ],
-                  }
-                }
-                search={[MockFunction]}
-                searchReducer={
-                  Object {
-                    "display": "Top Recipes",
-                    "pagination": Object {
-                      "currentPage": 1,
-                      "pageCount": 1,
-                      "pageSize": 2,
-                      "totalCount": 2,
-                    },
-                    "recipes": Array [
-                      Object {
-                        "addedBy": 1,
-                        "createdAt": "2018-01-29T11:38:51.147Z",
-                        "description": "adsfasfa",
-                        "downvotes": 0,
-                        "id": 3,
-                        "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
-                        "ingredients": "asdfafafa",
-                        "procedures": "adfadfadf",
-                        "title": "New title",
-                        "updatedAt": "2018-02-02T15:30:35.425Z",
-                        "upvotes": 1,
-                        "views": 0,
-                      },
-                      Object {
-                        "addedBy": 1,
-                        "createdAt": "2018-01-28T22:46:03.051Z",
-                        "description": "asdfafd",
-                        "downvotes": 0,
-                        "id": 1,
-                        "imageUrl": "https://res.cloudinary.com/chibuezeayogu/image/upload/v1517405763/v9wpm63o7fiyktplhfoz.jpg",
-                        "ingredients": "adfadfadf",
-                        "procedures": "adfafadf",
-                        "title": "CHANGED",
-                        "updatedAt": "2018-02-06T19:28:36.149Z",
-                        "upvotes": 1,
-                        "views": 0,
-                      },
-                    ],
-                  }
-                }
-              />
+              <Preloader />
             </div>
           </div>
           <div

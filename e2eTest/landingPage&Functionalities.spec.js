@@ -30,7 +30,7 @@ export default {
       .setValue('#email', '')
       .assert.visible('#password')
       .setValue('#password', '')
-      .assert.visible('#file')
+      .assert.visible('#fileSelect')
       .click('.btn.right.green')
       .pause(4000)
       .assert.visible('#firstName')
@@ -41,7 +41,7 @@ export default {
       .setValue('#email', 'wrongmail.com')
       .assert.visible('#password')
       .setValue('#password', '12344567')
-      .assert.visible('#file')
+      .assert.visible('#fileSelect')
       .assert.visible('#password')
       .setValue('#password', 'Computer12.')
       .click('.btn.right.green')
@@ -64,8 +64,8 @@ export default {
       .clearValue('#password')
       .assert.visible('#password')
       .setValue('#password', 'Abcd.1234.@')
-      .assert.visible('#file')
-      .setValue('#file',
+      .assert.visible('#fileSelect')
+      .setValue('#fileSelect',
         require('path').resolve(`${__dirname}/../client/img/myprofile.jpg`))
       .click('.btn.right.green')
       .pause(9000);

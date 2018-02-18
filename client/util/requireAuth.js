@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import verifyToken from './verifyToken';
 
 
 export default (ComposedComponent) => {
@@ -23,6 +22,9 @@ export default (ComposedComponent) => {
   Authenticate.propTypes = {
     userData: PropTypes.shape({
       isAuthenticated: PropTypes.bool.isRequired
+    }).isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired
     }).isRequired
   };
 

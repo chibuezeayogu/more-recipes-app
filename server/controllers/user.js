@@ -26,7 +26,9 @@ export default {
      *
      */
   signup(req, res) {
-    const { firstName, lastName, email, password, imageUrl } = req.body;
+    const {
+      firstName, lastName, email, password, imageUrl
+    } = req.body;
     User
       .find({ where: { email } })
       .then((foundUser) => {
@@ -62,7 +64,7 @@ export default {
      * @method
      *
      * @param {Object} req - Request object
-     * 
+     *
      * @param {Object} res - Response object
      *
      * @returns {Object} json - payload
@@ -78,7 +80,7 @@ export default {
         }
 
         if (bcrypt.compareSync(password, foundUser.password)) {
-          const user = {id: foundUser.id, email: foundUser.email };
+          const user = { id: foundUser.id, email: foundUser.email };
           const userData = { user };
           const token = jwt.sign(userData, secret, { expiresIn: '24h' });
           return res.status(200).send({
@@ -141,7 +143,7 @@ export default {
     }
 
     const {
-      firstName, lastName, password, imageUrl, location, address, phone
+      firstName, lastName, imageUrl, location, address, phone
     } = req.body;
 
     User
