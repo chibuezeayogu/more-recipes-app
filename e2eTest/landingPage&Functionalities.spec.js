@@ -1,6 +1,6 @@
 
 export default {
-  'Landing Page should be displayed with all element and atrributes ':
+  'Landing Page should be displayed with all elements and attributes ':
   (client) => {
     client
       .url('http://localhost:26000')
